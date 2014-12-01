@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>iOS代码中的不良实践与优化 | SmartArrow</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="不良实践的根源
+
+项目时间紧，没有时间去思考更好的写法
+认为花精力去优化代码结构不值得
+
+第一种原因，一般是因为经验不足，通过学习，任何人都可以很本能的写出结构良好的代码。至于时间确实很紧，后面总会重构的时间。
+第二种原因，我觉得要分项目看。如果只是第一个试水版本，没有问题。但是作为一个长久项目，千万不能抱有这种观点。不仅害己，更是害人。
+最近做了一个项目，由于种种原因，我们的代码有很多问题。因为">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS代码中的不良实践与优化">
+<meta property="og:url" content="http://linkageios.github.io/2014/10/11/iOS代码中的不良实践与优化/">
+<meta property="og:site_name" content="SmartArrow">
+<meta property="og:description" content="不良实践的根源
+
+项目时间紧，没有时间去思考更好的写法
+认为花精力去优化代码结构不值得
+
+第一种原因，一般是因为经验不足，通过学习，任何人都可以很本能的写出结构良好的代码。至于时间确实很紧，后面总会重构的时间。
+第二种原因，我觉得要分项目看。如果只是第一个试水版本，没有问题。但是作为一个长久项目，千万不能抱有这种观点。不仅害己，更是害人。
+最近做了一个项目，由于种种原因，我们的代码有很多问题。因为">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS代码中的不良实践与优化">
+<meta name="twitter:description" content="不良实践的根源
+
+项目时间紧，没有时间去思考更好的写法
+认为花精力去优化代码结构不值得
+
+第一种原因，一般是因为经验不足，通过学习，任何人都可以很本能的写出结构良好的代码。至于时间确实很紧，后面总会重构的时间。
+第二种原因，我觉得要分项目看。如果只是第一个试水版本，没有问题。但是作为一个长久项目，千万不能抱有这种观点。不仅害己，更是害人。
+最近做了一个项目，由于种种原因，我们的代码有很多问题。因为">
+
+  
+    <link rel="alternative" href="/atom.xml" title="SmartArrow" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<div class="profilepic">
+			<img src="./images/logo.png">
+		</div>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">SmartArrow</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">技术文档</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="/#" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="/#" title="rss">rss</a>
+					        
+								<a class="facebook" target="_blank" href="/#" title="facebook">facebook</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud">
+						<a href="/tags/ARC/" style="font-size: 10.00px;">ARC</a><a href="/tags/LCBaseViewController/" style="font-size: 10.00px;">LCBaseViewController</a><a href="/tags/LCDataManager/" style="font-size: 10.00px;">LCDataManager</a><a href="/tags/LCMenuView/" style="font-size: 10.00px;">LCMenuView</a><a href="/tags/POP/" style="font-size: 10.00px;">POP</a><a href="/tags/iconsole/" style="font-size: 10.00px;">iconsole</a><a href="/tags/json/" style="font-size: 10.00px;">json</a><a href="/tags/xml/" style="font-size: 10.00px;">xml</a><a href="/tags/代码优化/" style="font-size: 10.00px;">代码优化</a><a href="/tags/分享/" style="font-size: 10.00px;">分享</a><a href="/tags/动画/" style="font-size: 10.00px;">动画</a><a href="/tags/地图/" style="font-size: 10.00px;">地图</a><a href="/tags/效率/" style="font-size: 10.00px;">效率</a><a href="/tags/架构/" style="font-size: 10.00px;">架构</a><a href="/tags/网络/" style="font-size: 10.00px;">网络</a><a href="/tags/规范/" style="font-size: 20.00px;">规范</a><a href="/tags/路线图/" style="font-size: 10.00px;">路线图</a><a href="/tags/高德/" style="font-size: 10.00px;">高德</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://blog.crysnower.cn">StephenZhu&#39;s Blog</a>
+			        
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					我是谁，我从哪里来，我到哪里去？我就是我，是颜色不一样的吃货…
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay"></div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img src="./images/logo.png">
+			</div>
+
+			<hgroup>
+			  <h1 class="header-author"><a href="/">SmartArrow</a></h1>
+			</hgroup>
+			
+			<p class="header-subtitle">技术文档</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="/#" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="/#" title="rss">rss</a>
+			        
+						<a class="facebook" target="_blank" href="/#" title="facebook">facebook</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <article id="post-iOS代码中的不良实践与优化" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/10/11/iOS代码中的不良实践与优化/" class="article-date">
+  	<time datetime="2014-10-11T09:32:00.000Z" itemprop="datePublished">10月 11 2014</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/iOS/">iOS</a>
+  </div>
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/代码优化/">代码优化</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      iOS代码中的不良实践与优化
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="不良实践的根源">不良实践的根源</h2>
+<ul>
+<li>项目时间紧，没有时间去思考更好的写法</li>
+<li>认为花精力去优化代码结构不值得</li>
+</ul>
+<p>第一种原因，一般是因为经验不足，通过学习，任何人都可以很本能的写出结构良好的代码。至于时间确实很紧，后面总会重构的时间。</p>
+<p>第二种原因，我觉得要分项目看。如果只是第一个试水版本，没有问题。但是作为一个长久项目，千万不能抱有这种观点。不仅害己，更是害人。</p>
+<p>最近做了一个项目，由于种种原因，我们的代码有很多问题。因为正在做重构，所以就把一些不良的实践总结出来。希望对大家有所帮助。</p>
+<p><a id="more"></a></p>
+<h2 id="不良实践的根源-1">不良实践的根源</h2>
+<ul>
+<li>项目时间紧，没有时间去思考更好的写法</li>
+<li>认为花精力去优化代码结构不值得</li>
+</ul>
+<p>第一种原因，一般是因为经验不足，通过学习，任何人都可以很本能的写出结构良好的代码。至于时间确实很紧，后面总会重构的时间。</p>
+<p>第二种原因，我觉得要分项目看。如果只是第一个试水版本，没有问题。但是作为一个长久项目，千万不能抱有这种观点。不仅害己，更是害人。</p>
+<p>最近做了一个项目，由于种种原因，我们的代码有很多问题。因为正在做重构，所以就把一些不良的实践总结出来。希望对大家有所帮助。</p>
+<h2 id="不良实践1：控制变量的滥用">不良实践1：控制变量的滥用</h2>
+<p>控制变量，一般以XXflag的形式出现在代码中，其作用就是处理各种变化的条件。产品经理写需求往往是从人的角度说的，会对某种行为加上很多条件。这种复杂的限制转换到代码中就变成了一堆的控制变量。当你的代码中充斥着许多零散的flag，就好像打满补丁衣服，让人看着很难受。比如下面的代码：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)viewWillAppear:(<span class="built_in">BOOL</span>)animated</div><div class="line">{</div><div class="line">    [<span class="keyword">super</span> viewWillAppear:<span class="literal">YES</span>];</div><div class="line">    [[AppDelegate appDelegate]hideTabbar:<span class="literal">YES</span>];</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (refreshFlag == <span class="literal">NO</span>)</div><div class="line">    {</div><div class="line">        refreshFlag = <span class="literal">YES</span>;</div><div class="line">    }</div><div class="line">    <span class="keyword">else</span></div><div class="line">    {</div><div class="line">        <span class="keyword">self</span><span class="variable">.currentPage</span> = <span class="number">0</span>;</div><div class="line">        [_data removeAllObjects];</div><div class="line">        [<span class="keyword">self</span> getCarsList];</div><div class="line">    }</div><div class="line">}</div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)viewWillDisappear:(<span class="built_in">BOOL</span>)animated</div><div class="line">{</div><div class="line">    [<span class="keyword">super</span> viewWillDisappear:<span class="literal">YES</span>];</div><div class="line">    </div><div class="line">    [[AppDelegate appDelegate]hideTabbar:<span class="literal">NO</span>];</div><div class="line">    refreshFlag = <span class="literal">NO</span>;</div><div class="line">}</div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)viewDidDisappear:(<span class="built_in">BOOL</span>)animated</div><div class="line">{</div><div class="line">    refreshFlag = <span class="literal">YES</span>;</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>上面的代码取自于项目中的某个类，这里面已经出现了n次reflashFlag，而且这个类的其他地方还有出现。顾名思义，这是为了控制这个页面是否要从后台重新获取数据。但是在实际测试中，我发现了一些问题，想改却无从下手。这就好像地心说的百衲衣，每次发现新的星体，就要从头开始把所有的轨道都算一遍，累都累死了。而日心说通过简单的公式就能覆盖所有的星体。可见，正确的解决方式都是简单的，搞得太复杂，肯定从一开始就错了。</p>
+<p>回到当前这个问题，为什么要加个刷新呢？那得从需求说起，当前页面是一个我的汽车列表页面，可能会有多辆车。点击其中某辆车就可以进行编辑。编辑完成之后回到上一个页面（我的汽车列表页面）就需要刷新。最开始实现的时候，在viewWillAppear里面每次都调一下后台请求。但是后来加了滑动返回，当从编辑页面往回退时，其实用户还没真正返回，后台请求就发出了。于是乎，就加了refreshFlag来进行控制。</p>
+<p>仔细思考这个问题，刷新的真正原因和实现的代码完全是不对等的。是用户更新了汽车信息才需要刷新，而不是返回需要刷新。这时，我们又遇到了新的问题：类和类之间如何通信。因为刷新是在类A中发生的，而更新内容是在类B中发生的。这种情况下，我觉得用通知是最佳实践。如果内容更新，类B就抛出一个通知。A的接收函数更新标志位（是的，还是会出现flag，但只会出现两次，很容易控制）。然后再viewWillAppear的时候根据标志位进行刷新。这样逻辑就比较顺，bug就相对少一些。</p>
+<p>PS：类与类之间还有加引用、Delegate、KVO等通信方式，为什么不用？</p>
+<h2 id="不良实践2：同一个类中代码重复出现">不良实践2：同一个类中代码重复出现</h2>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div></pre></td><td class="code"><pre><div class="line">- (<span class="type">void</span>)getCode</div><div class="line">{</div><div class="line">    [self hideKeyBord];</div><div class="line">    <span class="keyword">if</span> (tfTelNumber.text == <span class="keyword">nil</span> || [tfTelNumber.text isEqualToString:@<span class="string">""</span>]) {</div><div class="line">        showErroMsg(@<span class="string">"请输入手机号"</span>);</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    }</div><div class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(![<span class="type">CommonMethod</span> validateMobile:tfTelNumber.text]){</div><div class="line">        showErroMsg(@<span class="string">"手机号码不正确"</span>);</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="type">MBProgressHUD</span>* hudProgress;</div><div class="line">    __block <span class="type">int</span> <span class="literal">result</span>;</div><div class="line">    </div><div class="line">    <span class="keyword">if</span> (viewFlag == <span class="number">1</span>)</div><div class="line">    {</div><div class="line">        hudProgress = [[<span class="type">MBProgressHUD</span> alloc] initWithWindow:[<span class="type">UIApplication</span> sharedApplication].keyWindow];</div><div class="line">        [self.view addSubview:hudProgress];</div><div class="line">        [self.view bringSubviewToFront:hudProgress];</div><div class="line">        hudProgress.labelText = @<span class="string">"正在获取验证码..."</span>;</div><div class="line">        </div><div class="line">        <span class="type">APIPackageCheckCodeGoHeader</span> *goHead = [[<span class="type">APIPackageCheckCodeGoHeader</span> alloc]init];</div><div class="line">        <span class="type">APIPackageCheckCodeBackHeader</span> *backHead = [[<span class="type">APIPackageCheckCodeBackHeader</span> alloc]init];</div><div class="line">        goHead.phone = tfTelNumber.text;</div><div class="line">        goHead.<span class="keyword">type</span> = @<span class="string">"2"</span>;</div><div class="line"></div><div class="line">        [goHead makeDictionary];</div><div class="line">        <span class="type">NSMutableDictionary</span> *dicBack = [[<span class="type">NSMutableDictionary</span> alloc]init];</div><div class="line">        [hudProgress showAnimated:<span class="type">YES</span> whileExecutingBlock:^{</div><div class="line">            //        调用接口方法</div><div class="line">            <span class="literal">result</span> = [<span class="type">GMPostServer</span> <span class="type">GetServerBack</span>:<span class="type">SERVER_CHECKCODE</span> path_Param:<span class="keyword">nil</span> query_Param:goHead.dicGo body_Param:<span class="keyword">nil</span> <span class="keyword">method</span>:<span class="type">GM_NETWORK_METHOD_GET</span> returnValue:dicBack];</div><div class="line">            [backHead getBodyDataItems:dicBack];</div><div class="line">        </div><div class="line">            </div><div class="line">        }completionBlock:^{</div><div class="line">            <span class="keyword">if</span> (<span class="literal">result</span> == <span class="type">GM_NETWORK_NULL_BACK</span>)</div><div class="line">            {</div><div class="line">                _timeCount = [kTimeCount intValue];</div><div class="line">                self.btGetCode.enabled = <span class="type">NO</span>;</div><div class="line">                [self.btGetCode setTitle:[<span class="type">NSString</span> stringWithFormat:@<span class="string">"%d秒后重发"</span>,_timeCount] forState:<span class="type">UIControlStateDisabled</span>];</div><div class="line">                self.timerGetCode = [<span class="type">NSTimer</span> scheduledTimerWithTimeInterval:<span class="number">1</span> target:self selector:@selector(countDown) userInfo:<span class="keyword">nil</span> repeats:<span class="type">YES</span>];</div><div class="line">            }</div><div class="line">            <span class="keyword">else</span></div><div class="line">            {</div><div class="line">                showErroMsg(backHead.errorMsg);</div><div class="line">            }</div><div class="line">        }];</div><div class="line">        </div><div class="line">    }</div><div class="line">    <span class="keyword">else</span></div><div class="line">    {</div><div class="line">        hudProgress = [[<span class="type">MBProgressHUD</span> alloc] initWithWindow:[<span class="type">UIApplication</span> sharedApplication].keyWindow];</div><div class="line">        [self.view addSubview:hudProgress];</div><div class="line">        [self.view bringSubviewToFront:hudProgress];</div><div class="line">        hudProgress.labelText = @<span class="string">"正在获取验证码..."</span>;</div><div class="line">        </div><div class="line">        <span class="type">APIPackageCheckCodeGoHeader</span> *goHead = [[<span class="type">APIPackageCheckCodeGoHeader</span> alloc]init];</div><div class="line">        <span class="type">APIPackageCheckCodeBackHeader</span> *backHead = [[<span class="type">APIPackageCheckCodeBackHeader</span> alloc]init];</div><div class="line">        goHead.phone = tfTelNumber.text;</div><div class="line">        goHead.<span class="keyword">type</span> = @<span class="string">"1"</span>;</div><div class="line">        </div><div class="line">        [goHead makeDictionary];</div><div class="line">        <span class="type">NSMutableDictionary</span> *dicBack = [[<span class="type">NSMutableDictionary</span> alloc]init];</div><div class="line">        [hudProgress showAnimated:<span class="type">YES</span> whileExecutingBlock:^{</div><div class="line">            //        调用接口方法</div><div class="line">            <span class="literal">result</span> = [<span class="type">GMPostServer</span> <span class="type">GetServerBack</span>:<span class="type">SERVER_CHECKCODE</span> path_Param:<span class="keyword">nil</span> query_Param:goHead.dicGo body_Param:<span class="keyword">nil</span> <span class="keyword">method</span>:<span class="type">GM_NETWORK_METHOD_GET</span> returnValue:dicBack];</div><div class="line">            [backHead getBodyDataItems:dicBack];</div><div class="line">            </div><div class="line">            </div><div class="line">        }completionBlock:^{</div><div class="line">            <span class="keyword">if</span> (<span class="literal">result</span> == <span class="type">GM_NETWORK_NULL_BACK</span>)</div><div class="line">            {</div><div class="line">                _timeCount = [kTimeCount intValue];</div><div class="line">                self.btGetCode.enabled = <span class="type">NO</span>;</div><div class="line">                [self.btGetCode setTitle:[<span class="type">NSString</span> stringWithFormat:@<span class="string">"%d秒后重发"</span>,_timeCount] forState:<span class="type">UIControlStateDisabled</span>];</div><div class="line">                self.timerGetCode = [<span class="type">NSTimer</span> scheduledTimerWithTimeInterval:<span class="number">1</span> target:self selector:@selector(countDown) userInfo:<span class="keyword">nil</span> repeats:<span class="type">YES</span>];</div><div class="line">            }</div><div class="line">            <span class="keyword">else</span></div><div class="line">            {</div><div class="line">                showErroMsg(backHead.errorMsg);</div><div class="line">            }</div><div class="line">        }];</div><div class="line">        </div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>上面这个函数就是发送一个请求，请求根据状态不同分成两种情况。这里有两个问题：</p>
+<ul>
+<li>函数较长，100行</li>
+<li>代码重复，if/else里面的代码基本一样</li>
+</ul>
+<p>这里的解决方法显而易见，给函数加一个参数，然后请求的参数</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">goHead.<span class="built_in">type</span> = @<span class="string">"1"</span>;</div></pre></td></tr></table></figure>
+
+<p>根据函数参数来确定，请求过程只需要写一边即可。这里的重复代码去起来比较简单，有些地方会有一些牵扯（尤其是前文提到的控制变量，这是并发症），但都是可以解决的，最多分几步解决（先解决控制变量，在解决重复代码）。</p>
+<h2 id="不良实践3：不同类中重复代码">不良实践3：不同类中重复代码</h2>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> ([<span class="constant">LCStringUtil</span> <span class="symbol">isBlankString:</span><span class="keyword">self</span>.changedphoneNumfield.text]||[<span class="constant">LCStringUtil</span> <span class="symbol">isBlankString:</span><span class="keyword">self</span>.orignphoneNumfield.text]) {</div><div class="line">     showErroMsg(@<span class="string">"号码不能为空!"</span>);</div><div class="line">     <span class="keyword">return</span>;</div><div class="line"> }</div><div class="line"> <span class="keyword">if</span> ([<span class="keyword">self</span>.changedphoneNumfield.text <span class="symbol">isEqualToString:</span><span class="keyword">self</span>.orignphoneNumfield.text]) {</div><div class="line">     showErroMsg(@<span class="string">"号码不能相同"</span>);</div><div class="line">     <span class="keyword">return</span>;</div><div class="line"> }</div><div class="line"> <span class="keyword">if</span> (![<span class="constant">CommonMethod</span> <span class="symbol">validateMobile:</span><span class="keyword">self</span>.changedphoneNumfield.text]) {</div><div class="line">     showErroMsg(@<span class="string">"请输入正确的新手机号"</span>);</div><div class="line">     <span class="keyword">return</span>;</div><div class="line"> }</div></pre></td></tr></table></figure>
+
+<p>以上这段代码是对手机号码做合理性验证的，在好几个类里面反复出现。除了代码重复，更大的问题是不一致性。这个页面做了两个条件的判断，那个页面做了三个条件的判断，提示语又有可能不一样，这些全都是bug。</p>
+<p>处理这个问题，需要有一个验证类，处理各种验证：验证电话号码、密码……然后创建验证对象，调用一下就可以了。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">TextValidator*  validator </span>=<span class="string">  [TextValidator new];</span></div><div class="line">[validator isValidPhoneNumber];</div></pre></td></tr></table></figure>
+
+<p>不同类中的重复代码有些也可以放在基类中，如下面的代码，定制导航栏的title，在此不作详细解释。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">//添加标题</div><div class="line">- (void)addTitle:(NSString*)titleStr{</div><div class="line">    </div><div class="line">    UILabel *<span class="variable">lblbartitle =</span> [[UILabel alloc] initWithFrame:CGRectMake(<span class="number">0</span>, <span class="number">0</span>, <span class="number">100</span>, <span class="number">44</span>)];</div><div class="line">    lblbartitle.<span class="variable">text =</span> NSLocalizedString(titleStr, nil);</div><div class="line">    lblbartitle.<span class="variable">textColor =</span> LCRGBColor(<span class="number">61</span>, <span class="number">66</span>, <span class="number">69</span>);</div><div class="line">    lblbartitle.<span class="variable">center =</span> CGPointMake(SCREEN_WIDTH/<span class="number">2</span>, <span class="number">44</span>);</div><div class="line">    lblbartitle.<span class="variable">textAlignment =</span> NSTextAlignmentCenter;</div><div class="line">    lblbartitle.<span class="variable">font =</span> [HSGBFONT systemFontOfSize:<span class="number">20</span>];</div><div class="line">    lblbartitle.<span class="variable">backgroundColor =</span> [UIColor clearColor];</div><div class="line">    self.navigationItem.<span class="variable">titleView =</span> lblbartitle;</div><div class="line">    </div><div class="line">}</div></pre></td></tr></table></figure>
+
+<h2 id="不良实践4：劳模函数">不良实践4：劳模函数</h2>
+<p>一个人如果是多面手，那值得表扬；一个函数做多件事情，就有问题。看看下面的代码：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div></pre></td><td class="code"><pre><div class="line">- (void)requestCarList</div><div class="line">{</div><div class="line">    [arrayCar removeAllObjects];</div><div class="line">    </div><div class="line">    APIPackageGetCarListGoHeader *<span class="variable">goQueryHeader =</span> [[APIPackageGetCarListGoHeader alloc] init];</div><div class="line">    goQueryHeader.<span class="variable">page =</span> @<span class="string">"0"</span>;</div><div class="line">    goQueryHeader.<span class="variable">size =</span> @<span class="string">"100"</span>;</div><div class="line">    </div><div class="line">    [goQueryHeader makeDictionary];</div><div class="line">    </div><div class="line">    __block NSInteger <span class="variable">result =</span> <span class="number">0</span>;</div><div class="line">    APIPackageGetCarListBackHeader *<span class="variable">backHeader =</span> [[APIPackageGetCarListBackHeader alloc] init];</div><div class="line">    NSMutableDictionary *<span class="variable">dicBack =</span> [[NSMutableDictionary alloc] init];</div><div class="line">    MBProgressHUD *<span class="variable">hud =</span> [[MBProgressHUD alloc] initWithWindow:[AppDelegate appDelegate].window];</div><div class="line">    hud.<span class="variable">labelText =</span> @<span class="string">"正在查询车辆列表，请稍候..."</span>;</div><div class="line">    [[[AppDelegate appDelegate] window] addSubview:hud];</div><div class="line">    [hud showAnimated:YES whileExecutingBlock:^{</div><div class="line">        <span class="variable">result =</span> [GMPostServer GetServerBack:SERVER_GETCARLIST path_Param:nil query_Param:goQueryHeader.dicGo body_Param:nil method:GM_NETWORK_METHOD_GET returnValue:dicBack];</div><div class="line">    }completionBlock:^{</div><div class="line">        [hud removeFromSuperview];</div><div class="line">        [backHeader getBodyDataItems:dicBack];</div><div class="line">        <span class="keyword">if</span> (<span class="variable">result =</span>= GM_POSTBACK_SUCCESS)</div><div class="line">        {</div><div class="line">            [arrayCar addObjectsFromArray:backHeader.pageInfo.content];</div><div class="line">            </div><div class="line">            pageController.<span class="variable">alpha =</span> arrayCar.count&gt;<span class="number">3</span>?<span class="number">1</span>:<span class="number">0</span>;</div><div class="line"></div><div class="line">            int <span class="variable">intNum =</span> [backHeader.pageInfo.content count]/<span class="number">3</span>+([backHeader.pageInfo.content count]%<span class="number">3</span> == <span class="number">0</span>?<span class="number">0</span>:<span class="number">1</span>);</div><div class="line">            scrollCar.<span class="variable">contentSize =</span> CGSizeMake((SCREEN_WIDTH+<span class="number">1</span>)*intNum, <span class="number">50</span>);</div><div class="line">            pageController.<span class="variable">numberOfPages =</span> intNum;</div><div class="line">            </div><div class="line">            //imageSelect.<span class="variable">hidden =</span> NO;</div><div class="line">            </div><div class="line">            [self removeAllSubViews:scrollCar];</div><div class="line">            </div><div class="line">            //画上部车辆按钮</div><div class="line">            </div><div class="line">            CGRect <span class="variable">imageViewCarRect =</span> CGRectMake(<span class="number">25</span>, IS_INCH_4?<span class="number">12</span>:<span class="number">10</span>, <span class="number">57</span>, <span class="number">22</span>);</div><div class="line">            CGRect <span class="variable">labelCarRect =</span> CGRectMake(<span class="number">0</span>, IS_INCH_4?<span class="number">44</span>:<span class="number">37</span>, <span class="number">106</span>, <span class="number">14</span>);</div><div class="line">            </div><div class="line">            <span class="keyword">if</span> (arrayCar.count &gt;<span class="number">0</span>) {</div><div class="line">                for (int <span class="variable">i=</span><span class="number">0</span>;i&lt;[arrayCar count];i++)</div><div class="line">                {</div><div class="line">                    APIPackageGetCarListBackHeader_content *<span class="variable">item =</span> (APIPackageGetCarListBackHeader_content*)[arrayCar objectAtIndex:i];</div><div class="line">                    </div><div class="line">                    UIButton *<span class="variable">btnCar =</span> [UIButton buttonWithType:UIButtonTypeCustom];</div><div class="line">                    btnCar.<span class="variable">frame =</span> CGRectMake(<span class="number">107</span>*i, <span class="number">0</span>, <span class="number">106</span>, CarScorllHeight);</div><div class="line">                    btnCar.<span class="variable">backgroundColor =</span> [UIColor clearColor];</div><div class="line">                    [btnCar addTarget:self action:@selector(selectCar:) forControlEvents:UIControlEventTouchUpInside];</div><div class="line">                    btnCar.<span class="variable">tag =</span> i;</div><div class="line">                    [scrollCar addSubview:btnCar];</div><div class="line">                    </div><div class="line">                    UIImageView *<span class="variable">imageViewCar =</span> [[UIImageView alloc] initWithFrame:imageViewCarRect];</div><div class="line">                    <span class="keyword">if</span> (<span class="variable">i =</span>= <span class="number">0</span>)</div><div class="line">                    {</div><div class="line">                        <span class="variable">selectCar =</span> <span class="number">0</span>;</div><div class="line">                        [imageViewCar setImage:[UIImage imageNamed:@<span class="string">"carIcon"</span>]];</div><div class="line">                    }</div><div class="line">                    <span class="keyword">else</span></div><div class="line">                    {</div><div class="line">                        [imageViewCar setImage:[UIImage imageNamed:@<span class="string">"car_touch_no.png"</span>]];</div><div class="line">                    }</div><div class="line">                    [btnCar addSubview:imageViewCar];</div><div class="line">                    imageViewCar.<span class="variable">tag =</span> i+<span class="number">100</span>;</div><div class="line">                    </div><div class="line">                    UILabel *<span class="variable">labelCar =</span> [[UILabel alloc] init];</div><div class="line">                    labelCar.<span class="variable">frame =</span> labelCarRect;</div><div class="line">                    labelCar.<span class="variable">backgroundColor =</span> [UIColor clearColor];</div><div class="line">                    <span class="keyword">if</span> (<span class="variable">i =</span>= <span class="number">0</span>)</div><div class="line">                    {</div><div class="line">                        labelCar.<span class="variable">textColor =</span> LCRGBColor(<span class="number">214</span>, <span class="number">62</span>, <span class="number">37</span>);</div><div class="line">                    }</div><div class="line">                    <span class="keyword">else</span></div><div class="line">                    {</div><div class="line">                        labelCar.<span class="variable">textColor =</span> LCRGBColor(<span class="number">105</span>, <span class="number">105</span>, <span class="number">105</span>);</div><div class="line">                    }</div><div class="line">                    </div><div class="line">                    labelCar.<span class="variable">textAlignment =</span> NSTextAlignmentCenter;</div><div class="line">                    labelCar.<span class="variable">font =</span> [HSGBFONT systemFontOfSize:<span class="number">14</span>];</div><div class="line">                    labelCar.<span class="variable">text =</span> [NSString stringWithFormat:@<span class="string">"%@ %@"</span>,[LCStringUtil isBlankString:item.carBrand]?@<span class="string">""</span>:item.carBrand,[LCStringUtil isBlankString:item.carSeries]?@<span class="string">""</span>:item.carSeries];</div><div class="line">                    labelCar.<span class="variable">tag =</span> i+<span class="number">200</span>;</div><div class="line">                    [btnCar addSubview:labelCar];</div><div class="line">                    </div><div class="line">                    UIImageView *<span class="variable">imageLine =</span> [[UIImageView alloc] initWithFrame:CGRectMake(<span class="number">106</span>+<span class="number">107</span>*i, <span class="number">0</span>, <span class="number">1</span> / [UIScreen mainScreen].scale, CarScorllHeight)];</div><div class="line">                    imageLine.<span class="variable">backgroundColor =</span> LCRGBColor(<span class="number">211</span>, <span class="number">211</span>, <span class="number">211</span>);</div><div class="line">                    [scrollCar addSubview:imageLine];</div><div class="line">                }</div><div class="line">            } <span class="keyword">else</span> {</div><div class="line">                UIButton *<span class="variable">btnCar =</span> [UIButton buttonWithType:UIButtonTypeCustom];</div><div class="line">                btnCar.<span class="variable">frame =</span> CGRectMake(<span class="number">0</span>, <span class="number">0</span>, <span class="number">106</span>, CarScorllHeight);</div><div class="line">                btnCar.<span class="variable">backgroundColor =</span> [UIColor clearColor];</div><div class="line">                [btnCar addTarget:self action:@selector(selectCar:) forControlEvents:UIControlEventTouchUpInside];</div><div class="line">                btnCar.<span class="variable">tag =</span> -<span class="number">1</span>;</div><div class="line">                [scrollCar addSubview:btnCar];</div><div class="line">                </div><div class="line">                UIImageView *<span class="variable">imageViewCar =</span> [[UIImageView alloc] initWithFrame:imageViewCarRect];</div><div class="line">                [imageViewCar setImage:[UIImage imageNamed:@<span class="string">"jiajiacheliang"</span>]];</div><div class="line">                [btnCar addSubview:imageViewCar];</div><div class="line">                </div><div class="line">                UILabel *<span class="variable">labelCar =</span> [[UILabel alloc] init];</div><div class="line">                labelCar.<span class="variable">frame =</span> labelCarRect;</div><div class="line">                labelCar.<span class="variable">backgroundColor =</span> [UIColor clearColor];</div><div class="line">                labelCar.<span class="variable">textColor =</span> LCRGBColor(<span class="number">105</span>, <span class="number">105</span>, <span class="number">105</span>);</div><div class="line">                labelCar.<span class="variable">textAlignment =</span> NSTextAlignmentCenter;</div><div class="line">                labelCar.<span class="variable">font =</span> [HSGBFONT systemFontOfSize:<span class="number">14</span>];</div><div class="line">                labelCar.<span class="variable">text =</span> @<span class="string">"添加车辆"</span>;</div><div class="line">                [btnCar addSubview:labelCar];</div><div class="line">                </div><div class="line">                UIImageView *<span class="variable">imageLine =</span> [[UIImageView alloc] initWithFrame:CGRectMake(<span class="number">106</span>, <span class="number">0</span>, <span class="number">1</span> / [UIScreen mainScreen].scale, CarScorllHeight)];</div><div class="line">                imageLine.<span class="variable">backgroundColor =</span> LCRGBColor(<span class="number">211</span>, <span class="number">211</span>, <span class="number">211</span>);</div><div class="line">                [scrollCar addSubview:imageLine];</div><div class="line">            }</div><div class="line">        }</div><div class="line">        <span class="keyword">else</span></div><div class="line">        {</div><div class="line">            [self.navigationController popViewControllerAnimated:YES];</div><div class="line">            showErroMsg(backHeader.errorMsg);</div><div class="line">        }</div><div class="line">    }];</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>看函数名就是请求汽车列表，但是实现代码除了请求，还有一大块的创建UI。这部分代码完全可以再创建一个函数来实现。<br>任何时候，设计良好的函数只做一件事情。</p>
+<h2 id="不良实践5：劳模类">不良实践5：劳模类</h2>
+<p>劳模类就是毫不相关的函数一起出现的地方，最常见的就是单例类，最明显的就是AppDelegate。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="pp">- <span class="params">(void)</span>autologin :<span class="params">(<span class="variable">NSDictionary</span> *)</span>launchOptions</span></div><div class="line">- <span class="params">(<span class="variable">BOOL</span>)</span>intervalSinceNowThanOneHour: <span class="params">(<span class="variable">NSString</span> *)</span> theDate</div><div class="line">- <span class="params">(void)</span>requestUserInfo</div><div class="line">- <span class="params">(void)</span>showFaildMsg:<span class="params">(<span class="variable">NSString</span>*)</span>msg</div><div class="line">.......</div></pre></td></tr></table></figure>
+
+<p>上面的函数功能五花八门，因为图方便，放在AppDelegate中。开了不好的头，后面的开发者就会源源不断往里面加函数。现在第一个版本就已经500+行，那么后面的扩张就可想而知了。<br>单例作为一种设计模式，有其存在的意义。但因为没有严格的限制，很多人把它当做了全局变量在用。在面向对象的世界中，全局变量都是老鼠屎般的存在，必须清除干净。<br>任何时候，设计良好的类只做一类事情。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2014/10/13/iOS的网络框架（HTTP）/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">&lt;</strong>
+      <div class="article-nav-title">
+        
+          iOS的网络框架（HTTP）
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2014/09/25/ARC转换总结+避免循环引用/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">ARC转换总结+避免循环引用</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="iOS代码中的不良实践与优化" data-title="iOS代码中的不良实践与优化" data-url="http://linkageios.github.io/2014/10/11/iOS代码中的不良实践与优化/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2014 SmartArrow
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+  <script src="/js/main.js" type="text/javascript"></script>
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>iOS的网络框架（HTTP） | SmartArrow</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="背景和目标
+目前市场上的大部分App都有网络功能，而网络功能大部分都是基于HTTP协议的。HTTP协议简单而又强大，这也是该协议长盛不衰的秘诀之一。每一个程序员都最好了解一下HTTP协议，这会让你受益匪浅。
+
+协议规范(英)
+协议规范(中)
+
+回到iOS，我们将如何使用HTTP协议来完成网络请求呢？从头开始开发一个协议栈是重复造轮子，非常不明智。因为苹果的开发框架中已经包含了对HTTP协议的封装。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS的网络框架（HTTP）">
+<meta property="og:url" content="http://linkageios.github.io/2014/10/13/iOS的网络框架（HTTP）/">
+<meta property="og:site_name" content="SmartArrow">
+<meta property="og:description" content="背景和目标
+目前市场上的大部分App都有网络功能，而网络功能大部分都是基于HTTP协议的。HTTP协议简单而又强大，这也是该协议长盛不衰的秘诀之一。每一个程序员都最好了解一下HTTP协议，这会让你受益匪浅。
+
+协议规范(英)
+协议规范(中)
+
+回到iOS，我们将如何使用HTTP协议来完成网络请求呢？从头开始开发一个协议栈是重复造轮子，非常不明智。因为苹果的开发框架中已经包含了对HTTP协议的封装。">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/16632-bc2417c93684ed68.gif">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/16632-bc2417c93684ed68.gif">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/16632-9e79a04bcf4a1033.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS的网络框架（HTTP）">
+<meta name="twitter:description" content="背景和目标
+目前市场上的大部分App都有网络功能，而网络功能大部分都是基于HTTP协议的。HTTP协议简单而又强大，这也是该协议长盛不衰的秘诀之一。每一个程序员都最好了解一下HTTP协议，这会让你受益匪浅。
+
+协议规范(英)
+协议规范(中)
+
+回到iOS，我们将如何使用HTTP协议来完成网络请求呢？从头开始开发一个协议栈是重复造轮子，非常不明智。因为苹果的开发框架中已经包含了对HTTP协议的封装。">
+
+  
+    <link rel="alternative" href="/atom.xml" title="SmartArrow" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<div class="profilepic">
+			<img src="./images/logo.png">
+		</div>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">SmartArrow</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">技术文档</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="/#" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="/#" title="rss">rss</a>
+					        
+								<a class="facebook" target="_blank" href="/#" title="facebook">facebook</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud">
+						<a href="/tags/ARC/" style="font-size: 10.00px;">ARC</a><a href="/tags/LCBaseViewController/" style="font-size: 10.00px;">LCBaseViewController</a><a href="/tags/LCDataManager/" style="font-size: 10.00px;">LCDataManager</a><a href="/tags/LCMenuView/" style="font-size: 10.00px;">LCMenuView</a><a href="/tags/POP/" style="font-size: 10.00px;">POP</a><a href="/tags/iconsole/" style="font-size: 10.00px;">iconsole</a><a href="/tags/json/" style="font-size: 10.00px;">json</a><a href="/tags/xml/" style="font-size: 10.00px;">xml</a><a href="/tags/代码优化/" style="font-size: 10.00px;">代码优化</a><a href="/tags/分享/" style="font-size: 10.00px;">分享</a><a href="/tags/动画/" style="font-size: 10.00px;">动画</a><a href="/tags/地图/" style="font-size: 10.00px;">地图</a><a href="/tags/效率/" style="font-size: 10.00px;">效率</a><a href="/tags/架构/" style="font-size: 10.00px;">架构</a><a href="/tags/网络/" style="font-size: 10.00px;">网络</a><a href="/tags/规范/" style="font-size: 20.00px;">规范</a><a href="/tags/路线图/" style="font-size: 10.00px;">路线图</a><a href="/tags/高德/" style="font-size: 10.00px;">高德</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://blog.crysnower.cn">StephenZhu&#39;s Blog</a>
+			        
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					我是谁，我从哪里来，我到哪里去？我就是我，是颜色不一样的吃货…
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay"></div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img src="./images/logo.png">
+			</div>
+
+			<hgroup>
+			  <h1 class="header-author"><a href="/">SmartArrow</a></h1>
+			</hgroup>
+			
+			<p class="header-subtitle">技术文档</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="/#" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="/#" title="rss">rss</a>
+			        
+						<a class="facebook" target="_blank" href="/#" title="facebook">facebook</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <article id="post-iOS的网络框架（HTTP）" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/10/13/iOS的网络框架（HTTP）/" class="article-date">
+  	<time datetime="2014-10-13T07:07:00.000Z" itemprop="datePublished">10月 13 2014</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/iOS/">iOS</a>
+  </div>
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/网络/">网络</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      iOS的网络框架（HTTP）
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="背景和目标">背景和目标</h2>
+<p>目前市场上的大部分App都有网络功能，而网络功能大部分都是基于HTTP协议的。HTTP协议简单而又强大，这也是该协议长盛不衰的秘诀之一。每一个程序员都最好了解一下HTTP协议，这会让你受益匪浅。</p>
+<ul>
+<li><a href="http://www.w3.org/Protocols/rfc2616/rfc2616.html" target="_blank" rel="external">协议规范(英)</a></li>
+<li><a href="http://javadocs.wikidot.com/hypertext-transfer-protocol-http1-1" target="_blank" rel="external">协议规范(中)</a></li>
+</ul>
+<p>回到iOS，我们将如何使用HTTP协议来完成网络请求呢？从头开始开发一个协议栈是重复造轮子，非常不明智。因为苹果的开发框架中已经包含了对HTTP协议的封装。<a href="https://developer.apple.com/library/ios/documentation/NetworkingInternetWeb/Conceptual/NetworkingOverview/WorkingWithHTTPAndHTTPSRequests/WorkingWithHTTPAndHTTPSRequests.html" target="_blank" rel="external">请看官方文档说明</a></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/16632-bc2417c93684ed68.gif" alt="network.gif"><br><a id="more"></a></p>
+<h2 id="背景和目标-1">背景和目标</h2>
+<p>目前市场上的大部分App都有网络功能，而网络功能大部分都是基于HTTP协议的。HTTP协议简单而又强大，这也是该协议长盛不衰的秘诀之一。每一个程序员都最好了解一下HTTP协议，这会让你受益匪浅。</p>
+<ul>
+<li><a href="http://www.w3.org/Protocols/rfc2616/rfc2616.html" target="_blank" rel="external">协议规范(英)</a></li>
+<li><a href="http://javadocs.wikidot.com/hypertext-transfer-protocol-http1-1" target="_blank" rel="external">协议规范(中)</a></li>
+</ul>
+<p>回到iOS，我们将如何使用HTTP协议来完成网络请求呢？从头开始开发一个协议栈是重复造轮子，非常不明智。因为苹果的开发框架中已经包含了对HTTP协议的封装。<a href="https://developer.apple.com/library/ios/documentation/NetworkingInternetWeb/Conceptual/NetworkingOverview/WorkingWithHTTPAndHTTPSRequests/WorkingWithHTTPAndHTTPSRequests.html" target="_blank" rel="external">请看官方文档说明</a></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/16632-bc2417c93684ed68.gif" alt="network.gif"></p>
+<p>上面这张<a href="http://www.infoq.com/cn/articles/afn_vs_asi" target="_blank" rel="external">图片</a>解释了iOS框架中网络的实现方式和目前流行的网络框架所出的位置（第三行右边应该视CFHTTP，不是CFFTP））。ASI是基于CFHTTP的，AFNetworking是基于NSURL的，两者处在不同的层次上，实现原理也不同。</p>
+<p>像这样的第三方网络框架，虽然使用起来比系统原生的简单了许多，但为了保持通用性，整个框架的接口还是比较多，调用的过程也不是一两行能搞定的。</p>
+<p>我想，如果在开发自己的项目过程中，能不能提供一套最简单的API，只提供我们用的到的接口，并且将一些重复的处理逻辑封装起来。使得调用者在不需要了解CFHTTP、NSURL、ASIHTTPRequest、AFNetworking的情况下，只要用一两行代码，就能把网络请求处理完，让开发着处理网络请求像调用本地方法一样自然，这就是我的目标。</p>
+<h2 id="确定需求范围">确定需求范围</h2>
+<p>我不想做一个通用性很强的框架，我只是希望它能解决目前的所有需求，然后越简单越好。<br>我们目前遇到的需求不是很多，有如下几种类型：</p>
+<ul>
+<li>根据本地参数，向后台发起请求，获得我要的数据。</li>
+<li>像后台提交数据，知道成功或者失败。</li>
+</ul>
+<h2 id="实现方式选择">实现方式选择</h2>
+<p>由于个人喜好，我会基于AFNetworking之上开发一套API，同时让这套API可以方便的切换到ASIHTTPRequest或者哪天有冒出来的新框架。</p>
+<h2 id="最终实现">最终实现</h2>
+<p>最终的实现基本满足了预期的目标，即用一两行代码完成网络的请求。下面是架构图：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/16632-9e79a04bcf4a1033.png" alt="http_framework.png"></p>
+<p>其实一开始设计的时候，就只有4个类：</p>
+<ul>
+<li>MJHttpClient</li>
+<li>MJRequest</li>
+<li>MJHttpError</li>
+<li>MJResponse</li>
+</ul>
+<p> 这样做满足了项目中80%的后台接口，但有些比如传图片或者需要在httpbody中塞数据的接口，用最基本的Request难以封装，所以就陆续加了两个子类。因为是见招拆招，所以并不完美，不过还是覆盖了当前项目的所有请求类型。</p>
+<p>接下来主义介绍这几个类：</p>
+<h4 id="MJHttpClient">MJHttpClient</h4>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">typedef</span> <span class="keyword">void</span> (^MJResponseObject)(MJResponse* responseObject);</div><div class="line"><span class="keyword">typedef</span> <span class="keyword">void</span> (^MJResponseError)(MJHttpError* responseError);</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">MJHttpClient</span> : <span class="title">NSObject</span></span></div><div class="line"></div><div class="line">+ (MJHttpClient*)client;</div><div class="line"></div><div class="line"><span class="comment">//设置是否接受非json格式的返回</span></div><div class="line">- (<span class="keyword">void</span>)enableNoneJsonBack;</div><div class="line"></div><div class="line"><span class="comment">//发送请求，需要提供成功和失败的回掉</span></div><div class="line">- (<span class="keyword">void</span>)sendRequest:(MJRequest*)request</div><div class="line">         onResponse:(MJResponseObject)processBlock</div><div class="line">            onError:(MJResponseError)errorBlock;</div><div class="line"></div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure>
+
+<p>这个类非常简单，第一个方法创建自身对象，非单例（因为可能同时存在多个请求，所以不可以用单例）。第二个方法是因为后台的返回数据有些不是json格式的（事情上开发过程中前后台需要协调尽量让所有的接口返回json，不要返回字符串或者整数对象。但现在已经有了漏网之鱼，所以要做容错）。第三个方法就是发送请求的方法，就一行代码。</p>
+<h4 id="MJRequest">MJRequest</h4>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">typedef NS_ENUM(NSInteger, RequestMethod) <span class="comment">{</span></div><div class="line">    RequestMethod_Get,</div><div class="line">    RequestMethod_Post,</div><div class="line">    RequestMethod_Put,</div><div class="line">    RequestMethod_Delete</div><div class="line">};</div><div class="line"></div><div class="line">@<span class="keyword">class</span> MJQueryModel;</div><div class="line"></div><div class="line">@<span class="keyword">interface</span> MJRequest : NSObject</div><div class="line"></div><div class="line">@<span class="keyword">property</span> (nonatomic,assign) RequestMethod <span class="function"><span class="keyword">method</span>;</span></div><div class="line"></div><div class="line">@<span class="keyword">property</span> (nonatomic,<span class="keyword">copy</span>) NSString* baseUrl;</div><div class="line"></div><div class="line">@<span class="keyword">property</span> (nonatomic,<span class="keyword">copy</span>) NSString* api;</div><div class="line"></div><div class="line"><span class="comment">//请求参数的对象</span></div><div class="line">@<span class="keyword">property</span> (nonatomic,<span class="keyword">strong</span>) MJQueryModel* queryModel;</div><div class="line"></div><div class="line"><span class="comment">//请求参数的对象（请求参数是数组的话）</span></div><div class="line">@<span class="keyword">property</span> (nonatomic,<span class="keyword">strong</span>) NSArray* queryModels;</div><div class="line"></div><div class="line"><span class="comment">//创建请求</span></div><div class="line">+ (MJRequest*)requestWithMethod:(RequestMethod)<span class="function"><span class="keyword">method</span> <span class="title">api</span>:</span>(NSString*)api;</div><div class="line"></div><div class="line"><span class="comment">//请求参数对象转化成NSDictionary或者NSArray</span></div><div class="line">- (id)buildParam;</div><div class="line"></div><div class="line">@<span class="keyword">end</span></div></pre></td></tr></table></figure>
+
+<p>这个Request只能吃力url传参数的情况，body里面传参数是不支持的（这也是MJBodyRequest和MJMultipartRequest存在的必要）。但即使url传参数，也有字典和数组两种情况，所以这里加了queryModel和queryModels两个属性，在实用的时候，只需要给其中一个复制就可以了。</p>
+<h4 id="MJResponse">MJResponse</h4>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">MJResponse</span> : <span class="title">NSObject</span></span></div><div class="line"></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">strong</span>) <span class="keyword">id</span> object;</div><div class="line"></div><div class="line">+ (MJResponse*)responseWithObject:(<span class="keyword">id</span>)responseObject;</div><div class="line"></div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure>
+
+<p>MJResponse是请求成功之后返回的对象，可以是空、字符串、字典、数组，基本上都可以支持，在成功的block里需要对其处理。</p>
+<h4 id="MJHttpError">MJHttpError</h4>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">MJHttpError</span> : <span class="title">NSObject</span></span></div><div class="line"></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">assign</span>) <span class="built_in">NSInteger</span> errorCode;</div><div class="line"></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">copy</span>) <span class="built_in">NSString</span>* errorDescription;</div><div class="line"></div><div class="line">+ (MJHttpError*)errorWithNSError:(<span class="built_in">NSError</span>*)error;</div><div class="line"></div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure>
+
+<p>这个类比较鸡肋，就是一个翻版的NSError。但后期可能会对错误有特殊处理，就先占个位。</p>
+<h3 id="使用方法">使用方法</h3>
+<h4 id="普通请求">普通请求</h4>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">MJHttpClient<span class="keyword">*</span> client = [MJHttpClient client];</div><div class="line">MJRequest<span class="keyword">*</span> request = [MJRequest requestWithMethod:RequestMethod_Get api:<span class="comment">@"xxx/yyy"];</span></div><div class="line">    </div><div class="line">HJQueryAdsModel<span class="keyword">*</span> model = [HJQueryAdsModel new];</div><div class="line">model.type = [NSString stringWithFormat:<span class="comment">@"%d",mtag];</span></div><div class="line">request.queryModel = model;</div><div class="line">    </div><div class="line">[client sendRequest:request onResponse:^(MJResponse <span class="keyword">*</span>responseObject) {</div><div class="line">    //数据处理</div><div class="line">} onError:^(MJHttpError <span class="keyword">*</span>responseError) {</div><div class="line">    NSLog(<span class="comment">@"%@",responseError.errorDescription);</span></div><div class="line">}];</div></pre></td></tr></table></figure>
+
+<h4 id="Body请求">Body请求</h4>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">MJHttpClient<span class="keyword">*</span> client = [MJHttpClient client];</div><div class="line">        </div><div class="line">MJBodyRequest<span class="keyword">*</span> request = [MJBodyRequest requestWithMethod:RequestMethod_Post api:<span class="comment">@"xxx/yyy" bodies:array];</span></div><div class="line">        </div><div class="line">[client sendRequest:request onResponse:^(MJResponse <span class="keyword">*</span>responseObject) {</div><div class="line">     //数据处理   </div><div class="line">} onError:^(MJHttpError <span class="keyword">*</span>responseError) {</div><div class="line">     NSLog(<span class="comment">@"%@",responseError.errorDescription);</span></div><div class="line">}];</div></pre></td></tr></table></figure>
+
+<h4 id="Multipart请求">Multipart请求</h4>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="type">MJHttpClient</span>* client = [<span class="type">MJHttpClient</span> client];</div><div class="line"><span class="type">MJMultipartData</span>* <span class="typedef"><span class="keyword">data</span> = [<span class="type">MJMultipartData</span> new];</span></div><div class="line"><span class="typedef"><span class="keyword">data</span>.fileData = <span class="type">UIImagePNGRepresentation</span><span class="container">(<span class="title">image</span>)</span>;</span></div><div class="line"><span class="typedef"><span class="keyword">data</span>.name = @"file";</span></div><div class="line"><span class="typedef"><span class="keyword">data</span>.fileName = @"boris.png";</span></div><div class="line"><span class="typedef"><span class="keyword">data</span>.fileType = @"image/png";</span></div><div class="line">    </div><div class="line"><span class="type">MJMultipartRequest</span>* request = [<span class="type">MJMultipartRequest</span> requestWithMethod:<span class="type">RequestMethod_Post</span> api:@<span class="string">"xxx/yyy"</span> datas:@[<span class="typedef"><span class="keyword">data</span>]];</span></div><div class="line">[client sendRequest:request onResponse:^(<span class="type">MJResponse</span> *responseObject) {</div><div class="line">    //数据处理 </div><div class="line">} onError:^(<span class="type">MJHttpError</span> *responseError) {</div><div class="line">    <span class="type">NSLog</span>(@<span class="string">"%@"</span>,responseError.errorDescription);</div><div class="line">}];</div></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2014/10/29/一个简单的分享框架/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">&lt;</strong>
+      <div class="article-nav-title">
+        
+          一个简单的分享框架
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2014/10/11/iOS代码中的不良实践与优化/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">iOS代码中的不良实践与优化</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="iOS的网络框架（HTTP）" data-title="iOS的网络框架（HTTP）" data-url="http://linkageios.github.io/2014/10/13/iOS的网络框架（HTTP）/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2014 SmartArrow
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+  <script src="/js/main.js" type="text/javascript"></script>
+
+
+  </div>
+</body>
+</html>

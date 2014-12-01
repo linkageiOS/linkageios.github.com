@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>地图开发总结 | SmartArrow</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="坑爹的高德
+项目中地图原来用的高德sdk，其实我不知道当时为什么就用了高德，但既然用了，那么就在此基础上开发吧。可是写着写着，问题就来了： 问题链接。虽然这个问题不是什么太大的问题，但保不准以后还会遇到什么别的坑，而且以高德的效率，短期内肯定不会解决的。那为什么还要用那个sdk呢？好像我们用到的功能苹果自带的MapKit都能实现啊，而且高德官网上的合作伙伴（携程、美团）也是用的原生的MapKit（">
+<meta property="og:type" content="article">
+<meta property="og:title" content="地图开发总结">
+<meta property="og:url" content="http://linkageios.github.io/2014/11/07/地图开发总结/">
+<meta property="og:site_name" content="SmartArrow">
+<meta property="og:description" content="坑爹的高德
+项目中地图原来用的高德sdk，其实我不知道当时为什么就用了高德，但既然用了，那么就在此基础上开发吧。可是写着写着，问题就来了： 问题链接。虽然这个问题不是什么太大的问题，但保不准以后还会遇到什么别的坑，而且以高德的效率，短期内肯定不会解决的。那为什么还要用那个sdk呢？好像我们用到的功能苹果自带的MapKit都能实现啊，而且高德官网上的合作伙伴（携程、美团）也是用的原生的MapKit（">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/16632-ebb438364bb22eb8.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="地图开发总结">
+<meta name="twitter:description" content="坑爹的高德
+项目中地图原来用的高德sdk，其实我不知道当时为什么就用了高德，但既然用了，那么就在此基础上开发吧。可是写着写着，问题就来了： 问题链接。虽然这个问题不是什么太大的问题，但保不准以后还会遇到什么别的坑，而且以高德的效率，短期内肯定不会解决的。那为什么还要用那个sdk呢？好像我们用到的功能苹果自带的MapKit都能实现啊，而且高德官网上的合作伙伴（携程、美团）也是用的原生的MapKit（">
+
+  
+    <link rel="alternative" href="/atom.xml" title="SmartArrow" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<div class="profilepic">
+			<img src="./images/logo.png">
+		</div>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">SmartArrow</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">技术文档</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="/#" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="/#" title="rss">rss</a>
+					        
+								<a class="facebook" target="_blank" href="/#" title="facebook">facebook</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud">
+						<a href="/tags/ARC/" style="font-size: 10.00px;">ARC</a><a href="/tags/LCBaseViewController/" style="font-size: 10.00px;">LCBaseViewController</a><a href="/tags/LCDataManager/" style="font-size: 10.00px;">LCDataManager</a><a href="/tags/LCMenuView/" style="font-size: 10.00px;">LCMenuView</a><a href="/tags/POP/" style="font-size: 10.00px;">POP</a><a href="/tags/iconsole/" style="font-size: 10.00px;">iconsole</a><a href="/tags/json/" style="font-size: 10.00px;">json</a><a href="/tags/xml/" style="font-size: 10.00px;">xml</a><a href="/tags/代码优化/" style="font-size: 10.00px;">代码优化</a><a href="/tags/分享/" style="font-size: 10.00px;">分享</a><a href="/tags/动画/" style="font-size: 10.00px;">动画</a><a href="/tags/地图/" style="font-size: 10.00px;">地图</a><a href="/tags/效率/" style="font-size: 10.00px;">效率</a><a href="/tags/架构/" style="font-size: 10.00px;">架构</a><a href="/tags/网络/" style="font-size: 10.00px;">网络</a><a href="/tags/规范/" style="font-size: 20.00px;">规范</a><a href="/tags/路线图/" style="font-size: 10.00px;">路线图</a><a href="/tags/高德/" style="font-size: 10.00px;">高德</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://blog.crysnower.cn">StephenZhu&#39;s Blog</a>
+			        
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					我是谁，我从哪里来，我到哪里去？我就是我，是颜色不一样的吃货…
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay"></div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img src="./images/logo.png">
+			</div>
+
+			<hgroup>
+			  <h1 class="header-author"><a href="/">SmartArrow</a></h1>
+			</hgroup>
+			
+			<p class="header-subtitle">技术文档</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="/#" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="/#" title="rss">rss</a>
+			        
+						<a class="facebook" target="_blank" href="/#" title="facebook">facebook</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <article id="post-地图开发总结" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/11/07/地图开发总结/" class="article-date">
+  	<time datetime="2014-11-07T04:18:00.000Z" itemprop="datePublished">11月 7 2014</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/iOS/">iOS</a>
+  </div>
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/地图/">地图</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      地图开发总结
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="坑爹的高德">坑爹的高德</h3>
+<p>项目中地图原来用的高德sdk，其实我不知道当时为什么就用了高德，但既然用了，那么就在此基础上开发吧。可是写着写着，问题就来了： <a href="http://bbs.amap.com/thread-42153-1-1.html" target="_blank" rel="external">问题链接</a>。虽然这个问题不是什么太大的问题，但保不准以后还会遇到什么别的坑，而且以高德的效率，短期内肯定不会解决的。<br>那为什么还要用那个sdk呢？好像我们用到的功能苹果自带的MapKit都能实现啊，而且高德官网上的合作伙伴（携程、美团）也是用的原生的MapKit（从地图默认加载背景就可以看出来）。后来只花了一点点时间就切换到苹果的MapKit（API是一样的），目前还没发现什么bug。</p>
+<h3 id="坐标转换之中国特色">坐标转换之中国特色</h3>
+<p>因为不用高德了，所以当前位置经纬度就用CoreLocation来获取。可是当你把获取的经纬度放到MKMapView中显示，位置竟然有偏移，而且还不小。</p>
+<p>这是苹果的bug吗？不是，是有关部门的功劳。我们只有一个地球，所以地球上每个点的经纬度是固定的，国际上有个通用标准，简称国际标准。CoreLocation取到的经纬度符合国际标准。</p>
+<p>可是在国内，由于国家安全，有关部门制定了一套新的标准，简称国家标准。只要是在国内发行的地图（包括电子地图），都要按国家标准来，不然就是非法的。所以苹果手机中的国内地图肯定也是改良过的。</p>
+<p>我拿着国际标准的经纬度放到改良过的符合国家标准的地图中，显然会发生偏移。</p>
+<p>解决办法就是将国际标准的经纬度转换成国家标准的经纬度。<a href="https://gist.github.com/mithvv/5476132" target="_blank" rel="external">算法是现成的</a>（以前用高德sdk获取当前位置的经纬度本来就是国家标准的，所以没事。）<br><a id="more"></a></p>
+<h3 id="坑爹的高德-1">坑爹的高德</h3>
+<p>项目中地图原来用的高德sdk，其实我不知道当时为什么就用了高德，但既然用了，那么就在此基础上开发吧。可是写着写着，问题就来了： <a href="http://bbs.amap.com/thread-42153-1-1.html" target="_blank" rel="external">问题链接</a>。虽然这个问题不是什么太大的问题，但保不准以后还会遇到什么别的坑，而且以高德的效率，短期内肯定不会解决的。<br>那为什么还要用那个sdk呢？好像我们用到的功能苹果自带的MapKit都能实现啊，而且高德官网上的合作伙伴（携程、美团）也是用的原生的MapKit（从地图默认加载背景就可以看出来）。后来只花了一点点时间就切换到苹果的MapKit（API是一样的），目前还没发现什么bug。</p>
+<h3 id="坐标转换之中国特色-1">坐标转换之中国特色</h3>
+<p>因为不用高德了，所以当前位置经纬度就用CoreLocation来获取。可是当你把获取的经纬度放到MKMapView中显示，位置竟然有偏移，而且还不小。</p>
+<p>这是苹果的bug吗？不是，是有关部门的功劳。我们只有一个地球，所以地球上每个点的经纬度是固定的，国际上有个通用标准，简称国际标准。CoreLocation取到的经纬度符合国际标准。</p>
+<p>可是在国内，由于国家安全，有关部门制定了一套新的标准，简称国家标准。只要是在国内发行的地图（包括电子地图），都要按国家标准来，不然就是非法的。所以苹果手机中的国内地图肯定也是改良过的。</p>
+<p>我拿着国际标准的经纬度放到改良过的符合国家标准的地图中，显然会发生偏移。</p>
+<p>解决办法就是将国际标准的经纬度转换成国家标准的经纬度。<a href="https://gist.github.com/mithvv/5476132" target="_blank" rel="external">算法是现成的</a>（以前用高德sdk获取当前位置的经纬度本来就是国家标准的，所以没事。）</p>
+<h3 id="怎么使用MapKit">怎么使用MapKit</h3>
+<p>用苹果官方的framework最幸福了，因为有标准的文档可查，只要看就是了。目前我们对地图的使用非常简单，就是在地图上加地理位置标注，所以我要看的只有其中<a href="https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/LocationAwarenessPG/AnnotatingMaps/AnnotatingMaps.html#//apple_ref/doc/uid/TP40009497-CH6-SW1" target="_blank" rel="external">一小段</a>。</p>
+<p>要实现标注，必须要有以下3个对象：</p>
+<ul>
+<li>AnnotationObject(标注对象)</li>
+<li>AnnotationView(标注视图)</li>
+<li>AnnotationCalloutView(标注弹出视图，可看做是标注视图的一部分)</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/16632-ebb438364bb22eb8.png" alt="annotation.png" width="200px"></p>
+<p>结合上面的图，AnnotationObject是标注的模型对象，AnnotationView就是大头针，AnnotationCallView就是弹出来的浮层。</p>
+<h6 id="AnnotationObject">AnnotationObject</h6>
+<p>AnnotationObject必须实现MKAnnotation协议：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">@protocol</span> <span class="title">MKAnnotation</span> &lt;<span class="title">NSObject</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">// Center latitude and longitude of the annotation view.</span></div><div class="line"><span class="comment">// The implementation of this property must be KVO compliant.</span></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">readonly</span>) CLLocationCoordinate2D coordinate;</div><div class="line"></div><div class="line"><span class="keyword">@optional</span></div><div class="line"></div><div class="line"><span class="comment">// Title and subtitle for use by selection UI.</span></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">readonly</span>, <span class="keyword">copy</span>) <span class="built_in">NSString</span> *title;</div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">readonly</span>, <span class="keyword">copy</span>) <span class="built_in">NSString</span> *subtitle;</div><div class="line"></div><div class="line"><span class="comment">// Called as a result of dragging an annotation view.</span></div><div class="line">- (<span class="keyword">void</span>)setCoordinate:(CLLocationCoordinate2D)newCoordinate NS_AVAILABLE(<span class="number">10</span>_9, <span class="number">4</span>_0);</div><div class="line"></div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure>
+
+<p>框架默认提供了一个MKPointAnnotation，只有coordinate、title、subtitle，如果要求不高，这个类也够用了。但更多的情况就需要我们自定义MKAnnotation。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">HJGasStationAnnotation</span> : <span class="title">NSObject</span>&lt;<span class="title">MKAnnotation</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">//经纬度</span></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">assign</span>) CLLocationCoordinate2D coordinate;</div><div class="line"><span class="comment">//标题</span></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">copy</span>) <span class="built_in">NSString</span>* title;</div><div class="line"><span class="comment">//地址</span></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">copy</span>) <span class="built_in">NSString</span>* address;</div><div class="line"><span class="comment">//电话</span></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">copy</span>) <span class="built_in">NSString</span>* tel;</div><div class="line"></div><div class="line">- (instancetype)initWithLocation:(CLLocationCoordinate2D)coordinate;</div><div class="line"></div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure>
+
+<p>里面的title、address、tel都是我随便加的，只要有需求，加任何东西都可以，但官方文档中也说了，AnnotationObject不能太大，不然地图上标注一多，效率会有问题。</p>
+<p>想一下，为什么要有AnnotationObject这个对象？我看到之前的代码没么有自定义什么AnnotationObject，所有的标注都用MKPointAnnotation，然后所有其他的属性都封装成另外一个对象（ObjectB，这个ObjectB也是从项目的其他地方拿来的）都放到AnnotationView去。</p>
+<p>这样造成的后果就是AnnotationView中既有AnnotationObject，又有ObjectB（而且ObjectB不够纯粹，有很多冗余的属性），导致AnnotationView代码耦合性较大。而子类话AnnotationObject，就能消除这种耦合，把ObjectB中有用的属性封装到SubAnnotationObject中即可，这样对于AnnotationView而言，只需要知道AnnotationObject，管它什么ObjectB呢！</p>
+<h6 id="AnnotationView">AnnotationView</h6>
+<p>框架提供了默认的MKPinAnnotationView，就是一个大头针。因为不够美观，我们可能要换成其它图片或者自定义视图。</p>
+<p>怎么自定义呢？只要继承一下</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">HJGasStationAnnotationView</span> : <span class="title">MKAnnotationView</span></span></div><div class="line"></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">strong</span>) HJGasStationCalloutView *calloutView;</div><div class="line"></div><div class="line"><span class="keyword">@end</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">HJGasStationAnnotationView</span></span></div><div class="line"></div><div class="line">- (<span class="keyword">id</span>)initWithAnnotation:(<span class="keyword">id</span>&lt;MKAnnotation&gt;)annotation reuseIdentifier:(<span class="built_in">NSString</span> *)reuseIdentifier</div><div class="line">{</div><div class="line">    <span class="keyword">self</span> = [<span class="keyword">super</span> initWithAnnotation:annotation reuseIdentifier:reuseIdentifier];</div><div class="line">    </div><div class="line">    <span class="keyword">if</span> (<span class="keyword">self</span>)</div><div class="line">    {</div><div class="line">        <span class="keyword">self</span><span class="variable">.bounds</span> = CGRectMake(<span class="number">0</span>, <span class="number">0</span>, <span class="number">23</span>, <span class="number">35</span>);</div><div class="line">        <span class="keyword">self</span><span class="variable">.backgroundColor</span> = [<span class="built_in">UIColor</span> clearColor];</div><div class="line">        <span class="keyword">self</span><span class="variable">.image</span> = [<span class="built_in">UIImage</span> imageNamed:<span class="string">@"map_location.png"</span>];</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> <span class="keyword">self</span>;</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure>
+
+<p>上面的自定义非常简单，只是换了张图片，如果有更复杂的需求，直接在里面加子控件或者重写drewRect都可。</p>
+<h6 id="AnnotationCalloutView">AnnotationCalloutView</h6>
+<p>框架里有标准的AnnotationCalloutView，只需要设置AnnotationView的属性canShowCallout为YES，就能展示默认的CalloutView；如果需要自定义CalloutView的话就必须将canShowCallout设为NO，这样就不会弹出默认的CalloutView。</p>
+<p>自定义的CalloutView就是一个普通的View，爱怎么写就怎么写。它展示和消失的逻辑是由AnnotationView来控制的，所以说CalloutView其实是AnnotationView的一部分。</p>
+<p>交互的逻辑就是重写两个方法，而且必须要重写，变量名根据实际情况会变，但方法逻辑结构就不需要动。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">- (<span class="built_in">BOOL</span>)pointInside:(<span class="built_in">CGPoint</span>)point withEvent:(UIEvent *)event</div><div class="line">{</div><div class="line">    <span class="built_in">BOOL</span> inside = [<span class="keyword">super</span> pointInside:point withEvent:event];</div><div class="line">    </div><div class="line">    <span class="keyword">if</span> (!inside && <span class="keyword">self</span><span class="variable">.selected</span>)</div><div class="line">    {</div><div class="line">        inside = [<span class="keyword">self</span><span class="variable">.calloutView</span> pointInside:[<span class="keyword">self</span> convertPoint:point toView:<span class="keyword">self</span><span class="variable">.calloutView</span>] withEvent:event];</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> inside;</div><div class="line">}</div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)setSelected:(<span class="built_in">BOOL</span>)selected</div><div class="line">{</div><div class="line">    [<span class="keyword">super</span> setSelected:selected];</div><div class="line">    </div><div class="line">    <span class="keyword">if</span>(selected)</div><div class="line">    {</div><div class="line">        <span class="keyword">if</span> (<span class="keyword">self</span><span class="variable">.calloutView</span> == <span class="literal">nil</span>) {</div><div class="line">            <span class="keyword">self</span><span class="variable">.calloutView</span> = [[HJGasStationCalloutView alloc] initWithFrame:CGRectMake(<span class="number">0</span>, <span class="number">0</span>, kCalloutWidth, kCalloutHeight)];</div><div class="line">            [<span class="keyword">self</span><span class="variable">.calloutView</span><span class="variable">.telButton</span> addTarget:<span class="keyword">self</span> action:<span class="keyword">@selector</span>(telButtonPressed:) forControlEvents:UIControlEventTouchUpInside];</div><div class="line">            [<span class="keyword">self</span><span class="variable">.calloutView</span><span class="variable">.navButton</span> addTarget:<span class="keyword">self</span> action:<span class="keyword">@selector</span>(navButtonPressed:) forControlEvents:UIControlEventTouchUpInside];</div><div class="line">            <span class="keyword">self</span><span class="variable">.calloutView</span><span class="variable">.center</span> = CGPointMake(CGRectGetWidth(<span class="keyword">self</span><span class="variable">.bounds</span>) / <span class="number">2.</span>f + <span class="keyword">self</span><span class="variable">.calloutOffset</span><span class="variable">.x</span>,(-CGRectGetHeight(<span class="keyword">self</span><span class="variable">.calloutView</span><span class="variable">.bounds</span>) / <span class="number">2.</span>f + <span class="keyword">self</span><span class="variable">.calloutOffset</span><span class="variable">.y</span>));</div><div class="line">        }</div><div class="line">        [<span class="keyword">self</span> bindDataToUI];</div><div class="line">        [<span class="keyword">self</span> addSubview:<span class="keyword">self</span><span class="variable">.calloutView</span>];</div><div class="line">    }</div><div class="line">    <span class="keyword">else</span></div><div class="line">    {</div><div class="line">        [<span class="keyword">self</span><span class="variable">.calloutView</span> removeFromSuperview];</div><div class="line">    }</div><div class="line"></div><div class="line">}</div></pre></td></tr></table></figure>
+
+<h3 id="展现逻辑">展现逻辑</h3>
+<p>像MapView添加标注</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[<span class="keyword">self</span>.mapView <span class="symbol">addAnnotation:</span><span class="keyword">self</span>.annotation];</div></pre></td></tr></table></figure>
+
+<p> 在MapView的代理方法中生成AnnotationView</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">- (MKAnnotationView *)mapView:(<span class="built_in">MKMapView</span> *)mapView viewForAnnotation:(<span class="keyword">id</span>&lt;MKAnnotation&gt;)annotation</div><div class="line">{</div><div class="line">    <span class="keyword">if</span> ([annotation isKindOfClass:[HJGasStationAnnotation class]]) {</div><div class="line">        </div><div class="line">        <span class="keyword">static</span> <span class="built_in">NSString</span> *customReuseIndetifier = <span class="string">@"HJGasStationAnnotation"</span>;</div><div class="line">        HJGasStationAnnotationView *annotationView = (HJGasStationAnnotationView*)[mapView dequeueReusableAnnotationViewWithIdentifier:customReuseIndetifier];</div><div class="line">        </div><div class="line">        <span class="keyword">if</span> (annotationView == <span class="literal">nil</span>)</div><div class="line">        {</div><div class="line">            annotationView = [[HJGasStationAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:customReuseIndetifier];</div><div class="line">            annotationView<span class="variable">.canShowCallout</span> = <span class="literal">NO</span>;</div><div class="line">            annotationView<span class="variable">.draggable</span> = <span class="literal">NO</span>;</div><div class="line">            annotationView<span class="variable">.calloutOffset</span> = CGPointMake(<span class="number">0</span>, -<span class="number">5</span>);</div><div class="line">            annotationView<span class="variable">.selected</span> = <span class="literal">YES</span>;</div><div class="line">        }</div><div class="line">        <span class="keyword">else</span> {</div><div class="line">            annotationView<span class="variable">.annotation</span> = annotation;</div><div class="line">        }</div><div class="line">        </div><div class="line">        [annotationView bindDataToUI];</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> annotationView;</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> <span class="literal">nil</span>;</div><div class="line">}</div></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2014/11/07/LCBaseViewController相关/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">&lt;</strong>
+      <div class="article-nav-title">
+        
+          LCBaseViewController相关
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2014/11/06/POP框架初探/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">POP框架初探</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="地图开发总结" data-title="地图开发总结" data-url="http://linkageios.github.io/2014/11/07/地图开发总结/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2014 SmartArrow
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+  <script src="/js/main.js" type="text/javascript"></script>
+
+
+  </div>
+</body>
+</html>

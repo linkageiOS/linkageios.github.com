@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>iOS技术路线图 | SmartArrow</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="做技术分成好几个层次：
+
+第一层：把功能做出来，不用考虑代码质量。
+第二层：把功能做稳定，不会有太多的bug。
+第三层：把功能做得快，能够快速响应需求。
+
+如果是从零开始做项目，迫于经验不足和时间紧迫，都会经历从第一层慢慢向上的过程。遗憾的是，做到第三层是很难的，但不管怎样，追求的过程是充满挑战的，也是受益无穷的。
+评价一下我们现在的项目，还应留在第一层。为了能够达到第三层，我和同事们一起想了一些">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS技术路线图">
+<meta property="og:url" content="http://linkageios.github.io/2014/09/24/iOS技术路线图/">
+<meta property="og:site_name" content="SmartArrow">
+<meta property="og:description" content="做技术分成好几个层次：
+
+第一层：把功能做出来，不用考虑代码质量。
+第二层：把功能做稳定，不会有太多的bug。
+第三层：把功能做得快，能够快速响应需求。
+
+如果是从零开始做项目，迫于经验不足和时间紧迫，都会经历从第一层慢慢向上的过程。遗憾的是，做到第三层是很难的，但不管怎样，追求的过程是充满挑战的，也是受益无穷的。
+评价一下我们现在的项目，还应留在第一层。为了能够达到第三层，我和同事们一起想了一些">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS技术路线图">
+<meta name="twitter:description" content="做技术分成好几个层次：
+
+第一层：把功能做出来，不用考虑代码质量。
+第二层：把功能做稳定，不会有太多的bug。
+第三层：把功能做得快，能够快速响应需求。
+
+如果是从零开始做项目，迫于经验不足和时间紧迫，都会经历从第一层慢慢向上的过程。遗憾的是，做到第三层是很难的，但不管怎样，追求的过程是充满挑战的，也是受益无穷的。
+评价一下我们现在的项目，还应留在第一层。为了能够达到第三层，我和同事们一起想了一些">
+
+  
+    <link rel="alternative" href="/atom.xml" title="SmartArrow" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<div class="profilepic">
+			<img src="./images/logo.png">
+		</div>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">SmartArrow</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">技术文档</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="/#" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="/#" title="rss">rss</a>
+					        
+								<a class="facebook" target="_blank" href="/#" title="facebook">facebook</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud">
+						<a href="/tags/ARC/" style="font-size: 10.00px;">ARC</a><a href="/tags/LCBaseViewController/" style="font-size: 10.00px;">LCBaseViewController</a><a href="/tags/LCDataManager/" style="font-size: 10.00px;">LCDataManager</a><a href="/tags/LCMenuView/" style="font-size: 10.00px;">LCMenuView</a><a href="/tags/POP/" style="font-size: 10.00px;">POP</a><a href="/tags/iconsole/" style="font-size: 10.00px;">iconsole</a><a href="/tags/json/" style="font-size: 10.00px;">json</a><a href="/tags/xml/" style="font-size: 10.00px;">xml</a><a href="/tags/代码优化/" style="font-size: 10.00px;">代码优化</a><a href="/tags/分享/" style="font-size: 10.00px;">分享</a><a href="/tags/动画/" style="font-size: 10.00px;">动画</a><a href="/tags/地图/" style="font-size: 10.00px;">地图</a><a href="/tags/效率/" style="font-size: 10.00px;">效率</a><a href="/tags/架构/" style="font-size: 10.00px;">架构</a><a href="/tags/网络/" style="font-size: 10.00px;">网络</a><a href="/tags/规范/" style="font-size: 20.00px;">规范</a><a href="/tags/路线图/" style="font-size: 10.00px;">路线图</a><a href="/tags/高德/" style="font-size: 10.00px;">高德</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://blog.crysnower.cn">StephenZhu&#39;s Blog</a>
+			        
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					我是谁，我从哪里来，我到哪里去？我就是我，是颜色不一样的吃货…
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay"></div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img src="./images/logo.png">
+			</div>
+
+			<hgroup>
+			  <h1 class="header-author"><a href="/">SmartArrow</a></h1>
+			</hgroup>
+			
+			<p class="header-subtitle">技术文档</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="/#" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="/#" title="rss">rss</a>
+			        
+						<a class="facebook" target="_blank" href="/#" title="facebook">facebook</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <article id="post-iOS技术路线图" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/09/24/iOS技术路线图/" class="article-date">
+  	<time datetime="2014-09-24T09:19:00.000Z" itemprop="datePublished">9月 24 2014</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/iOS/">iOS</a>
+  </div>
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/路线图/">路线图</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      iOS技术路线图
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>做技术分成好几个层次：</p>
+<ul>
+<li>第一层：把功能做出来，不用考虑代码质量。</li>
+<li>第二层：把功能做稳定，不会有太多的bug。</li>
+<li>第三层：把功能做得快，能够快速响应需求。</li>
+</ul>
+<p>如果是从零开始做项目，迫于经验不足和时间紧迫，都会经历从第一层慢慢向上的过程。遗憾的是，做到第三层是很难的，但不管怎样，追求的过程是充满挑战的，也是受益无穷的。</p>
+<p>评价一下我们现在的项目，还应留在第一层。为了能够达到第三层，我和同事们一起想了一些方法和步骤。</p>
+<hr>
+<p><a id="more"></a><br>做技术分成好几个层次：</p>
+<ul>
+<li>第一层：把功能做出来，不用考虑代码质量。</li>
+<li>第二层：把功能做稳定，不会有太多的bug。</li>
+<li>第三层：把功能做得快，能够快速响应需求。</li>
+</ul>
+<p>如果是从零开始做项目，迫于经验不足和时间紧迫，都会经历从第一层慢慢向上的过程。遗憾的是，做到第三层是很难的，但不管怎样，追求的过程是充满挑战的，也是受益无穷的。</p>
+<p>评价一下我们现在的项目，还应留在第一层。为了能够达到第三层，我和同事们一起想了一些方法和步骤。</p>
+<hr>
+<h3 id="ARC">ARC</h3>
+<p>ARC全名Automatic Reference Counting，是苹果公司在WWDC2011上就推出来的一项技术，只在减少程序员的工作，不用再去手动管理内存（典型的费力不讨好），而是由编译器采用智能算法，在编译的时候自动插入内存管理代码。ARC目前已经广泛的被绝大部分开发者所接受，因为它带来了开发效率的提升。我们目前的代码还没有采用ARC，这个改一下不是什么难事，具体做法可参考<a href="https://developer.apple.com/library/mac/releasenotes/ObjectiveC/RN-TransitioningToARC/Introduction/Introduction.html" target="_blank" rel="external">官方文档</a>。<br><a id="more"></a><br>做技术分成好几个层次：</p>
+<ul>
+<li>第一层：把功能做出来，不用考虑代码质量。</li>
+<li>第二层：把功能做稳定，不会有太多的bug。</li>
+<li>第三层：把功能做得快，能够快速响应需求。</li>
+</ul>
+<p>如果是从零开始做项目，迫于经验不足和时间紧迫，都会经历从第一层慢慢向上的过程。遗憾的是，做到第三层是很难的，但不管怎样，追求的过程是充满挑战的，也是受益无穷的。</p>
+<p>评价一下我们现在的项目，还应留在第一层。为了能够达到第三层，我和同事们一起想了一些方法和步骤。</p>
+<hr>
+<h3 id="ARC-1">ARC</h3>
+<p>ARC全名Automatic Reference Counting，是苹果公司在WWDC2011上就推出来的一项技术，只在减少程序员的工作，不用再去手动管理内存（典型的费力不讨好），而是由编译器采用智能算法，在编译的时候自动插入内存管理代码。ARC目前已经广泛的被绝大部分开发者所接受，因为它带来了开发效率的提升。我们目前的代码还没有采用ARC，这个改一下不是什么难事，具体做法可参考<a href="https://developer.apple.com/library/mac/releasenotes/ObjectiveC/RN-TransitioningToARC/Introduction/Introduction.html" target="_blank" rel="external">官方文档</a>。</p>
+<h3 id="Xib，StoryBoard">Xib，StoryBoard</h3>
+<p>Xib、StoryBoard和纯代码到底哪个好，一直被程序员们<a href="http://www.raywenderlich.com/51992/storyboards-vs-nibs-vs-code-the-great-debate" target="_blank" rel="external">争个不休</a>。但不可否认的是，苹果公司每次更新XCode，界面工具都会不断被优化以方便开发。尤其是分辨率越来越多以后，一些特性如AutoLayout，最佳使用场景就是界面工具，手写AutoLayout是很复杂的。所以我推荐用Xib乃至StoryBoard，但是并不反对用纯代码，因为有些复杂的UI更适合用代码写。三者可以和平共处，并不是非此即彼的关系。</p>
+<h3 id="代码规范">代码规范</h3>
+<p>这是老生常谈，不多说了，大家都懂的。前些天草拟了<a href="http://www.jianshu.com/p/552974248b8e" target="_blank" rel="external">一份规范</a>。</p>
+<h3 id="模块化">模块化</h3>
+<p>一个软件，尤其是大中型的软件，肯定有很多相对独立的功能。模块化相当于对大系统进行降维，使开发大系统像开发小功能一样容易。而且，有些模块可以被复用，能提升开发的效率和质量。</p>
+<p>我们现在的代码虽然是按照业务功能分开写的，但并没有严格的分开。比如登录相关的逻辑就散布在程序的多个地方，如果把登录做成一个模块，对外提供一组接口，登录逻辑要改就很方便，不用在多个地方改。分模块的要义是抽象出一组接口，模块间的通信只依赖于接口。模块的最终形式是.a文件。</p>
+<h3 id="API包装层">API包装层</h3>
+<p>在很多公司，前后台不属于同一个部门。后开负责开发基本的API，而前台对于返回的数据进行处理。这种处理有时候是很复杂的，因为后台不关心具体前端需求（或者它要为多平台提供支持），所以提供的数据往往是非常原始的。这样就有三种做法：</p>
+<ul>
+<li>前台在请求的地方单独处理。</li>
+<li>前台有专门的网络层处理。</li>
+<li>后台提供一层包装API，将数据进行预处理。</li>
+</ul>
+<p>目前我们用的是第一种做法，最好的还是第三种做法。</p>
+<h3 id="控件">控件</h3>
+<p>控件的作用是封装通用的UI组件，写iOS代码大部分时间都是在写UI，所以控件可以大大提高开发速度和质量。<br>网上有很多开源的组件，我们可以参考，但一定要看明白，不能拿来就用，不然风险太大。向UITableView的刷新、RichLabel等等，都需要控件化。</p>
+<h3 id="业务逻辑与视图分离">业务逻辑与视图分离</h3>
+<p>目前的代码是不分离的，一股脑儿写在ViewController里面。后果就是无法进行单元测试、并且维护性差。分层就可以解决这一问题，业界已经有很多方法：<br><a href="http://www.jianshu.com/p/385138a5daf0" target="_blank" rel="external">MVVM</a><br><a href="http://objccn.io/issue-1/" target="_blank" rel="external">更轻量的 View Controllers</a><br><a href="http://objccn.io/issue-13-5/" target="_blank" rel="external">使用 VIPER 构建 iOS 应用</a></p>
+<h3 id="网络层封装">网络层封装</h3>
+<p>无论是ASI还是AFNetWork，都已经提供了一套基本的Http框架，我们要做的是在此基础上进行一层包装，调用者只需要了解包装层的接口，这样以后替换类库都不会有问题。</p>
+<h3 id="数据层封装">数据层封装</h3>
+<p>把数据层抽象出来，这样代用存储代码就会变得很简单。而且数据层扩展各种存储类型，对业务层代码不需要太大的改动。</p>
+<h3 id="动画框架">动画框架</h3>
+<p>手势返回是必须要做的。<br>至于动画框架还没想清楚，因为动画变化多端，所以对框架的通用性就有很高的要求。如果太通用，就和系统API没什么差别了。<br>这是Facebook推出的<a href="https://code.facebook.com/posts/234067533455773/introducing-pop-the-animation-engine-behind-paper/" target="_blank" rel="external">POP动画框架</a>，值得参考一下。</p>
+<h3 id="Bean规范化">Bean规范化</h3>
+<p>Bean是程序中最基本的对象。没有业务相关的方法，只有属性和存储方法。每个Bean一个文件，目前是所有Bean在一个文件中，不容易查看。</p>
+<h3 id="基类">基类</h3>
+<p>无基类，不框架。基类会随着项目的发展不断演进，基类可以让问哦们少些很多很多的代码。</p>
+<h3 id="工具类">工具类</h3>
+<p>代码规范里也提到，工具类的使用有两种误区：</p>
+<ul>
+<li>Util方法没有单独写在一个文件里面，不具备重用性。</li>
+<li>有一个超级Util类，写了一堆不太相关的方法。</li>
+</ul>
+<p>能用Category尽量用Category，对于Util，也要按功能进行区分。</p>
+<h3 id="分享框架">分享框架</h3>
+<p>分享不是一件特别困难的事，所以最好自己做。用第三方定制UI也是很难实现的，还不如自己做。</p>
+<hr>
+<p>上文提出的种种，都是我们要做的，如果按理想情况做完的话，我们就能达到本文开头所说的第三层境界了。但是过程肯定不轻松，也许会在某一点上失败，但是前进的过程又是充满诱惑的，所以加油吧！</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2014/09/25/ARC转换总结+避免循环引用/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">&lt;</strong>
+      <div class="article-nav-title">
+        
+          ARC转换总结+避免循环引用
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2014/09/22/iOS架构设计与分层/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">iOS架构设计与分层</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="iOS技术路线图" data-title="iOS技术路线图" data-url="http://linkageios.github.io/2014/09/24/iOS技术路线图/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2014 SmartArrow
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+  <script src="/js/main.js" type="text/javascript"></script>
+
+
+  </div>
+</body>
+</html>
