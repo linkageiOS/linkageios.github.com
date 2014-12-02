@@ -4,7 +4,7 @@
   <subtitle><![CDATA[技术文档]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://linkageios.github.io/"/>
-  <updated>2014-12-01T05:27:20.922Z</updated>
+  <updated>2014-12-02T01:18:25.271Z</updated>
   <id>http://linkageios.github.io/</id>
   
   <author>
@@ -88,59 +88,21 @@ xxxxxx
   </entry>
   
   <entry>
-    <title><![CDATA[LCBaseViewController相关]]></title>
-    <link href="http://linkageios.github.io/2014/11/07/LCBaseViewController%E7%9B%B8%E5%85%B3/"/>
-    <id>http://linkageios.github.io/2014/11/07/LCBaseViewController相关/</id>
-    <published>2014-11-07T05:38:14.000Z</published>
-    <updated>2014-11-18T09:20:25.000Z</updated>
-    <content type="html"><![CDATA[<h2 id="简介">简介</h2>
-<p>该基类参考原先项目中BaseViewController等几个类 进行修改 功能暂时满足目前项目需求 日后更新会根据项目迭代中提出的需求在进行修改</p>
-<h2 id="属性和函数说明">属性和函数说明</h2>
-<p>LCViewControllerShowType：viewController出现的方式 具体分为</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">LCViewControllerShowTypePush                （<span class="keyword">pop</span>/<span class="keyword">push</span>方式）（默认）</div><div class="line">LCViewControllerShowTypePresent             （present/dismiss方式）</div><div class="line">LCViewControllerShowTypePresentBasic        （作为没有登录的情况下，登陆界面返回按钮 跳转到首页的凭据）</div></pre></td></tr></table></figure>
-
-<a id="more"></a>
-
-<h2 id="简介-1">简介</h2>
-<p>该基类参考原先项目中BaseViewController等几个类 进行修改 功能暂时满足目前项目需求 日后更新会根据项目迭代中提出的需求在进行修改</p>
-<h2 id="属性和函数说明-1">属性和函数说明</h2>
-<p>LCViewControllerShowType：viewController出现的方式 具体分为</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">LCViewControllerShowTypePush                （<span class="keyword">pop</span>/<span class="keyword">push</span>方式）（默认）</div><div class="line">LCViewControllerShowTypePresent             （present/dismiss方式）</div><div class="line">LCViewControllerShowTypePresentBasic        （作为没有登录的情况下，登陆界面返回按钮 跳转到首页的凭据）</div></pre></td></tr></table></figure>
-
-<p>LCNavigationBarStyle： navigationBar 的样式 主要是背景色</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="title">LCNavigationBarRed</span>             navigationBar 一级,红色背景</div></pre></td></tr></table></figure>
-
-<p><img src="http://upload-images.jianshu.io/upload_images/79888-d6fa0aed379b25d2.png" alt="LCNavigationBarRed"></p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="title">LCNavigationBarWhite</span>          navigationBar 二级,白色背景（默认）</div></pre></td></tr></table></figure>
-
-<p><img src="http://upload-images.jianshu.io/upload_images/79888-6225382ae2b09d27.png" alt="LCNavigationBarWhite"></p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="title">LCNavigationBarNull</span>             navigationBar 二级,隐藏navigaitonbar</div></pre></td></tr></table></figure>
-
-<p>提供函数方法</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">//设置导航栏背景图片</div><div class="line"><span class="pp">- <span class="params">(void)</span>configNavigationBarBgImage;</span></div><div class="line">//设置左边的返回按钮</div><div class="line">- <span class="params">(void)</span>setLeftBackButton;</div><div class="line">- <span class="params">(void)</span>setLeftBackButtonAction:<span class="params">(<span class="variable">SEL</span>)</span>selector;</div><div class="line">//设置左边的返回按钮<span class="params">(图片按钮)</span></div><div class="line">- <span class="params">(void)</span>setLeftButtonWithImageName:<span class="params">(<span class="variable">NSString</span>*)</span>imageName action:<span class="params">(<span class="variable">SEL</span>)</span>selector;</div><div class="line">//设置左边的返回按钮<span class="params">(文字按钮)</span></div><div class="line">- <span class="params">(void)</span>setLeftButtonWithTitle:<span class="params">(<span class="variable">NSString</span>*)</span>title action:<span class="params">(<span class="variable">SEL</span>)</span>selector;</div><div class="line">//设置左边的返回按钮<span class="params">(通用按钮)</span></div><div class="line">- <span class="params">(void)</span>setLeftButton:<span class="params">(<span class="variable">UIButton</span>*)</span>button action:<span class="params">(<span class="variable">SEL</span>)</span>selector;</div><div class="line">//设置中间的文本标题</div><div class="line">- <span class="params">(void)</span>setTitleViewWithText:<span class="params">(<span class="variable">NSString</span>*)</span>text;</div><div class="line">//设置右边的按钮<span class="params">(文字按钮)</span></div><div class="line">- <span class="params">(void)</span>setRightButtonWithTitle:<span class="params">(<span class="variable">NSString</span>*)</span>title action:<span class="params">(<span class="variable">SEL</span>)</span>selector;</div><div class="line">//设置右边的按钮<span class="params">(图片按钮)</span></div><div class="line">- <span class="params">(void)</span>setRightButtonWithImageName:<span class="params">(<span class="variable">NSString</span>*)</span>imageName action:<span class="params">(<span class="variable">SEL</span>)</span>selector;</div><div class="line">- <span class="params">(void)</span>setRightButtonWithNormarlImageName:<span class="params">(<span class="variable">NSString</span>*)</span>normarName highlightedImageName:<span class="params">(<span class="variable">NSString</span> *)</span>highlightedName action:<span class="params">(<span class="variable">SEL</span>)</span>selector;</div><div class="line">//设置右边的按钮</div><div class="line">- <span class="params">(void)</span>setRightButton:<span class="params">(<span class="variable">UIButton</span>*)</span>button action:<span class="params">(<span class="variable">SEL</span>)</span>selector;</div><div class="line">//多个按钮 分别有文字或图片 （btnStrs 中vo 为dic 具体参考下面栗子）</div><div class="line">- <span class="params">(void)</span>setRightButtons:<span class="params">(<span class="variable">NSArray</span> *)</span>btnStrs;</div><div class="line">- <span class="params">(void)</span>setRightButtonImages:<span class="params">(<span class="variable">NSArray</span> *)</span>images;</div><div class="line">- <span class="params">(void)</span>rightButtonAction:<span class="params">(id)</span>sender;</div><div class="line">//返回按钮的响应事件</div><div class="line">- <span class="params">(void)</span>backButtonPressed:<span class="params">(id)</span>sender;</div></pre></td></tr></table></figure>
-
-<p>提供方法中</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="pp">- <span class="params">(void)</span>setRightButtons:<span class="params">(<span class="variable">NSArray</span> *)</span>btnStrs;</span></div></pre></td></tr></table></figure>
-
-<p>btnStrs为包含vo对象的一个数组</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="variable">vo =</span> {</div><div class="line">@<span class="string">" title"</span>     : @<span class="string">"返回"</span>,</div><div class="line">@<span class="string">"normalImage"</span>:@<span class="string">"fanhui.png"</span></div><div class="line">}</div></pre></td></tr></table></figure>
-
-<p>具体使用为</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">NSArray</span> *rightbarButtonVos = @[@{<span class="string">@"title"</span>:<span class="string">@"第一个"</span>,<span class="string">@"normalImage"</span>:<span class="string">@"first.png"</span>},@{<span class="string">@"title"</span>:<span class="string">@"第二个"</span>,<span class="string">@"normalImage"</span>:<span class="string">@"second.png"</span>}];</div><div class="line">[<span class="keyword">self</span> setRightButtons: rightbarButtonVos];</div></pre></td></tr></table></figure>
-
+    <title><![CDATA[关于文档类工作输出要求]]></title>
+    <link href="http://linkageios.github.io/2014/12/01/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/"/>
+    <id>http://linkageios.github.io/2014/12/01/内存管理/</id>
+    <published>2014-12-01T05:24:53.000Z</published>
+    <updated>2014-12-02T01:15:09.000Z</updated>
+    <content type="html"><![CDATA[<p><a id="more"></a></p>
+<h1 id="内存管理培训ppt">内存管理培训ppt</h1>
+<p><a href="../extr/内存管理.ppt">ppt</a></p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<h2 id="简介">简介</h2>
-<p>该基类参考原先项目中BaseViewController等几个类 进行修改 功能暂时满足目前项目需求 日后更新会根据项目迭代中提出的需求在进行修改</p>
-<h2 id="属性和函数说明">属性和函数说明</h2>
-<p>LCViewControllerShowType：viewController出现的方式 具体分为</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">LCViewControllerShowTypePush                （<span class="keyword">pop</span>/<span class="keyword">push</span>方式）（默认）</div><div class="line">LCViewControllerShowTypePresent             （present/dismiss方式）</div><div class="line">LCViewControllerShowTypePresentBasic        （作为没有登录的情况下，登陆界面返回按钮 跳转到首页的凭据）</div></pre></td></tr></table></figure>
-
-]]>
+    <![CDATA[<p>]]>
     
     </summary>
     
-      <category term="LCBaseViewController" scheme="http://linkageios.github.io/tags/LCBaseViewController/"/>
+      <category term="内存" scheme="http://linkageios.github.io/tags/%E5%86%85%E5%AD%98/"/>
     
       <category term="iOS" scheme="http://linkageios.github.io/categories/iOS/"/>
     
@@ -669,6 +631,65 @@ xxxxxx
     </summary>
     
       <category term="LCDataManager" scheme="http://linkageios.github.io/tags/LCDataManager/"/>
+    
+      <category term="iOS" scheme="http://linkageios.github.io/categories/iOS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[LCBaseViewController相关]]></title>
+    <link href="http://linkageios.github.io/2014/11/07/LCBaseViewController%E7%9B%B8%E5%85%B3/"/>
+    <id>http://linkageios.github.io/2014/11/07/LCBaseViewController相关/</id>
+    <published>2014-11-07T05:38:14.000Z</published>
+    <updated>2014-11-18T09:20:25.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="简介">简介</h2>
+<p>该基类参考原先项目中BaseViewController等几个类 进行修改 功能暂时满足目前项目需求 日后更新会根据项目迭代中提出的需求在进行修改</p>
+<h2 id="属性和函数说明">属性和函数说明</h2>
+<p>LCViewControllerShowType：viewController出现的方式 具体分为</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">LCViewControllerShowTypePush                （<span class="keyword">pop</span>/<span class="keyword">push</span>方式）（默认）</div><div class="line">LCViewControllerShowTypePresent             （present/dismiss方式）</div><div class="line">LCViewControllerShowTypePresentBasic        （作为没有登录的情况下，登陆界面返回按钮 跳转到首页的凭据）</div></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+<h2 id="简介-1">简介</h2>
+<p>该基类参考原先项目中BaseViewController等几个类 进行修改 功能暂时满足目前项目需求 日后更新会根据项目迭代中提出的需求在进行修改</p>
+<h2 id="属性和函数说明-1">属性和函数说明</h2>
+<p>LCViewControllerShowType：viewController出现的方式 具体分为</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">LCViewControllerShowTypePush                （<span class="keyword">pop</span>/<span class="keyword">push</span>方式）（默认）</div><div class="line">LCViewControllerShowTypePresent             （present/dismiss方式）</div><div class="line">LCViewControllerShowTypePresentBasic        （作为没有登录的情况下，登陆界面返回按钮 跳转到首页的凭据）</div></pre></td></tr></table></figure>
+
+<p>LCNavigationBarStyle： navigationBar 的样式 主要是背景色</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="title">LCNavigationBarRed</span>             navigationBar 一级,红色背景</div></pre></td></tr></table></figure>
+
+<p><img src="http://upload-images.jianshu.io/upload_images/79888-d6fa0aed379b25d2.png" alt="LCNavigationBarRed"></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="title">LCNavigationBarWhite</span>          navigationBar 二级,白色背景（默认）</div></pre></td></tr></table></figure>
+
+<p><img src="http://upload-images.jianshu.io/upload_images/79888-6225382ae2b09d27.png" alt="LCNavigationBarWhite"></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="title">LCNavigationBarNull</span>             navigationBar 二级,隐藏navigaitonbar</div></pre></td></tr></table></figure>
+
+<p>提供函数方法</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">//设置导航栏背景图片</div><div class="line"><span class="pp">- <span class="params">(void)</span>configNavigationBarBgImage;</span></div><div class="line">//设置左边的返回按钮</div><div class="line">- <span class="params">(void)</span>setLeftBackButton;</div><div class="line">- <span class="params">(void)</span>setLeftBackButtonAction:<span class="params">(<span class="variable">SEL</span>)</span>selector;</div><div class="line">//设置左边的返回按钮<span class="params">(图片按钮)</span></div><div class="line">- <span class="params">(void)</span>setLeftButtonWithImageName:<span class="params">(<span class="variable">NSString</span>*)</span>imageName action:<span class="params">(<span class="variable">SEL</span>)</span>selector;</div><div class="line">//设置左边的返回按钮<span class="params">(文字按钮)</span></div><div class="line">- <span class="params">(void)</span>setLeftButtonWithTitle:<span class="params">(<span class="variable">NSString</span>*)</span>title action:<span class="params">(<span class="variable">SEL</span>)</span>selector;</div><div class="line">//设置左边的返回按钮<span class="params">(通用按钮)</span></div><div class="line">- <span class="params">(void)</span>setLeftButton:<span class="params">(<span class="variable">UIButton</span>*)</span>button action:<span class="params">(<span class="variable">SEL</span>)</span>selector;</div><div class="line">//设置中间的文本标题</div><div class="line">- <span class="params">(void)</span>setTitleViewWithText:<span class="params">(<span class="variable">NSString</span>*)</span>text;</div><div class="line">//设置右边的按钮<span class="params">(文字按钮)</span></div><div class="line">- <span class="params">(void)</span>setRightButtonWithTitle:<span class="params">(<span class="variable">NSString</span>*)</span>title action:<span class="params">(<span class="variable">SEL</span>)</span>selector;</div><div class="line">//设置右边的按钮<span class="params">(图片按钮)</span></div><div class="line">- <span class="params">(void)</span>setRightButtonWithImageName:<span class="params">(<span class="variable">NSString</span>*)</span>imageName action:<span class="params">(<span class="variable">SEL</span>)</span>selector;</div><div class="line">- <span class="params">(void)</span>setRightButtonWithNormarlImageName:<span class="params">(<span class="variable">NSString</span>*)</span>normarName highlightedImageName:<span class="params">(<span class="variable">NSString</span> *)</span>highlightedName action:<span class="params">(<span class="variable">SEL</span>)</span>selector;</div><div class="line">//设置右边的按钮</div><div class="line">- <span class="params">(void)</span>setRightButton:<span class="params">(<span class="variable">UIButton</span>*)</span>button action:<span class="params">(<span class="variable">SEL</span>)</span>selector;</div><div class="line">//多个按钮 分别有文字或图片 （btnStrs 中vo 为dic 具体参考下面栗子）</div><div class="line">- <span class="params">(void)</span>setRightButtons:<span class="params">(<span class="variable">NSArray</span> *)</span>btnStrs;</div><div class="line">- <span class="params">(void)</span>setRightButtonImages:<span class="params">(<span class="variable">NSArray</span> *)</span>images;</div><div class="line">- <span class="params">(void)</span>rightButtonAction:<span class="params">(id)</span>sender;</div><div class="line">//返回按钮的响应事件</div><div class="line">- <span class="params">(void)</span>backButtonPressed:<span class="params">(id)</span>sender;</div></pre></td></tr></table></figure>
+
+<p>提供方法中</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="pp">- <span class="params">(void)</span>setRightButtons:<span class="params">(<span class="variable">NSArray</span> *)</span>btnStrs;</span></div></pre></td></tr></table></figure>
+
+<p>btnStrs为包含vo对象的一个数组</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="variable">vo =</span> {</div><div class="line">@<span class="string">" title"</span>     : @<span class="string">"返回"</span>,</div><div class="line">@<span class="string">"normalImage"</span>:@<span class="string">"fanhui.png"</span></div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>具体使用为</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">NSArray</span> *rightbarButtonVos = @[@{<span class="string">@"title"</span>:<span class="string">@"第一个"</span>,<span class="string">@"normalImage"</span>:<span class="string">@"first.png"</span>},@{<span class="string">@"title"</span>:<span class="string">@"第二个"</span>,<span class="string">@"normalImage"</span>:<span class="string">@"second.png"</span>}];</div><div class="line">[<span class="keyword">self</span> setRightButtons: rightbarButtonVos];</div></pre></td></tr></table></figure>
+
+]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="简介">简介</h2>
+<p>该基类参考原先项目中BaseViewController等几个类 进行修改 功能暂时满足目前项目需求 日后更新会根据项目迭代中提出的需求在进行修改</p>
+<h2 id="属性和函数说明">属性和函数说明</h2>
+<p>LCViewControllerShowType：viewController出现的方式 具体分为</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">LCViewControllerShowTypePush                （<span class="keyword">pop</span>/<span class="keyword">push</span>方式）（默认）</div><div class="line">LCViewControllerShowTypePresent             （present/dismiss方式）</div><div class="line">LCViewControllerShowTypePresentBasic        （作为没有登录的情况下，登陆界面返回按钮 跳转到首页的凭据）</div></pre></td></tr></table></figure>
+
+]]>
+    
+    </summary>
+    
+      <category term="LCBaseViewController" scheme="http://linkageios.github.io/tags/LCBaseViewController/"/>
     
       <category term="iOS" scheme="http://linkageios.github.io/categories/iOS/"/>
     

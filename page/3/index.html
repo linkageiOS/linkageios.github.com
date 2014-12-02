@@ -115,7 +115,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud">
-						<a href="/tags/ARC/" style="font-size: 10.00px;">ARC</a><a href="/tags/LCBaseViewController/" style="font-size: 10.00px;">LCBaseViewController</a><a href="/tags/LCDataManager/" style="font-size: 10.00px;">LCDataManager</a><a href="/tags/LCMenuView/" style="font-size: 10.00px;">LCMenuView</a><a href="/tags/POP/" style="font-size: 10.00px;">POP</a><a href="/tags/iconsole/" style="font-size: 10.00px;">iconsole</a><a href="/tags/json/" style="font-size: 10.00px;">json</a><a href="/tags/xml/" style="font-size: 10.00px;">xml</a><a href="/tags/代码优化/" style="font-size: 10.00px;">代码优化</a><a href="/tags/分享/" style="font-size: 10.00px;">分享</a><a href="/tags/动画/" style="font-size: 10.00px;">动画</a><a href="/tags/地图/" style="font-size: 10.00px;">地图</a><a href="/tags/效率/" style="font-size: 20.00px;">效率</a><a href="/tags/架构/" style="font-size: 10.00px;">架构</a><a href="/tags/网络/" style="font-size: 10.00px;">网络</a><a href="/tags/规范/" style="font-size: 20.00px;">规范</a><a href="/tags/路线图/" style="font-size: 10.00px;">路线图</a><a href="/tags/高德/" style="font-size: 10.00px;">高德</a>
+						<a href="/tags/ARC/" style="font-size: 10.00px;">ARC</a><a href="/tags/LCBaseViewController/" style="font-size: 10.00px;">LCBaseViewController</a><a href="/tags/LCDataManager/" style="font-size: 10.00px;">LCDataManager</a><a href="/tags/LCMenuView/" style="font-size: 10.00px;">LCMenuView</a><a href="/tags/POP/" style="font-size: 10.00px;">POP</a><a href="/tags/iconsole/" style="font-size: 10.00px;">iconsole</a><a href="/tags/json/" style="font-size: 10.00px;">json</a><a href="/tags/xml/" style="font-size: 10.00px;">xml</a><a href="/tags/代码优化/" style="font-size: 10.00px;">代码优化</a><a href="/tags/内存/" style="font-size: 10.00px;">内存</a><a href="/tags/分享/" style="font-size: 10.00px;">分享</a><a href="/tags/动画/" style="font-size: 10.00px;">动画</a><a href="/tags/地图/" style="font-size: 10.00px;">地图</a><a href="/tags/效率/" style="font-size: 20.00px;">效率</a><a href="/tags/架构/" style="font-size: 10.00px;">架构</a><a href="/tags/网络/" style="font-size: 10.00px;">网络</a><a href="/tags/规范/" style="font-size: 20.00px;">规范</a><a href="/tags/路线图/" style="font-size: 10.00px;">路线图</a><a href="/tags/高德/" style="font-size: 10.00px;">高德</a>
 					</div>
 				</section>
 				
@@ -182,6 +182,62 @@
 	</div>
 </nav>
       
+  
+    <article id="post-高德地图sdk分析" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/11/03/高德地图sdk分析/" class="article-date">
+  	<time datetime="2014-11-03T07:27:00.000Z" itemprop="datePublished">11月 3 2014</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/iOS/">iOS</a>
+  </div>
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/高德/">高德</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/11/03/高德地图sdk分析/">高德地图sdk分析</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>高德地图sdk是目前国内使用比较多的地图类sdk（还有百度地图也不错），目前项目中也用到了，但是相关封装还是不够清晰。为了做好这一层封装，首先需要把高德地图sdk研究一下。</p>
+<p>高德地图有各种语言版本的sdk，其中iOS的sdk就包含基本sdk、云图sdk，导航sdk。后两个sdk暂时用不到，而基本sdk中又包含2d（栅格地图）和3d（矢量地图）两个版本的库以及搜索的库。今天要分析的就是2d和搜索的framework，最新的sdk版本是2.4.0。<br>
+        
+          <p class="article-more-link">
+            <a href="/2014/11/03/高德地图sdk分析/#more">more >></a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
   
     <article id="post-一个简单的分享框架" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -412,80 +468,6 @@
         
           <p class="article-more-link">
             <a href="/2014/09/25/ARC转换总结+避免循环引用/#more">more >></a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
-    <article id="post-iOS技术路线图" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2014/09/24/iOS技术路线图/" class="article-date">
-  	<time datetime="2014-09-24T09:19:00.000Z" itemprop="datePublished">9月 24 2014</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/iOS/">iOS</a>
-  </div>
-
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/路线图/">路线图</a></li></ul>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/24/iOS技术路线图/">iOS技术路线图</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>做技术分成好几个层次：</p>
-<ul>
-<li>第一层：把功能做出来，不用考虑代码质量。</li>
-<li>第二层：把功能做稳定，不会有太多的bug。</li>
-<li>第三层：把功能做得快，能够快速响应需求。</li>
-</ul>
-<p>如果是从零开始做项目，迫于经验不足和时间紧迫，都会经历从第一层慢慢向上的过程。遗憾的是，做到第三层是很难的，但不管怎样，追求的过程是充满挑战的，也是受益无穷的。</p>
-<p>评价一下我们现在的项目，还应留在第一层。为了能够达到第三层，我和同事们一起想了一些方法和步骤。</p>
-<hr>
-<p><!--more--><br>做技术分成好几个层次：</p>
-<ul>
-<li>第一层：把功能做出来，不用考虑代码质量。</li>
-<li>第二层：把功能做稳定，不会有太多的bug。</li>
-<li>第三层：把功能做得快，能够快速响应需求。</li>
-</ul>
-<p>如果是从零开始做项目，迫于经验不足和时间紧迫，都会经历从第一层慢慢向上的过程。遗憾的是，做到第三层是很难的，但不管怎样，追求的过程是充满挑战的，也是受益无穷的。</p>
-<p>评价一下我们现在的项目，还应留在第一层。为了能够达到第三层，我和同事们一起想了一些方法和步骤。</p>
-<hr>
-<h3 id="ARC">ARC</h3>
-<p>ARC全名Automatic Reference Counting，是苹果公司在WWDC2011上就推出来的一项技术，只在减少程序员的工作，不用再去手动管理内存（典型的费力不讨好），而是由编译器采用智能算法，在编译的时候自动插入内存管理代码。ARC目前已经广泛的被绝大部分开发者所接受，因为它带来了开发效率的提升。我们目前的代码还没有采用ARC，这个改一下不是什么难事，具体做法可参考<a href="https://developer.apple.com/library/mac/releasenotes/ObjectiveC/RN-TransitioningToARC/Introduction/Introduction.html" target="_blank" rel="external">官方文档</a>。<br>
-        
-          <p class="article-more-link">
-            <a href="/2014/09/24/iOS技术路线图/#more">more >></a>
           </p>
         
       
