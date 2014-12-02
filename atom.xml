@@ -4,7 +4,7 @@
   <subtitle><![CDATA[技术文档]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://linkageios.github.io/"/>
-  <updated>2014-12-02T01:18:25.271Z</updated>
+  <updated>2014-12-02T01:21:59.908Z</updated>
   <id>http://linkageios.github.io/</id>
   
   <author>
@@ -13,6 +13,27 @@
   </author>
   
   <generator uri="http://zespia.tw/hexo/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[内存管理培训ppt]]></title>
+    <link href="http://linkageios.github.io/2014/12/02/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/"/>
+    <id>http://linkageios.github.io/2014/12/02/内存管理/</id>
+    <published>2014-12-02T01:20:08.000Z</published>
+    <updated>2014-12-02T01:20:10.000Z</updated>
+    <content type="html"><![CDATA[<p><a id="more"></a></p>
+<h1 id="内存管理培训ppt">内存管理培训ppt</h1>
+<p><a href="../extr/内存管理.ppt">ppt</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>]]>
+    
+    </summary>
+    
+      <category term="内存" scheme="http://linkageios.github.io/tags/%E5%86%85%E5%AD%98/"/>
+    
+      <category term="iOS" scheme="http://linkageios.github.io/categories/iOS/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[关于文档类工作输出要求]]></title>
@@ -88,21 +109,175 @@ xxxxxx
   </entry>
   
   <entry>
-    <title><![CDATA[关于文档类工作输出要求]]></title>
-    <link href="http://linkageios.github.io/2014/12/01/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/"/>
-    <id>http://linkageios.github.io/2014/12/01/内存管理/</id>
-    <published>2014-12-01T05:24:53.000Z</published>
-    <updated>2014-12-02T01:15:09.000Z</updated>
-    <content type="html"><![CDATA[<p><a id="more"></a></p>
-<h1 id="内存管理培训ppt">内存管理培训ppt</h1>
-<p><a href="../extr/内存管理.ppt">ppt</a></p>
+    <title><![CDATA[关于iConsole在项目中的应用]]></title>
+    <link href="http://linkageios.github.io/2014/11/07/%E5%85%B3%E4%BA%8EiConsole%E5%9C%A8%E9%A1%B9%E7%9B%AE%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/"/>
+    <id>http://linkageios.github.io/2014/11/07/关于iConsole在项目中的应用/</id>
+    <published>2014-11-07T05:38:14.000Z</published>
+    <updated>2014-11-18T10:28:05.000Z</updated>
+    <content type="html"><![CDATA[<p>tips：方便程序没有连着Xcode跑时定位bug(目前觉得没什么好写的就是)</p>
+<ul>
+<li>安装</li>
+</ul>
+<p><img src="../images/79888-d9f0841d3cfac40e.png" alt="imag"></p>
+<p>下载iconsole代码，将其中这两个文件拖入现有代码中</p>
+<ul>
+<li>配置<br>添加头文件</li>
+</ul>
+<figure class="highlight #import"><figcaption><span>"iConsole.h"```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">在使用其功能之前有一点要注意,需要将AppDelegate里初始的<span class="built_in">UIWindow</span>需要以iConsoleWindow来初始化,并添加</div></pre></td></tr></table></figure>
+
+<p>iConsoleDelegate</p>
+<figure class="highlight 协议"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">在</div></pre></td></tr></table></figure>
+
+<p>AppDelegate.h</p>
+<figure class="highlight 中"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="xml"><span class="comment">&lt;!--more--&gt;</span></span></div><div class="line">tips：方便程序没有连着Xcode跑时定位bug(目前觉得没什么好写的就是)</div><div class="line"><span class="bullet">- </span>安装</div><div class="line"></div><div class="line">![<span class="link_label">imag</span>](<span class="link_url">../images/79888-d9f0841d3cfac40e.png</span>)</div><div class="line"></div><div class="line">下载iconsole代码，将其中这两个文件拖入现有代码中</div><div class="line"><span class="bullet">- </span>配置</div><div class="line">添加头文件</div></pre></td></tr></table></figure>
+
+<h1 id="import_“iConsole-h”">import “iConsole.h”</h1>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">在使用其功能之前有一点要注意,需要将AppDelegate里初始的<span class="built_in">UIWindow</span>需要以iConsoleWindow来初始化,并添加</div></pre></td></tr></table></figure>
+
+<p>iConsoleDelegate</p>
+<figure class="highlight 协议"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">在</div></pre></td></tr></table></figure>
+
+<p>AppDelegate.h</p>
+<figure class="highlight 中"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">```</div><div class="line"><span class="keyword">@property</span> (<span class="keyword">strong</span>, <span class="keyword">nonatomic</span>) iConsoleWindow *window;</div></pre></td></tr></table></figure>
+
+<p>在</p>
+<figure class="highlight AppDelegate.m```的```didFinishLaunchingWithOptions"><figcaption><span>```方法中添加</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">```</div><div class="line"><span class="variable">_window =</span> [[iConsoleWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];</div><div class="line"><span class="comment">/*</span></div><div class="line">*  iconsole</div><div class="line">*/</div><div class="line">[iConsole sharedConsole].<span class="variable">delegate =</span> self;</div><div class="line">[iConsole sharedConsole].<span class="variable">logSubmissionEmail =</span> @<span class="string">"xxx@126.com"</span>;</div></pre></td></tr></table></figure>
+
+<p>添加协议方法</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*</span></div><div class="line">*iconsole</div><div class="line">*@param command</div><div class="line">*/</div><div class="line">- (<span class="keyword">void</span>)handleConsoleCommand:(<span class="built_in">NSString</span> *)command</div><div class="line">{</div><div class="line"><span class="keyword">if</span> ([command isEqualToString:<span class="string">@"version"</span>])</div><div class="line">{</div><div class="line">[iConsole info:<span class="string">@"%@ version %@"</span>,</div><div class="line">[[<span class="built_in">NSBundle</span> mainBundle] objectForInfoDictionaryKey:<span class="string">@"CFBundleName"</span>],</div><div class="line">[[<span class="built_in">NSBundle</span> mainBundle] objectForInfoDictionaryKey:<span class="string">@"CFBundleVersion"</span>]];</div><div class="line">}</div><div class="line"><span class="keyword">else</span></div><div class="line">{</div><div class="line">[iConsole error:<span class="string">@"unrecognised command, try 'version' instead"</span>];</div><div class="line">}</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>iConsole提供了4种记录日程的方式,分别是:<br>1:信息         </p>
+<figure class="highlight [iConsole"><figcaption><span>info:@"记录一条普通级"];```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">2:警告</div></pre></td></tr></table></figure>
+
+<p>[iConsole warn:@”记录一条警告级”];</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">3:错误</div></pre></td></tr></table></figure>
+
+<p>[iConsole error:@”记录一条错误级”];</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">4:崩溃</div></pre></td></tr></table></figure>
+
+<p>[iConsole crash:@”记录一条崩溃级”];</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="title">iConsole</span> 默认记录的日志条数是<span class="number">1000</span>条. 如果日志记录到上限时,会删除最早的一条,如此循环,可通过如下属性设置上下限:</div></pre></td></tr></table></figure>
+
+<p>[[iConsole sharedConsole] setMaxLogItems:2000];  </p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">当我们需要查看iConsole的控制台时,可以通过三种方式来启动控制台:</div><div class="line">1:主动调用</div></pre></td></tr></table></figure>
+
+<p>[iConsole show];  </p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">2:三跟手指由下往上滑动. 模拟器两根手指,  默认启动</div></pre></td></tr></table></figure>
+
+<p>[iConsole sharedConsole].simulatorTouchesToShow = YES;<br>[iConsole sharedConsole].deviceTouchesToShow = YES;  </p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">3:摇动手机启动  默认禁用</div></pre></td></tr></table></figure>
+
+<p>[iConsole sharedConsole].deviceShakeToShow = YES; ``` </p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p>]]>
+    <![CDATA[<p>tips：方便程序没有连着Xcode跑时定位bug(目前觉得没什么好写的就是)</p>
+<ul>
+<li>安装</li>
+</ul>
+<p><img src="../images/79888-d9f0841d3cfac40e.png" alt="imag"></p>
+<p>]]>
+    </summary>
+    
+      <category term="iconsole" scheme="http://linkageios.github.io/tags/iconsole/"/>
+    
+      <category term="iOS" scheme="http://linkageios.github.io/categories/iOS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[LCBaseViewController相关]]></title>
+    <link href="http://linkageios.github.io/2014/11/07/LCBaseViewController%E7%9B%B8%E5%85%B3/"/>
+    <id>http://linkageios.github.io/2014/11/07/LCBaseViewController相关/</id>
+    <published>2014-11-07T05:38:14.000Z</published>
+    <updated>2014-11-18T09:20:25.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="简介">简介</h2>
+<p>该基类参考原先项目中BaseViewController等几个类 进行修改 功能暂时满足目前项目需求 日后更新会根据项目迭代中提出的需求在进行修改</p>
+<h2 id="属性和函数说明">属性和函数说明</h2>
+<p>LCViewControllerShowType：viewController出现的方式 具体分为</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">LCViewControllerShowTypePush                （<span class="keyword">pop</span>/<span class="keyword">push</span>方式）（默认）</div><div class="line">LCViewControllerShowTypePresent             （present/dismiss方式）</div><div class="line">LCViewControllerShowTypePresentBasic        （作为没有登录的情况下，登陆界面返回按钮 跳转到首页的凭据）</div></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+<h2 id="简介-1">简介</h2>
+<p>该基类参考原先项目中BaseViewController等几个类 进行修改 功能暂时满足目前项目需求 日后更新会根据项目迭代中提出的需求在进行修改</p>
+<h2 id="属性和函数说明-1">属性和函数说明</h2>
+<p>LCViewControllerShowType：viewController出现的方式 具体分为</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">LCViewControllerShowTypePush                （<span class="keyword">pop</span>/<span class="keyword">push</span>方式）（默认）</div><div class="line">LCViewControllerShowTypePresent             （present/dismiss方式）</div><div class="line">LCViewControllerShowTypePresentBasic        （作为没有登录的情况下，登陆界面返回按钮 跳转到首页的凭据）</div></pre></td></tr></table></figure>
+
+<p>LCNavigationBarStyle： navigationBar 的样式 主要是背景色</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="title">LCNavigationBarRed</span>             navigationBar 一级,红色背景</div></pre></td></tr></table></figure>
+
+<p><img src="http://upload-images.jianshu.io/upload_images/79888-d6fa0aed379b25d2.png" alt="LCNavigationBarRed"></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="title">LCNavigationBarWhite</span>          navigationBar 二级,白色背景（默认）</div></pre></td></tr></table></figure>
+
+<p><img src="http://upload-images.jianshu.io/upload_images/79888-6225382ae2b09d27.png" alt="LCNavigationBarWhite"></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="title">LCNavigationBarNull</span>             navigationBar 二级,隐藏navigaitonbar</div></pre></td></tr></table></figure>
+
+<p>提供函数方法</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">//设置导航栏背景图片</div><div class="line"><span class="pp">- <span class="params">(void)</span>configNavigationBarBgImage;</span></div><div class="line">//设置左边的返回按钮</div><div class="line">- <span class="params">(void)</span>setLeftBackButton;</div><div class="line">- <span class="params">(void)</span>setLeftBackButtonAction:<span class="params">(<span class="variable">SEL</span>)</span>selector;</div><div class="line">//设置左边的返回按钮<span class="params">(图片按钮)</span></div><div class="line">- <span class="params">(void)</span>setLeftButtonWithImageName:<span class="params">(<span class="variable">NSString</span>*)</span>imageName action:<span class="params">(<span class="variable">SEL</span>)</span>selector;</div><div class="line">//设置左边的返回按钮<span class="params">(文字按钮)</span></div><div class="line">- <span class="params">(void)</span>setLeftButtonWithTitle:<span class="params">(<span class="variable">NSString</span>*)</span>title action:<span class="params">(<span class="variable">SEL</span>)</span>selector;</div><div class="line">//设置左边的返回按钮<span class="params">(通用按钮)</span></div><div class="line">- <span class="params">(void)</span>setLeftButton:<span class="params">(<span class="variable">UIButton</span>*)</span>button action:<span class="params">(<span class="variable">SEL</span>)</span>selector;</div><div class="line">//设置中间的文本标题</div><div class="line">- <span class="params">(void)</span>setTitleViewWithText:<span class="params">(<span class="variable">NSString</span>*)</span>text;</div><div class="line">//设置右边的按钮<span class="params">(文字按钮)</span></div><div class="line">- <span class="params">(void)</span>setRightButtonWithTitle:<span class="params">(<span class="variable">NSString</span>*)</span>title action:<span class="params">(<span class="variable">SEL</span>)</span>selector;</div><div class="line">//设置右边的按钮<span class="params">(图片按钮)</span></div><div class="line">- <span class="params">(void)</span>setRightButtonWithImageName:<span class="params">(<span class="variable">NSString</span>*)</span>imageName action:<span class="params">(<span class="variable">SEL</span>)</span>selector;</div><div class="line">- <span class="params">(void)</span>setRightButtonWithNormarlImageName:<span class="params">(<span class="variable">NSString</span>*)</span>normarName highlightedImageName:<span class="params">(<span class="variable">NSString</span> *)</span>highlightedName action:<span class="params">(<span class="variable">SEL</span>)</span>selector;</div><div class="line">//设置右边的按钮</div><div class="line">- <span class="params">(void)</span>setRightButton:<span class="params">(<span class="variable">UIButton</span>*)</span>button action:<span class="params">(<span class="variable">SEL</span>)</span>selector;</div><div class="line">//多个按钮 分别有文字或图片 （btnStrs 中vo 为dic 具体参考下面栗子）</div><div class="line">- <span class="params">(void)</span>setRightButtons:<span class="params">(<span class="variable">NSArray</span> *)</span>btnStrs;</div><div class="line">- <span class="params">(void)</span>setRightButtonImages:<span class="params">(<span class="variable">NSArray</span> *)</span>images;</div><div class="line">- <span class="params">(void)</span>rightButtonAction:<span class="params">(id)</span>sender;</div><div class="line">//返回按钮的响应事件</div><div class="line">- <span class="params">(void)</span>backButtonPressed:<span class="params">(id)</span>sender;</div></pre></td></tr></table></figure>
+
+<p>提供方法中</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="pp">- <span class="params">(void)</span>setRightButtons:<span class="params">(<span class="variable">NSArray</span> *)</span>btnStrs;</span></div></pre></td></tr></table></figure>
+
+<p>btnStrs为包含vo对象的一个数组</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="variable">vo =</span> {</div><div class="line">@<span class="string">" title"</span>     : @<span class="string">"返回"</span>,</div><div class="line">@<span class="string">"normalImage"</span>:@<span class="string">"fanhui.png"</span></div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>具体使用为</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">NSArray</span> *rightbarButtonVos = @[@{<span class="string">@"title"</span>:<span class="string">@"第一个"</span>,<span class="string">@"normalImage"</span>:<span class="string">@"first.png"</span>},@{<span class="string">@"title"</span>:<span class="string">@"第二个"</span>,<span class="string">@"normalImage"</span>:<span class="string">@"second.png"</span>}];</div><div class="line">[<span class="keyword">self</span> setRightButtons: rightbarButtonVos];</div></pre></td></tr></table></figure>
+
+]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="简介">简介</h2>
+<p>该基类参考原先项目中BaseViewController等几个类 进行修改 功能暂时满足目前项目需求 日后更新会根据项目迭代中提出的需求在进行修改</p>
+<h2 id="属性和函数说明">属性和函数说明</h2>
+<p>LCViewControllerShowType：viewController出现的方式 具体分为</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">LCViewControllerShowTypePush                （<span class="keyword">pop</span>/<span class="keyword">push</span>方式）（默认）</div><div class="line">LCViewControllerShowTypePresent             （present/dismiss方式）</div><div class="line">LCViewControllerShowTypePresentBasic        （作为没有登录的情况下，登陆界面返回按钮 跳转到首页的凭据）</div></pre></td></tr></table></figure>
+
+]]>
     
     </summary>
     
-      <category term="内存" scheme="http://linkageios.github.io/tags/%E5%86%85%E5%AD%98/"/>
+      <category term="LCBaseViewController" scheme="http://linkageios.github.io/tags/LCBaseViewController/"/>
+    
+      <category term="iOS" scheme="http://linkageios.github.io/categories/iOS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[测试Json效率和XML效率]]></title>
+    <link href="http://linkageios.github.io/2014/11/07/%E6%B5%8B%E8%AF%95Json%E6%95%88%E7%8E%87%E5%92%8CXML%E6%95%88%E7%8E%87/"/>
+    <id>http://linkageios.github.io/2014/11/07/测试Json效率和XML效率/</id>
+    <published>2014-11-07T05:38:14.000Z</published>
+    <updated>2014-11-18T10:27:06.000Z</updated>
+    <content type="html"><![CDATA[<ul>
+<li><p>tips：把项目中的解析json的sbjson ,网上提到的JsonKit和apple提供的自带json解析方法进行比较<br>所解析的json是来自项目当中服务返回的商家列表信息<br>具体如下图</p>
+<a id="more"></a>
+</li>
+<li><p>tips：把项目中的解析json的sbjson ,网上提到的JsonKit和apple提供的自带json解析方法进行比较<br>所解析的json是来自项目当中服务返回的商家列表信息<br>具体如下图<br><img src="../images/79888-1946ee461177aeca.png" alt="imag"><br>开始先去 请求 商家列表信息 ，请求成功之后 会有弹出框提示</p>
+<a id="more"></a></li>
+<li>tips：把项目中的解析json的sbjson ,网上提到的JsonKit和apple提供的自带json解析方法进行比较<br>所解析的json是来自项目当中服务返回的商家列表信息<br>具体如下图<br><img src="../images/79888-1946ee461177aeca.png" alt="imag"><br>开始先去 请求 商家列表信息 ，请求成功之后 会有弹出框提示</li>
+</ul>
+<p><img src="../images/79888-bd0e36d1d14085ea.png" alt="imag"><br>之后可以依次测试三种解析，具体看demo提示<br>结果：JSONKit 效率最接近苹果原生</p>
+<ul>
+<li>tips：针对项目中的车型xml文件，对比XMLDictionary和苹果自带xml解析的效率<br>解析的对象就是 项目当中的车型库文件</li>
+</ul>
+<p><img src="../images/79888-e567a1bfada45c8c.png" alt="imag"><br>每个解析方法 解析1000次 具体实现看demo<br>结果：XMLDictionary因为是 宽泛适应的解析 比demo中的针对特定文件写的解析是要慢些，但是今后将取消xml读取文件，这个也就没什么需要考虑的了</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<ul>
+<li><p>tips：把项目中的解析json的sbjson ,网上提到的JsonKit和apple提供的自带json解析方法进行比较<br>所解析的json是来自项目当中服务返回的商家列表信息<br>具体如下图</p>
+<!--more-->
+</li>
+<li><p>tips：把项目中的解析json的sbjson ,网上提到的JsonKit和apple提供的自带json解析方法进行比较<br>所解析的json是来自项目当中服务返回的商家列表信息<br>具体如下图<br><img src="../images/79888-1946ee461177aeca.png" alt="imag"><br>开始先去 请求 商家列表信息 ，请求成功之后 会有弹出框提示</p>
+]]>
+    
+    </summary>
+    
+      <category term="xml" scheme="http://linkageios.github.io/tags/xml/"/>
+    
+      <category term="json" scheme="http://linkageios.github.io/tags/json/"/>
+    
+      <category term="效率" scheme="http://linkageios.github.io/tags/%E6%95%88%E7%8E%87/"/>
     
       <category term="iOS" scheme="http://linkageios.github.io/categories/iOS/"/>
     
@@ -332,122 +507,6 @@ xxxxxx
   </entry>
   
   <entry>
-    <title><![CDATA[测试Json效率和XML效率]]></title>
-    <link href="http://linkageios.github.io/2014/11/07/%E6%B5%8B%E8%AF%95Json%E6%95%88%E7%8E%87%E5%92%8CXML%E6%95%88%E7%8E%87/"/>
-    <id>http://linkageios.github.io/2014/11/07/测试Json效率和XML效率/</id>
-    <published>2014-11-07T05:38:14.000Z</published>
-    <updated>2014-11-18T10:27:06.000Z</updated>
-    <content type="html"><![CDATA[<ul>
-<li><p>tips：把项目中的解析json的sbjson ,网上提到的JsonKit和apple提供的自带json解析方法进行比较<br>所解析的json是来自项目当中服务返回的商家列表信息<br>具体如下图</p>
-<a id="more"></a>
-</li>
-<li><p>tips：把项目中的解析json的sbjson ,网上提到的JsonKit和apple提供的自带json解析方法进行比较<br>所解析的json是来自项目当中服务返回的商家列表信息<br>具体如下图<br><img src="../images/79888-1946ee461177aeca.png" alt="imag"><br>开始先去 请求 商家列表信息 ，请求成功之后 会有弹出框提示</p>
-<a id="more"></a></li>
-<li>tips：把项目中的解析json的sbjson ,网上提到的JsonKit和apple提供的自带json解析方法进行比较<br>所解析的json是来自项目当中服务返回的商家列表信息<br>具体如下图<br><img src="../images/79888-1946ee461177aeca.png" alt="imag"><br>开始先去 请求 商家列表信息 ，请求成功之后 会有弹出框提示</li>
-</ul>
-<p><img src="../images/79888-bd0e36d1d14085ea.png" alt="imag"><br>之后可以依次测试三种解析，具体看demo提示<br>结果：JSONKit 效率最接近苹果原生</p>
-<ul>
-<li>tips：针对项目中的车型xml文件，对比XMLDictionary和苹果自带xml解析的效率<br>解析的对象就是 项目当中的车型库文件</li>
-</ul>
-<p><img src="../images/79888-e567a1bfada45c8c.png" alt="imag"><br>每个解析方法 解析1000次 具体实现看demo<br>结果：XMLDictionary因为是 宽泛适应的解析 比demo中的针对特定文件写的解析是要慢些，但是今后将取消xml读取文件，这个也就没什么需要考虑的了</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<ul>
-<li><p>tips：把项目中的解析json的sbjson ,网上提到的JsonKit和apple提供的自带json解析方法进行比较<br>所解析的json是来自项目当中服务返回的商家列表信息<br>具体如下图</p>
-<!--more-->
-</li>
-<li><p>tips：把项目中的解析json的sbjson ,网上提到的JsonKit和apple提供的自带json解析方法进行比较<br>所解析的json是来自项目当中服务返回的商家列表信息<br>具体如下图<br><img src="../images/79888-1946ee461177aeca.png" alt="imag"><br>开始先去 请求 商家列表信息 ，请求成功之后 会有弹出框提示</p>
-]]>
-    
-    </summary>
-    
-      <category term="xml" scheme="http://linkageios.github.io/tags/xml/"/>
-    
-      <category term="json" scheme="http://linkageios.github.io/tags/json/"/>
-    
-      <category term="效率" scheme="http://linkageios.github.io/tags/%E6%95%88%E7%8E%87/"/>
-    
-      <category term="iOS" scheme="http://linkageios.github.io/categories/iOS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[关于iConsole在项目中的应用]]></title>
-    <link href="http://linkageios.github.io/2014/11/07/%E5%85%B3%E4%BA%8EiConsole%E5%9C%A8%E9%A1%B9%E7%9B%AE%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/"/>
-    <id>http://linkageios.github.io/2014/11/07/关于iConsole在项目中的应用/</id>
-    <published>2014-11-07T05:38:14.000Z</published>
-    <updated>2014-11-18T10:28:05.000Z</updated>
-    <content type="html"><![CDATA[<p>tips：方便程序没有连着Xcode跑时定位bug(目前觉得没什么好写的就是)</p>
-<ul>
-<li>安装</li>
-</ul>
-<p><img src="../images/79888-d9f0841d3cfac40e.png" alt="imag"></p>
-<p>下载iconsole代码，将其中这两个文件拖入现有代码中</p>
-<ul>
-<li>配置<br>添加头文件</li>
-</ul>
-<figure class="highlight #import"><figcaption><span>"iConsole.h"```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">在使用其功能之前有一点要注意,需要将AppDelegate里初始的<span class="built_in">UIWindow</span>需要以iConsoleWindow来初始化,并添加</div></pre></td></tr></table></figure>
-
-<p>iConsoleDelegate</p>
-<figure class="highlight 协议"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">在</div></pre></td></tr></table></figure>
-
-<p>AppDelegate.h</p>
-<figure class="highlight 中"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="xml"><span class="comment">&lt;!--more--&gt;</span></span></div><div class="line">tips：方便程序没有连着Xcode跑时定位bug(目前觉得没什么好写的就是)</div><div class="line"><span class="bullet">- </span>安装</div><div class="line"></div><div class="line">![<span class="link_label">imag</span>](<span class="link_url">../images/79888-d9f0841d3cfac40e.png</span>)</div><div class="line"></div><div class="line">下载iconsole代码，将其中这两个文件拖入现有代码中</div><div class="line"><span class="bullet">- </span>配置</div><div class="line">添加头文件</div></pre></td></tr></table></figure>
-
-<h1 id="import_“iConsole-h”">import “iConsole.h”</h1>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">在使用其功能之前有一点要注意,需要将AppDelegate里初始的<span class="built_in">UIWindow</span>需要以iConsoleWindow来初始化,并添加</div></pre></td></tr></table></figure>
-
-<p>iConsoleDelegate</p>
-<figure class="highlight 协议"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">在</div></pre></td></tr></table></figure>
-
-<p>AppDelegate.h</p>
-<figure class="highlight 中"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">```</div><div class="line"><span class="keyword">@property</span> (<span class="keyword">strong</span>, <span class="keyword">nonatomic</span>) iConsoleWindow *window;</div></pre></td></tr></table></figure>
-
-<p>在</p>
-<figure class="highlight AppDelegate.m```的```didFinishLaunchingWithOptions"><figcaption><span>```方法中添加</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">```</div><div class="line"><span class="variable">_window =</span> [[iConsoleWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];</div><div class="line"><span class="comment">/*</span></div><div class="line">*  iconsole</div><div class="line">*/</div><div class="line">[iConsole sharedConsole].<span class="variable">delegate =</span> self;</div><div class="line">[iConsole sharedConsole].<span class="variable">logSubmissionEmail =</span> @<span class="string">"xxx@126.com"</span>;</div></pre></td></tr></table></figure>
-
-<p>添加协议方法</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*</span></div><div class="line">*iconsole</div><div class="line">*@param command</div><div class="line">*/</div><div class="line">- (<span class="keyword">void</span>)handleConsoleCommand:(<span class="built_in">NSString</span> *)command</div><div class="line">{</div><div class="line"><span class="keyword">if</span> ([command isEqualToString:<span class="string">@"version"</span>])</div><div class="line">{</div><div class="line">[iConsole info:<span class="string">@"%@ version %@"</span>,</div><div class="line">[[<span class="built_in">NSBundle</span> mainBundle] objectForInfoDictionaryKey:<span class="string">@"CFBundleName"</span>],</div><div class="line">[[<span class="built_in">NSBundle</span> mainBundle] objectForInfoDictionaryKey:<span class="string">@"CFBundleVersion"</span>]];</div><div class="line">}</div><div class="line"><span class="keyword">else</span></div><div class="line">{</div><div class="line">[iConsole error:<span class="string">@"unrecognised command, try 'version' instead"</span>];</div><div class="line">}</div><div class="line">}</div></pre></td></tr></table></figure>
-
-<p>iConsole提供了4种记录日程的方式,分别是:<br>1:信息         </p>
-<figure class="highlight [iConsole"><figcaption><span>info:@"记录一条普通级"];```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">2:警告</div></pre></td></tr></table></figure>
-
-<p>[iConsole warn:@”记录一条警告级”];</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">3:错误</div></pre></td></tr></table></figure>
-
-<p>[iConsole error:@”记录一条错误级”];</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">4:崩溃</div></pre></td></tr></table></figure>
-
-<p>[iConsole crash:@”记录一条崩溃级”];</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="title">iConsole</span> 默认记录的日志条数是<span class="number">1000</span>条. 如果日志记录到上限时,会删除最早的一条,如此循环,可通过如下属性设置上下限:</div></pre></td></tr></table></figure>
-
-<p>[[iConsole sharedConsole] setMaxLogItems:2000];  </p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">当我们需要查看iConsole的控制台时,可以通过三种方式来启动控制台:</div><div class="line">1:主动调用</div></pre></td></tr></table></figure>
-
-<p>[iConsole show];  </p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">2:三跟手指由下往上滑动. 模拟器两根手指,  默认启动</div></pre></td></tr></table></figure>
-
-<p>[iConsole sharedConsole].simulatorTouchesToShow = YES;<br>[iConsole sharedConsole].deviceTouchesToShow = YES;  </p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">3:摇动手机启动  默认禁用</div></pre></td></tr></table></figure>
-
-<p>[iConsole sharedConsole].deviceShakeToShow = YES; ``` </p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>tips：方便程序没有连着Xcode跑时定位bug(目前觉得没什么好写的就是)</p>
-<ul>
-<li>安装</li>
-</ul>
-<p><img src="../images/79888-d9f0841d3cfac40e.png" alt="imag"></p>
-<p>]]>
-    </summary>
-    
-      <category term="iconsole" scheme="http://linkageios.github.io/tags/iconsole/"/>
-    
-      <category term="iOS" scheme="http://linkageios.github.io/categories/iOS/"/>
-    
-  </entry>
-  
-  <entry>
     <title><![CDATA[LCDataManager相关说明]]></title>
     <link href="http://linkageios.github.io/2014/11/07/LCDataManager%E7%9B%B8%E5%85%B3%E8%AF%B4%E6%98%8E/"/>
     <id>http://linkageios.github.io/2014/11/07/LCDataManager相关说明/</id>
@@ -631,65 +690,6 @@ xxxxxx
     </summary>
     
       <category term="LCDataManager" scheme="http://linkageios.github.io/tags/LCDataManager/"/>
-    
-      <category term="iOS" scheme="http://linkageios.github.io/categories/iOS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[LCBaseViewController相关]]></title>
-    <link href="http://linkageios.github.io/2014/11/07/LCBaseViewController%E7%9B%B8%E5%85%B3/"/>
-    <id>http://linkageios.github.io/2014/11/07/LCBaseViewController相关/</id>
-    <published>2014-11-07T05:38:14.000Z</published>
-    <updated>2014-11-18T09:20:25.000Z</updated>
-    <content type="html"><![CDATA[<h2 id="简介">简介</h2>
-<p>该基类参考原先项目中BaseViewController等几个类 进行修改 功能暂时满足目前项目需求 日后更新会根据项目迭代中提出的需求在进行修改</p>
-<h2 id="属性和函数说明">属性和函数说明</h2>
-<p>LCViewControllerShowType：viewController出现的方式 具体分为</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">LCViewControllerShowTypePush                （<span class="keyword">pop</span>/<span class="keyword">push</span>方式）（默认）</div><div class="line">LCViewControllerShowTypePresent             （present/dismiss方式）</div><div class="line">LCViewControllerShowTypePresentBasic        （作为没有登录的情况下，登陆界面返回按钮 跳转到首页的凭据）</div></pre></td></tr></table></figure>
-
-<a id="more"></a>
-
-<h2 id="简介-1">简介</h2>
-<p>该基类参考原先项目中BaseViewController等几个类 进行修改 功能暂时满足目前项目需求 日后更新会根据项目迭代中提出的需求在进行修改</p>
-<h2 id="属性和函数说明-1">属性和函数说明</h2>
-<p>LCViewControllerShowType：viewController出现的方式 具体分为</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">LCViewControllerShowTypePush                （<span class="keyword">pop</span>/<span class="keyword">push</span>方式）（默认）</div><div class="line">LCViewControllerShowTypePresent             （present/dismiss方式）</div><div class="line">LCViewControllerShowTypePresentBasic        （作为没有登录的情况下，登陆界面返回按钮 跳转到首页的凭据）</div></pre></td></tr></table></figure>
-
-<p>LCNavigationBarStyle： navigationBar 的样式 主要是背景色</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="title">LCNavigationBarRed</span>             navigationBar 一级,红色背景</div></pre></td></tr></table></figure>
-
-<p><img src="http://upload-images.jianshu.io/upload_images/79888-d6fa0aed379b25d2.png" alt="LCNavigationBarRed"></p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="title">LCNavigationBarWhite</span>          navigationBar 二级,白色背景（默认）</div></pre></td></tr></table></figure>
-
-<p><img src="http://upload-images.jianshu.io/upload_images/79888-6225382ae2b09d27.png" alt="LCNavigationBarWhite"></p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="title">LCNavigationBarNull</span>             navigationBar 二级,隐藏navigaitonbar</div></pre></td></tr></table></figure>
-
-<p>提供函数方法</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">//设置导航栏背景图片</div><div class="line"><span class="pp">- <span class="params">(void)</span>configNavigationBarBgImage;</span></div><div class="line">//设置左边的返回按钮</div><div class="line">- <span class="params">(void)</span>setLeftBackButton;</div><div class="line">- <span class="params">(void)</span>setLeftBackButtonAction:<span class="params">(<span class="variable">SEL</span>)</span>selector;</div><div class="line">//设置左边的返回按钮<span class="params">(图片按钮)</span></div><div class="line">- <span class="params">(void)</span>setLeftButtonWithImageName:<span class="params">(<span class="variable">NSString</span>*)</span>imageName action:<span class="params">(<span class="variable">SEL</span>)</span>selector;</div><div class="line">//设置左边的返回按钮<span class="params">(文字按钮)</span></div><div class="line">- <span class="params">(void)</span>setLeftButtonWithTitle:<span class="params">(<span class="variable">NSString</span>*)</span>title action:<span class="params">(<span class="variable">SEL</span>)</span>selector;</div><div class="line">//设置左边的返回按钮<span class="params">(通用按钮)</span></div><div class="line">- <span class="params">(void)</span>setLeftButton:<span class="params">(<span class="variable">UIButton</span>*)</span>button action:<span class="params">(<span class="variable">SEL</span>)</span>selector;</div><div class="line">//设置中间的文本标题</div><div class="line">- <span class="params">(void)</span>setTitleViewWithText:<span class="params">(<span class="variable">NSString</span>*)</span>text;</div><div class="line">//设置右边的按钮<span class="params">(文字按钮)</span></div><div class="line">- <span class="params">(void)</span>setRightButtonWithTitle:<span class="params">(<span class="variable">NSString</span>*)</span>title action:<span class="params">(<span class="variable">SEL</span>)</span>selector;</div><div class="line">//设置右边的按钮<span class="params">(图片按钮)</span></div><div class="line">- <span class="params">(void)</span>setRightButtonWithImageName:<span class="params">(<span class="variable">NSString</span>*)</span>imageName action:<span class="params">(<span class="variable">SEL</span>)</span>selector;</div><div class="line">- <span class="params">(void)</span>setRightButtonWithNormarlImageName:<span class="params">(<span class="variable">NSString</span>*)</span>normarName highlightedImageName:<span class="params">(<span class="variable">NSString</span> *)</span>highlightedName action:<span class="params">(<span class="variable">SEL</span>)</span>selector;</div><div class="line">//设置右边的按钮</div><div class="line">- <span class="params">(void)</span>setRightButton:<span class="params">(<span class="variable">UIButton</span>*)</span>button action:<span class="params">(<span class="variable">SEL</span>)</span>selector;</div><div class="line">//多个按钮 分别有文字或图片 （btnStrs 中vo 为dic 具体参考下面栗子）</div><div class="line">- <span class="params">(void)</span>setRightButtons:<span class="params">(<span class="variable">NSArray</span> *)</span>btnStrs;</div><div class="line">- <span class="params">(void)</span>setRightButtonImages:<span class="params">(<span class="variable">NSArray</span> *)</span>images;</div><div class="line">- <span class="params">(void)</span>rightButtonAction:<span class="params">(id)</span>sender;</div><div class="line">//返回按钮的响应事件</div><div class="line">- <span class="params">(void)</span>backButtonPressed:<span class="params">(id)</span>sender;</div></pre></td></tr></table></figure>
-
-<p>提供方法中</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="pp">- <span class="params">(void)</span>setRightButtons:<span class="params">(<span class="variable">NSArray</span> *)</span>btnStrs;</span></div></pre></td></tr></table></figure>
-
-<p>btnStrs为包含vo对象的一个数组</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="variable">vo =</span> {</div><div class="line">@<span class="string">" title"</span>     : @<span class="string">"返回"</span>,</div><div class="line">@<span class="string">"normalImage"</span>:@<span class="string">"fanhui.png"</span></div><div class="line">}</div></pre></td></tr></table></figure>
-
-<p>具体使用为</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">NSArray</span> *rightbarButtonVos = @[@{<span class="string">@"title"</span>:<span class="string">@"第一个"</span>,<span class="string">@"normalImage"</span>:<span class="string">@"first.png"</span>},@{<span class="string">@"title"</span>:<span class="string">@"第二个"</span>,<span class="string">@"normalImage"</span>:<span class="string">@"second.png"</span>}];</div><div class="line">[<span class="keyword">self</span> setRightButtons: rightbarButtonVos];</div></pre></td></tr></table></figure>
-
-]]></content>
-    <summary type="html">
-    <![CDATA[<h2 id="简介">简介</h2>
-<p>该基类参考原先项目中BaseViewController等几个类 进行修改 功能暂时满足目前项目需求 日后更新会根据项目迭代中提出的需求在进行修改</p>
-<h2 id="属性和函数说明">属性和函数说明</h2>
-<p>LCViewControllerShowType：viewController出现的方式 具体分为</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">LCViewControllerShowTypePush                （<span class="keyword">pop</span>/<span class="keyword">push</span>方式）（默认）</div><div class="line">LCViewControllerShowTypePresent             （present/dismiss方式）</div><div class="line">LCViewControllerShowTypePresentBasic        （作为没有登录的情况下，登陆界面返回按钮 跳转到首页的凭据）</div></pre></td></tr></table></figure>
-
-]]>
-    
-    </summary>
-    
-      <category term="LCBaseViewController" scheme="http://linkageios.github.io/tags/LCBaseViewController/"/>
     
       <category term="iOS" scheme="http://linkageios.github.io/categories/iOS/"/>
     
