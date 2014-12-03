@@ -4,7 +4,7 @@
   <subtitle><![CDATA[技术文档]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://linkageios.github.io/"/>
-  <updated>2014-12-03T02:55:03.868Z</updated>
+  <updated>2014-12-03T02:59:01.978Z</updated>
   <id>http://linkageios.github.io/</id>
   
   <author>
@@ -19,18 +19,19 @@
     <link href="http://linkageios.github.io/2014/12/03/sourceTree%E4%BD%BF%E7%94%A8%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/"/>
     <id>http://linkageios.github.io/2014/12/03/sourceTree使用注意事项/</id>
     <published>2014-12-03T02:24:53.000Z</published>
-    <updated>2014-12-03T02:49:41.000Z</updated>
+    <updated>2014-12-03T02:58:53.000Z</updated>
     <content type="html"><![CDATA[<h1 id="sourceTree使用注意事项">sourceTree使用注意事项</h1>
 <ul>
-<li>点击list条目进入sourceTree工程页面<br><img src="/images/gitlist.png" alt="image"><br><br><br></li>
-<li>点击顶部菜单栏的“抓取-fetch”，然后勾选<code>删除在所有远端都已经不存在的跟踪（tracking）分支</code><br><img src="/images/gitmenu.png" alt="image"><br><br><br></li>
+<li>更正上次文档《关于文档类工作输出要求》的错误，其中<code>其中图片必须使用本地相对路径![imag](../images/xxx.png)</code>应该为<code>其中图片必须使用本地相对路径![imag](/images/xxx.png)</code></li>
+<li>点击list条目进入sourceTree工程页面<br><img src="/images/gitlist.png" alt="image"><br><br></li>
+<li>点击顶部菜单栏的“抓取-fetch”，然后勾选<code>删除在所有远端都已经不存在的跟踪（tracking）分支</code><br><img src="/images/gitmenu.png" alt="image"><br><br></li>
 </ul>
 <p>这样就可以了同步本地的分支（服务器上已被删除而本地却有）了。</p>
 ]]></content>
     <summary type="html">
     <![CDATA[<h1 id="sourceTree使用注意事项">sourceTree使用注意事项</h1>
 <ul>
-<li>点击list条目进入sourceTree工程页面<br><img src="/images/gitlist.png" alt="image"><br><br><br>]]>
+<li>更正上次文档《关于文档类工作输出要求》的错误，其中<code>其中图片必须使用本地相对路径![imag](../images/xxx.png)</code>应该为<c]]>
     </summary>
     
       <category term="版本管理" scheme="http://linkageios.github.io/tags/%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86/"/>
