@@ -4,7 +4,7 @@
   <subtitle><![CDATA[技术文档]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://linkageios.github.io/"/>
-  <updated>2014-12-03T02:34:15.822Z</updated>
+  <updated>2014-12-03T02:40:25.795Z</updated>
   <id>http://linkageios.github.io/</id>
   
   <author>
@@ -128,345 +128,6 @@ xxxxxx
       <category term="iOS" scheme="http://linkageios.github.io/categories/iOS/"/>
     
       <category term="执行文档" scheme="http://linkageios.github.io/categories/iOS/%E6%89%A7%E8%A1%8C%E6%96%87%E6%A1%A3/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[测试Json效率和XML效率]]></title>
-    <link href="http://linkageios.github.io/2014/11/07/%E6%B5%8B%E8%AF%95Json%E6%95%88%E7%8E%87%E5%92%8CXML%E6%95%88%E7%8E%87/"/>
-    <id>http://linkageios.github.io/2014/11/07/测试Json效率和XML效率/</id>
-    <published>2014-11-07T05:38:14.000Z</published>
-    <updated>2014-11-18T10:27:06.000Z</updated>
-    <content type="html"><![CDATA[<ul>
-<li><p>tips：把项目中的解析json的sbjson ,网上提到的JsonKit和apple提供的自带json解析方法进行比较<br>所解析的json是来自项目当中服务返回的商家列表信息<br>具体如下图</p>
-<a id="more"></a>
-</li>
-<li><p>tips：把项目中的解析json的sbjson ,网上提到的JsonKit和apple提供的自带json解析方法进行比较<br>所解析的json是来自项目当中服务返回的商家列表信息<br>具体如下图<br><img src="../images/79888-1946ee461177aeca.png" alt="imag"><br>开始先去 请求 商家列表信息 ，请求成功之后 会有弹出框提示</p>
-<a id="more"></a></li>
-<li>tips：把项目中的解析json的sbjson ,网上提到的JsonKit和apple提供的自带json解析方法进行比较<br>所解析的json是来自项目当中服务返回的商家列表信息<br>具体如下图<br><img src="../images/79888-1946ee461177aeca.png" alt="imag"><br>开始先去 请求 商家列表信息 ，请求成功之后 会有弹出框提示</li>
-</ul>
-<p><img src="../images/79888-bd0e36d1d14085ea.png" alt="imag"><br>之后可以依次测试三种解析，具体看demo提示<br>结果：JSONKit 效率最接近苹果原生</p>
-<ul>
-<li>tips：针对项目中的车型xml文件，对比XMLDictionary和苹果自带xml解析的效率<br>解析的对象就是 项目当中的车型库文件</li>
-</ul>
-<p><img src="../images/79888-e567a1bfada45c8c.png" alt="imag"><br>每个解析方法 解析1000次 具体实现看demo<br>结果：XMLDictionary因为是 宽泛适应的解析 比demo中的针对特定文件写的解析是要慢些，但是今后将取消xml读取文件，这个也就没什么需要考虑的了</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<ul>
-<li><p>tips：把项目中的解析json的sbjson ,网上提到的JsonKit和apple提供的自带json解析方法进行比较<br>所解析的json是来自项目当中服务返回的商家列表信息<br>具体如下图</p>
-<!--more-->
-</li>
-<li><p>tips：把项目中的解析json的sbjson ,网上提到的JsonKit和apple提供的自带json解析方法进行比较<br>所解析的json是来自项目当中服务返回的商家列表信息<br>具体如下图<br><img src="../images/79888-1946ee461177aeca.png" alt="imag"><br>开始先去 请求 商家列表信息 ，请求成功之后 会有弹出框提示</p>
-]]>
-    
-    </summary>
-    
-      <category term="xml" scheme="http://linkageios.github.io/tags/xml/"/>
-    
-      <category term="json" scheme="http://linkageios.github.io/tags/json/"/>
-    
-      <category term="效率" scheme="http://linkageios.github.io/tags/%E6%95%88%E7%8E%87/"/>
-    
-      <category term="iOS" scheme="http://linkageios.github.io/categories/iOS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[关于iConsole在项目中的应用]]></title>
-    <link href="http://linkageios.github.io/2014/11/07/%E5%85%B3%E4%BA%8EiConsole%E5%9C%A8%E9%A1%B9%E7%9B%AE%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/"/>
-    <id>http://linkageios.github.io/2014/11/07/关于iConsole在项目中的应用/</id>
-    <published>2014-11-07T05:38:14.000Z</published>
-    <updated>2014-11-18T10:28:05.000Z</updated>
-    <content type="html"><![CDATA[<p>tips：方便程序没有连着Xcode跑时定位bug(目前觉得没什么好写的就是)</p>
-<ul>
-<li>安装</li>
-</ul>
-<p><img src="../images/79888-d9f0841d3cfac40e.png" alt="imag"></p>
-<p>下载iconsole代码，将其中这两个文件拖入现有代码中</p>
-<ul>
-<li>配置<br>添加头文件</li>
-</ul>
-<figure class="highlight #import"><figcaption><span>"iConsole.h"```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">在使用其功能之前有一点要注意,需要将AppDelegate里初始的<span class="built_in">UIWindow</span>需要以iConsoleWindow来初始化,并添加</div></pre></td></tr></table></figure>
-
-<p>iConsoleDelegate</p>
-<figure class="highlight 协议"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">在</div></pre></td></tr></table></figure>
-
-<p>AppDelegate.h</p>
-<figure class="highlight 中"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="xml"><span class="comment">&lt;!--more--&gt;</span></span></div><div class="line">tips：方便程序没有连着Xcode跑时定位bug(目前觉得没什么好写的就是)</div><div class="line"><span class="bullet">- </span>安装</div><div class="line"></div><div class="line">![<span class="link_label">imag</span>](<span class="link_url">../images/79888-d9f0841d3cfac40e.png</span>)</div><div class="line"></div><div class="line">下载iconsole代码，将其中这两个文件拖入现有代码中</div><div class="line"><span class="bullet">- </span>配置</div><div class="line">添加头文件</div></pre></td></tr></table></figure>
-
-<h1 id="import_“iConsole-h”">import “iConsole.h”</h1>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">在使用其功能之前有一点要注意,需要将AppDelegate里初始的<span class="built_in">UIWindow</span>需要以iConsoleWindow来初始化,并添加</div></pre></td></tr></table></figure>
-
-<p>iConsoleDelegate</p>
-<figure class="highlight 协议"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">在</div></pre></td></tr></table></figure>
-
-<p>AppDelegate.h</p>
-<figure class="highlight 中"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">```</div><div class="line"><span class="keyword">@property</span> (<span class="keyword">strong</span>, <span class="keyword">nonatomic</span>) iConsoleWindow *window;</div></pre></td></tr></table></figure>
-
-<p>在</p>
-<figure class="highlight AppDelegate.m```的```didFinishLaunchingWithOptions"><figcaption><span>```方法中添加</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">```</div><div class="line"><span class="variable">_window =</span> [[iConsoleWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];</div><div class="line"><span class="comment">/*</span></div><div class="line">*  iconsole</div><div class="line">*/</div><div class="line">[iConsole sharedConsole].<span class="variable">delegate =</span> self;</div><div class="line">[iConsole sharedConsole].<span class="variable">logSubmissionEmail =</span> @<span class="string">"xxx@126.com"</span>;</div></pre></td></tr></table></figure>
-
-<p>添加协议方法</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*</span></div><div class="line">*iconsole</div><div class="line">*@param command</div><div class="line">*/</div><div class="line">- (<span class="keyword">void</span>)handleConsoleCommand:(<span class="built_in">NSString</span> *)command</div><div class="line">{</div><div class="line"><span class="keyword">if</span> ([command isEqualToString:<span class="string">@"version"</span>])</div><div class="line">{</div><div class="line">[iConsole info:<span class="string">@"%@ version %@"</span>,</div><div class="line">[[<span class="built_in">NSBundle</span> mainBundle] objectForInfoDictionaryKey:<span class="string">@"CFBundleName"</span>],</div><div class="line">[[<span class="built_in">NSBundle</span> mainBundle] objectForInfoDictionaryKey:<span class="string">@"CFBundleVersion"</span>]];</div><div class="line">}</div><div class="line"><span class="keyword">else</span></div><div class="line">{</div><div class="line">[iConsole error:<span class="string">@"unrecognised command, try 'version' instead"</span>];</div><div class="line">}</div><div class="line">}</div></pre></td></tr></table></figure>
-
-<p>iConsole提供了4种记录日程的方式,分别是:<br>1:信息         </p>
-<figure class="highlight [iConsole"><figcaption><span>info:@"记录一条普通级"];```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">2:警告</div></pre></td></tr></table></figure>
-
-<p>[iConsole warn:@”记录一条警告级”];</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">3:错误</div></pre></td></tr></table></figure>
-
-<p>[iConsole error:@”记录一条错误级”];</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">4:崩溃</div></pre></td></tr></table></figure>
-
-<p>[iConsole crash:@”记录一条崩溃级”];</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="title">iConsole</span> 默认记录的日志条数是<span class="number">1000</span>条. 如果日志记录到上限时,会删除最早的一条,如此循环,可通过如下属性设置上下限:</div></pre></td></tr></table></figure>
-
-<p>[[iConsole sharedConsole] setMaxLogItems:2000];  </p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">当我们需要查看iConsole的控制台时,可以通过三种方式来启动控制台:</div><div class="line">1:主动调用</div></pre></td></tr></table></figure>
-
-<p>[iConsole show];  </p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">2:三跟手指由下往上滑动. 模拟器两根手指,  默认启动</div></pre></td></tr></table></figure>
-
-<p>[iConsole sharedConsole].simulatorTouchesToShow = YES;<br>[iConsole sharedConsole].deviceTouchesToShow = YES;  </p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">3:摇动手机启动  默认禁用</div></pre></td></tr></table></figure>
-
-<p>[iConsole sharedConsole].deviceShakeToShow = YES; ``` </p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>tips：方便程序没有连着Xcode跑时定位bug(目前觉得没什么好写的就是)</p>
-<ul>
-<li>安装</li>
-</ul>
-<p><img src="../images/79888-d9f0841d3cfac40e.png" alt="imag"></p>
-<p>]]>
-    </summary>
-    
-      <category term="iconsole" scheme="http://linkageios.github.io/tags/iconsole/"/>
-    
-      <category term="iOS" scheme="http://linkageios.github.io/categories/iOS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[iOS代码规范]]></title>
-    <link href="http://linkageios.github.io/2014/11/07/iOS%E7%BC%96%E7%A0%81%E8%A7%84%E8%8C%83/"/>
-    <id>http://linkageios.github.io/2014/11/07/iOS编码规范/</id>
-    <published>2014-11-07T05:38:14.000Z</published>
-    <updated>2014-11-18T10:26:14.000Z</updated>
-    <content type="html"><![CDATA[<h1 id="为什么要有代码规范？">为什么要有代码规范？</h1>
-<p>对于团队，如果代码风格不统一，阅读或修改同事的代码会非常困难，造成潜在的风险。</p>
-<p>对于个人，代码规范是对自身编码习惯的一种监督，如果没有这种监督，有时候因为偷懒，会写出难看的代码，时间长了自己都看不懂。这样对于代码的维护性是不利的。</p>
-<h1 id="代码规范的内容？">代码规范的内容？</h1>
-<p>代码规范包含的范围十分广泛。从一个变量的命名到一个类的设计，我觉得都属于代码规范的范畴。从实践的角度，可以把代码规范分成两个部分：</p>
-<p>第一部分是规则，即一定要这么做。这里面没有对错，但需要统一。包含变量的命名、函数的命名、模块的组织、代码块的组织、宏、枚举、常量的声明、函数的粒度。</p>
-<p>第二部分是风格，即一种模式化的代码设计结构。我们实现某个功能时，往往不止一种实现方式。每一种实现方式没有绝对的高低之分，不同角度的解读，就会有不同的偏好。所以这个层面上的代码规范，只能求同存异。但是不管怎样，每个人必须要有一致性的风格。就像不同的小区可以有不同的风格，但同一个小区只能有一种设计风格。风格包含代码设计中的抽象概念，比如接口、继承等等。<br><a id="more"></a></p>
-<h1 id="为什么要有代码规范？-1">为什么要有代码规范？</h1>
-<p>对于团队，如果代码风格不统一，阅读或修改同事的代码会非常困难，造成潜在的风险。</p>
-<p>对于个人，代码规范是对自身编码习惯的一种监督，如果没有这种监督，有时候因为偷懒，会写出难看的代码，时间长了自己都看不懂。这样对于代码的维护性是不利的。</p>
-<h1 id="代码规范的内容？-1">代码规范的内容？</h1>
-<p>代码规范包含的范围十分广泛。从一个变量的命名到一个类的设计，我觉得都属于代码规范的范畴。从实践的角度，可以把代码规范分成两个部分：</p>
-<p>第一部分是规则，即一定要这么做。这里面没有对错，但需要统一。包含变量的命名、函数的命名、模块的组织、代码块的组织、宏、枚举、常量的声明、函数的粒度。</p>
-<p>第二部分是风格，即一种模式化的代码设计结构。我们实现某个功能时，往往不止一种实现方式。每一种实现方式没有绝对的高低之分，不同角度的解读，就会有不同的偏好。所以这个层面上的代码规范，只能求同存异。但是不管怎样，每个人必须要有一致性的风格。就像不同的小区可以有不同的风格，但同一个小区只能有一种设计风格。风格包含代码设计中的抽象概念，比如接口、继承等等。</p>
-<h1 id="代码的规则">代码的规则</h1>
-<p>规则如同法律，尽管从心底里很多人不认可，但每个人都必须遵守。看起来大家都受了束缚，但是对整个社会以及每一个人都是利大于弊。</p>
-<h2 id="变量命名">变量命名</h2>
-<p>变量命名历史上产生过很多方法，比较著名的有匈牙利命名法、驼峰命名法、下划线命名法。</p>
-<ul>
-<li>匈牙利命名法：szUserName</li>
-<li>驼峰命名法：userName</li>
-<li>下划线命名法：user_name</li>
-</ul>
-<p>用Objective-C开发，我们就参考苹果的官方命名方式即可，苹果采用的是驼峰命名法。</p>
-<p>苹果的变量命名方式常常被其它语言的开发者所吐槽，因为它的名有时候是在太长了！！！下面是3个最长的Objective-C属性名：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="title">automaticallyEnablesStillImageStabilizationWhenAvailable</span></div><div class="line">availableMediaCharacteristicsWithMediaSelectionOptions</div><div class="line">outputObscuredDueToInsufficientExternalProtection</div></pre></td></tr></table></figure>
-
-<p>变量声明最重要的是清晰其次才考虑长短，如果为了简短而含糊不清，是不可取的。</p>
-<p>拿现有代码举例</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">变量含义</th>
-<th style="text-align:left">Not Good</th>
-<th style="text-align:left">Good</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">昵称输入框</td>
-<td style="text-align:left">tfNickName</td>
-<td style="text-align:left">nickNameTextField</td>
-</tr>
-<tr>
-<td style="text-align:left">密码ImageView</td>
-<td style="text-align:left">imvPass</td>
-<td style="text-align:left">passwordImageView</td>
-</tr>
-<tr>
-<td style="text-align:left">我的搜索条</td>
-<td style="text-align:left">mysearchBar</td>
-<td style="text-align:left">mySearchBar</td>
-</tr>
-</tbody>
-</table>
-<p><strong>类变量</strong><br>前面加下划线，和系统框架保持一致</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">@interface UIViewController : UIResponder &lt;NSCoding, UIAppearanceContainer&gt; </span></div><div class="line">{</div><div class="line">    UIView           <span class="keyword">*</span>_view;</div><div class="line">    UITabBarItem     <span class="keyword">*</span>_tabBarItem;</div><div class="line">    UINavigationItem <span class="keyword">*</span>_navigationItem;</div><div class="line">    NSArray          <span class="keyword">*</span>_toolbarItems;</div><div class="line">    NSString         <span class="keyword">*</span>_title;</div><div class="line">    NSString         <span class="keyword">*</span>_nibName;</div><div class="line">    NSBundle         <span class="keyword">*</span>_nibBundle;</div><div class="line">}</div></pre></td></tr></table></figure>
-
-<p>现有的例子</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">CouponListTableViewCell</span> : <span class="title">UITableViewCell</span></span></div><div class="line">{</div><div class="line">    <span class="built_in">UIImageView</span> *imageIcon;</div><div class="line">    <span class="built_in">UIImageView</span> *imageCollect;</div><div class="line">    <span class="built_in">UILabel</span> *labelName;</div><div class="line">    <span class="built_in">UILabel</span> *labelPriceSale;</div><div class="line">    <span class="built_in">UILabel</span> *labelPriceOrigin;</div><div class="line">    <span class="built_in">UILabel</span> *labelSaleNumber;</div><div class="line">    <span class="built_in">UIImageView</span> *imageArrow;</div><div class="line">}</div></pre></td></tr></table></figure>
-
-<p><strong>类变量与属性</strong><br>属性是Objective-C的一种高级语法，属性可以完全替换类变量，并且提供更强大的访问控制（strong、weak、nonatomic、readonly…）,而且属性也只需要用一行就能搞定，所以为什么还要用类变量呢？<br>属性声明后不用写@synthesize，且会自动生成类变量。<br><!--
- [资料>](http://stackoverflow.com/questions/12119284/xcode-4-automatically-generates-ivars-when-using-property-where-can-i-find-the)
---></p>
-<p><strong>例外</strong></p>
-<ul>
-<li>一些局部变量允许用最简单的方式命名：i、j、temp</li>
-<li>一些常用的缩写可以不用驼峰：RMB，OBD</li>
-</ul>
-<h2 id="函数命名">函数命名</h2>
-<p>Objective-C中的函数不同于其他语言，函数名是按参数隔开的。初看起来是有点怪，但是习惯了就会发现这样和命名方式可读性极好，就像一句话一样。所以当你的函数名不能流利的读出来的话，那么它的命名肯定就有问题。<br>还是先举系统的例子</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="pp">- <span class="params">(void)</span>willAnimateFirstHalfOfRotationToInterfaceOrientation:<span class="params">(<span class="variable">UIInterfaceOrientation</span>)</span>toInterfaceOrientation </span></div><div class="line">                                                    duration:<span class="params">(<span class="variable">NSTimeInterval</span>)</span>duration</div></pre></td></tr></table></figure>
-
-<p>这里面值得注意的几点：</p>
-<ul>
-<li>最左边的（+、-）和返回类型的左括号之间有一个空格，返回类型的右括号与第一个参数之间没有空格；</li>
-<li>函数名中每一段描述都以小写字母开头，描述的写法要考虑清晰明确，参考变量命名；</li>
-<li>如果函数名过长，应该换行，按冒号对齐；</li>
-<li>从描述中可以看出对应参数的意义。</li>
-</ul>
-<p>再看看我们自己的命名</p>
-<ol>
-<li>最后一个参数描述Selector首字母大写了</li>
-</ol>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">+ (<span class="tag">UIButton</span> *)<span class="tag">createButton</span><span class="pseudo">:(MUButtonItemAttribute</span> *)<span class="tag">attr</span> </div><div class="line">               <span class="tag">target</span><span class="pseudo">:(id)target</span> </div><div class="line">             <span class="tag">Selector</span><span class="pseudo">:(SEL)sel</span>;</div></pre></td></tr></table></figure>
-
-<ol>
-<li>有一些多余的空格</li>
-</ol>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="addition">+ (AppDelegate *) appDelegate;</span></div><div class="line"><span class="deletion">- (void)hideTabbar :(BOOL)status;</span></div></pre></td></tr></table></figure>
-
-<ol>
-<li>加减号和括号之间要有空格</li>
-</ol>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="pp">- <span class="params">(void)</span>pushEvent:<span class="params">(<span class="variable">NSDictionary</span>*)</span>dictionary target:<span class="params">(id)</span>target;</span></div></pre></td></tr></table></figure>
-
-
-<ol>
-<li>参数名和参数要对应，含义清晰</li>
-</ol>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="pp">- <span class="params">(void)</span>setNavBackButton:<span class="params">(<span class="variable">NSString</span> *)</span>string;</span></div><div class="line">- <span class="params">(id)</span>init:<span class="params">(<span class="variable">NSString</span>*)</span>nickName phoneNumber:<span class="params">(<span class="variable">NSString</span> *)</span>phoneNumber;</div><div class="line">- <span class="params">(void)</span>setTextFieldBackGroud:<span class="params">(<span class="variable">CGRect</span>)</span>rect;</div><div class="line">- <span class="params">(id)</span>init:<span class="params">(<span class="variable">NSInteger</span>)</span>flag;</div><div class="line">- <span class="params">(void)</span>requestHealthRecord:<span class="params">(<span class="variable">NSString</span> *)</span>typeStr;</div></pre></td></tr></table></figure>
-
-<ol>
-<li>函数名过长要换行</li>
-</ol>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="pp">- <span class="params">(id)</span>initWithStyle:<span class="params">(<span class="variable">UITableViewCellStyle</span>)</span>style</span></div><div class="line">    reuseIdentifier:<span class="params">(<span class="variable">NSString</span> *)</span>reuseIdentifier</div><div class="line">containingTableView:<span class="params">(<span class="variable">UITableView</span> *)</span>containingTableView</div><div class="line"> leftUtilityButtons:<span class="params">(<span class="variable">NSArray</span> *)</span>leftUtilityButtons </div><div class="line">rightUtilityButtons:<span class="params">(<span class="variable">NSArray</span> *)</span>rightUtilityButtons;</div></pre></td></tr></table></figure>
-
-<ol>
-<li>命名风格混乱</li>
-</ol>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">+ (NSInteger)GetServerBack:(NSString *)serverName</div><div class="line">                path_Param:(NSMutableDictionary*)path_Param</div><div class="line">               query_Param:(NSMutableDictionary*)query_Param</div><div class="line">                body_Param:(NSMutableDictionary*)body_Param</div><div class="line">                    <span class="function"><span class="keyword">method</span>:</span>(NSInteger)<span class="function"><span class="keyword">method</span></span></div><div class="line">               <span class="title">returnValue</span>:(NSMutableDictionary*)returnValue;</div></pre></td></tr></table></figure>
-
-<ol>
-<li>参数之间用and、with，多此一举</li>
-</ol>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="pp">- <span class="params">(id)</span>initWithFrame:<span class="params">(<span class="variable">CGRect</span>)</span>frame </span></div><div class="line">       andImageView:<span class="params">(<span class="variable">UIImageView</span>*)</span>imageView </div><div class="line">     withImageFrame:<span class="params">(<span class="variable">CGRect</span>)</span>imageInitFrame </div><div class="line">       withImageUrl:<span class="params">(<span class="variable">NSURL</span>*)</span>imageUrl;</div></pre></td></tr></table></figure>
-
-
-<p><strong>命名很重要！！！</strong><br>良好的命名是写出高质量代码的前提，命名的时候除了符合以上的规范，还需要找到合适的单词来表达含义，不要为了一时之快用拼音，也千万不要出现数字。</p>
-<h2 id="代码模块组织">代码模块组织</h2>
-<p>这个代码模块的组织是指文件级别的，即我们应该如何划分包。<br>现有的包结构是有些问题的，导致我们找某个功能的实现文件比较麻烦。<br><a href="!--
-参考[别人的经验](http://www.cocoachina.com/industry/20140225/7879.html)，个人觉得这样的划分还是不错的。
---">!--
-参考[别人的经验](http://www.cocoachina.com/industry/20140225/7879.html)，个人觉得这样的划分还是不错的。
---</a></p>
-<p><strong>文件的命名</strong><br>我们自己创建的文件，应该有统一的前缀。比如HJMainViewController，这也符合系统的命名规范。Objective-C没有namespace，所以这样做的好处是当你引用了第三方的代码时，防止重名。而且当我们自己的代码越来越大时，内部也会出现冲突。</p>
-<p><strong>一个文件一个类</strong><br>好处：</p>
-<ul>
-<li>减少单个文件的长度</li>
-<li>定位文件更方便</li>
-<li>便于重用</li>
-</ul>
-<h2 id="代码块的组织">代码块的组织</h2>
-<p>作为一个程序员，大部分时间实在看代码而不是在写。所以代码的可读性严重影响到我们的工作效率。<br>当你看到超过1000行的实现文件时，你还有看下去的欲望吗？<br>所以千万不要写出超过1000行的代码，有的话也得重构。<br><!--[重构掉](http://www.objc.io/issue-1/)。 --></p>
-<p>当代码控制到1000行以内后，只是具备了可读的基本条件。我们的屏幕一般只能一次显示50行代码，从头看到尾就是20屏，常常会看了后面忘了前面。所以我们要把一个文件里面的所有函数有秩序的组织起来，让人不用重头看到尾，就能很快定位到想看的地方。<br>这里提供一个小办法：用#pragma mark宏根据功能区分开:</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">pragma mark - Life Circle</div><div class="line">pragma mark - <span class="keyword">Public</span> <span class="keyword">Interface</span></div><div class="line">pragma mark - UI Actions</div><div class="line">pragma mark - Business Logic</div><div class="line">pragma mark - UITableViewDataSource</div><div class="line">pragma mark - UITableViewDelegate</div><div class="line">pragma mark - UIScrollViewDelegate</div><div class="line">pragma mark - Notification Handle</div><div class="line">pragma mark - <span class="keyword">Private</span> <span class="function"><span class="keyword">Method</span></span></div></pre></td></tr></table></figure>
-
-<h2 id="宏、枚举、常量的声明">宏、枚举、常量的声明</h2>
-<p>宏的命名方式参考变量的命名方式，大写，用下划线分开</p>
-<figure class="highlight TARGET_OS_IPHONE```"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">枚举也有很多写法，这里推荐系统的方式</div></pre></td></tr></table></figure>
-
-<p>typedef NS_ENUM(NSInteger, NSTextAlignment)<br>{<br>    NSTextAlignmentLeft      = 0,    // Visually left aligned<br>    NSTextAlignmentRight     = 1,    // Visually right aligned<br>    NSTextAlignmentCenter    = 2,    // Visually centered<br>    NSTextAlignmentJustified = 3,    // Fully-justified. The last line in a paragraph is natural-aligned.<br>    NSTextAlignmentNatural   = 4,    // Indicates the default alignment for script<br>} </p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">常量以k开头，系统命名风格</div></pre></td></tr></table></figure>
-
-<p>extern NSString <em>const kAPNetworkDidSetupNotification;     // 建立连接<br>extern NSString </em>const kAPNetworkDidCloseNotification;     // 关闭连接<br>extern NSString <em>const kAPNetworkDidRegisterNotification;  // 注册成功<br>extern NSString </em>const kAPNetworkDidLoginNotification;     // 登录成功</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">如果是数值常量，用宏的话，也可以用k开头</div></pre></td></tr></table></figure>
-
-<h1 id="define_kDistancePoint_10-0f_//_圆点、标志和正文的间距">define kDistancePoint  10.0f   // 圆点、标志和正文的间距</h1>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="preprocessor">## 函数的粒度</span></div><div class="line">知道我们现在最长的函数有多少行吗？<span class="number">655</span>行。</div></pre></td></tr></table></figure>
-
-<ul>
-<li>(void)getShopDetail</li>
-</ul>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">一个函数最好不超过一屏（50行），千万不能超过两屏（100行）。</div><div class="line">因为从设计的角度来说，一个函数只需要干一件事，所以50行一般是够的，超长的函数往往干了很多事情，或者干了一件很大的事（拆成多件小事，交给子函数去干）。</div><div class="line"></div><div class="line"><span class="comment">## 其它</span></div><div class="line"></div><div class="line">- <span class="keyword">*</span><span class="keyword">*</span>Log<span class="keyword">*</span><span class="keyword">*</span>：不要使用NSLog，提交了会因想到别人，而且最后打包删起来麻烦。需要找一个Log工具，MyNSLog功能不够。</div><div class="line">- <span class="keyword">*</span><span class="keyword">*</span>代码中尽量不要出现数字<span class="keyword">*</span><span class="keyword">*</span>：据上下文推测出来的，还是计算的出为好（现在界面里面很多地方确实要写死数字，适配iPhone6会很困难）</div></pre></td></tr></table></figure>
-
-<p>_contentBkg = [[UIView alloc] initWithFrame:CGRectMake(0, 1 / [UIScreen mainScreen].scale, 320, 68 - 1)];</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">- <span class="keyword">*</span><span class="keyword">*</span>避免复杂的表达式<span class="keyword">*</span><span class="keyword">*</span>：</div></pre></td></tr></table></figure>
-
-<pre><code><span class="keyword">if</span> (tfPassword.<span class="keyword">text</span>!=nil &amp;&amp;
-    ![tfPassword.<span class="keyword">text</span> isEqualToString:@<span class="string">""</span>] &amp;&amp;
-    tfRequestNumber.<span class="keyword">text</span>!=nil &amp;&amp;
-    ![tfRequestNumber.<span class="keyword">text</span> isEqualToString:@<span class="string">""</span>]
-    )
-{
-;    
-}
-</code></pre><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">- <span class="keyword">*</span><span class="keyword">*</span>一个变量不在多个函数中出现，不要作为类变量：<span class="keyword">*</span><span class="keyword">*</span></div></pre></td></tr></table></figure>
-
-<p>MBProgressHUD* hudProgress;<br>int result;</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">- <span class="keyword">*</span><span class="keyword">*</span>每个类的.h开头的地方要有注释，说明这个类是干嘛的<span class="keyword">*</span><span class="keyword">*</span></div><div class="line">-</div></pre></td></tr></table></figure>
-
-<p>/**</p>
-<ul>
-<li>SDImageCache maintains a memory cache and an optional disk cache. Disk cache write operations are performed</li>
-<li>asynchronous so it doesn’t add unnecessary latency to the UI.<br>*/<br>@interface SDImageCache : NSObject</li>
-</ul>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">- <span class="keyword">*</span><span class="keyword">*</span>if后面的语句哪怕只有一行，都加括号<span class="keyword">*</span><span class="keyword">*</span></div></pre></td></tr></table></figure>
-
-<p>if ([key rangeOfString:@”热”].location != NSNotFound)<br>{<br>    titleLabel.text = @”热门城市”;<br>}<br>else<br>{<br>    titleLabel.text = key;<br>}</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="preprocessor"># 代码的风格</span></div><div class="line"></div><div class="line">风格如同习俗，不同地区有不同的习俗。你觉得入乡随俗好，就入乡随俗，这样避免了一些无谓的麻烦；但是你若坚持原有的习俗，社会也是能接受的，毕竟这些东西都是发展变化的，没有固定的模式，只有更好的模式。</div><div class="line"></div><div class="line"><span class="preprocessor">## 接口</span></div><div class="line">这里的接口指的是一个类公开的一组方法，良好设计的类是高内聚低耦合的，所以接口必须是简洁的。</div></pre></td></tr></table></figure>
-
-<p>@interface PaySucceedViewController : LCBaseViewController</p>
-<p>@property (nonatomic,retain) NSString *isSuccess;</p>
-<p>@property (nonatomic,retain) NSString *shopName;</p>
-<p>@property (nonatomic,retain) NSString *detailinfo;</p>
-<p>@property (nonatomic,retain) NSString *amount;</p>
-<p>@property (nonatomic,retain) NSString *omsOrderId;</p>
-<p>/*</p>
-<ul>
-<li>支付订单类型<br>*</li>
-<li>@since<br>*/<br>@property (nonatomic) ORDER_CATEGORY mCategory;</li>
-</ul>
-<p>@end<br>```<br>上面的例子是一个ViewController，但是它暴露了太多属性，属性很零碎，传值的时候要一个一个传。其实这里属性应该属于一个叫订单Model的对象，把这些属性封装在OrderModel中，复用性和可维护性都会好很多。（但是现在代码整体结构没有Model层，这里需要很大的重构）</p>
-<h2 id="继承">继承</h2>
-<p>继承不是为了少写代码，它的目的是抽象，顺便少写了代码。<br>举NavigationBar的例子，用宏可以实现，用基类也可以实现，但基类抽象出了一个共有的接口，以后发生共性的变化够可以通过修改基类来实现，你可以在基类里加一组方法，而宏做不到。</p>
-<h2 id="其它">其它</h2>
-<p>代码规范的路还长着，先走出第一步吧！</p>
-<h1 id="参考资料">参考资料</h1>
-<p><a href="./CodingGuidelines.pdf">Apple代码规范</a></p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<h1 id="为什么要有代码规范？">为什么要有代码规范？</h1>
-<p>对于团队，如果代码风格不统一，阅读或修改同事的代码会非常困难，造成潜在的风险。</p>
-<p>对于个人，代码规范是对自身编码习惯的一种监督，如果没有这种监督，有时候因为偷懒，会写出难看的代码，时间长了自己都看不懂。这样对于代码的维护性是不利的。</p>
-<h1 id="代码规范的内容？">代码规范的内容？</h1>
-<p>代码规范包含的范围十分广泛。从一个变量的命名到一个类的设计，我觉得都属于代码规范的范畴。从实践的角度，可以把代码规范分成两个部分：</p>
-<p>第一部分是规则，即一定要这么做。这里面没有对错，但需要统一。包含变量的命名、函数的命名、模块的组织、代码块的组织、宏、枚举、常量的声明、函数的粒度。</p>
-<p>第二部分是风格，即一种模式化的代码设计结构。我们实现某个功能时，往往不止一种实现方式。每一种实现方式没有绝对的高低之分，不同角度的解读，就会有不同的偏好。所以这个层面上的代码规范，只能求同存异。但是不管怎样，每个人必须要有一致性的风格。就像不同的小区可以有不同的风格，但同一个小区只能有一种设计风格。风格包含代码设计中的抽象概念，比如接口、继承等等。<br>]]>
-    
-    </summary>
-    
-      <category term="规范" scheme="http://linkageios.github.io/tags/%E8%A7%84%E8%8C%83/"/>
-    
-      <category term="iOS" scheme="http://linkageios.github.io/categories/iOS/"/>
     
   </entry>
   
@@ -713,6 +374,345 @@ xxxxxx
     </summary>
     
       <category term="LCDataManager" scheme="http://linkageios.github.io/tags/LCDataManager/"/>
+    
+      <category term="iOS" scheme="http://linkageios.github.io/categories/iOS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[iOS代码规范]]></title>
+    <link href="http://linkageios.github.io/2014/11/07/iOS%E7%BC%96%E7%A0%81%E8%A7%84%E8%8C%83/"/>
+    <id>http://linkageios.github.io/2014/11/07/iOS编码规范/</id>
+    <published>2014-11-07T05:38:14.000Z</published>
+    <updated>2014-11-18T10:26:14.000Z</updated>
+    <content type="html"><![CDATA[<h1 id="为什么要有代码规范？">为什么要有代码规范？</h1>
+<p>对于团队，如果代码风格不统一，阅读或修改同事的代码会非常困难，造成潜在的风险。</p>
+<p>对于个人，代码规范是对自身编码习惯的一种监督，如果没有这种监督，有时候因为偷懒，会写出难看的代码，时间长了自己都看不懂。这样对于代码的维护性是不利的。</p>
+<h1 id="代码规范的内容？">代码规范的内容？</h1>
+<p>代码规范包含的范围十分广泛。从一个变量的命名到一个类的设计，我觉得都属于代码规范的范畴。从实践的角度，可以把代码规范分成两个部分：</p>
+<p>第一部分是规则，即一定要这么做。这里面没有对错，但需要统一。包含变量的命名、函数的命名、模块的组织、代码块的组织、宏、枚举、常量的声明、函数的粒度。</p>
+<p>第二部分是风格，即一种模式化的代码设计结构。我们实现某个功能时，往往不止一种实现方式。每一种实现方式没有绝对的高低之分，不同角度的解读，就会有不同的偏好。所以这个层面上的代码规范，只能求同存异。但是不管怎样，每个人必须要有一致性的风格。就像不同的小区可以有不同的风格，但同一个小区只能有一种设计风格。风格包含代码设计中的抽象概念，比如接口、继承等等。<br><a id="more"></a></p>
+<h1 id="为什么要有代码规范？-1">为什么要有代码规范？</h1>
+<p>对于团队，如果代码风格不统一，阅读或修改同事的代码会非常困难，造成潜在的风险。</p>
+<p>对于个人，代码规范是对自身编码习惯的一种监督，如果没有这种监督，有时候因为偷懒，会写出难看的代码，时间长了自己都看不懂。这样对于代码的维护性是不利的。</p>
+<h1 id="代码规范的内容？-1">代码规范的内容？</h1>
+<p>代码规范包含的范围十分广泛。从一个变量的命名到一个类的设计，我觉得都属于代码规范的范畴。从实践的角度，可以把代码规范分成两个部分：</p>
+<p>第一部分是规则，即一定要这么做。这里面没有对错，但需要统一。包含变量的命名、函数的命名、模块的组织、代码块的组织、宏、枚举、常量的声明、函数的粒度。</p>
+<p>第二部分是风格，即一种模式化的代码设计结构。我们实现某个功能时，往往不止一种实现方式。每一种实现方式没有绝对的高低之分，不同角度的解读，就会有不同的偏好。所以这个层面上的代码规范，只能求同存异。但是不管怎样，每个人必须要有一致性的风格。就像不同的小区可以有不同的风格，但同一个小区只能有一种设计风格。风格包含代码设计中的抽象概念，比如接口、继承等等。</p>
+<h1 id="代码的规则">代码的规则</h1>
+<p>规则如同法律，尽管从心底里很多人不认可，但每个人都必须遵守。看起来大家都受了束缚，但是对整个社会以及每一个人都是利大于弊。</p>
+<h2 id="变量命名">变量命名</h2>
+<p>变量命名历史上产生过很多方法，比较著名的有匈牙利命名法、驼峰命名法、下划线命名法。</p>
+<ul>
+<li>匈牙利命名法：szUserName</li>
+<li>驼峰命名法：userName</li>
+<li>下划线命名法：user_name</li>
+</ul>
+<p>用Objective-C开发，我们就参考苹果的官方命名方式即可，苹果采用的是驼峰命名法。</p>
+<p>苹果的变量命名方式常常被其它语言的开发者所吐槽，因为它的名有时候是在太长了！！！下面是3个最长的Objective-C属性名：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="title">automaticallyEnablesStillImageStabilizationWhenAvailable</span></div><div class="line">availableMediaCharacteristicsWithMediaSelectionOptions</div><div class="line">outputObscuredDueToInsufficientExternalProtection</div></pre></td></tr></table></figure>
+
+<p>变量声明最重要的是清晰其次才考虑长短，如果为了简短而含糊不清，是不可取的。</p>
+<p>拿现有代码举例</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">变量含义</th>
+<th style="text-align:left">Not Good</th>
+<th style="text-align:left">Good</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">昵称输入框</td>
+<td style="text-align:left">tfNickName</td>
+<td style="text-align:left">nickNameTextField</td>
+</tr>
+<tr>
+<td style="text-align:left">密码ImageView</td>
+<td style="text-align:left">imvPass</td>
+<td style="text-align:left">passwordImageView</td>
+</tr>
+<tr>
+<td style="text-align:left">我的搜索条</td>
+<td style="text-align:left">mysearchBar</td>
+<td style="text-align:left">mySearchBar</td>
+</tr>
+</tbody>
+</table>
+<p><strong>类变量</strong><br>前面加下划线，和系统框架保持一致</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">@interface UIViewController : UIResponder &lt;NSCoding, UIAppearanceContainer&gt; </span></div><div class="line">{</div><div class="line">    UIView           <span class="keyword">*</span>_view;</div><div class="line">    UITabBarItem     <span class="keyword">*</span>_tabBarItem;</div><div class="line">    UINavigationItem <span class="keyword">*</span>_navigationItem;</div><div class="line">    NSArray          <span class="keyword">*</span>_toolbarItems;</div><div class="line">    NSString         <span class="keyword">*</span>_title;</div><div class="line">    NSString         <span class="keyword">*</span>_nibName;</div><div class="line">    NSBundle         <span class="keyword">*</span>_nibBundle;</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>现有的例子</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">CouponListTableViewCell</span> : <span class="title">UITableViewCell</span></span></div><div class="line">{</div><div class="line">    <span class="built_in">UIImageView</span> *imageIcon;</div><div class="line">    <span class="built_in">UIImageView</span> *imageCollect;</div><div class="line">    <span class="built_in">UILabel</span> *labelName;</div><div class="line">    <span class="built_in">UILabel</span> *labelPriceSale;</div><div class="line">    <span class="built_in">UILabel</span> *labelPriceOrigin;</div><div class="line">    <span class="built_in">UILabel</span> *labelSaleNumber;</div><div class="line">    <span class="built_in">UIImageView</span> *imageArrow;</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p><strong>类变量与属性</strong><br>属性是Objective-C的一种高级语法，属性可以完全替换类变量，并且提供更强大的访问控制（strong、weak、nonatomic、readonly…）,而且属性也只需要用一行就能搞定，所以为什么还要用类变量呢？<br>属性声明后不用写@synthesize，且会自动生成类变量。<br><!--
+ [资料>](http://stackoverflow.com/questions/12119284/xcode-4-automatically-generates-ivars-when-using-property-where-can-i-find-the)
+--></p>
+<p><strong>例外</strong></p>
+<ul>
+<li>一些局部变量允许用最简单的方式命名：i、j、temp</li>
+<li>一些常用的缩写可以不用驼峰：RMB，OBD</li>
+</ul>
+<h2 id="函数命名">函数命名</h2>
+<p>Objective-C中的函数不同于其他语言，函数名是按参数隔开的。初看起来是有点怪，但是习惯了就会发现这样和命名方式可读性极好，就像一句话一样。所以当你的函数名不能流利的读出来的话，那么它的命名肯定就有问题。<br>还是先举系统的例子</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="pp">- <span class="params">(void)</span>willAnimateFirstHalfOfRotationToInterfaceOrientation:<span class="params">(<span class="variable">UIInterfaceOrientation</span>)</span>toInterfaceOrientation </span></div><div class="line">                                                    duration:<span class="params">(<span class="variable">NSTimeInterval</span>)</span>duration</div></pre></td></tr></table></figure>
+
+<p>这里面值得注意的几点：</p>
+<ul>
+<li>最左边的（+、-）和返回类型的左括号之间有一个空格，返回类型的右括号与第一个参数之间没有空格；</li>
+<li>函数名中每一段描述都以小写字母开头，描述的写法要考虑清晰明确，参考变量命名；</li>
+<li>如果函数名过长，应该换行，按冒号对齐；</li>
+<li>从描述中可以看出对应参数的意义。</li>
+</ul>
+<p>再看看我们自己的命名</p>
+<ol>
+<li>最后一个参数描述Selector首字母大写了</li>
+</ol>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">+ (<span class="tag">UIButton</span> *)<span class="tag">createButton</span><span class="pseudo">:(MUButtonItemAttribute</span> *)<span class="tag">attr</span> </div><div class="line">               <span class="tag">target</span><span class="pseudo">:(id)target</span> </div><div class="line">             <span class="tag">Selector</span><span class="pseudo">:(SEL)sel</span>;</div></pre></td></tr></table></figure>
+
+<ol>
+<li>有一些多余的空格</li>
+</ol>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="addition">+ (AppDelegate *) appDelegate;</span></div><div class="line"><span class="deletion">- (void)hideTabbar :(BOOL)status;</span></div></pre></td></tr></table></figure>
+
+<ol>
+<li>加减号和括号之间要有空格</li>
+</ol>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="pp">- <span class="params">(void)</span>pushEvent:<span class="params">(<span class="variable">NSDictionary</span>*)</span>dictionary target:<span class="params">(id)</span>target;</span></div></pre></td></tr></table></figure>
+
+
+<ol>
+<li>参数名和参数要对应，含义清晰</li>
+</ol>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="pp">- <span class="params">(void)</span>setNavBackButton:<span class="params">(<span class="variable">NSString</span> *)</span>string;</span></div><div class="line">- <span class="params">(id)</span>init:<span class="params">(<span class="variable">NSString</span>*)</span>nickName phoneNumber:<span class="params">(<span class="variable">NSString</span> *)</span>phoneNumber;</div><div class="line">- <span class="params">(void)</span>setTextFieldBackGroud:<span class="params">(<span class="variable">CGRect</span>)</span>rect;</div><div class="line">- <span class="params">(id)</span>init:<span class="params">(<span class="variable">NSInteger</span>)</span>flag;</div><div class="line">- <span class="params">(void)</span>requestHealthRecord:<span class="params">(<span class="variable">NSString</span> *)</span>typeStr;</div></pre></td></tr></table></figure>
+
+<ol>
+<li>函数名过长要换行</li>
+</ol>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="pp">- <span class="params">(id)</span>initWithStyle:<span class="params">(<span class="variable">UITableViewCellStyle</span>)</span>style</span></div><div class="line">    reuseIdentifier:<span class="params">(<span class="variable">NSString</span> *)</span>reuseIdentifier</div><div class="line">containingTableView:<span class="params">(<span class="variable">UITableView</span> *)</span>containingTableView</div><div class="line"> leftUtilityButtons:<span class="params">(<span class="variable">NSArray</span> *)</span>leftUtilityButtons </div><div class="line">rightUtilityButtons:<span class="params">(<span class="variable">NSArray</span> *)</span>rightUtilityButtons;</div></pre></td></tr></table></figure>
+
+<ol>
+<li>命名风格混乱</li>
+</ol>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">+ (NSInteger)GetServerBack:(NSString *)serverName</div><div class="line">                path_Param:(NSMutableDictionary*)path_Param</div><div class="line">               query_Param:(NSMutableDictionary*)query_Param</div><div class="line">                body_Param:(NSMutableDictionary*)body_Param</div><div class="line">                    <span class="function"><span class="keyword">method</span>:</span>(NSInteger)<span class="function"><span class="keyword">method</span></span></div><div class="line">               <span class="title">returnValue</span>:(NSMutableDictionary*)returnValue;</div></pre></td></tr></table></figure>
+
+<ol>
+<li>参数之间用and、with，多此一举</li>
+</ol>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="pp">- <span class="params">(id)</span>initWithFrame:<span class="params">(<span class="variable">CGRect</span>)</span>frame </span></div><div class="line">       andImageView:<span class="params">(<span class="variable">UIImageView</span>*)</span>imageView </div><div class="line">     withImageFrame:<span class="params">(<span class="variable">CGRect</span>)</span>imageInitFrame </div><div class="line">       withImageUrl:<span class="params">(<span class="variable">NSURL</span>*)</span>imageUrl;</div></pre></td></tr></table></figure>
+
+
+<p><strong>命名很重要！！！</strong><br>良好的命名是写出高质量代码的前提，命名的时候除了符合以上的规范，还需要找到合适的单词来表达含义，不要为了一时之快用拼音，也千万不要出现数字。</p>
+<h2 id="代码模块组织">代码模块组织</h2>
+<p>这个代码模块的组织是指文件级别的，即我们应该如何划分包。<br>现有的包结构是有些问题的，导致我们找某个功能的实现文件比较麻烦。<br><a href="!--
+参考[别人的经验](http://www.cocoachina.com/industry/20140225/7879.html)，个人觉得这样的划分还是不错的。
+--">!--
+参考[别人的经验](http://www.cocoachina.com/industry/20140225/7879.html)，个人觉得这样的划分还是不错的。
+--</a></p>
+<p><strong>文件的命名</strong><br>我们自己创建的文件，应该有统一的前缀。比如HJMainViewController，这也符合系统的命名规范。Objective-C没有namespace，所以这样做的好处是当你引用了第三方的代码时，防止重名。而且当我们自己的代码越来越大时，内部也会出现冲突。</p>
+<p><strong>一个文件一个类</strong><br>好处：</p>
+<ul>
+<li>减少单个文件的长度</li>
+<li>定位文件更方便</li>
+<li>便于重用</li>
+</ul>
+<h2 id="代码块的组织">代码块的组织</h2>
+<p>作为一个程序员，大部分时间实在看代码而不是在写。所以代码的可读性严重影响到我们的工作效率。<br>当你看到超过1000行的实现文件时，你还有看下去的欲望吗？<br>所以千万不要写出超过1000行的代码，有的话也得重构。<br><!--[重构掉](http://www.objc.io/issue-1/)。 --></p>
+<p>当代码控制到1000行以内后，只是具备了可读的基本条件。我们的屏幕一般只能一次显示50行代码，从头看到尾就是20屏，常常会看了后面忘了前面。所以我们要把一个文件里面的所有函数有秩序的组织起来，让人不用重头看到尾，就能很快定位到想看的地方。<br>这里提供一个小办法：用#pragma mark宏根据功能区分开:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">pragma mark - Life Circle</div><div class="line">pragma mark - <span class="keyword">Public</span> <span class="keyword">Interface</span></div><div class="line">pragma mark - UI Actions</div><div class="line">pragma mark - Business Logic</div><div class="line">pragma mark - UITableViewDataSource</div><div class="line">pragma mark - UITableViewDelegate</div><div class="line">pragma mark - UIScrollViewDelegate</div><div class="line">pragma mark - Notification Handle</div><div class="line">pragma mark - <span class="keyword">Private</span> <span class="function"><span class="keyword">Method</span></span></div></pre></td></tr></table></figure>
+
+<h2 id="宏、枚举、常量的声明">宏、枚举、常量的声明</h2>
+<p>宏的命名方式参考变量的命名方式，大写，用下划线分开</p>
+<figure class="highlight TARGET_OS_IPHONE```"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">枚举也有很多写法，这里推荐系统的方式</div></pre></td></tr></table></figure>
+
+<p>typedef NS_ENUM(NSInteger, NSTextAlignment)<br>{<br>    NSTextAlignmentLeft      = 0,    // Visually left aligned<br>    NSTextAlignmentRight     = 1,    // Visually right aligned<br>    NSTextAlignmentCenter    = 2,    // Visually centered<br>    NSTextAlignmentJustified = 3,    // Fully-justified. The last line in a paragraph is natural-aligned.<br>    NSTextAlignmentNatural   = 4,    // Indicates the default alignment for script<br>} </p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">常量以k开头，系统命名风格</div></pre></td></tr></table></figure>
+
+<p>extern NSString <em>const kAPNetworkDidSetupNotification;     // 建立连接<br>extern NSString </em>const kAPNetworkDidCloseNotification;     // 关闭连接<br>extern NSString <em>const kAPNetworkDidRegisterNotification;  // 注册成功<br>extern NSString </em>const kAPNetworkDidLoginNotification;     // 登录成功</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">如果是数值常量，用宏的话，也可以用k开头</div></pre></td></tr></table></figure>
+
+<h1 id="define_kDistancePoint_10-0f_//_圆点、标志和正文的间距">define kDistancePoint  10.0f   // 圆点、标志和正文的间距</h1>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="preprocessor">## 函数的粒度</span></div><div class="line">知道我们现在最长的函数有多少行吗？<span class="number">655</span>行。</div></pre></td></tr></table></figure>
+
+<ul>
+<li>(void)getShopDetail</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">一个函数最好不超过一屏（50行），千万不能超过两屏（100行）。</div><div class="line">因为从设计的角度来说，一个函数只需要干一件事，所以50行一般是够的，超长的函数往往干了很多事情，或者干了一件很大的事（拆成多件小事，交给子函数去干）。</div><div class="line"></div><div class="line"><span class="comment">## 其它</span></div><div class="line"></div><div class="line">- <span class="keyword">*</span><span class="keyword">*</span>Log<span class="keyword">*</span><span class="keyword">*</span>：不要使用NSLog，提交了会因想到别人，而且最后打包删起来麻烦。需要找一个Log工具，MyNSLog功能不够。</div><div class="line">- <span class="keyword">*</span><span class="keyword">*</span>代码中尽量不要出现数字<span class="keyword">*</span><span class="keyword">*</span>：据上下文推测出来的，还是计算的出为好（现在界面里面很多地方确实要写死数字，适配iPhone6会很困难）</div></pre></td></tr></table></figure>
+
+<p>_contentBkg = [[UIView alloc] initWithFrame:CGRectMake(0, 1 / [UIScreen mainScreen].scale, 320, 68 - 1)];</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">- <span class="keyword">*</span><span class="keyword">*</span>避免复杂的表达式<span class="keyword">*</span><span class="keyword">*</span>：</div></pre></td></tr></table></figure>
+
+<pre><code><span class="keyword">if</span> (tfPassword.<span class="keyword">text</span>!=nil &amp;&amp;
+    ![tfPassword.<span class="keyword">text</span> isEqualToString:@<span class="string">""</span>] &amp;&amp;
+    tfRequestNumber.<span class="keyword">text</span>!=nil &amp;&amp;
+    ![tfRequestNumber.<span class="keyword">text</span> isEqualToString:@<span class="string">""</span>]
+    )
+{
+;    
+}
+</code></pre><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">- <span class="keyword">*</span><span class="keyword">*</span>一个变量不在多个函数中出现，不要作为类变量：<span class="keyword">*</span><span class="keyword">*</span></div></pre></td></tr></table></figure>
+
+<p>MBProgressHUD* hudProgress;<br>int result;</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">- <span class="keyword">*</span><span class="keyword">*</span>每个类的.h开头的地方要有注释，说明这个类是干嘛的<span class="keyword">*</span><span class="keyword">*</span></div><div class="line">-</div></pre></td></tr></table></figure>
+
+<p>/**</p>
+<ul>
+<li>SDImageCache maintains a memory cache and an optional disk cache. Disk cache write operations are performed</li>
+<li>asynchronous so it doesn’t add unnecessary latency to the UI.<br>*/<br>@interface SDImageCache : NSObject</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">- <span class="keyword">*</span><span class="keyword">*</span>if后面的语句哪怕只有一行，都加括号<span class="keyword">*</span><span class="keyword">*</span></div></pre></td></tr></table></figure>
+
+<p>if ([key rangeOfString:@”热”].location != NSNotFound)<br>{<br>    titleLabel.text = @”热门城市”;<br>}<br>else<br>{<br>    titleLabel.text = key;<br>}</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="preprocessor"># 代码的风格</span></div><div class="line"></div><div class="line">风格如同习俗，不同地区有不同的习俗。你觉得入乡随俗好，就入乡随俗，这样避免了一些无谓的麻烦；但是你若坚持原有的习俗，社会也是能接受的，毕竟这些东西都是发展变化的，没有固定的模式，只有更好的模式。</div><div class="line"></div><div class="line"><span class="preprocessor">## 接口</span></div><div class="line">这里的接口指的是一个类公开的一组方法，良好设计的类是高内聚低耦合的，所以接口必须是简洁的。</div></pre></td></tr></table></figure>
+
+<p>@interface PaySucceedViewController : LCBaseViewController</p>
+<p>@property (nonatomic,retain) NSString *isSuccess;</p>
+<p>@property (nonatomic,retain) NSString *shopName;</p>
+<p>@property (nonatomic,retain) NSString *detailinfo;</p>
+<p>@property (nonatomic,retain) NSString *amount;</p>
+<p>@property (nonatomic,retain) NSString *omsOrderId;</p>
+<p>/*</p>
+<ul>
+<li>支付订单类型<br>*</li>
+<li>@since<br>*/<br>@property (nonatomic) ORDER_CATEGORY mCategory;</li>
+</ul>
+<p>@end<br>```<br>上面的例子是一个ViewController，但是它暴露了太多属性，属性很零碎，传值的时候要一个一个传。其实这里属性应该属于一个叫订单Model的对象，把这些属性封装在OrderModel中，复用性和可维护性都会好很多。（但是现在代码整体结构没有Model层，这里需要很大的重构）</p>
+<h2 id="继承">继承</h2>
+<p>继承不是为了少写代码，它的目的是抽象，顺便少写了代码。<br>举NavigationBar的例子，用宏可以实现，用基类也可以实现，但基类抽象出了一个共有的接口，以后发生共性的变化够可以通过修改基类来实现，你可以在基类里加一组方法，而宏做不到。</p>
+<h2 id="其它">其它</h2>
+<p>代码规范的路还长着，先走出第一步吧！</p>
+<h1 id="参考资料">参考资料</h1>
+<p><a href="./CodingGuidelines.pdf">Apple代码规范</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h1 id="为什么要有代码规范？">为什么要有代码规范？</h1>
+<p>对于团队，如果代码风格不统一，阅读或修改同事的代码会非常困难，造成潜在的风险。</p>
+<p>对于个人，代码规范是对自身编码习惯的一种监督，如果没有这种监督，有时候因为偷懒，会写出难看的代码，时间长了自己都看不懂。这样对于代码的维护性是不利的。</p>
+<h1 id="代码规范的内容？">代码规范的内容？</h1>
+<p>代码规范包含的范围十分广泛。从一个变量的命名到一个类的设计，我觉得都属于代码规范的范畴。从实践的角度，可以把代码规范分成两个部分：</p>
+<p>第一部分是规则，即一定要这么做。这里面没有对错，但需要统一。包含变量的命名、函数的命名、模块的组织、代码块的组织、宏、枚举、常量的声明、函数的粒度。</p>
+<p>第二部分是风格，即一种模式化的代码设计结构。我们实现某个功能时，往往不止一种实现方式。每一种实现方式没有绝对的高低之分，不同角度的解读，就会有不同的偏好。所以这个层面上的代码规范，只能求同存异。但是不管怎样，每个人必须要有一致性的风格。就像不同的小区可以有不同的风格，但同一个小区只能有一种设计风格。风格包含代码设计中的抽象概念，比如接口、继承等等。<br>]]>
+    
+    </summary>
+    
+      <category term="规范" scheme="http://linkageios.github.io/tags/%E8%A7%84%E8%8C%83/"/>
+    
+      <category term="iOS" scheme="http://linkageios.github.io/categories/iOS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[测试Json效率和XML效率]]></title>
+    <link href="http://linkageios.github.io/2014/11/07/%E6%B5%8B%E8%AF%95Json%E6%95%88%E7%8E%87%E5%92%8CXML%E6%95%88%E7%8E%87/"/>
+    <id>http://linkageios.github.io/2014/11/07/测试Json效率和XML效率/</id>
+    <published>2014-11-07T05:38:14.000Z</published>
+    <updated>2014-11-18T10:27:06.000Z</updated>
+    <content type="html"><![CDATA[<ul>
+<li><p>tips：把项目中的解析json的sbjson ,网上提到的JsonKit和apple提供的自带json解析方法进行比较<br>所解析的json是来自项目当中服务返回的商家列表信息<br>具体如下图</p>
+<a id="more"></a>
+</li>
+<li><p>tips：把项目中的解析json的sbjson ,网上提到的JsonKit和apple提供的自带json解析方法进行比较<br>所解析的json是来自项目当中服务返回的商家列表信息<br>具体如下图<br><img src="../images/79888-1946ee461177aeca.png" alt="imag"><br>开始先去 请求 商家列表信息 ，请求成功之后 会有弹出框提示</p>
+<a id="more"></a></li>
+<li>tips：把项目中的解析json的sbjson ,网上提到的JsonKit和apple提供的自带json解析方法进行比较<br>所解析的json是来自项目当中服务返回的商家列表信息<br>具体如下图<br><img src="../images/79888-1946ee461177aeca.png" alt="imag"><br>开始先去 请求 商家列表信息 ，请求成功之后 会有弹出框提示</li>
+</ul>
+<p><img src="../images/79888-bd0e36d1d14085ea.png" alt="imag"><br>之后可以依次测试三种解析，具体看demo提示<br>结果：JSONKit 效率最接近苹果原生</p>
+<ul>
+<li>tips：针对项目中的车型xml文件，对比XMLDictionary和苹果自带xml解析的效率<br>解析的对象就是 项目当中的车型库文件</li>
+</ul>
+<p><img src="../images/79888-e567a1bfada45c8c.png" alt="imag"><br>每个解析方法 解析1000次 具体实现看demo<br>结果：XMLDictionary因为是 宽泛适应的解析 比demo中的针对特定文件写的解析是要慢些，但是今后将取消xml读取文件，这个也就没什么需要考虑的了</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<ul>
+<li><p>tips：把项目中的解析json的sbjson ,网上提到的JsonKit和apple提供的自带json解析方法进行比较<br>所解析的json是来自项目当中服务返回的商家列表信息<br>具体如下图</p>
+<!--more-->
+</li>
+<li><p>tips：把项目中的解析json的sbjson ,网上提到的JsonKit和apple提供的自带json解析方法进行比较<br>所解析的json是来自项目当中服务返回的商家列表信息<br>具体如下图<br><img src="../images/79888-1946ee461177aeca.png" alt="imag"><br>开始先去 请求 商家列表信息 ，请求成功之后 会有弹出框提示</p>
+]]>
+    
+    </summary>
+    
+      <category term="xml" scheme="http://linkageios.github.io/tags/xml/"/>
+    
+      <category term="json" scheme="http://linkageios.github.io/tags/json/"/>
+    
+      <category term="效率" scheme="http://linkageios.github.io/tags/%E6%95%88%E7%8E%87/"/>
+    
+      <category term="iOS" scheme="http://linkageios.github.io/categories/iOS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[关于iConsole在项目中的应用]]></title>
+    <link href="http://linkageios.github.io/2014/11/07/%E5%85%B3%E4%BA%8EiConsole%E5%9C%A8%E9%A1%B9%E7%9B%AE%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/"/>
+    <id>http://linkageios.github.io/2014/11/07/关于iConsole在项目中的应用/</id>
+    <published>2014-11-07T05:38:14.000Z</published>
+    <updated>2014-11-18T10:28:05.000Z</updated>
+    <content type="html"><![CDATA[<p>tips：方便程序没有连着Xcode跑时定位bug(目前觉得没什么好写的就是)</p>
+<ul>
+<li>安装</li>
+</ul>
+<p><img src="../images/79888-d9f0841d3cfac40e.png" alt="imag"></p>
+<p>下载iconsole代码，将其中这两个文件拖入现有代码中</p>
+<ul>
+<li>配置<br>添加头文件</li>
+</ul>
+<figure class="highlight #import"><figcaption><span>"iConsole.h"```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">在使用其功能之前有一点要注意,需要将AppDelegate里初始的<span class="built_in">UIWindow</span>需要以iConsoleWindow来初始化,并添加</div></pre></td></tr></table></figure>
+
+<p>iConsoleDelegate</p>
+<figure class="highlight 协议"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">在</div></pre></td></tr></table></figure>
+
+<p>AppDelegate.h</p>
+<figure class="highlight 中"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="xml"><span class="comment">&lt;!--more--&gt;</span></span></div><div class="line">tips：方便程序没有连着Xcode跑时定位bug(目前觉得没什么好写的就是)</div><div class="line"><span class="bullet">- </span>安装</div><div class="line"></div><div class="line">![<span class="link_label">imag</span>](<span class="link_url">../images/79888-d9f0841d3cfac40e.png</span>)</div><div class="line"></div><div class="line">下载iconsole代码，将其中这两个文件拖入现有代码中</div><div class="line"><span class="bullet">- </span>配置</div><div class="line">添加头文件</div></pre></td></tr></table></figure>
+
+<h1 id="import_“iConsole-h”">import “iConsole.h”</h1>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">在使用其功能之前有一点要注意,需要将AppDelegate里初始的<span class="built_in">UIWindow</span>需要以iConsoleWindow来初始化,并添加</div></pre></td></tr></table></figure>
+
+<p>iConsoleDelegate</p>
+<figure class="highlight 协议"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">在</div></pre></td></tr></table></figure>
+
+<p>AppDelegate.h</p>
+<figure class="highlight 中"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">```</div><div class="line"><span class="keyword">@property</span> (<span class="keyword">strong</span>, <span class="keyword">nonatomic</span>) iConsoleWindow *window;</div></pre></td></tr></table></figure>
+
+<p>在</p>
+<figure class="highlight AppDelegate.m```的```didFinishLaunchingWithOptions"><figcaption><span>```方法中添加</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">```</div><div class="line"><span class="variable">_window =</span> [[iConsoleWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];</div><div class="line"><span class="comment">/*</span></div><div class="line">*  iconsole</div><div class="line">*/</div><div class="line">[iConsole sharedConsole].<span class="variable">delegate =</span> self;</div><div class="line">[iConsole sharedConsole].<span class="variable">logSubmissionEmail =</span> @<span class="string">"xxx@126.com"</span>;</div></pre></td></tr></table></figure>
+
+<p>添加协议方法</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*</span></div><div class="line">*iconsole</div><div class="line">*@param command</div><div class="line">*/</div><div class="line">- (<span class="keyword">void</span>)handleConsoleCommand:(<span class="built_in">NSString</span> *)command</div><div class="line">{</div><div class="line"><span class="keyword">if</span> ([command isEqualToString:<span class="string">@"version"</span>])</div><div class="line">{</div><div class="line">[iConsole info:<span class="string">@"%@ version %@"</span>,</div><div class="line">[[<span class="built_in">NSBundle</span> mainBundle] objectForInfoDictionaryKey:<span class="string">@"CFBundleName"</span>],</div><div class="line">[[<span class="built_in">NSBundle</span> mainBundle] objectForInfoDictionaryKey:<span class="string">@"CFBundleVersion"</span>]];</div><div class="line">}</div><div class="line"><span class="keyword">else</span></div><div class="line">{</div><div class="line">[iConsole error:<span class="string">@"unrecognised command, try 'version' instead"</span>];</div><div class="line">}</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>iConsole提供了4种记录日程的方式,分别是:<br>1:信息         </p>
+<figure class="highlight [iConsole"><figcaption><span>info:@"记录一条普通级"];```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">2:警告</div></pre></td></tr></table></figure>
+
+<p>[iConsole warn:@”记录一条警告级”];</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">3:错误</div></pre></td></tr></table></figure>
+
+<p>[iConsole error:@”记录一条错误级”];</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">4:崩溃</div></pre></td></tr></table></figure>
+
+<p>[iConsole crash:@”记录一条崩溃级”];</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="title">iConsole</span> 默认记录的日志条数是<span class="number">1000</span>条. 如果日志记录到上限时,会删除最早的一条,如此循环,可通过如下属性设置上下限:</div></pre></td></tr></table></figure>
+
+<p>[[iConsole sharedConsole] setMaxLogItems:2000];  </p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">当我们需要查看iConsole的控制台时,可以通过三种方式来启动控制台:</div><div class="line">1:主动调用</div></pre></td></tr></table></figure>
+
+<p>[iConsole show];  </p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">2:三跟手指由下往上滑动. 模拟器两根手指,  默认启动</div></pre></td></tr></table></figure>
+
+<p>[iConsole sharedConsole].simulatorTouchesToShow = YES;<br>[iConsole sharedConsole].deviceTouchesToShow = YES;  </p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">3:摇动手机启动  默认禁用</div></pre></td></tr></table></figure>
+
+<p>[iConsole sharedConsole].deviceShakeToShow = YES; ``` </p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>tips：方便程序没有连着Xcode跑时定位bug(目前觉得没什么好写的就是)</p>
+<ul>
+<li>安装</li>
+</ul>
+<p><img src="../images/79888-d9f0841d3cfac40e.png" alt="imag"></p>
+<p>]]>
+    </summary>
+    
+      <category term="iconsole" scheme="http://linkageios.github.io/tags/iconsole/"/>
     
       <category term="iOS" scheme="http://linkageios.github.io/categories/iOS/"/>
     
