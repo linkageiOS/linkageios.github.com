@@ -3,35 +3,34 @@
 <head>
   <meta charset="utf-8">
   
-  <title>LCMenuView简介 | SmartArrow</title>
+  <title>sourceTree使用注意事项 | SmartArrow</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="简介
-筛选功能在慧驾项目中用的比较多，所以抽取出来，以便简化代码，便于维护
-类与方法说明
-LCMenuView菜单标题相关，与此次迭代UI相同，以后根据UI的变更进行修改，提供方法和属性如下：
+  <meta name="description" content="sourceTree使用注意事项
 
-- (id)initWithFrame:(CGRect)frame       //
-segmentWidths:(NSArray *)widths   // 每个segment的宽度，类型NSNumbe">
+点击list条目进入sourceTree工程页面
+点击顶部菜单栏的“抓取-fetch”，然后勾选删除在所有远端都已经不存在的跟踪（tracking）分支
+
+这样就可以了同步本地的分支（服务器上已被删除而本地却有）了。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="LCMenuView简介">
-<meta property="og:url" content="http://linkageios.github.io/2014/11/05/LCMenuView简介/">
+<meta property="og:title" content="sourceTree使用注意事项">
+<meta property="og:url" content="http://linkageios.github.io/2014/12/03/sourceTree使用注意事项/">
 <meta property="og:site_name" content="SmartArrow">
-<meta property="og:description" content="简介
-筛选功能在慧驾项目中用的比较多，所以抽取出来，以便简化代码，便于维护
-类与方法说明
-LCMenuView菜单标题相关，与此次迭代UI相同，以后根据UI的变更进行修改，提供方法和属性如下：
+<meta property="og:description" content="sourceTree使用注意事项
 
-- (id)initWithFrame:(CGRect)frame       //
-segmentWidths:(NSArray *)widths   // 每个segment的宽度，类型NSNumbe">
+点击list条目进入sourceTree工程页面
+点击顶部菜单栏的“抓取-fetch”，然后勾选删除在所有远端都已经不存在的跟踪（tracking）分支
+
+这样就可以了同步本地的分支（服务器上已被删除而本地却有）了。">
+<meta property="og:image" content="../images/gitlist.png">
+<meta property="og:image" content="../images/gitmenu.png">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="LCMenuView简介">
-<meta name="twitter:description" content="简介
-筛选功能在慧驾项目中用的比较多，所以抽取出来，以便简化代码，便于维护
-类与方法说明
-LCMenuView菜单标题相关，与此次迭代UI相同，以后根据UI的变更进行修改，提供方法和属性如下：
+<meta name="twitter:title" content="sourceTree使用注意事项">
+<meta name="twitter:description" content="sourceTree使用注意事项
 
-- (id)initWithFrame:(CGRect)frame       //
-segmentWidths:(NSArray *)widths   // 每个segment的宽度，类型NSNumbe">
+点击list条目进入sourceTree工程页面
+点击顶部菜单栏的“抓取-fetch”，然后勾选删除在所有远端都已经不存在的跟踪（tracking）分支
+
+这样就可以了同步本地的分支（服务器上已被删除而本地却有）了。">
 
   
     <link rel="alternative" href="/atom.xml" title="SmartArrow" type="application/atom+xml">
@@ -199,19 +198,15 @@ segmentWidths:(NSArray *)widths   // 每个segment的宽度，类型NSNumbe">
 		</header>				
 	</div>
 </nav>
-      <article id="post-LCMenuView简介" class="article article-type-post" itemscope itemprop="blogPost">
+      <article id="post-sourceTree使用注意事项" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2014/11/05/LCMenuView简介/" class="article-date">
-  	<time datetime="2014-11-05T08:43:14.000Z" itemprop="datePublished">11月 5 2014</time>
+      <a href="/2014/12/03/sourceTree使用注意事项/" class="article-date">
+  	<time datetime="2014-12-03T02:24:53.000Z" itemprop="datePublished">12月 3 2014</time>
 </a>
       
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/iOS/">iOS</a>
-  </div>
-
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LCMenuView/">LCMenuView</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/版本管理/">版本管理</a></li></ul>
 
     </div>
   
@@ -224,7 +219,7 @@ segmentWidths:(NSArray *)widths   // 每个segment的宽度，类型NSNumbe">
         
   
     <h1 class="article-title" itemprop="name">
-      LCMenuView简介
+      sourceTree使用注意事项
     </h1>
   
 
@@ -232,86 +227,13 @@ segmentWidths:(NSArray *)widths   // 每个segment的宽度，类型NSNumbe">
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="简介">简介</h1>
-<p>筛选功能在慧驾项目中用的比较多，所以抽取出来，以便简化代码，便于维护</p>
-<h1 id="类与方法说明">类与方法说明</h1>
-<p>LCMenuView<br>菜单标题相关，与此次迭代UI相同，以后根据UI的变更进行修改，提供方法和属性如下：</p>
-<pre><code>
-- (id)initWithFrame:(CGRect)frame       //
-segmentWidths:(NSArray *)widths   // 每个segment的宽度，类型NSNumber
-segmentTitles:(NSArray *)titles   // 标题，类型NSString
-popups:(NSArray *)popups   // 弹出菜单，类型LCMenuPopupView
-parentView:(UIView *)parent;   // menu的parentView
+        <h1 id="sourceTree使用注意事项">sourceTree使用注意事项</h1>
+<ul>
+<li>点击list条目进入sourceTree工程页面<br><img src="../images/gitlist.png" alt="image"><br><br><br></li>
+<li>点击顶部菜单栏的“抓取-fetch”，然后勾选<code>删除在所有远端都已经不存在的跟踪（tracking）分支</code><br><img src="../images/gitmenu.png" alt="image"><br><br><br></li>
+</ul>
+<p>这样就可以了同步本地的分支（服务器上已被删除而本地却有）了。</p>
 
-<a id="more"></a>
-
-# 简介
-筛选功能在慧驾项目中用的比较多，所以抽取出来，以便简化代码，便于维护
-
-# 类与方法说明
-LCMenuView
-菜单标题相关，与此次迭代UI相同，以后根据UI的变更进行修改，提供方法和属性如下：
-<pre><code>
-- (id)initWithFrame:(CGRect)frame       //
-segmentWidths:(NSArray *)widths   // 每个segment的宽度，类型NSNumber
-segmentTitles:(NSArray *)titles   // 标题，类型NSString
-popups:(NSArray *)popups   // 弹出菜单，类型LCMenuPopupView
-parentView:(UIView *)parent;   // menu的parentView
-
-- (void)setSegmentTitle:(NSString *)title index:(NSInteger)index;   // 设置标题
-- (NSString *)segmentTitleAtIndex:(NSInteger)index;                 // 标题
-
-- (BOOL)showPopup:(BOOL)show index:(NSInteger)index animate:(BOOL)animate;  // 显示或隐藏菜单
-- (void)hideAllPopup:(BOOL)animate; //隐藏所有菜单
-
-@property (nonatomic, weak, readonly) UIView *parent;
-@property (nonatomic, strong, readonly) UIView *maskView;
-
-@property (nonatomic, assign, readonly) NSInteger popedIndex;   // 当前显示菜单index
-</code></pre>
-
-<p>LCMenuPopupView<br>弹出菜单相关，主要封装了菜单的弹出收起动画，提供方法和属性如下：</p>
-<pre><code>
-// 初始化方法 arrowBtmCenterX是箭头X轴位置
-- (id)initWithFrame:(CGRect)frame
-ContentView:(UIView *)contentView
-arrowPosition:(CGFloat)arrowBtmCenterX;
-
-@property (nonatomic, strong, readwrite) UIView *contentView;
-
-@property (nonatomic, assign, readonly) CGFloat arrowBtmCenterX;
-
-// 显示或隐藏内容
-@property (nonatomic, assign, getter=isShow) BOOL show;
-- (void)show:(BOOL)show animate:(BOOL)animate;
-</code></pre>
-
-<h1 id="使用方法">使用方法</h1>
-<p>创建UIView子类，封装弹出菜单的内容，本次封装的是LCMenuContentView</p>
-<pre><code>
-LCMenuContentView *t0 = [[LCMenuContentView alloc] initWithFrame:CGRectMake(0, 0, 320, 40 * arrayPopInfoMile.count) titles:arrayPopInfoMile selectRow:0];
-t0.shopPopViewDelegate = self;
-LCMenuPopupView *p0 = [[LCMenuPopupView alloc] initWithFrame:CGRectMake(0, 0, 320, 40 * arrayPopInfoMile.count) ContentView:t0 arrowPosition:53];
-
-NSInteger index = -1;
-index = [arrayPopInfoKind indexOfObject:self.stringTitle];
-LCMenuContentView *t1 = [[LCMenuContentView alloc] initWithFrame:CGRectMake(0, 0, 320, 40 * arrayPopInfoKind.count) titles:arrayPopInfoKind selectRow:index];
-t1.shopPopViewDelegate = self;
-LCMenuPopupView *p1 = [[LCMenuPopupView alloc] initWithFrame:CGRectMake(0, 0, 320, 40 * arrayPopInfoKind.count) ContentView:t1 arrowPosition:160];
-
-
-LCMenuContentView *t2 = [[LCMenuContentView alloc] initWithFrame:CGRectMake(0, 0, 320, 40 * arrayPopInfoComment.count) titles:arrayPopInfoComment selectRow:-1];
-t2.shopPopViewDelegate = self;
-LCMenuPopupView *p2 = [[LCMenuPopupView alloc] initWithFrame:CGRectMake(0, 0, 320, 40 * arrayPopInfoComment.count) ContentView:t2 arrowPosition:320 - 53];
-
-LCMenuView *view = [[LCMenuView alloc] initWithFrame:CGRectMake(0, 0, 320, 50)
-segmentWidths:@[@(106), @(108), @(106)]
-segmentTitles:@[arrayPopInfoMile[0], self.stringTitle, @"智能"]
-popups:@[p0, p1, p2]
-parentView:self.view];
-[self.view addSubview:view];
-</code></pre>
-</code></pre>
       
     </div>
     <footer class="article-footer">
@@ -323,18 +245,9 @@ parentView:self.view];
     
 <nav id="article-nav">
   
-    <a href="/2014/11/06/POP框架初探/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">&lt;</strong>
-      <div class="article-nav-title">
-        
-          POP框架初探
-        
-      </div>
-    </a>
   
-  
-    <a href="/2014/11/03/高德地图sdk分析/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">高德地图sdk分析</div>
+    <a href="/2014/12/02/内存管理/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">内存管理培训ppt</div>
       <strong class="article-nav-caption">&gt;</strong>
     </a>
   
@@ -363,7 +276,7 @@ parentView:self.view];
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="LCMenuView简介" data-title="LCMenuView简介" data-url="http://linkageios.github.io/2014/11/05/LCMenuView简介/"></div>
+	<div class="ds-thread" data-thread-key="sourceTree使用注意事项" data-title="sourceTree使用注意事项" data-url="http://linkageios.github.io/2014/12/03/sourceTree使用注意事项/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
