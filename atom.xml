@@ -4,7 +4,7 @@
   <subtitle><![CDATA[技术文档]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://linkageios.github.io/"/>
-  <updated>2014-12-11T03:02:23.427Z</updated>
+  <updated>2014-12-11T06:00:27.521Z</updated>
   <id>http://linkageios.github.io/</id>
   
   <author>
@@ -13,6 +13,72 @@
   </author>
   
   <generator uri="http://zespia.tw/hexo/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[SVPullToRefresh与下拉刷新]]></title>
+    <link href="http://linkageios.github.io/2014/12/03/SVPullToRefresh%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3/"/>
+    <id>http://linkageios.github.io/2014/12/03/SVPullToRefresh深入理解/</id>
+    <published>2014-12-03T07:59:00.000Z</published>
+    <updated>2014-12-11T05:54:57.000Z</updated>
+    <content type="html"><![CDATA[<p>SVPullToRefresh是iOS上实现下拉刷新和上提加载的一个组件。<br><a id="more"></a></p>
+<h3 id="背景">背景</h3>
+<p>使用场景仅限UIScrollView，只需要一行代码，就能添加下拉刷新的功能。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[tableView addPullToRefreshWithActionHandler:^{</div><div class="line">    <span class="comment">// 预加载数据到dataSource, 向tableview插入cell</span></div><div class="line">    <span class="comment">// 完成时调用[tableView.pullToRefreshView stopAnimating] </span></div><div class="line">}];</div></pre></td></tr></table></figure>
+
+<p>准备研究之前google了一把SVPullToRefresh，发现除了github的官方地址，排在最前面的居然是我去年写的一篇<a href="http://blog.csdn.net/itenric/article/details/12391185" target="_blank" rel="external">博客</a>。重新看了一遍，发现自己当时讲的很浅，很多关键的东西都是一笔带过，没有讲清楚。所以今天重写一篇，深入地介绍一下这个优秀的组件。</p>
+<h3 id="铺垫">铺垫</h3>
+<h6 id="Associative（关联）">Associative（关联）</h6>
+<p>一个不可修改的类，如果要增加方法，可以用Category；但如果要添加属性，Category就无能为力了，只能使用Associative。Associative和Category同属于Runtime的运用，只是Category属于语法级别的封装，而要使用Associative必须显示地引用头文件<objc runtime.h="">。<br>Associative一共包含三个方法：</objc></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//设置属性</span></div><div class="line"><span class="comment">//第一个参数是原始对象，第二个参数是关联对象的key，第三个参数是关联对象本身，第四个参数是关联的策略。</span></div><div class="line"><span class="comment">//如果第三个参数是nil，则清空当前关联。</span></div><div class="line">OBJC_EXPORT <span class="keyword">void</span> objc_setAssociatedObject(<span class="keyword">id</span> object, <span class="keyword">const</span> <span class="keyword">void</span> *key, <span class="keyword">id</span> value, objc_AssociationPolicy policy)</div><div class="line">    __OSX_AVAILABLE_STARTING(__MAC_10_6, __IPHONE_3_1);</div><div class="line"></div><div class="line"><span class="comment">//访问属性</span></div><div class="line"><span class="comment">//第一个参数是原始对象，第二个参数是关联对象的key</span></div><div class="line">OBJC_EXPORT <span class="keyword">id</span> objc_getAssociatedObject(<span class="keyword">id</span> object, <span class="keyword">const</span> <span class="keyword">void</span> *key)</div><div class="line">    __OSX_AVAILABLE_STARTING(__MAC_10_6, __IPHONE_3_1);</div><div class="line"></div><div class="line"><span class="comment">//移除所有属性</span></div><div class="line"><span class="comment">//参数是原始对象</span></div><div class="line"><span class="comment">//这个方法会把对象重置回初始状态，因为无法保证别的地方是否也为该对象设置为关联对象。</span></div><div class="line"><span class="comment">//所以在尽量使用objc_setAssociatedObject，并把第三个参数设成nil来替代。</span></div><div class="line">OBJC_EXPORT <span class="keyword">void</span> objc_removeAssociatedObjects(<span class="keyword">id</span> object)</div><div class="line">    __OSX_AVAILABLE_STARTING(__MAC_10_6, __IPHONE_3_1);</div></pre></td></tr></table></figure>
+
+<p>关联策略（objc_AssociationPolicy）一共有5种类型，参照Property的定义，应该不难理解它们之间的区别。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">enum</span> {</div><div class="line">    OBJC_ASSOCIATION_ASSIGN = <span class="number">0</span>,           <span class="javadoc">/**&lt; Specifies a weak reference to the associated object. */</span></div><div class="line">    OBJC_ASSOCIATION_RETAIN_NONATOMIC = <span class="number">1</span>, <span class="javadoc">/**&lt; Specifies a strong reference to the associated object. </span></div><div class="line">                                            *   The association is not made atomically. */</div><div class="line">    OBJC_ASSOCIATION_COPY_NONATOMIC = <span class="number">3</span>,   <span class="javadoc">/**&lt; Specifies that the associated object is copied. </span></div><div class="line">                                            *   The association is not made atomically. */</div><div class="line">    OBJC_ASSOCIATION_RETAIN = <span class="number">01401</span>,       <span class="javadoc">/**&lt; Specifies a strong reference to the associated object.</span></div><div class="line">                                            *   The association is made atomically. */</div><div class="line">    OBJC_ASSOCIATION_COPY = <span class="number">01403</span>          <span class="javadoc">/**&lt; Specifies that the associated object is copied.</span></div><div class="line">                                            *   The association is made atomically. */</div><div class="line">};</div></pre></td></tr></table></figure>
+
+<p>  <a href="http://nshipster.cn/associated-objects/" target="_blank" rel="external">更多参考</a></p>
+<h6 id="@dynamic属性声明">@dynamic属性声明</h6>
+<p>正常的属性都是用@synthesize来声明的（XCode4.0之后不需要了，编译时会自动生成get、set方法）。但是有时候我们的get、set方法要在运行时才动态绑定，这时就要用@dynamic。</p>
+<h6 id="KVO">KVO</h6>
+<p>KVO是用来检测对象的某个属性是否发生变化的机制。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//加入观察者</span></div><div class="line">- (<span class="keyword">void</span>)addObserver:(<span class="built_in">NSObject</span> *)observer forKeyPath:(<span class="built_in">NSString</span> *)keyPath options:(NSKeyValueObservingOptions)options context:(<span class="keyword">void</span> *)context;</div><div class="line"></div><div class="line"><span class="comment">//移除观察者</span></div><div class="line">- (<span class="keyword">void</span>)removeObserver:(<span class="built_in">NSObject</span> *)observer forKeyPath:(<span class="built_in">NSString</span> *)keyPath;</div></pre></td></tr></table></figure>
+
+<h3 id="PullToRefresh实现机制">PullToRefresh实现机制</h3>
+<p>PullToRefresh就是在UIScrollView上面add了一个subview：PullToRefreshView。这个PullToRefreshView就是一个普通的View，宽度和UIScrollView相同，高度可以自定义，默认是60。</p>
+<p>PullToRefreshView有四种状态：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">typedef NS_ENUM(NSUInteger, SVPullToRefreshState) {</div><div class="line"><span class="constant">    SVPullToRefreshStateStopped</span> = <span class="number">0</span>,</div><div class="line"><span class="constant">    SVPullToRefreshStateTriggered,</span></div><div class="line">    SVPullToRefreshStateLoading,</div><div class="line">    SVPullToRefreshStateAll = <span class="number">10</span></div><div class="line">};</div></pre></td></tr></table></figure>
+
+<ul>
+<li>SVPullToRefreshStateStopped：刷新停止状态，还没有触发刷新操作。</li>
+<li>SVPullToRefreshStateTriggered：刷新操作被触发，但还没有开始发送请求（只要用户手还没松开，不会发送请求）</li>
+<li>SVPullToRefreshStateLoading：已经发送请求，但数据还没回来，这时菊花一直在转。这时候UITableView的contentInset已经修改，使PullToRefreshView可见。</li>
+<li>SVPullToRefreshStateAll：初始化的时候用的。</li>
+</ul>
+<p>如果不需要自定义，PullToRefreshView内置了一个默认版本，包含箭头、title、subtitle、time。</p>
+<p>自定义也可以，在PullToRefreshView的viewForState数组中加入三中状态的视图，然后就可以显示自定义的UI了。</p>
+<p>PullToRefreshView是UIScrollView的一个属性，这个属性是通过关联的方式绑定的。当用户滚动UIScrollView的时候，ContentOffset会发生变化，这时候UIScrollView的观察者PullToRefreshView就会收到通知，然后根据PullToRefreshView自身的状态和ContentOffset决定是否切换状态，并执行相应动画。</p>
+<h3 id="自定义">自定义</h3>
+<p>SVPullToRefresh自带的自定义功能比较鸡肋，就是根据不同的状态换不同的View。当你想做更多个性化的动画时，就比较捉急了。所以，我准备只保留其最核心的部分，比如关联、KVO、四个状态，然后整体的动画都重新写。效果图如下（话说这个动画设计的实在是low）：</p>
+<p><img src="/images/16632-ba39e932e38e20d7.gif" alt="loading.gif"></p>
+<p>动画分成两个阶段：</p>
+<ul>
+<li>第一个阶段是还没进入加载阶段，这时候随着下拉的高度，中间的图片逐渐变大，扇形区域也逐渐变大。</li>
+<li>第二个阶段是加载过程中，中间的图片开始旋转，同时像两侧发射出几个小图，旋转的同时透明度也发生变化，并来回震荡，直到加载结束。</li>
+</ul>
+<p>代码是基于SVPullToRefresh修改的，把用不着的代码全删了。项目已上传：<a href="https://github.com/tenric/SVPullToRefreshDemo" target="_blank" rel="external">Github</a>。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>SVPullToRefresh是iOS上实现下拉刷新和上提加载的一个组件。<br>]]>
+    
+    </summary>
+    
+      <category term="网络" scheme="http://linkageios.github.io/tags/%E7%BD%91%E7%BB%9C/"/>
+    
+      <category term="iOS" scheme="http://linkageios.github.io/categories/iOS/"/>
+    
+      <category term="AFNetworking" scheme="http://linkageios.github.io/categories/iOS/AFNetworking/"/>
+    
+      <category term="重构" scheme="http://linkageios.github.io/categories/iOS/AFNetworking/%E9%87%8D%E6%9E%84/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[sourceTree使用注意事项]]></title>
@@ -548,6 +614,46 @@ return cell
   </entry>
   
   <entry>
+    <title><![CDATA[测试Json效率和XML效率]]></title>
+    <link href="http://linkageios.github.io/2014/11/07/%E6%B5%8B%E8%AF%95Json%E6%95%88%E7%8E%87%E5%92%8CXML%E6%95%88%E7%8E%87/"/>
+    <id>http://linkageios.github.io/2014/11/07/测试Json效率和XML效率/</id>
+    <published>2014-11-07T05:38:14.000Z</published>
+    <updated>2014-12-03T02:50:04.000Z</updated>
+    <content type="html"><![CDATA[<ul>
+<li><p>tips：把项目中的解析json的sbjson ,网上提到的JsonKit和apple提供的自带json解析方法进行比较<br>所解析的json是来自项目当中服务返回的商家列表信息<br>具体如下图</p>
+<a id="more"></a>
+</li>
+<li><p>tips：把项目中的解析json的sbjson ,网上提到的JsonKit和apple提供的自带json解析方法进行比较<br>所解析的json是来自项目当中服务返回的商家列表信息<br>具体如下图<br><img src="/images/79888-1946ee461177aeca.png" alt="imag"><br>开始先去 请求 商家列表信息 ，请求成功之后 会有弹出框提示</p>
+<a id="more"></a></li>
+<li>tips：把项目中的解析json的sbjson ,网上提到的JsonKit和apple提供的自带json解析方法进行比较<br>所解析的json是来自项目当中服务返回的商家列表信息<br>具体如下图<br><img src="/images/79888-1946ee461177aeca.png" alt="imag"><br>开始先去 请求 商家列表信息 ，请求成功之后 会有弹出框提示</li>
+</ul>
+<p><img src="/images/79888-bd0e36d1d14085ea.png" alt="imag"><br>之后可以依次测试三种解析，具体看demo提示<br>结果：JSONKit 效率最接近苹果原生</p>
+<ul>
+<li>tips：针对项目中的车型xml文件，对比XMLDictionary和苹果自带xml解析的效率<br>解析的对象就是 项目当中的车型库文件</li>
+</ul>
+<p><img src="/images/79888-e567a1bfada45c8c.png" alt="imag"><br>每个解析方法 解析1000次 具体实现看demo<br>结果：XMLDictionary因为是 宽泛适应的解析 比demo中的针对特定文件写的解析是要慢些，但是今后将取消xml读取文件，这个也就没什么需要考虑的了</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<ul>
+<li><p>tips：把项目中的解析json的sbjson ,网上提到的JsonKit和apple提供的自带json解析方法进行比较<br>所解析的json是来自项目当中服务返回的商家列表信息<br>具体如下图</p>
+<!--more-->
+</li>
+<li><p>tips：把项目中的解析json的sbjson ,网上提到的JsonKit和apple提供的自带json解析方法进行比较<br>所解析的json是来自项目当中服务返回的商家列表信息<br>具体如下图<br><img src="/images/79888-1946ee461177aeca.png" alt="imag"><br>开始先去 请求 商家列表信息 ，请求成功之后 会有弹出框提示</p>
+]]>
+    
+    </summary>
+    
+      <category term="xml" scheme="http://linkageios.github.io/tags/xml/"/>
+    
+      <category term="json" scheme="http://linkageios.github.io/tags/json/"/>
+    
+      <category term="效率" scheme="http://linkageios.github.io/tags/%E6%95%88%E7%8E%87/"/>
+    
+      <category term="iOS" scheme="http://linkageios.github.io/categories/iOS/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[iOS代码规范]]></title>
     <link href="http://linkageios.github.io/2014/11/07/iOS%E7%BC%96%E7%A0%81%E8%A7%84%E8%8C%83/"/>
     <id>http://linkageios.github.io/2014/11/07/iOS编码规范/</id>
@@ -765,46 +871,6 @@ return cell
     </summary>
     
       <category term="规范" scheme="http://linkageios.github.io/tags/%E8%A7%84%E8%8C%83/"/>
-    
-      <category term="iOS" scheme="http://linkageios.github.io/categories/iOS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[测试Json效率和XML效率]]></title>
-    <link href="http://linkageios.github.io/2014/11/07/%E6%B5%8B%E8%AF%95Json%E6%95%88%E7%8E%87%E5%92%8CXML%E6%95%88%E7%8E%87/"/>
-    <id>http://linkageios.github.io/2014/11/07/测试Json效率和XML效率/</id>
-    <published>2014-11-07T05:38:14.000Z</published>
-    <updated>2014-12-03T02:50:04.000Z</updated>
-    <content type="html"><![CDATA[<ul>
-<li><p>tips：把项目中的解析json的sbjson ,网上提到的JsonKit和apple提供的自带json解析方法进行比较<br>所解析的json是来自项目当中服务返回的商家列表信息<br>具体如下图</p>
-<a id="more"></a>
-</li>
-<li><p>tips：把项目中的解析json的sbjson ,网上提到的JsonKit和apple提供的自带json解析方法进行比较<br>所解析的json是来自项目当中服务返回的商家列表信息<br>具体如下图<br><img src="/images/79888-1946ee461177aeca.png" alt="imag"><br>开始先去 请求 商家列表信息 ，请求成功之后 会有弹出框提示</p>
-<a id="more"></a></li>
-<li>tips：把项目中的解析json的sbjson ,网上提到的JsonKit和apple提供的自带json解析方法进行比较<br>所解析的json是来自项目当中服务返回的商家列表信息<br>具体如下图<br><img src="/images/79888-1946ee461177aeca.png" alt="imag"><br>开始先去 请求 商家列表信息 ，请求成功之后 会有弹出框提示</li>
-</ul>
-<p><img src="/images/79888-bd0e36d1d14085ea.png" alt="imag"><br>之后可以依次测试三种解析，具体看demo提示<br>结果：JSONKit 效率最接近苹果原生</p>
-<ul>
-<li>tips：针对项目中的车型xml文件，对比XMLDictionary和苹果自带xml解析的效率<br>解析的对象就是 项目当中的车型库文件</li>
-</ul>
-<p><img src="/images/79888-e567a1bfada45c8c.png" alt="imag"><br>每个解析方法 解析1000次 具体实现看demo<br>结果：XMLDictionary因为是 宽泛适应的解析 比demo中的针对特定文件写的解析是要慢些，但是今后将取消xml读取文件，这个也就没什么需要考虑的了</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<ul>
-<li><p>tips：把项目中的解析json的sbjson ,网上提到的JsonKit和apple提供的自带json解析方法进行比较<br>所解析的json是来自项目当中服务返回的商家列表信息<br>具体如下图</p>
-<!--more-->
-</li>
-<li><p>tips：把项目中的解析json的sbjson ,网上提到的JsonKit和apple提供的自带json解析方法进行比较<br>所解析的json是来自项目当中服务返回的商家列表信息<br>具体如下图<br><img src="/images/79888-1946ee461177aeca.png" alt="imag"><br>开始先去 请求 商家列表信息 ，请求成功之后 会有弹出框提示</p>
-]]>
-    
-    </summary>
-    
-      <category term="xml" scheme="http://linkageios.github.io/tags/xml/"/>
-    
-      <category term="json" scheme="http://linkageios.github.io/tags/json/"/>
-    
-      <category term="效率" scheme="http://linkageios.github.io/tags/%E6%95%88%E7%8E%87/"/>
     
       <category term="iOS" scheme="http://linkageios.github.io/categories/iOS/"/>
     
@@ -1550,96 +1616,6 @@ parentView:(UIView *)parent;   // menu的parentView
     </summary>
     
       <category term="分享" scheme="http://linkageios.github.io/tags/%E5%88%86%E4%BA%AB/"/>
-    
-      <category term="iOS" scheme="http://linkageios.github.io/categories/iOS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[iOS的网络框架（HTTP）]]></title>
-    <link href="http://linkageios.github.io/2014/10/13/iOS%E7%9A%84%E7%BD%91%E7%BB%9C%E6%A1%86%E6%9E%B6%EF%BC%88HTTP%EF%BC%89/"/>
-    <id>http://linkageios.github.io/2014/10/13/iOS的网络框架（HTTP）/</id>
-    <published>2014-10-13T07:07:00.000Z</published>
-    <updated>2014-11-18T10:29:27.000Z</updated>
-    <content type="html"><![CDATA[<h2 id="背景和目标">背景和目标</h2>
-<p>目前市场上的大部分App都有网络功能，而网络功能大部分都是基于HTTP协议的。HTTP协议简单而又强大，这也是该协议长盛不衰的秘诀之一。每一个程序员都最好了解一下HTTP协议，这会让你受益匪浅。</p>
-<ul>
-<li><a href="http://www.w3.org/Protocols/rfc2616/rfc2616.html" target="_blank" rel="external">协议规范(英)</a></li>
-<li><a href="http://javadocs.wikidot.com/hypertext-transfer-protocol-http1-1" target="_blank" rel="external">协议规范(中)</a></li>
-</ul>
-<p>回到iOS，我们将如何使用HTTP协议来完成网络请求呢？从头开始开发一个协议栈是重复造轮子，非常不明智。因为苹果的开发框架中已经包含了对HTTP协议的封装。<a href="https://developer.apple.com/library/ios/documentation/NetworkingInternetWeb/Conceptual/NetworkingOverview/WorkingWithHTTPAndHTTPSRequests/WorkingWithHTTPAndHTTPSRequests.html" target="_blank" rel="external">请看官方文档说明</a></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/16632-bc2417c93684ed68.gif" alt="network.gif"><br><a id="more"></a></p>
-<h2 id="背景和目标-1">背景和目标</h2>
-<p>目前市场上的大部分App都有网络功能，而网络功能大部分都是基于HTTP协议的。HTTP协议简单而又强大，这也是该协议长盛不衰的秘诀之一。每一个程序员都最好了解一下HTTP协议，这会让你受益匪浅。</p>
-<ul>
-<li><a href="http://www.w3.org/Protocols/rfc2616/rfc2616.html" target="_blank" rel="external">协议规范(英)</a></li>
-<li><a href="http://javadocs.wikidot.com/hypertext-transfer-protocol-http1-1" target="_blank" rel="external">协议规范(中)</a></li>
-</ul>
-<p>回到iOS，我们将如何使用HTTP协议来完成网络请求呢？从头开始开发一个协议栈是重复造轮子，非常不明智。因为苹果的开发框架中已经包含了对HTTP协议的封装。<a href="https://developer.apple.com/library/ios/documentation/NetworkingInternetWeb/Conceptual/NetworkingOverview/WorkingWithHTTPAndHTTPSRequests/WorkingWithHTTPAndHTTPSRequests.html" target="_blank" rel="external">请看官方文档说明</a></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/16632-bc2417c93684ed68.gif" alt="network.gif"></p>
-<p>上面这张<a href="http://www.infoq.com/cn/articles/afn_vs_asi" target="_blank" rel="external">图片</a>解释了iOS框架中网络的实现方式和目前流行的网络框架所出的位置（第三行右边应该视CFHTTP，不是CFFTP））。ASI是基于CFHTTP的，AFNetworking是基于NSURL的，两者处在不同的层次上，实现原理也不同。</p>
-<p>像这样的第三方网络框架，虽然使用起来比系统原生的简单了许多，但为了保持通用性，整个框架的接口还是比较多，调用的过程也不是一两行能搞定的。</p>
-<p>我想，如果在开发自己的项目过程中，能不能提供一套最简单的API，只提供我们用的到的接口，并且将一些重复的处理逻辑封装起来。使得调用者在不需要了解CFHTTP、NSURL、ASIHTTPRequest、AFNetworking的情况下，只要用一两行代码，就能把网络请求处理完，让开发着处理网络请求像调用本地方法一样自然，这就是我的目标。</p>
-<h2 id="确定需求范围">确定需求范围</h2>
-<p>我不想做一个通用性很强的框架，我只是希望它能解决目前的所有需求，然后越简单越好。<br>我们目前遇到的需求不是很多，有如下几种类型：</p>
-<ul>
-<li>根据本地参数，向后台发起请求，获得我要的数据。</li>
-<li>像后台提交数据，知道成功或者失败。</li>
-</ul>
-<h2 id="实现方式选择">实现方式选择</h2>
-<p>由于个人喜好，我会基于AFNetworking之上开发一套API，同时让这套API可以方便的切换到ASIHTTPRequest或者哪天有冒出来的新框架。</p>
-<h2 id="最终实现">最终实现</h2>
-<p>最终的实现基本满足了预期的目标，即用一两行代码完成网络的请求。下面是架构图：</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/16632-9e79a04bcf4a1033.png" alt="http_framework.png"></p>
-<p>其实一开始设计的时候，就只有4个类：</p>
-<ul>
-<li>MJHttpClient</li>
-<li>MJRequest</li>
-<li>MJHttpError</li>
-<li>MJResponse</li>
-</ul>
-<p> 这样做满足了项目中80%的后台接口，但有些比如传图片或者需要在httpbody中塞数据的接口，用最基本的Request难以封装，所以就陆续加了两个子类。因为是见招拆招，所以并不完美，不过还是覆盖了当前项目的所有请求类型。</p>
-<p>接下来主义介绍这几个类：</p>
-<h4 id="MJHttpClient">MJHttpClient</h4>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">typedef</span> <span class="keyword">void</span> (^MJResponseObject)(MJResponse* responseObject);</div><div class="line"><span class="keyword">typedef</span> <span class="keyword">void</span> (^MJResponseError)(MJHttpError* responseError);</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">MJHttpClient</span> : <span class="title">NSObject</span></span></div><div class="line"></div><div class="line">+ (MJHttpClient*)client;</div><div class="line"></div><div class="line"><span class="comment">//设置是否接受非json格式的返回</span></div><div class="line">- (<span class="keyword">void</span>)enableNoneJsonBack;</div><div class="line"></div><div class="line"><span class="comment">//发送请求，需要提供成功和失败的回掉</span></div><div class="line">- (<span class="keyword">void</span>)sendRequest:(MJRequest*)request</div><div class="line">         onResponse:(MJResponseObject)processBlock</div><div class="line">            onError:(MJResponseError)errorBlock;</div><div class="line"></div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure>
-
-<p>这个类非常简单，第一个方法创建自身对象，非单例（因为可能同时存在多个请求，所以不可以用单例）。第二个方法是因为后台的返回数据有些不是json格式的（事情上开发过程中前后台需要协调尽量让所有的接口返回json，不要返回字符串或者整数对象。但现在已经有了漏网之鱼，所以要做容错）。第三个方法就是发送请求的方法，就一行代码。</p>
-<h4 id="MJRequest">MJRequest</h4>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">typedef NS_ENUM(NSInteger, RequestMethod) <span class="comment">{</span></div><div class="line">    RequestMethod_Get,</div><div class="line">    RequestMethod_Post,</div><div class="line">    RequestMethod_Put,</div><div class="line">    RequestMethod_Delete</div><div class="line">};</div><div class="line"></div><div class="line">@<span class="keyword">class</span> MJQueryModel;</div><div class="line"></div><div class="line">@<span class="keyword">interface</span> MJRequest : NSObject</div><div class="line"></div><div class="line">@<span class="keyword">property</span> (nonatomic,assign) RequestMethod <span class="function"><span class="keyword">method</span>;</span></div><div class="line"></div><div class="line">@<span class="keyword">property</span> (nonatomic,<span class="keyword">copy</span>) NSString* baseUrl;</div><div class="line"></div><div class="line">@<span class="keyword">property</span> (nonatomic,<span class="keyword">copy</span>) NSString* api;</div><div class="line"></div><div class="line"><span class="comment">//请求参数的对象</span></div><div class="line">@<span class="keyword">property</span> (nonatomic,<span class="keyword">strong</span>) MJQueryModel* queryModel;</div><div class="line"></div><div class="line"><span class="comment">//请求参数的对象（请求参数是数组的话）</span></div><div class="line">@<span class="keyword">property</span> (nonatomic,<span class="keyword">strong</span>) NSArray* queryModels;</div><div class="line"></div><div class="line"><span class="comment">//创建请求</span></div><div class="line">+ (MJRequest*)requestWithMethod:(RequestMethod)<span class="function"><span class="keyword">method</span> <span class="title">api</span>:</span>(NSString*)api;</div><div class="line"></div><div class="line"><span class="comment">//请求参数对象转化成NSDictionary或者NSArray</span></div><div class="line">- (id)buildParam;</div><div class="line"></div><div class="line">@<span class="keyword">end</span></div></pre></td></tr></table></figure>
-
-<p>这个Request只能吃力url传参数的情况，body里面传参数是不支持的（这也是MJBodyRequest和MJMultipartRequest存在的必要）。但即使url传参数，也有字典和数组两种情况，所以这里加了queryModel和queryModels两个属性，在实用的时候，只需要给其中一个复制就可以了。</p>
-<h4 id="MJResponse">MJResponse</h4>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">MJResponse</span> : <span class="title">NSObject</span></span></div><div class="line"></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">strong</span>) <span class="keyword">id</span> object;</div><div class="line"></div><div class="line">+ (MJResponse*)responseWithObject:(<span class="keyword">id</span>)responseObject;</div><div class="line"></div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure>
-
-<p>MJResponse是请求成功之后返回的对象，可以是空、字符串、字典、数组，基本上都可以支持，在成功的block里需要对其处理。</p>
-<h4 id="MJHttpError">MJHttpError</h4>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">MJHttpError</span> : <span class="title">NSObject</span></span></div><div class="line"></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">assign</span>) <span class="built_in">NSInteger</span> errorCode;</div><div class="line"></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">copy</span>) <span class="built_in">NSString</span>* errorDescription;</div><div class="line"></div><div class="line">+ (MJHttpError*)errorWithNSError:(<span class="built_in">NSError</span>*)error;</div><div class="line"></div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure>
-
-<p>这个类比较鸡肋，就是一个翻版的NSError。但后期可能会对错误有特殊处理，就先占个位。</p>
-<h3 id="使用方法">使用方法</h3>
-<h4 id="普通请求">普通请求</h4>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">MJHttpClient<span class="keyword">*</span> client = [MJHttpClient client];</div><div class="line">MJRequest<span class="keyword">*</span> request = [MJRequest requestWithMethod:RequestMethod_Get api:<span class="comment">@"xxx/yyy"];</span></div><div class="line">    </div><div class="line">HJQueryAdsModel<span class="keyword">*</span> model = [HJQueryAdsModel new];</div><div class="line">model.type = [NSString stringWithFormat:<span class="comment">@"%d",mtag];</span></div><div class="line">request.queryModel = model;</div><div class="line">    </div><div class="line">[client sendRequest:request onResponse:^(MJResponse <span class="keyword">*</span>responseObject) {</div><div class="line">    //数据处理</div><div class="line">} onError:^(MJHttpError <span class="keyword">*</span>responseError) {</div><div class="line">    NSLog(<span class="comment">@"%@",responseError.errorDescription);</span></div><div class="line">}];</div></pre></td></tr></table></figure>
-
-<h4 id="Body请求">Body请求</h4>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">MJHttpClient<span class="keyword">*</span> client = [MJHttpClient client];</div><div class="line">        </div><div class="line">MJBodyRequest<span class="keyword">*</span> request = [MJBodyRequest requestWithMethod:RequestMethod_Post api:<span class="comment">@"xxx/yyy" bodies:array];</span></div><div class="line">        </div><div class="line">[client sendRequest:request onResponse:^(MJResponse <span class="keyword">*</span>responseObject) {</div><div class="line">     //数据处理   </div><div class="line">} onError:^(MJHttpError <span class="keyword">*</span>responseError) {</div><div class="line">     NSLog(<span class="comment">@"%@",responseError.errorDescription);</span></div><div class="line">}];</div></pre></td></tr></table></figure>
-
-<h4 id="Multipart请求">Multipart请求</h4>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="type">MJHttpClient</span>* client = [<span class="type">MJHttpClient</span> client];</div><div class="line"><span class="type">MJMultipartData</span>* <span class="typedef"><span class="keyword">data</span> = [<span class="type">MJMultipartData</span> new];</span></div><div class="line"><span class="typedef"><span class="keyword">data</span>.fileData = <span class="type">UIImagePNGRepresentation</span><span class="container">(<span class="title">image</span>)</span>;</span></div><div class="line"><span class="typedef"><span class="keyword">data</span>.name = @"file";</span></div><div class="line"><span class="typedef"><span class="keyword">data</span>.fileName = @"boris.png";</span></div><div class="line"><span class="typedef"><span class="keyword">data</span>.fileType = @"image/png";</span></div><div class="line">    </div><div class="line"><span class="type">MJMultipartRequest</span>* request = [<span class="type">MJMultipartRequest</span> requestWithMethod:<span class="type">RequestMethod_Post</span> api:@<span class="string">"xxx/yyy"</span> datas:@[<span class="typedef"><span class="keyword">data</span>]];</span></div><div class="line">[client sendRequest:request onResponse:^(<span class="type">MJResponse</span> *responseObject) {</div><div class="line">    //数据处理 </div><div class="line">} onError:^(<span class="type">MJHttpError</span> *responseError) {</div><div class="line">    <span class="type">NSLog</span>(@<span class="string">"%@"</span>,responseError.errorDescription);</div><div class="line">}];</div></pre></td></tr></table></figure>
-
-]]></content>
-    <summary type="html">
-    <![CDATA[<h2 id="背景和目标">背景和目标</h2>
-<p>目前市场上的大部分App都有网络功能，而网络功能大部分都是基于HTTP协议的。HTTP协议简单而又强大，这也是该协议长盛不衰的秘诀之一。每一个程序员都最好了解一下HTTP协议，这会让你受益匪浅。</p>
-<ul>
-<li><a href="http://www.w3.org/Protocols/rfc2616/rfc2616.html" target="_blank" rel="external">协议规范(英)</a></li>
-<li><a href="http://javadocs.wikidot.com/hypertext-transfer-protocol-http1-1" target="_blank" rel="external">协议规范(中)</a></li>
-</ul>
-<p>回到iOS，我们将如何使用HTTP协议来完成网络请求呢？从头开始开发一个协议栈是重复造轮子，非常不明智。因为苹果的开发框架中已经包含了对HTTP协议的封装。<a href="https://developer.apple.com/library/ios/documentation/NetworkingInternetWeb/Conceptual/NetworkingOverview/WorkingWithHTTPAndHTTPSRequests/WorkingWithHTTPAndHTTPSRequests.html" target="_blank" rel="external">请看官方文档说明</a></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/16632-bc2417c93684ed68.gif" alt="network.gif"><br>]]>
-    
-    </summary>
-    
-      <category term="网络" scheme="http://linkageios.github.io/tags/%E7%BD%91%E7%BB%9C/"/>
     
       <category term="iOS" scheme="http://linkageios.github.io/categories/iOS/"/>
     

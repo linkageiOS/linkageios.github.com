@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>SVPullToRefresh与下拉刷新 | SmartArrow</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="SVPullToRefresh是iOS上实现下拉刷新和上提加载的一个组件。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SVPullToRefresh与下拉刷新">
+<meta property="og:url" content="http://linkageios.github.io/2014/12/03/SVPullToRefresh深入理解/">
+<meta property="og:site_name" content="SmartArrow">
+<meta property="og:description" content="SVPullToRefresh是iOS上实现下拉刷新和上提加载的一个组件。">
+<meta property="og:image" content="/images/16632-ba39e932e38e20d7.gif">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SVPullToRefresh与下拉刷新">
+<meta name="twitter:description" content="SVPullToRefresh是iOS上实现下拉刷新和上提加载的一个组件。">
+
+  
+    <link rel="alternative" href="/atom.xml" title="SmartArrow" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<div class="profilepic">
+			<img src="/images/logo.png">
+		</div>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">SmartArrow</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">技术文档</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="/#" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="/#" title="rss">rss</a>
+					        
+								<a class="facebook" target="_blank" href="/#" title="facebook">facebook</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud">
+						<a href="/tags/ARC/" style="font-size: 10.00px;">ARC</a><a href="/tags/FMDB/" style="font-size: 10.00px;">FMDB</a><a href="/tags/LCBaseViewController/" style="font-size: 10.00px;">LCBaseViewController</a><a href="/tags/LCDataManager/" style="font-size: 10.00px;">LCDataManager</a><a href="/tags/LCMenuView/" style="font-size: 10.00px;">LCMenuView</a><a href="/tags/POP/" style="font-size: 10.00px;">POP</a><a href="/tags/UICollectionView/" style="font-size: 10.00px;">UICollectionView</a><a href="/tags/iconsole/" style="font-size: 10.00px;">iconsole</a><a href="/tags/json/" style="font-size: 10.00px;">json</a><a href="/tags/xml/" style="font-size: 10.00px;">xml</a><a href="/tags/代码优化/" style="font-size: 10.00px;">代码优化</a><a href="/tags/内存/" style="font-size: 10.00px;">内存</a><a href="/tags/分享/" style="font-size: 10.00px;">分享</a><a href="/tags/动画/" style="font-size: 10.00px;">动画</a><a href="/tags/图片/" style="font-size: 10.00px;">图片</a><a href="/tags/地图/" style="font-size: 10.00px;">地图</a><a href="/tags/控件/" style="font-size: 10.00px;">控件</a><a href="/tags/支付/" style="font-size: 10.00px;">支付</a><a href="/tags/效率/" style="font-size: 15.00px;">效率</a><a href="/tags/架构/" style="font-size: 10.00px;">架构</a><a href="/tags/版本管理/" style="font-size: 10.00px;">版本管理</a><a href="/tags/网络/" style="font-size: 20.00px;">网络</a><a href="/tags/规范/" style="font-size: 15.00px;">规范</a><a href="/tags/路线图/" style="font-size: 10.00px;">路线图</a><a href="/tags/高德/" style="font-size: 10.00px;">高德</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://blog.crysnower.cn">StephenZhu&#39;s Blog</a>
+			        
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					我是谁，我从哪里来，我到哪里去？我就是我，是颜色不一样的吃货…
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay"></div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img src="/images/logo.png">
+			</div>
+
+			<hgroup>
+			  <h1 class="header-author"><a href="/">SmartArrow</a></h1>
+			</hgroup>
+			
+			<p class="header-subtitle">技术文档</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="/#" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="/#" title="rss">rss</a>
+			        
+						<a class="facebook" target="_blank" href="/#" title="facebook">facebook</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <article id="post-SVPullToRefresh深入理解" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/12/03/SVPullToRefresh深入理解/" class="article-date">
+  	<time datetime="2014-12-03T07:59:00.000Z" itemprop="datePublished">12月 3 2014</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/iOS/">iOS</a><a class="article-category-link" href="/categories/iOS/AFNetworking/">AFNetworking</a><a class="article-category-link" href="/categories/iOS/AFNetworking/重构/">重构</a>
+  </div>
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/网络/">网络</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      SVPullToRefresh与下拉刷新
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>SVPullToRefresh是iOS上实现下拉刷新和上提加载的一个组件。<br><a id="more"></a></p>
+<h3 id="背景">背景</h3>
+<p>使用场景仅限UIScrollView，只需要一行代码，就能添加下拉刷新的功能。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[tableView addPullToRefreshWithActionHandler:^{</div><div class="line">    <span class="comment">// 预加载数据到dataSource, 向tableview插入cell</span></div><div class="line">    <span class="comment">// 完成时调用[tableView.pullToRefreshView stopAnimating] </span></div><div class="line">}];</div></pre></td></tr></table></figure>
+
+<p>准备研究之前google了一把SVPullToRefresh，发现除了github的官方地址，排在最前面的居然是我去年写的一篇<a href="http://blog.csdn.net/itenric/article/details/12391185" target="_blank" rel="external">博客</a>。重新看了一遍，发现自己当时讲的很浅，很多关键的东西都是一笔带过，没有讲清楚。所以今天重写一篇，深入地介绍一下这个优秀的组件。</p>
+<h3 id="铺垫">铺垫</h3>
+<h6 id="Associative（关联）">Associative（关联）</h6>
+<p>一个不可修改的类，如果要增加方法，可以用Category；但如果要添加属性，Category就无能为力了，只能使用Associative。Associative和Category同属于Runtime的运用，只是Category属于语法级别的封装，而要使用Associative必须显示地引用头文件<objc runtime.h="">。<br>Associative一共包含三个方法：</objc></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//设置属性</span></div><div class="line"><span class="comment">//第一个参数是原始对象，第二个参数是关联对象的key，第三个参数是关联对象本身，第四个参数是关联的策略。</span></div><div class="line"><span class="comment">//如果第三个参数是nil，则清空当前关联。</span></div><div class="line">OBJC_EXPORT <span class="keyword">void</span> objc_setAssociatedObject(<span class="keyword">id</span> object, <span class="keyword">const</span> <span class="keyword">void</span> *key, <span class="keyword">id</span> value, objc_AssociationPolicy policy)</div><div class="line">    __OSX_AVAILABLE_STARTING(__MAC_10_6, __IPHONE_3_1);</div><div class="line"></div><div class="line"><span class="comment">//访问属性</span></div><div class="line"><span class="comment">//第一个参数是原始对象，第二个参数是关联对象的key</span></div><div class="line">OBJC_EXPORT <span class="keyword">id</span> objc_getAssociatedObject(<span class="keyword">id</span> object, <span class="keyword">const</span> <span class="keyword">void</span> *key)</div><div class="line">    __OSX_AVAILABLE_STARTING(__MAC_10_6, __IPHONE_3_1);</div><div class="line"></div><div class="line"><span class="comment">//移除所有属性</span></div><div class="line"><span class="comment">//参数是原始对象</span></div><div class="line"><span class="comment">//这个方法会把对象重置回初始状态，因为无法保证别的地方是否也为该对象设置为关联对象。</span></div><div class="line"><span class="comment">//所以在尽量使用objc_setAssociatedObject，并把第三个参数设成nil来替代。</span></div><div class="line">OBJC_EXPORT <span class="keyword">void</span> objc_removeAssociatedObjects(<span class="keyword">id</span> object)</div><div class="line">    __OSX_AVAILABLE_STARTING(__MAC_10_6, __IPHONE_3_1);</div></pre></td></tr></table></figure>
+
+<p>关联策略（objc_AssociationPolicy）一共有5种类型，参照Property的定义，应该不难理解它们之间的区别。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">enum</span> {</div><div class="line">    OBJC_ASSOCIATION_ASSIGN = <span class="number">0</span>,           <span class="javadoc">/**&lt; Specifies a weak reference to the associated object. */</span></div><div class="line">    OBJC_ASSOCIATION_RETAIN_NONATOMIC = <span class="number">1</span>, <span class="javadoc">/**&lt; Specifies a strong reference to the associated object. </span></div><div class="line">                                            *   The association is not made atomically. */</div><div class="line">    OBJC_ASSOCIATION_COPY_NONATOMIC = <span class="number">3</span>,   <span class="javadoc">/**&lt; Specifies that the associated object is copied. </span></div><div class="line">                                            *   The association is not made atomically. */</div><div class="line">    OBJC_ASSOCIATION_RETAIN = <span class="number">01401</span>,       <span class="javadoc">/**&lt; Specifies a strong reference to the associated object.</span></div><div class="line">                                            *   The association is made atomically. */</div><div class="line">    OBJC_ASSOCIATION_COPY = <span class="number">01403</span>          <span class="javadoc">/**&lt; Specifies that the associated object is copied.</span></div><div class="line">                                            *   The association is made atomically. */</div><div class="line">};</div></pre></td></tr></table></figure>
+
+<p>  <a href="http://nshipster.cn/associated-objects/" target="_blank" rel="external">更多参考</a></p>
+<h6 id="@dynamic属性声明">@dynamic属性声明</h6>
+<p>正常的属性都是用@synthesize来声明的（XCode4.0之后不需要了，编译时会自动生成get、set方法）。但是有时候我们的get、set方法要在运行时才动态绑定，这时就要用@dynamic。</p>
+<h6 id="KVO">KVO</h6>
+<p>KVO是用来检测对象的某个属性是否发生变化的机制。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//加入观察者</span></div><div class="line">- (<span class="keyword">void</span>)addObserver:(<span class="built_in">NSObject</span> *)observer forKeyPath:(<span class="built_in">NSString</span> *)keyPath options:(NSKeyValueObservingOptions)options context:(<span class="keyword">void</span> *)context;</div><div class="line"></div><div class="line"><span class="comment">//移除观察者</span></div><div class="line">- (<span class="keyword">void</span>)removeObserver:(<span class="built_in">NSObject</span> *)observer forKeyPath:(<span class="built_in">NSString</span> *)keyPath;</div></pre></td></tr></table></figure>
+
+<h3 id="PullToRefresh实现机制">PullToRefresh实现机制</h3>
+<p>PullToRefresh就是在UIScrollView上面add了一个subview：PullToRefreshView。这个PullToRefreshView就是一个普通的View，宽度和UIScrollView相同，高度可以自定义，默认是60。</p>
+<p>PullToRefreshView有四种状态：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">typedef NS_ENUM(NSUInteger, SVPullToRefreshState) {</div><div class="line"><span class="constant">    SVPullToRefreshStateStopped</span> = <span class="number">0</span>,</div><div class="line"><span class="constant">    SVPullToRefreshStateTriggered,</span></div><div class="line">    SVPullToRefreshStateLoading,</div><div class="line">    SVPullToRefreshStateAll = <span class="number">10</span></div><div class="line">};</div></pre></td></tr></table></figure>
+
+<ul>
+<li>SVPullToRefreshStateStopped：刷新停止状态，还没有触发刷新操作。</li>
+<li>SVPullToRefreshStateTriggered：刷新操作被触发，但还没有开始发送请求（只要用户手还没松开，不会发送请求）</li>
+<li>SVPullToRefreshStateLoading：已经发送请求，但数据还没回来，这时菊花一直在转。这时候UITableView的contentInset已经修改，使PullToRefreshView可见。</li>
+<li>SVPullToRefreshStateAll：初始化的时候用的。</li>
+</ul>
+<p>如果不需要自定义，PullToRefreshView内置了一个默认版本，包含箭头、title、subtitle、time。</p>
+<p>自定义也可以，在PullToRefreshView的viewForState数组中加入三中状态的视图，然后就可以显示自定义的UI了。</p>
+<p>PullToRefreshView是UIScrollView的一个属性，这个属性是通过关联的方式绑定的。当用户滚动UIScrollView的时候，ContentOffset会发生变化，这时候UIScrollView的观察者PullToRefreshView就会收到通知，然后根据PullToRefreshView自身的状态和ContentOffset决定是否切换状态，并执行相应动画。</p>
+<h3 id="自定义">自定义</h3>
+<p>SVPullToRefresh自带的自定义功能比较鸡肋，就是根据不同的状态换不同的View。当你想做更多个性化的动画时，就比较捉急了。所以，我准备只保留其最核心的部分，比如关联、KVO、四个状态，然后整体的动画都重新写。效果图如下（话说这个动画设计的实在是low）：</p>
+<p><img src="/images/16632-ba39e932e38e20d7.gif" alt="loading.gif"></p>
+<p>动画分成两个阶段：</p>
+<ul>
+<li>第一个阶段是还没进入加载阶段，这时候随着下拉的高度，中间的图片逐渐变大，扇形区域也逐渐变大。</li>
+<li>第二个阶段是加载过程中，中间的图片开始旋转，同时像两侧发射出几个小图，旋转的同时透明度也发生变化，并来回震荡，直到加载结束。</li>
+</ul>
+<p>代码是基于SVPullToRefresh修改的，把用不着的代码全删了。项目已上传：<a href="https://github.com/tenric/SVPullToRefreshDemo" target="_blank" rel="external">Github</a>。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2014/12/03/sourceTree使用注意事项/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">sourceTree使用注意事项</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="SVPullToRefresh深入理解" data-title="SVPullToRefresh与下拉刷新" data-url="http://linkageios.github.io/2014/12/03/SVPullToRefresh深入理解/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2014 SmartArrow
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+  <script src="/js/main.js" type="text/javascript"></script>
+
+
+  </div>
+</body>
+</html>

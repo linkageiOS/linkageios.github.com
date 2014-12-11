@@ -115,7 +115,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud">
-						<a href="/tags/ARC/" style="font-size: 10.00px;">ARC</a><a href="/tags/FMDB/" style="font-size: 10.00px;">FMDB</a><a href="/tags/LCBaseViewController/" style="font-size: 10.00px;">LCBaseViewController</a><a href="/tags/LCDataManager/" style="font-size: 10.00px;">LCDataManager</a><a href="/tags/LCMenuView/" style="font-size: 10.00px;">LCMenuView</a><a href="/tags/POP/" style="font-size: 10.00px;">POP</a><a href="/tags/UICollectionView/" style="font-size: 10.00px;">UICollectionView</a><a href="/tags/iconsole/" style="font-size: 10.00px;">iconsole</a><a href="/tags/json/" style="font-size: 10.00px;">json</a><a href="/tags/xml/" style="font-size: 10.00px;">xml</a><a href="/tags/代码优化/" style="font-size: 10.00px;">代码优化</a><a href="/tags/内存/" style="font-size: 10.00px;">内存</a><a href="/tags/分享/" style="font-size: 10.00px;">分享</a><a href="/tags/动画/" style="font-size: 10.00px;">动画</a><a href="/tags/图片/" style="font-size: 10.00px;">图片</a><a href="/tags/地图/" style="font-size: 10.00px;">地图</a><a href="/tags/控件/" style="font-size: 10.00px;">控件</a><a href="/tags/支付/" style="font-size: 10.00px;">支付</a><a href="/tags/效率/" style="font-size: 20.00px;">效率</a><a href="/tags/架构/" style="font-size: 10.00px;">架构</a><a href="/tags/版本管理/" style="font-size: 10.00px;">版本管理</a><a href="/tags/网络/" style="font-size: 20.00px;">网络</a><a href="/tags/规范/" style="font-size: 20.00px;">规范</a><a href="/tags/路线图/" style="font-size: 10.00px;">路线图</a><a href="/tags/高德/" style="font-size: 10.00px;">高德</a>
+						<a href="/tags/ARC/" style="font-size: 10.00px;">ARC</a><a href="/tags/FMDB/" style="font-size: 10.00px;">FMDB</a><a href="/tags/LCBaseViewController/" style="font-size: 10.00px;">LCBaseViewController</a><a href="/tags/LCDataManager/" style="font-size: 10.00px;">LCDataManager</a><a href="/tags/LCMenuView/" style="font-size: 10.00px;">LCMenuView</a><a href="/tags/POP/" style="font-size: 10.00px;">POP</a><a href="/tags/UICollectionView/" style="font-size: 10.00px;">UICollectionView</a><a href="/tags/iconsole/" style="font-size: 10.00px;">iconsole</a><a href="/tags/json/" style="font-size: 10.00px;">json</a><a href="/tags/xml/" style="font-size: 10.00px;">xml</a><a href="/tags/代码优化/" style="font-size: 10.00px;">代码优化</a><a href="/tags/内存/" style="font-size: 10.00px;">内存</a><a href="/tags/分享/" style="font-size: 10.00px;">分享</a><a href="/tags/动画/" style="font-size: 10.00px;">动画</a><a href="/tags/图片/" style="font-size: 10.00px;">图片</a><a href="/tags/地图/" style="font-size: 10.00px;">地图</a><a href="/tags/控件/" style="font-size: 10.00px;">控件</a><a href="/tags/支付/" style="font-size: 10.00px;">支付</a><a href="/tags/效率/" style="font-size: 15.00px;">效率</a><a href="/tags/架构/" style="font-size: 10.00px;">架构</a><a href="/tags/版本管理/" style="font-size: 10.00px;">版本管理</a><a href="/tags/网络/" style="font-size: 20.00px;">网络</a><a href="/tags/规范/" style="font-size: 15.00px;">规范</a><a href="/tags/路线图/" style="font-size: 10.00px;">路线图</a><a href="/tags/高德/" style="font-size: 10.00px;">高德</a>
 					</div>
 				</section>
 				
@@ -182,6 +182,68 @@
 	</div>
 </nav>
       
+  
+    <article id="post-地图开发总结" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/11/07/地图开发总结/" class="article-date">
+  	<time datetime="2014-11-07T04:18:00.000Z" itemprop="datePublished">11月 7 2014</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/iOS/">iOS</a>
+  </div>
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/地图/">地图</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/11/07/地图开发总结/">地图开发总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="坑爹的高德">坑爹的高德</h3>
+<p>项目中地图原来用的高德sdk，其实我不知道当时为什么就用了高德，但既然用了，那么就在此基础上开发吧。可是写着写着，问题就来了： <a href="http://bbs.amap.com/thread-42153-1-1.html" target="_blank" rel="external">问题链接</a>。虽然这个问题不是什么太大的问题，但保不准以后还会遇到什么别的坑，而且以高德的效率，短期内肯定不会解决的。<br>那为什么还要用那个sdk呢？好像我们用到的功能苹果自带的MapKit都能实现啊，而且高德官网上的合作伙伴（携程、美团）也是用的原生的MapKit（从地图默认加载背景就可以看出来）。后来只花了一点点时间就切换到苹果的MapKit（API是一样的），目前还没发现什么bug。</p>
+<h3 id="坐标转换之中国特色">坐标转换之中国特色</h3>
+<p>因为不用高德了，所以当前位置经纬度就用CoreLocation来获取。可是当你把获取的经纬度放到MKMapView中显示，位置竟然有偏移，而且还不小。</p>
+<p>这是苹果的bug吗？不是，是有关部门的功劳。我们只有一个地球，所以地球上每个点的经纬度是固定的，国际上有个通用标准，简称国际标准。CoreLocation取到的经纬度符合国际标准。</p>
+<p>可是在国内，由于国家安全，有关部门制定了一套新的标准，简称国家标准。只要是在国内发行的地图（包括电子地图），都要按国家标准来，不然就是非法的。所以苹果手机中的国内地图肯定也是改良过的。</p>
+<p>我拿着国际标准的经纬度放到改良过的符合国家标准的地图中，显然会发生偏移。</p>
+<p>解决办法就是将国际标准的经纬度转换成国家标准的经纬度。<a href="https://gist.github.com/mithvv/5476132" target="_blank" rel="external">算法是现成的</a>（以前用高德sdk获取当前位置的经纬度本来就是国家标准的，所以没事。）<br>
+        
+          <p class="article-more-link">
+            <a href="/2014/11/07/地图开发总结/#more">more >></a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
   
     <article id="post-POP框架初探" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -435,71 +497,9 @@ parentView:(UIView *)parent;   // menu的parentView
 
 
   
-    <article id="post-iOS的网络框架（HTTP）" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2014/10/13/iOS的网络框架（HTTP）/" class="article-date">
-  	<time datetime="2014-10-13T07:07:00.000Z" itemprop="datePublished">10月 13 2014</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/iOS/">iOS</a>
-  </div>
-
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/网络/">网络</a></li></ul>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/10/13/iOS的网络框架（HTTP）/">iOS的网络框架（HTTP）</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="背景和目标">背景和目标</h2>
-<p>目前市场上的大部分App都有网络功能，而网络功能大部分都是基于HTTP协议的。HTTP协议简单而又强大，这也是该协议长盛不衰的秘诀之一。每一个程序员都最好了解一下HTTP协议，这会让你受益匪浅。</p>
-<ul>
-<li><a href="http://www.w3.org/Protocols/rfc2616/rfc2616.html" target="_blank" rel="external">协议规范(英)</a></li>
-<li><a href="http://javadocs.wikidot.com/hypertext-transfer-protocol-http1-1" target="_blank" rel="external">协议规范(中)</a></li>
-</ul>
-<p>回到iOS，我们将如何使用HTTP协议来完成网络请求呢？从头开始开发一个协议栈是重复造轮子，非常不明智。因为苹果的开发框架中已经包含了对HTTP协议的封装。<a href="https://developer.apple.com/library/ios/documentation/NetworkingInternetWeb/Conceptual/NetworkingOverview/WorkingWithHTTPAndHTTPSRequests/WorkingWithHTTPAndHTTPSRequests.html" target="_blank" rel="external">请看官方文档说明</a></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/16632-bc2417c93684ed68.gif" alt="network.gif"><br>
-        
-          <p class="article-more-link">
-            <a href="/2014/10/13/iOS的网络框架（HTTP）/#more">more >></a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/5/">Next &raquo;</a>
     </nav>
   
 
