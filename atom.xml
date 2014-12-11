@@ -4,7 +4,7 @@
   <subtitle><![CDATA[技术文档]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://linkageios.github.io/"/>
-  <updated>2014-12-11T02:13:50.519Z</updated>
+  <updated>2014-12-11T03:02:23.427Z</updated>
   <id>http://linkageios.github.io/</id>
   
   <author>
@@ -64,32 +64,32 @@
     <link href="http://linkageios.github.io/2014/12/01/%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%A7%E4%BB%B6%E8%AF%B4%E6%98%8E/"/>
     <id>http://linkageios.github.io/2014/12/01/自定义控件说明/</id>
     <published>2014-12-01T07:59:00.000Z</published>
-    <updated>2014-12-11T02:10:58.000Z</updated>
+    <updated>2014-12-11T03:01:15.000Z</updated>
     <content type="html"><![CDATA[<p>自定义控件能满足快速迭代的需要，我把常用的控件整理出来，欢迎使用。<br><a id="more"></a></p>
 <h4 id="1-PageControl">1.PageControl</h4>
 <p>由于系统的PageControl控件的限制，不能修改颜色，更换图片，修改大小。所以开发了此控件。</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/77211-6b437f8229b8d900.gif" alt="pagecontrol.gif"></p>
+<p><img src="/images/77211-6b437f8229b8d900.gif" alt="pagecontrol.gif"></p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">/*默认使用颜色填充,还有其他参数可以修改* /</div><div class="line"><span class="constant">_pageControl.numberOfPages</span> = <span class="number">5</span>;<span class="comment">//一共多少页</span></div><div class="line">[_pageControl setOffColor: [UIColor  whiteColor]];<span class="comment">//非当前页的圆点颜色</span></div><div class="line">[_pageControl setOnColor: [UIColor redColor]];<span class="comment">//当前页的圆点颜色</span></div><div class="line">[_pageControl setIndicatorDiameter: <span class="number">7.0</span>f] ;<span class="comment">//圆点的直径</span></div><div class="line">[_pageControl setIndicatorSpace: <span class="number">12.0</span>f] ;<span class="comment">//圆点之间的距离</span></div></pre></td></tr></table></figure>
 
 <h4 id="2-倒计时控件">2.倒计时控件</h4>
 <p>项目中经常用到获取验证码的控件，用NSTimer控制时间，刷新按钮等。整理出来，避免代码冗余，使逻辑清晰。</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/77211-2a819e6b50a4e17f.gif" alt="倒计时.gif"></p>
+<p><img src="/mages/77211-2a819e6b50a4e17f.gif" alt="倒计时.gif"></p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">IBOutlet</span> LCCountDownButton *_countDownButton;<span class="comment">//定义</span></div><div class="line">_countDownButton<span class="variable">.timeOut</span> = <span class="number">10</span>;<span class="comment">//设置时间，默认是60秒</span></div><div class="line"></div><div class="line">按钮点击事件方法中调用：</div><div class="line">[_countDownButton beginCountDown];<span class="comment">//开始计时</span></div></pre></td></tr></table></figure>
 
 <h4 id="3-PlaceHolderTextView">3.PlaceHolderTextView</h4>
-<p>系统的textview控件无法添加提示语，不能修改颜色，大小，对齐方式。提示语在没有内容时显示，填写的时候自动隐藏。<br><img src="http://upload-images.jianshu.io/upload_images/77211-b55d156a76bd77cc.gif" alt="textView.gif"></p>
+<p>系统的textview控件无法添加提示语，不能修改颜色，大小，对齐方式。提示语在没有内容时显示，填写的时候自动隐藏。<br><img src="/images/77211-b55d156a76bd77cc.gif" alt="textView.gif"></p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="constant">_textView.placeholder</span> = @<span class="string">"请输入你想说的话..."</span>;<span class="comment">//提示文本</span></div><div class="line"><span class="constant">_textView.placeholderColor</span> = [UIColor redColor];<span class="comment">//文本颜色</span></div><div class="line"><span class="comment">//_textView.placeHolderTextAlignment = NSTextAlignmentCenter;//对齐方式，默认左对齐</span></div></pre></td></tr></table></figure>
 
 <h4 id="4-评分控件">4.评分控件</h4>
 <p>此控件有两个功能：<br>1）仅仅显示评分，一份代表一颗星，总分可以设置。<br>2）点击评分功能。</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/77211-b59fc8ef654ca40a.gif" alt="starRating.gif"></p>
+<p><img src="/images/77211-b59fc8ef654ca40a.gif" alt="starRating.gif"></p>
 <h4 id="5-跑马灯效果">5.跑马灯效果</h4>
 <p>项目中如果文字过长，由于屏幕宽度的限制，显示不完整，但是文本又不能截取。跑马灯是这种情况下最好的解决方案。</p>
 <p><img src="http://upload-images.jianshu.io/upload_images/77211-3c2a3f3fcd13cdcb.gif" alt="跑马灯.gif"></p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[_label setText:@<span class="string">"你发如雪 凄美了离别 我焚香感动了谁 邀明月 让回忆皎洁 爱在月光下完美"</span>];<span class="comment">//跑马灯文本</span></div><div class="line"><span class="constant">_label.backgroundColor</span> = [UIColor clearColor];</div><div class="line"><span class="constant">_label.subLabel.backgroundColor</span> = [UIColor clearColor];</div><div class="line"><span class="constant">_label.subLabel.textColor</span> = [UIColor redColor];<span class="comment">//文本颜色</span></div></pre></td></tr></table></figure>
 
 <h4 id="6-标签TagView">6.标签TagView</h4>
-<p>如下图所示。此控件经常用来显示个性标签。<br><img src="http://upload-images.jianshu.io/upload_images/77211-3c91a3611c9dc5e4.png" alt="tagView.png"></p>
+<p>如下图所示。此控件经常用来显示个性标签。<br><img src="/images/77211-3c91a3611c9dc5e4.png" alt="tagView.png"></p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//定义标签的文本属性</span></div><div class="line">TagAttribute *attr = [[TagAttribute alloc] init];</div><div class="line">attr<span class="variable">.textBackgroundColor</span> = [<span class="built_in">UIColor</span> clearColor];<span class="comment">//背景色</span></div><div class="line">attr<span class="variable">.textColor</span> = [<span class="built_in">UIColor</span> colorWithRed:<span class="number">0.0</span> green:<span class="number">144.0</span>/<span class="number">255.0</span> blue:<span class="number">1.0</span> alpha:<span class="number">1.0</span>];<span class="comment">//文本颜色</span></div><div class="line">attr<span class="variable">.textFont</span> = [<span class="built_in">UIFont</span> systemFontOfSize:<span class="number">12.0</span>];<span class="comment">//文本大小</span></div><div class="line">attr<span class="variable">.borderDisplay</span> = <span class="literal">YES</span>;<span class="comment">//是否显示边框</span></div><div class="line">attr<span class="variable">.borderColor</span> = [<span class="built_in">UIColor</span> colorWithRed:<span class="number">140.0</span>/<span class="number">255.0</span> green:<span class="number">204.0</span>/<span class="number">255.0</span> blue:<span class="number">1.0</span> alpha:<span class="number">1.0</span>];<span class="comment">//文本框颜色</span></div><div class="line">attr<span class="variable">.horizotalPadding</span> = <span class="number">3.0</span>;<span class="comment">//间隔</span></div><div class="line">_tagView<span class="variable">.tagAttribute</span> = attr;</div><div class="line">    </div><div class="line"></div><div class="line">_tagView<span class="variable">.tags</span> = @[<span class="string">@"自驾游"</span>,<span class="string">@"爱吹牛"</span>,<span class="string">@"90后"</span>,<span class="string">@"王菲"</span>,<span class="string">@"爱我别走，如果你说"</span>,<span class="string">@"喜欢陶喆"</span>,<span class="string">@"发如雪，凄美"</span>];<span class="comment">//标签内容，用数组传递。自动计算</span></div><div class="line">[_tagView displayTags];<span class="comment">//开始绘制</span></div></pre></td></tr></table></figure>
 
 <h4 id="7-segmentControl">7.segmentControl</h4>
@@ -188,13 +188,13 @@ xxxxxx
     <link href="http://linkageios.github.io/2014/11/30/%E6%94%AF%E4%BB%98%E6%95%B4%E5%90%88/"/>
     <id>http://linkageios.github.io/2014/11/30/支付整合/</id>
     <published>2014-11-30T07:59:00.000Z</published>
-    <updated>2014-12-11T02:10:58.000Z</updated>
+    <updated>2014-12-11T03:01:15.000Z</updated>
     <content type="html"><![CDATA[<p>对招行网页支付接口和银联支付sdk进行封装。<br><a id="more"></a></p>
 <p>tips：根据安排整合支付模块</p>
 <ul>
 <li>结构说明</li>
 </ul>
-<p><img src="http://upload-images.jianshu.io/upload_images/79888-f225cd39b214aa91.png" alt="99042A97-1C41-4F22-A736-4EE199A32C6D.png"></p>
+<p><img src="/images/79888-f225cd39b214aa91.png" alt="99042A97-1C41-4F22-A736-4EE199A32C6D.png"></p>
 <p>LCPayManager 提供了支付方法和一个回掉查看支付结果</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="pp">- <span class="params">(void)</span>orderPayMode:<span class="params">(<span class="variable">PayWay</span>)</span>payway orderInfo:<span class="params">(<span class="variable">LCPayBaseVo</span> *)</span>vo;</span></div></pre></td></tr></table></figure>
 
@@ -236,10 +236,10 @@ xxxxxx
     <link href="http://linkageios.github.io/2014/11/29/%E5%9B%BE%E7%89%87%E8%A3%81%E5%89%AA/"/>
     <id>http://linkageios.github.io/2014/11/29/图片裁剪/</id>
     <published>2014-11-29T07:59:00.000Z</published>
-    <updated>2014-12-11T02:10:58.000Z</updated>
+    <updated>2014-12-11T03:01:15.000Z</updated>
     <content type="html"><![CDATA[<p>图片处理是iOS APP中一个常见的功能。<br><a id="more"></a></p>
 <p>关于图片的裁剪，一般的需求是通过手势自定裁剪尺寸，如常见的美图软件。另外一种就是按照既定的比例裁剪，比如4：3， 16：9之类的。<br>这个demo主要做了两种裁剪方式。用法在demo已经写出。<br>主要看一下效果：</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/77211-f131390e450f1ea0.gif" alt="裁剪.gif"></p>
+<p><img src="/images/77211-f131390e450f1ea0.gif" alt="裁剪.gif"></p>
 ]]></content>
     <summary type="html">
     <![CDATA[<p>图片处理是iOS APP中一个常见的功能。<br>]]>
