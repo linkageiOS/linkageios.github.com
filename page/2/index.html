@@ -115,7 +115,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud">
-						<a href="/tags/ARC/" style="font-size: 10.00px;">ARC</a><a href="/tags/LCBaseViewController/" style="font-size: 10.00px;">LCBaseViewController</a><a href="/tags/LCDataManager/" style="font-size: 10.00px;">LCDataManager</a><a href="/tags/LCMenuView/" style="font-size: 10.00px;">LCMenuView</a><a href="/tags/POP/" style="font-size: 10.00px;">POP</a><a href="/tags/iconsole/" style="font-size: 10.00px;">iconsole</a><a href="/tags/json/" style="font-size: 10.00px;">json</a><a href="/tags/xml/" style="font-size: 10.00px;">xml</a><a href="/tags/代码优化/" style="font-size: 10.00px;">代码优化</a><a href="/tags/内存/" style="font-size: 10.00px;">内存</a><a href="/tags/分享/" style="font-size: 10.00px;">分享</a><a href="/tags/动画/" style="font-size: 10.00px;">动画</a><a href="/tags/地图/" style="font-size: 10.00px;">地图</a><a href="/tags/效率/" style="font-size: 20.00px;">效率</a><a href="/tags/架构/" style="font-size: 10.00px;">架构</a><a href="/tags/版本管理/" style="font-size: 10.00px;">版本管理</a><a href="/tags/网络/" style="font-size: 20.00px;">网络</a><a href="/tags/规范/" style="font-size: 20.00px;">规范</a><a href="/tags/路线图/" style="font-size: 10.00px;">路线图</a><a href="/tags/高德/" style="font-size: 10.00px;">高德</a>
+						<a href="/tags/ARC/" style="font-size: 10.00px;">ARC</a><a href="/tags/FMDB/" style="font-size: 10.00px;">FMDB</a><a href="/tags/LCBaseViewController/" style="font-size: 10.00px;">LCBaseViewController</a><a href="/tags/LCDataManager/" style="font-size: 10.00px;">LCDataManager</a><a href="/tags/LCMenuView/" style="font-size: 10.00px;">LCMenuView</a><a href="/tags/POP/" style="font-size: 10.00px;">POP</a><a href="/tags/UICollectionView/" style="font-size: 10.00px;">UICollectionView</a><a href="/tags/iconsole/" style="font-size: 10.00px;">iconsole</a><a href="/tags/json/" style="font-size: 10.00px;">json</a><a href="/tags/xml/" style="font-size: 10.00px;">xml</a><a href="/tags/代码优化/" style="font-size: 10.00px;">代码优化</a><a href="/tags/内存/" style="font-size: 10.00px;">内存</a><a href="/tags/分享/" style="font-size: 10.00px;">分享</a><a href="/tags/动画/" style="font-size: 10.00px;">动画</a><a href="/tags/图片/" style="font-size: 10.00px;">图片</a><a href="/tags/地图/" style="font-size: 10.00px;">地图</a><a href="/tags/控件/" style="font-size: 10.00px;">控件</a><a href="/tags/支付/" style="font-size: 10.00px;">支付</a><a href="/tags/效率/" style="font-size: 20.00px;">效率</a><a href="/tags/架构/" style="font-size: 10.00px;">架构</a><a href="/tags/版本管理/" style="font-size: 10.00px;">版本管理</a><a href="/tags/网络/" style="font-size: 20.00px;">网络</a><a href="/tags/规范/" style="font-size: 20.00px;">规范</a><a href="/tags/路线图/" style="font-size: 10.00px;">路线图</a><a href="/tags/高德/" style="font-size: 10.00px;">高德</a>
 					</div>
 				</section>
 				
@@ -183,19 +183,19 @@
 </nav>
       
   
-    <article id="post-iOS编码规范" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-图片裁剪" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2014/11/07/iOS编码规范/" class="article-date">
-  	<time datetime="2014-11-07T05:38:14.000Z" itemprop="datePublished">11月 7 2014</time>
+      <a href="/2014/11/29/图片裁剪/" class="article-date">
+  	<time datetime="2014-11-29T07:59:00.000Z" itemprop="datePublished">11月 29 2014</time>
 </a>
       
   <div class="article-category">
-    <a class="article-category-link" href="/categories/iOS/">iOS</a>
+    <a class="article-category-link" href="/categories/iOS/">iOS</a><a class="article-category-link" href="/categories/iOS/图片处理，剪裁/">图片处理，剪裁</a>
   </div>
 
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/规范/">规范</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/图片/">图片</a></li></ul>
 
     </div>
   
@@ -208,7 +208,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2014/11/07/iOS编码规范/">iOS代码规范</a>
+      <a class="article-title" href="/2014/11/29/图片裁剪/">图片处理Demo</a>
     </h1>
   
 
@@ -216,16 +216,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="为什么要有代码规范？">为什么要有代码规范？</h1>
-<p>对于团队，如果代码风格不统一，阅读或修改同事的代码会非常困难，造成潜在的风险。</p>
-<p>对于个人，代码规范是对自身编码习惯的一种监督，如果没有这种监督，有时候因为偷懒，会写出难看的代码，时间长了自己都看不懂。这样对于代码的维护性是不利的。</p>
-<h1 id="代码规范的内容？">代码规范的内容？</h1>
-<p>代码规范包含的范围十分广泛。从一个变量的命名到一个类的设计，我觉得都属于代码规范的范畴。从实践的角度，可以把代码规范分成两个部分：</p>
-<p>第一部分是规则，即一定要这么做。这里面没有对错，但需要统一。包含变量的命名、函数的命名、模块的组织、代码块的组织、宏、枚举、常量的声明、函数的粒度。</p>
-<p>第二部分是风格，即一种模式化的代码设计结构。我们实现某个功能时，往往不止一种实现方式。每一种实现方式没有绝对的高低之分，不同角度的解读，就会有不同的偏好。所以这个层面上的代码规范，只能求同存异。但是不管怎样，每个人必须要有一致性的风格。就像不同的小区可以有不同的风格，但同一个小区只能有一种设计风格。风格包含代码设计中的抽象概念，比如接口、继承等等。<br>
+        <p>图片处理是iOS APP中一个常见的功能。<br>
         
           <p class="article-more-link">
-            <a href="/2014/11/07/iOS编码规范/#more">more >></a>
+            <a href="/2014/11/29/图片裁剪/#more">more >></a>
           </p>
         
       
@@ -244,19 +238,19 @@
 
 
   
-    <article id="post-测试Json效率和XML效率" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-网络请求重构说明" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2014/11/07/测试Json效率和XML效率/" class="article-date">
-  	<time datetime="2014-11-07T05:38:14.000Z" itemprop="datePublished">11月 7 2014</time>
+      <a href="/2014/11/28/网络请求重构说明/" class="article-date">
+  	<time datetime="2014-11-28T07:59:00.000Z" itemprop="datePublished">11月 28 2014</time>
 </a>
       
   <div class="article-category">
-    <a class="article-category-link" href="/categories/iOS/">iOS</a>
+    <a class="article-category-link" href="/categories/iOS/">iOS</a><a class="article-category-link" href="/categories/iOS/AFNetworking/">AFNetworking</a><a class="article-category-link" href="/categories/iOS/AFNetworking/重构/">重构</a>
   </div>
 
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/json/">json</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/xml/">xml</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/效率/">效率</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/网络/">网络</a></li></ul>
 
     </div>
   
@@ -269,7 +263,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2014/11/07/测试Json效率和XML效率/">测试Json效率和XML效率</a>
+      <a class="article-title" href="/2014/11/28/网络请求重构说明/">网络请求重构说明</a>
     </h1>
   
 
@@ -277,15 +271,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <ul>
-<li><p>tips：把项目中的解析json的sbjson ,网上提到的JsonKit和apple提供的自带json解析方法进行比较<br>所解析的json是来自项目当中服务返回的商家列表信息<br>具体如下图</p>
-<!--more-->
-</li>
-<li><p>tips：把项目中的解析json的sbjson ,网上提到的JsonKit和apple提供的自带json解析方法进行比较<br>所解析的json是来自项目当中服务返回的商家列表信息<br>具体如下图<br><img src="/images/79888-1946ee461177aeca.png" alt="imag"><br>开始先去 请求 商家列表信息 ，请求成功之后 会有弹出框提示</p>
-
+        <p>这周主要在做网络请求的重构，在参考了很多开源的项目之后，做了一个基本的Demo。本文主要讲一下基本的使用方法，不涉及原理。<br>
         
           <p class="article-more-link">
-            <a href="/2014/11/07/测试Json效率和XML效率/#more">more >></a>
+            <a href="/2014/11/28/网络请求重构说明/#more">more >></a>
           </p>
         
       
@@ -304,19 +293,19 @@
 
 
   
-    <article id="post-LCDataManager相关说明" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-FMDB简介及使用" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2014/11/07/LCDataManager相关说明/" class="article-date">
-  	<time datetime="2014-11-07T05:38:14.000Z" itemprop="datePublished">11月 7 2014</time>
+      <a href="/2014/11/27/FMDB简介及使用/" class="article-date">
+  	<time datetime="2014-11-27T05:38:14.000Z" itemprop="datePublished">11月 27 2014</time>
 </a>
       
   <div class="article-category">
-    <a class="article-category-link" href="/categories/iOS/">iOS</a>
+    <a class="article-category-link" href="/categories/iOS-数据库/">iOS,数据库</a>
   </div>
 
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LCDataManager/">LCDataManager</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/FMDB/">FMDB</a></li></ul>
 
     </div>
   
@@ -329,7 +318,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2014/11/07/LCDataManager相关说明/">LCDataManager相关说明</a>
+      <a class="article-title" href="/2014/11/27/FMDB简介及使用/">FMDB简介及使用</a>
     </h1>
   
 
@@ -337,22 +326,65 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h6 id="#_文章参照cucuz的数据存储Library"># 文章参照cucuz的数据存储Library</h6>
-<p><strong>类 的目的</strong></p>
-<p>方便项目当中数据的存储，提供简单的接口供使用,根据存储的位置划分可以分为缓存和本地存储，<br>其中包括</p>
-<pre><code><span class="built_in">NSArray</span>, <span class="built_in">NSDictionary</span>, NSData,<span class="built_in">NSString</span>,<span class="built_in">UIImage</span> 等常用数据类型，自定义Object(自行实现NSCoding协议)
-</code></pre><p><strong>类的函数介绍</strong></p>
-<ul>
-<li>类初始化(单例)</li>
-</ul>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">LCDataManager *dataManager </span>=<span class="string"> [LCDataManager shareManager];</span></div></pre></td></tr></table></figure>
-
-<p>首先，我们创建一个对象，下文将以它作为存储的一个依据</p>
-<h2 id="Cache_block">Cache block</h2>
-<p>
+        <p>FMDB是SQLite在oc下的封装，有三个主要的类。<br>
         
           <p class="article-more-link">
-            <a href="/2014/11/07/LCDataManager相关说明/#more">more >></a>
+            <a href="/2014/11/27/FMDB简介及使用/#more">more >></a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
+    <article id="post-UICollectionView简介" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/11/24/UICollectionView简介/" class="article-date">
+  	<time datetime="2014-11-24T05:38:14.000Z" itemprop="datePublished">11月 24 2014</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/iOS-瀑布流/">iOS,瀑布流</a>
+  </div>
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/UICollectionView/">UICollectionView</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/11/24/UICollectionView简介/">UICollectionView简介</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>UICollectionView是iOS6添加的一个控件，是一种新的数据展示方式，简单来说可以把他理解成多列的UITableView，最简单的UICollectionView就是一个GridView，可以以多列的方式将数据进行展示。<br>
+        
+          <p class="article-more-link">
+            <a href="/2014/11/24/UICollectionView简介/#more">more >></a>
           </p>
         
       
@@ -475,71 +507,9 @@
 
 
   
-    <article id="post-地图开发总结" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2014/11/07/地图开发总结/" class="article-date">
-  	<time datetime="2014-11-07T04:18:00.000Z" itemprop="datePublished">11月 7 2014</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/iOS/">iOS</a>
-  </div>
-
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/地图/">地图</a></li></ul>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/11/07/地图开发总结/">地图开发总结</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="坑爹的高德">坑爹的高德</h3>
-<p>项目中地图原来用的高德sdk，其实我不知道当时为什么就用了高德，但既然用了，那么就在此基础上开发吧。可是写着写着，问题就来了： <a href="http://bbs.amap.com/thread-42153-1-1.html" target="_blank" rel="external">问题链接</a>。虽然这个问题不是什么太大的问题，但保不准以后还会遇到什么别的坑，而且以高德的效率，短期内肯定不会解决的。<br>那为什么还要用那个sdk呢？好像我们用到的功能苹果自带的MapKit都能实现啊，而且高德官网上的合作伙伴（携程、美团）也是用的原生的MapKit（从地图默认加载背景就可以看出来）。后来只花了一点点时间就切换到苹果的MapKit（API是一样的），目前还没发现什么bug。</p>
-<h3 id="坐标转换之中国特色">坐标转换之中国特色</h3>
-<p>因为不用高德了，所以当前位置经纬度就用CoreLocation来获取。可是当你把获取的经纬度放到MKMapView中显示，位置竟然有偏移，而且还不小。</p>
-<p>这是苹果的bug吗？不是，是有关部门的功劳。我们只有一个地球，所以地球上每个点的经纬度是固定的，国际上有个通用标准，简称国际标准。CoreLocation取到的经纬度符合国际标准。</p>
-<p>可是在国内，由于国家安全，有关部门制定了一套新的标准，简称国家标准。只要是在国内发行的地图（包括电子地图），都要按国家标准来，不然就是非法的。所以苹果手机中的国内地图肯定也是改良过的。</p>
-<p>我拿着国际标准的经纬度放到改良过的符合国家标准的地图中，显然会发生偏移。</p>
-<p>解决办法就是将国际标准的经纬度转换成国家标准的经纬度。<a href="https://gist.github.com/mithvv/5476132" target="_blank" rel="external">算法是现成的</a>（以前用高德sdk获取当前位置的经纬度本来就是国家标准的，所以没事。）<br>
-        
-          <p class="article-more-link">
-            <a href="/2014/11/07/地图开发总结/#more">more >></a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
     </nav>
   
 

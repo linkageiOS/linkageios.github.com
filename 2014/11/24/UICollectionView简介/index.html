@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>UICollectionView简介 | SmartArrow</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="UICollectionView是iOS6添加的一个控件，是一种新的数据展示方式，简单来说可以把他理解成多列的UITableView，最简单的UICollectionView就是一个GridView，可以以多列的方式将数据进行展示。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UICollectionView简介">
+<meta property="og:url" content="http://linkageios.github.io/2014/11/24/UICollectionView简介/">
+<meta property="og:site_name" content="SmartArrow">
+<meta property="og:description" content="UICollectionView是iOS6添加的一个控件，是一种新的数据展示方式，简单来说可以把他理解成多列的UITableView，最简单的UICollectionView就是一个GridView，可以以多列的方式将数据进行展示。">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="UICollectionView简介">
+<meta name="twitter:description" content="UICollectionView是iOS6添加的一个控件，是一种新的数据展示方式，简单来说可以把他理解成多列的UITableView，最简单的UICollectionView就是一个GridView，可以以多列的方式将数据进行展示。">
+
+  
+    <link rel="alternative" href="/atom.xml" title="SmartArrow" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<div class="profilepic">
+			<img src="/images/logo.png">
+		</div>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">SmartArrow</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">技术文档</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="/#" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="/#" title="rss">rss</a>
+					        
+								<a class="facebook" target="_blank" href="/#" title="facebook">facebook</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud">
+						<a href="/tags/ARC/" style="font-size: 10.00px;">ARC</a><a href="/tags/FMDB/" style="font-size: 10.00px;">FMDB</a><a href="/tags/LCBaseViewController/" style="font-size: 10.00px;">LCBaseViewController</a><a href="/tags/LCDataManager/" style="font-size: 10.00px;">LCDataManager</a><a href="/tags/LCMenuView/" style="font-size: 10.00px;">LCMenuView</a><a href="/tags/POP/" style="font-size: 10.00px;">POP</a><a href="/tags/UICollectionView/" style="font-size: 10.00px;">UICollectionView</a><a href="/tags/iconsole/" style="font-size: 10.00px;">iconsole</a><a href="/tags/json/" style="font-size: 10.00px;">json</a><a href="/tags/xml/" style="font-size: 10.00px;">xml</a><a href="/tags/代码优化/" style="font-size: 10.00px;">代码优化</a><a href="/tags/内存/" style="font-size: 10.00px;">内存</a><a href="/tags/分享/" style="font-size: 10.00px;">分享</a><a href="/tags/动画/" style="font-size: 10.00px;">动画</a><a href="/tags/图片/" style="font-size: 10.00px;">图片</a><a href="/tags/地图/" style="font-size: 10.00px;">地图</a><a href="/tags/控件/" style="font-size: 10.00px;">控件</a><a href="/tags/支付/" style="font-size: 10.00px;">支付</a><a href="/tags/效率/" style="font-size: 20.00px;">效率</a><a href="/tags/架构/" style="font-size: 10.00px;">架构</a><a href="/tags/版本管理/" style="font-size: 10.00px;">版本管理</a><a href="/tags/网络/" style="font-size: 20.00px;">网络</a><a href="/tags/规范/" style="font-size: 20.00px;">规范</a><a href="/tags/路线图/" style="font-size: 10.00px;">路线图</a><a href="/tags/高德/" style="font-size: 10.00px;">高德</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://blog.crysnower.cn">StephenZhu&#39;s Blog</a>
+			        
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					我是谁，我从哪里来，我到哪里去？我就是我，是颜色不一样的吃货…
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay"></div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img src="/images/logo.png">
+			</div>
+
+			<hgroup>
+			  <h1 class="header-author"><a href="/">SmartArrow</a></h1>
+			</hgroup>
+			
+			<p class="header-subtitle">技术文档</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="/#" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="/#" title="rss">rss</a>
+			        
+						<a class="facebook" target="_blank" href="/#" title="facebook">facebook</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <article id="post-UICollectionView简介" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/11/24/UICollectionView简介/" class="article-date">
+  	<time datetime="2014-11-24T05:38:14.000Z" itemprop="datePublished">11月 24 2014</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/iOS-瀑布流/">iOS,瀑布流</a>
+  </div>
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/UICollectionView/">UICollectionView</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      UICollectionView简介
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>UICollectionView是iOS6添加的一个控件，是一种新的数据展示方式，简单来说可以把他理解成多列的UITableView，最简单的UICollectionView就是一个GridView，可以以多列的方式将数据进行展示。<br><a id="more"></a></p>
+<h1 id="UICollectionView简介">UICollectionView简介</h1>
+<p>标准的UICollectionView包含三个部分，它们都是UIView的子类：<br>Cells 用于展示内容的主体，对于不同的cell可以指定不同尺寸和不同的内容<br>Supplementary Views 追加视图，可以理解为每个Section的Header或者Footer，用来标记每个section的view<br>Decoration Views 装饰视图 这是每个section的背景</p>
+<h1 id="实现一个简单的UICollectionView">实现一个简单的UICollectionView</h1>
+<p>实现一个UICollectionView和实现一个UITableView基本没有什么大区别，它们都同样是datasource+delegate</p>
+<p>￼￼￼￼基本的UICollectionViewDataSource提供</p>
+<pre><code>
+￼-numberOfSectionsInCollection:  //section的数量
+￼-collectionView:numberOfItemsInSection:  //某个section里有多少个item
+￼-collectionView:cellForItemAtIndexPath: // 对于某个位置应该显示什么样的cell 
+
+-collectionView:viewForSupplementaryElementOfKind:atIndexPath: //提供Supplementary View
+</code></pre>
+
+<p>与UITableView中的情况一致，UICollectionView也需要对Cell进行重用，在iOS5中，Apple对UITableView的重用做了简化，以往要写类似这样的代码：</p>
+<pre><code>
+UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MY_CELL_ID"];  
+if (!cell) {     
+cell = [[UITableViewCell alloc] init]; 
+} 
+//配置cell，blablabla 
+return cell 
+</code></pre>
+在iOS5以后如果我们在TableView向数据源请求数据之前使用-registerNib:forCellReuseIdentifier:方法为@“MYCELLID"注册过nib的话，就可以省下每次判断并初始化cell的代码，要是在重用队列里没有可用的cell的话，runtime将自动帮我们生成并初始化一个可用的cell，还有以下类似方法
+<pre><code>
+- (void)registerNib:(UINib *)nib forCellReuseIdentifier:(NSString *)identifier NS_AVAILABLE_IOS(5_0);
+- (void)registerClass:(Class)cellClass forCellReuseIdentifier:(NSString *)identifier NS_AVAILABLE_IOS(6_0);
+
+- (void)registerNib:(UINib *)nib forHeaderFooterViewReuseIdentifier:(NSString *)identifier NS_AVAILABLE_IOS(6_0);
+- (void)registerClass:(Class)aClass forHeaderFooterViewReuseIdentifier:(NSString *)identifier NS_AVAILABLE_IOS(6_0);
+</code></pre>
+
+<p>同样的 UICollectionView也有类似的方法</p>
+<pre><code>
+- (void)registerClass:(Class)cellClass forCellWithReuseIdentifier:(NSString *)identifier;
+- (void)registerNib:(UINib *)nib forCellWithReuseIdentifier:(NSString *)identifier;
+
+- (void)registerClass:(Class)viewClass forSupplementaryViewOfKind:(NSString *)elementKind withReuseIdentifier:(NSString *)identifier;
+- (void)registerNib:(UINib *)nib forSupplementaryViewOfKind:(NSString *)kind withReuseIdentifier:(NSString *)identifier;
+</code></pre>
+
+<p>基本的UICollectionViewDelegate提供与数据无关的view的外形，用户交互之类：</p>
+<p>cell的高亮<br>cell的选中状态<br>可以支持长按后的菜单<br>关于用户交互，UICollectionView也做了改进。每个cell现在有独立的高亮事件和选中事件的delegate，用户点击cell的时候，现在会按照以下流程向delegate进行询问：</p>
+<pre><code>
+-￼collectionView:shouldHighlightItemAtIndexPath: // 是否应该高亮？
+-￼collectionView:didHighlightItemAtIndexPath:  //如果1答是，那么高亮
+-￼collectionView:shouldSelectItemAtIndexPath:  //无论1结果如何，都询问是否可以被选中？
+-collectionView:didUnhighlightItemAtIndexPath: // 如果1答是，那么现在取消高亮
+-collectionView:didSelectItemAtIndexPath: // 如果3答是，那么选中cell
+</code></pre>
+
+<h3 id="Cell">Cell</h3>
+<p>UICollectionViewCell结构比较简单， 由上至下<br>首先是cell本身作为容器view<br>然后是一个大小自动适应整个cell的backgroundView，用作cell平时的背景<br>再其上是selectedBackgroundView，是cell被选中时的背景<br>最后是一个contentView，自定义内容应被加在这个view上</p>
+<h3 id="￼UICollectionViewLayout">￼UICollectionViewLayout</h3>
+<p>这是UICollectionView和UITableView最大的不同。UICollectionViewLayout负责了将各个cell、Supplementary View和Decoration Views进行组织，为它们设定各自的属性。在展示之前，一般需要生成合适的UICollectionViewLayout子类对象，并将其赋予CollectionView的collectionViewLayout属性。<br>SDK为我们提供了一个最简单可能也是最常用的默认layout对象，￼￼￼UICollectionViewFlowLayout。Flow Layout简单说是一个直线对齐的layout，最常见的Grid View形式即为一种Flow Layout配置:</p>
+<p>首先一个重要的属性是itemSize，它定义了每一个item的大小。通过设定itemSize可以全局地改变所有cell的尺寸，如果想要对某个cell制定尺寸，可以使用-collectionView:layout:sizeForItemAtIndexPath:方法。<br>间隔 可以指定item之间的间隔和每一行之间的间隔，和size类似，有全局属性，也可以对每一个item和每一个section做出设定：</p>
+<p><pre><code><br>@property (CGSize) minimumInteritemSpacing<br>@property (CGSize) minimumLineSpacing<br>-collectionView:layout:minimumInteritemSpacingForSectionAtIndex:<br>-collectionView:layout:minimumLineSpacingForSectionAtIndex:<br></code></pre><br>滚动方向 由属性scrollDirection确定scroll view的方向，将影响Flow Layout的基本方向和由header及footer确定的section之间的宽度</p>
+<p>UICollectionViewScrollDirectionVertical<br>UICollectionViewScrollDirectionHorizontal<br>Header和Footer尺寸 同样地分为全局和部分。需要注意根据滚动方向不同，header和footer的高和宽中只有一个会起作用。垂直滚动时section间宽度为该尺寸的高，而水平滚动时为宽度起作用，如图。</p>
+<p><pre><code><br>@property (CGSize) headerReferenceSize<br>@property (CGSize) footerReferenceSize<br>-collectionView:layout:referenceSizeForHeaderInSection:<br>-collectionView:layout:referenceSizeForFooterInSection:<br></code></pre><br>缩进</p>
+<p><pre><code><br>@property UIEdgeInsets sectionInset;<br>-collectionView:layout:insetForSectionAtIndex:<br></code></pre><br>通过自定义Layout可以实现各种nb布局，基本上常见的类似的第三方开源控件效果都可以实现，比如瀑布流、coverFlow，下面实现一个基本的瀑流效果</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2014/11/27/FMDB简介及使用/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">&lt;</strong>
+      <div class="article-nav-title">
+        
+          FMDB简介及使用
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2014/11/07/关于iConsole在项目中的应用/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">关于iConsole在项目中的应用</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="UICollectionView简介" data-title="UICollectionView简介" data-url="http://linkageios.github.io/2014/11/24/UICollectionView简介/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2014 SmartArrow
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+  <script src="/js/main.js" type="text/javascript"></script>
+
+
+  </div>
+</body>
+</html>
