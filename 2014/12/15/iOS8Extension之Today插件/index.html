@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>iOS8Extension之Today插件 | SmartArrow</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="iOS8已经发布了快半年时间了，其中一个重大的更新就是扩展（Extension）。以前的iOS非常封闭，不同的APP之间很难相互通信，虽然保证了使用的安全性，但毕竟限制了很多功能，最明显的就是输入法了。苹果经过了深思熟虑之后，终于给开发者们一个解决方案——扩展。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS8Extension之Today插件">
+<meta property="og:url" content="http://linkageios.github.io/2014/12/15/iOS8Extension之Today插件/">
+<meta property="og:site_name" content="SmartArrow">
+<meta property="og:description" content="iOS8已经发布了快半年时间了，其中一个重大的更新就是扩展（Extension）。以前的iOS非常封闭，不同的APP之间很难相互通信，虽然保证了使用的安全性，但毕竟限制了很多功能，最明显的就是输入法了。苹果经过了深思熟虑之后，终于给开发者们一个解决方案——扩展。">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/16632-646ee9ac1ba110c2.png">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/16632-6d8f92335082ac8d.png">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/16632-aacafee68dd0d329.png">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/16632-6e8a86b381e6cb0c.png">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/16632-eff7cb6dfd6e6e86.PNG">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/16632-8df6a709f3a34305.png">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/16632-3fb14cbab8baa6d6.png">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/16632-d8e741c33f75570c.PNG">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS8Extension之Today插件">
+<meta name="twitter:description" content="iOS8已经发布了快半年时间了，其中一个重大的更新就是扩展（Extension）。以前的iOS非常封闭，不同的APP之间很难相互通信，虽然保证了使用的安全性，但毕竟限制了很多功能，最明显的就是输入法了。苹果经过了深思熟虑之后，终于给开发者们一个解决方案——扩展。">
+
+  
+    <link rel="alternative" href="/atom.xml" title="SmartArrow" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<div class="profilepic">
+			<img src="/images/logo.png">
+		</div>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">SmartArrow</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">技术文档</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="/#" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="/#" title="rss">rss</a>
+					        
+								<a class="facebook" target="_blank" href="/#" title="facebook">facebook</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud">
+						<a href="/tags/ARC/" style="font-size: 10.00px;">ARC</a><a href="/tags/FMDB/" style="font-size: 10.00px;">FMDB</a><a href="/tags/LCBaseViewController/" style="font-size: 10.00px;">LCBaseViewController</a><a href="/tags/LCDataManager/" style="font-size: 10.00px;">LCDataManager</a><a href="/tags/LCMenuView/" style="font-size: 10.00px;">LCMenuView</a><a href="/tags/POP/" style="font-size: 10.00px;">POP</a><a href="/tags/UICollectionView/" style="font-size: 10.00px;">UICollectionView</a><a href="/tags/iOS8/" style="font-size: 10.00px;">iOS8</a><a href="/tags/iconsole/" style="font-size: 10.00px;">iconsole</a><a href="/tags/json/" style="font-size: 10.00px;">json</a><a href="/tags/xml/" style="font-size: 10.00px;">xml</a><a href="/tags/代码优化/" style="font-size: 10.00px;">代码优化</a><a href="/tags/内存/" style="font-size: 10.00px;">内存</a><a href="/tags/分享/" style="font-size: 10.00px;">分享</a><a href="/tags/动画/" style="font-size: 10.00px;">动画</a><a href="/tags/图片/" style="font-size: 10.00px;">图片</a><a href="/tags/地图/" style="font-size: 10.00px;">地图</a><a href="/tags/控件/" style="font-size: 10.00px;">控件</a><a href="/tags/插件/" style="font-size: 10.00px;">插件</a><a href="/tags/支付/" style="font-size: 10.00px;">支付</a><a href="/tags/效率/" style="font-size: 15.00px;">效率</a><a href="/tags/架构/" style="font-size: 10.00px;">架构</a><a href="/tags/版本管理/" style="font-size: 10.00px;">版本管理</a><a href="/tags/网络/" style="font-size: 20.00px;">网络</a><a href="/tags/规范/" style="font-size: 15.00px;">规范</a><a href="/tags/路线图/" style="font-size: 10.00px;">路线图</a><a href="/tags/高德/" style="font-size: 10.00px;">高德</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://blog.crysnower.cn">StephenZhu&#39;s Blog</a>
+			        
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					我是谁，我从哪里来，我到哪里去？我就是我，是颜色不一样的吃货…
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay"></div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img src="/images/logo.png">
+			</div>
+
+			<hgroup>
+			  <h1 class="header-author"><a href="/">SmartArrow</a></h1>
+			</hgroup>
+			
+			<p class="header-subtitle">技术文档</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="/#" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="/#" title="rss">rss</a>
+			        
+						<a class="facebook" target="_blank" href="/#" title="facebook">facebook</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <article id="post-iOS8Extension之Today插件" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/12/15/iOS8Extension之Today插件/" class="article-date">
+  	<time datetime="2014-12-15T09:23:14.000Z" itemprop="datePublished">12月 15 2014</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/iOS/">iOS</a>
+  </div>
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS8/">iOS8</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/插件/">插件</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      iOS8Extension之Today插件
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>iOS8已经发布了快半年时间了，其中一个重大的更新就是扩展（Extension）。以前的iOS非常封闭，不同的APP之间很难相互通信，虽然保证了使用的安全性，但毕竟限制了很多功能，最明显的就是输入法了。苹果经过了深思熟虑之后，终于给开发者们一个解决方案——扩展。<br><a id="more"></a></p>
+<h2 id="背景">背景</h2>
+<p>扩展包含的内容有很多：</p>
+<ul>
+<li>今日插件（Today widget）</li>
+<li>分享（Share）</li>
+<li>操作（Action）</li>
+<li>图片编辑（Photo Editing）</li>
+<li>文档管理（Document Provider）</li>
+<li>自定义键盘（Custom keyboard）</li>
+</ul>
+<p>今天先介绍一下Today widget。</p>
+<p>Today widget是在通知中心下面Today标签页的内容，任何APP都可以创建自己的Today widget，而且可以创建多个。用户可以在Today页面进行管理，选择那些widget是可见的，那些是不可见的。Today widget里面可以显示应用相关的数据，可以进行一些简单的操作（官方建议不要太复杂），也可以跳回主程序。Today widget即使在锁屏状态下都是可见的，所以用户使用是很简单的。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/16632-646ee9ac1ba110c2.png" alt="today_widget_0.png"></p>
+<h3 id="界面">界面</h3>
+<p>今日插件的界面由两部分组成，最上面是一个icon和标题，下面是插件的视图。icon和标题是创建target的时候配置的，视图的话和设计普通的APP界面没什么区别。</p>
+<h3 id="创建">创建</h3>
+<p>假设你已经有一个APP，现在要为它创建一个今日插件。<br>1、用Xcode打开项目，选择File-&gt;New-&gt;Target，选择Today Extension;</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/16632-6d8f92335082ac8d.png" alt="today_widget_1.png"></p>
+<p>2、输入插件名称，如MyWidget；</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/16632-aacafee68dd0d329.png" alt="today_widget_2.png"></p>
+<p>3、最后在项目目录里面就能看到我们新建的插件。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/16632-6e8a86b381e6cb0c.png" alt="today_widget_3.png"></p>
+<p>这时候如果你把Scheme选为MyWidget，就可以运行看看效果了。 默认现实的是Hello World。这个实在MyWidget的MainInterface里面初始化好的。当然后面我们要改掉。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/16632-eff7cb6dfd6e6e86.PNG" alt="today_widget_5.PNG"></p>
+<p>系统给我们创建一个storyboard作为初始界面，并且使用了AutoLayout。这种做法是比较推荐的，当然一定要用代码写界面也可以，就是麻烦点。</p>
+<h3 id="UI样式">UI样式</h3>
+<p>如果你看一下官方对于今日插件的UI指南，有两点值得注意：<br>1、尽量不要使用背景，默认的毛玻璃效果很好，也比较统一；<br>2、尽量保持默认的缩进，即左边会空几个像素。</p>
+<p>如果想改变默认缩进，有一个方法：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">- (<span class="built_in">UIEdgeInsets</span>)widgetMarginInsetsForProposedMarginInsets:(<span class="built_in">UIEdgeInsets</span>)defaultMarginInsets</div><div class="line">{</div><div class="line">    <span class="keyword">return</span> UIEdgeInsetsZero;</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>在TodayViewController里面实现以下，缩进就没有了。</p>
+<h3 id="跳转到主应用">跳转到主应用</h3>
+<p>我们在插件的storyboard上加几个按钮，分别跳转到主应用的不同页面，怎么办呢？<br>通过OpenUrl方法，self.extensionContext其实就是Today这个app，然后有Today和主应用进行进程间通讯，里面很复杂，但方法封装的很简单，就是OpenUrl：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">IBAction</span>)menuPressed:(<span class="keyword">id</span>)sender</div><div class="line">{</div><div class="line">    <span class="built_in">UIButton</span>* button = (<span class="built_in">UIButton</span>*)sender;</div><div class="line">    </div><div class="line">    <span class="keyword">if</span> (button<span class="variable">.tag</span> == <span class="number">1</span>) {</div><div class="line">        [<span class="keyword">self</span><span class="variable">.extensionContext</span> openURL:[<span class="built_in">NSURL</span> URLWithString:<span class="string">@"iOSWidgetApp://action=GotoHomePage"</span>] completionHandler:^(<span class="built_in">BOOL</span> success) {</div><div class="line">            <span class="built_in">NSLog</span>(<span class="string">@"open url result:%d"</span>,success);</div><div class="line">        }];</div><div class="line">    }</div><div class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(button<span class="variable">.tag</span> == <span class="number">2</span>) {</div><div class="line">        [<span class="keyword">self</span><span class="variable">.extensionContext</span> openURL:[<span class="built_in">NSURL</span> URLWithString:<span class="string">@"iOSWidgetApp://action=GotoOrderPage"</span>] completionHandler:^(<span class="built_in">BOOL</span> success) {</div><div class="line">            <span class="built_in">NSLog</span>(<span class="string">@"open url result:%d"</span>,success);</div><div class="line">        }];</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>协议名是iOSWidgetApp，这个要在主应用的plist里面注册一下<br><img src="http://upload-images.jianshu.io/upload_images/16632-8df6a709f3a34305.png" alt="today_widget_6.png"></p>
+<p>然后在主应用的AppDelegate解析协议，进行不同的操作。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">- (<span class="built_in">BOOL</span>)application:(<span class="built_in">UIApplication</span> *)application openURL:(<span class="built_in">NSURL</span> *)url sourceApplication:(<span class="built_in">NSString</span> *)sourceApplication annotation:(<span class="keyword">id</span>)annotation</div><div class="line">{</div><div class="line">    <span class="built_in">NSString</span>* prefix = <span class="string">@"iOSWidgetApp://action="</span>;</div><div class="line">    <span class="keyword">if</span> ([[url absoluteString] rangeOfString:prefix]<span class="variable">.location</span> != <span class="built_in">NSNotFound</span>) {</div><div class="line">        <span class="built_in">NSString</span>* action = [[url absoluteString] substringFromIndex:prefix<span class="variable">.length</span>];</div><div class="line">        <span class="keyword">if</span> ([action isEqualToString:<span class="string">@"GotoHomePage"</span>]) {</div><div class="line">            </div><div class="line">        }</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span>([action isEqualToString:<span class="string">@"GotoOrderPage"</span>]) {</div><div class="line">            BasicHomeViewController *vc = (BasicHomeViewController*)<span class="keyword">self</span><span class="variable">.window</span><span class="variable">.rootViewController</span>;</div><div class="line">            [vc<span class="variable">.tabbar</span> selectAtIndex:<span class="number">2</span>];</div><div class="line">        }</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span>  <span class="literal">YES</span>;</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<h3 id="数据共享">数据共享</h3>
+<p>今日插件怎么能获取主应用的数据呢？要知道插件和主应用是独立的两个进程，以前是无法共享数据的，现在可以通过AppGroup来共享数据，同属于一个group的App共同访问并修改某个数据。</p>
+<h3 id="创建Group">创建Group</h3>
+<p>选中主应用的Target，选择Capabilities，创建一个group，名字叫group.xxx，然后到插件的target勾选刚才创建的group，这样就ok了。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/16632-3fb14cbab8baa6d6.png" alt="today_widget_7.png"></p>
+<h3 id="读写数据">读写数据</h3>
+<p>通过NSUserDefaults来读写数据，注意NSUserDefaults是根据刚才创建的group来创建的。我们在主应用里加入如下代码，这样今日插件就有数据可读了。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">NSUserDefaults* userDefault = [[NSUserDefaults alloc] initWithSuiteName:@<span class="string">"group.huijia"</span>];</div><div class="line">[userDefault <span class="keyword">set</span>Object:@<span class="string">"nmj"</span> <span class="keyword">for</span>Key:@<span class="string">"group.huijia.nickname"</span>];</div></pre></td></tr></table></figure>
+
+<p>今日插件里面的代码，这样就能根据主应用的状态更新插件的状态。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">NSUserDefaults</span>* userDefault = [[<span class="built_in">NSUserDefaults</span> alloc] initWithSuiteName:<span class="string">@"group.huijia"</span>];</div><div class="line">    <span class="built_in">NSString</span>* nickName = [userDefault objectForKey:<span class="string">@"group.huijia.nickname"</span>];</div><div class="line">    <span class="keyword">if</span> (nickName) {</div><div class="line">        <span class="built_in">NSString</span>* message = <span class="string">@"今天XX又给你准备了很多惊喜哦，快去看看吧！"</span>;</div><div class="line">        <span class="keyword">self</span><span class="variable">.messageLabel</span><span class="variable">.text</span> = [<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"%@,%@"</span>,nickName,message];</div><div class="line">    }</div></pre></td></tr></table></figure>
+
+<p>最终效果：根据用户是否已经在主应用里面登录，显示不同的message，有两个按钮，跳转到主应用不同的页面。<br><img src="http://upload-images.jianshu.io/upload_images/16632-d8e741c33f75570c.PNG" alt="today_widget_8.PNG"></p>
+<h3 id="参考文档">参考文档</h3>
+<p><a href="https://developer.apple.com/library/prerelease/ios/documentation/General/Conceptual/ExtensibilityPG/NotificationCenter.html#//apple_ref/doc/uid/TP40014214-CH11-SW1" target="_blank" rel="external">官方指南</a><br><a href="https://developer.apple.com/library/prerelease/ios/documentation/UserExperience/Conceptual/MobileHIG/AppExtensions.html#//apple_ref/doc/uid/TP40006556-CH67-SW4" target="_blank" rel="external">UI指南</a><br><a href="http://www.onevcat.com/2014/08/notification-today-widget/" target="_blank" rel="external">iOS 通知中心扩展制作入门</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2014/12/03/SVPullToRefresh深入理解/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">SVPullToRefresh与下拉刷新</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="iOS8Extension之Today插件" data-title="iOS8Extension之Today插件" data-url="http://linkageios.github.io/2014/12/15/iOS8Extension之Today插件/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2014 SmartArrow
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+  <script src="/js/main.js" type="text/javascript"></script>
+
+
+  </div>
+</body>
+</html>

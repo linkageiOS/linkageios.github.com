@@ -115,7 +115,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud">
-						<a href="/tags/ARC/" style="font-size: 10.00px;">ARC</a><a href="/tags/FMDB/" style="font-size: 10.00px;">FMDB</a><a href="/tags/LCBaseViewController/" style="font-size: 10.00px;">LCBaseViewController</a><a href="/tags/LCDataManager/" style="font-size: 10.00px;">LCDataManager</a><a href="/tags/LCMenuView/" style="font-size: 10.00px;">LCMenuView</a><a href="/tags/POP/" style="font-size: 10.00px;">POP</a><a href="/tags/UICollectionView/" style="font-size: 10.00px;">UICollectionView</a><a href="/tags/iconsole/" style="font-size: 10.00px;">iconsole</a><a href="/tags/json/" style="font-size: 10.00px;">json</a><a href="/tags/xml/" style="font-size: 10.00px;">xml</a><a href="/tags/代码优化/" style="font-size: 10.00px;">代码优化</a><a href="/tags/内存/" style="font-size: 10.00px;">内存</a><a href="/tags/分享/" style="font-size: 10.00px;">分享</a><a href="/tags/动画/" style="font-size: 10.00px;">动画</a><a href="/tags/图片/" style="font-size: 10.00px;">图片</a><a href="/tags/地图/" style="font-size: 10.00px;">地图</a><a href="/tags/控件/" style="font-size: 10.00px;">控件</a><a href="/tags/支付/" style="font-size: 10.00px;">支付</a><a href="/tags/效率/" style="font-size: 15.00px;">效率</a><a href="/tags/架构/" style="font-size: 10.00px;">架构</a><a href="/tags/版本管理/" style="font-size: 10.00px;">版本管理</a><a href="/tags/网络/" style="font-size: 20.00px;">网络</a><a href="/tags/规范/" style="font-size: 15.00px;">规范</a><a href="/tags/路线图/" style="font-size: 10.00px;">路线图</a><a href="/tags/高德/" style="font-size: 10.00px;">高德</a>
+						<a href="/tags/ARC/" style="font-size: 10.00px;">ARC</a><a href="/tags/FMDB/" style="font-size: 10.00px;">FMDB</a><a href="/tags/LCBaseViewController/" style="font-size: 10.00px;">LCBaseViewController</a><a href="/tags/LCDataManager/" style="font-size: 10.00px;">LCDataManager</a><a href="/tags/LCMenuView/" style="font-size: 10.00px;">LCMenuView</a><a href="/tags/POP/" style="font-size: 10.00px;">POP</a><a href="/tags/UICollectionView/" style="font-size: 10.00px;">UICollectionView</a><a href="/tags/iOS8/" style="font-size: 10.00px;">iOS8</a><a href="/tags/iconsole/" style="font-size: 10.00px;">iconsole</a><a href="/tags/json/" style="font-size: 10.00px;">json</a><a href="/tags/xml/" style="font-size: 10.00px;">xml</a><a href="/tags/代码优化/" style="font-size: 10.00px;">代码优化</a><a href="/tags/内存/" style="font-size: 10.00px;">内存</a><a href="/tags/分享/" style="font-size: 10.00px;">分享</a><a href="/tags/动画/" style="font-size: 10.00px;">动画</a><a href="/tags/图片/" style="font-size: 10.00px;">图片</a><a href="/tags/地图/" style="font-size: 10.00px;">地图</a><a href="/tags/控件/" style="font-size: 10.00px;">控件</a><a href="/tags/插件/" style="font-size: 10.00px;">插件</a><a href="/tags/支付/" style="font-size: 10.00px;">支付</a><a href="/tags/效率/" style="font-size: 15.00px;">效率</a><a href="/tags/架构/" style="font-size: 10.00px;">架构</a><a href="/tags/版本管理/" style="font-size: 10.00px;">版本管理</a><a href="/tags/网络/" style="font-size: 20.00px;">网络</a><a href="/tags/规范/" style="font-size: 15.00px;">规范</a><a href="/tags/路线图/" style="font-size: 10.00px;">路线图</a><a href="/tags/高德/" style="font-size: 10.00px;">高德</a>
 					</div>
 				</section>
 				
@@ -182,6 +182,79 @@
 	</div>
 </nav>
       
+  
+    <article id="post-iOS架构设计与分层" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/09/22/iOS架构设计与分层/" class="article-date">
+  	<time datetime="2014-09-22T02:37:00.000Z" itemprop="datePublished">9月 22 2014</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/iOS/">iOS</a>
+  </div>
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/架构/">架构</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/09/22/iOS架构设计与分层/">iOS架构设计与分层</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="结构设计的层次是否越多越好？">结构设计的层次是否越多越好？</h2>
+<p>多人都会说，凡事不能走极端，走了极端就过犹不及。所以应该分层，但不能过分分层，应该视具体情况来定。这样的话听起来很有道理，却只是一句废话。当我们遇到问题时，还是摸不着头脑！</p>
+<p>看看知名的架构师是怎么说的吧！来自<a href="http://weibo.com/rebol" target="_blank" rel="external">蔡学镛</a></p>
+<blockquote>
+<p>我做（开发）架构的几个原则，根据优先次序高低排列：1. （逻辑）拆分越细越好 2. 依赖关细越少越好 3. 交互越少越好 … 相互矛盾时，如果没有特殊理由，以优先权高者胜出。</p>
+</blockquote>
+<p>由此启发，我觉得设计架构应该拆的越细越好。这样做有如下几点好处：</p>
+<ul>
+<li>对于大中型软件，层次越多，每一层就更单纯，更容易维护。</li>
+<li>团队成员只需了解一小部分业务，就能顺利进行开发。</li>
+<li>相对底层的模块，可以更好的重用。</li>
+<li>层次分的越多，开发者对抽象的理解就更深入。</li>
+</ul>
+<p>iOS说到分层，有几种常见的做法。</p>
+<ul>
+<li>按功能分：有MVC，MVVM……</li>
+<li>按层次分：有数据层、逻辑层、展现层……</li>
+</ul>
+<p>
+        
+          <p class="article-more-link">
+            <a href="/2014/09/22/iOS架构设计与分层/#more">more >></a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
   
     <article id="post-Objective-C代码规范" class="article article-type-post" itemscope itemprop="blogPost">
   
