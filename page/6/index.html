@@ -115,7 +115,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud">
-						<a href="/tags/ARC/" style="font-size: 10.00px;">ARC</a><a href="/tags/FMDB/" style="font-size: 10.00px;">FMDB</a><a href="/tags/LCBaseViewController/" style="font-size: 10.00px;">LCBaseViewController</a><a href="/tags/LCDataManager/" style="font-size: 10.00px;">LCDataManager</a><a href="/tags/LCMenuView/" style="font-size: 10.00px;">LCMenuView</a><a href="/tags/POP/" style="font-size: 10.00px;">POP</a><a href="/tags/UICollectionView/" style="font-size: 10.00px;">UICollectionView</a><a href="/tags/iOS8/" style="font-size: 10.00px;">iOS8</a><a href="/tags/iconsole/" style="font-size: 10.00px;">iconsole</a><a href="/tags/json/" style="font-size: 10.00px;">json</a><a href="/tags/xml/" style="font-size: 10.00px;">xml</a><a href="/tags/代码优化/" style="font-size: 10.00px;">代码优化</a><a href="/tags/内存/" style="font-size: 10.00px;">内存</a><a href="/tags/分享/" style="font-size: 10.00px;">分享</a><a href="/tags/动画/" style="font-size: 10.00px;">动画</a><a href="/tags/图片/" style="font-size: 10.00px;">图片</a><a href="/tags/地图/" style="font-size: 10.00px;">地图</a><a href="/tags/控件/" style="font-size: 10.00px;">控件</a><a href="/tags/插件/" style="font-size: 10.00px;">插件</a><a href="/tags/支付/" style="font-size: 10.00px;">支付</a><a href="/tags/效率/" style="font-size: 15.00px;">效率</a><a href="/tags/架构/" style="font-size: 10.00px;">架构</a><a href="/tags/版本管理/" style="font-size: 10.00px;">版本管理</a><a href="/tags/网络/" style="font-size: 20.00px;">网络</a><a href="/tags/规范/" style="font-size: 15.00px;">规范</a><a href="/tags/路线图/" style="font-size: 10.00px;">路线图</a><a href="/tags/高德/" style="font-size: 10.00px;">高德</a>
+						<a href="/tags/ARC/" style="font-size: 10.00px;">ARC</a><a href="/tags/FMDB/" style="font-size: 10.00px;">FMDB</a><a href="/tags/LCBaseViewController/" style="font-size: 10.00px;">LCBaseViewController</a><a href="/tags/LCDataManager/" style="font-size: 10.00px;">LCDataManager</a><a href="/tags/LCMenuView/" style="font-size: 10.00px;">LCMenuView</a><a href="/tags/POP/" style="font-size: 10.00px;">POP</a><a href="/tags/PhoneGap/" style="font-size: 10.00px;">PhoneGap</a><a href="/tags/SizeClass/" style="font-size: 10.00px;">SizeClass</a><a href="/tags/UICollectionView/" style="font-size: 10.00px;">UICollectionView</a><a href="/tags/iOS8/" style="font-size: 15.00px;">iOS8</a><a href="/tags/iconsole/" style="font-size: 10.00px;">iconsole</a><a href="/tags/json/" style="font-size: 10.00px;">json</a><a href="/tags/xib/" style="font-size: 10.00px;">xib</a><a href="/tags/xml/" style="font-size: 10.00px;">xml</a><a href="/tags/代码优化/" style="font-size: 10.00px;">代码优化</a><a href="/tags/内存/" style="font-size: 10.00px;">内存</a><a href="/tags/分享/" style="font-size: 10.00px;">分享</a><a href="/tags/动画/" style="font-size: 10.00px;">动画</a><a href="/tags/图片/" style="font-size: 10.00px;">图片</a><a href="/tags/地图/" style="font-size: 10.00px;">地图</a><a href="/tags/控件/" style="font-size: 10.00px;">控件</a><a href="/tags/插件/" style="font-size: 10.00px;">插件</a><a href="/tags/支付/" style="font-size: 10.00px;">支付</a><a href="/tags/效率/" style="font-size: 15.00px;">效率</a><a href="/tags/架构/" style="font-size: 10.00px;">架构</a><a href="/tags/版本管理/" style="font-size: 10.00px;">版本管理</a><a href="/tags/网络/" style="font-size: 20.00px;">网络</a><a href="/tags/规范/" style="font-size: 15.00px;">规范</a><a href="/tags/路线图/" style="font-size: 10.00px;">路线图</a><a href="/tags/高德/" style="font-size: 10.00px;">高德</a>
 					</div>
 				</section>
 				
@@ -182,6 +182,203 @@
 	</div>
 </nav>
       
+  
+    <article id="post-iOS代码中的不良实践与优化" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/10/11/iOS代码中的不良实践与优化/" class="article-date">
+  	<time datetime="2014-10-11T09:32:00.000Z" itemprop="datePublished">10月 11 2014</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/iOS/">iOS</a>
+  </div>
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/代码优化/">代码优化</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/10/11/iOS代码中的不良实践与优化/">iOS代码中的不良实践与优化</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="不良实践的根源">不良实践的根源</h2>
+<ul>
+<li>项目时间紧，没有时间去思考更好的写法</li>
+<li>认为花精力去优化代码结构不值得</li>
+</ul>
+<p>第一种原因，一般是因为经验不足，通过学习，任何人都可以很本能的写出结构良好的代码。至于时间确实很紧，后面总会重构的时间。</p>
+<p>第二种原因，我觉得要分项目看。如果只是第一个试水版本，没有问题。但是作为一个长久项目，千万不能抱有这种观点。不仅害己，更是害人。</p>
+<p>最近做了一个项目，由于种种原因，我们的代码有很多问题。因为正在做重构，所以就把一些不良的实践总结出来。希望对大家有所帮助。</p>
+<p>
+        
+          <p class="article-more-link">
+            <a href="/2014/10/11/iOS代码中的不良实践与优化/#more">more >></a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
+    <article id="post-ARC转换总结+避免循环引用" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/09/25/ARC转换总结+避免循环引用/" class="article-date">
+  	<time datetime="2014-09-25T02:02:00.000Z" itemprop="datePublished">9月 25 2014</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/iOS/">iOS</a>
+  </div>
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ARC/">ARC</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/09/25/ARC转换总结+避免循环引用/">ARC转换总结+避免循环引用</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="http://www.hrchen.com/2013/07/arc-transfer-and-notice/" target="_blank" rel="external">参考</a></p>
+<p>上面的文章写得已经非常全面了，不过还是有些东西需要补充一下。</p>
+<h2 id="循环引用">循环引用</h2>
+<p>循环引用和ARC没有直接关系，但是在转换的过程中遇到了相关问题，所以就着重说明一下。</p>
+<h3 id="循环引用的原因">循环引用的原因</h3>
+<p>任何一种语言，都必须有它的内存管理方式。比如C语言中，我们用malloc申请一块内存，放入数据。当这块内存不在需要时，就调用free将其释放掉。这是一种比较原始的方式，当同一块内存在多个地方被用到时，到底应该由谁来释放呢？你只能小心翼翼的处理这种问题，除此之外没有别的办法。<br>
+        
+          <p class="article-more-link">
+            <a href="/2014/09/25/ARC转换总结+避免循环引用/#more">more >></a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
+    <article id="post-iOS技术路线图" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/09/24/iOS技术路线图/" class="article-date">
+  	<time datetime="2014-09-24T09:19:00.000Z" itemprop="datePublished">9月 24 2014</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/iOS/">iOS</a>
+  </div>
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/路线图/">路线图</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/09/24/iOS技术路线图/">iOS技术路线图</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>做技术分成好几个层次：</p>
+<ul>
+<li>第一层：把功能做出来，不用考虑代码质量。</li>
+<li>第二层：把功能做稳定，不会有太多的bug。</li>
+<li>第三层：把功能做得快，能够快速响应需求。</li>
+</ul>
+<p>如果是从零开始做项目，迫于经验不足和时间紧迫，都会经历从第一层慢慢向上的过程。遗憾的是，做到第三层是很难的，但不管怎样，追求的过程是充满挑战的，也是受益无穷的。</p>
+<p>评价一下我们现在的项目，还应留在第一层。为了能够达到第三层，我和同事们一起想了一些方法和步骤。</p>
+<hr>
+<p><!--more--><br>做技术分成好几个层次：</p>
+<ul>
+<li>第一层：把功能做出来，不用考虑代码质量。</li>
+<li>第二层：把功能做稳定，不会有太多的bug。</li>
+<li>第三层：把功能做得快，能够快速响应需求。</li>
+</ul>
+<p>如果是从零开始做项目，迫于经验不足和时间紧迫，都会经历从第一层慢慢向上的过程。遗憾的是，做到第三层是很难的，但不管怎样，追求的过程是充满挑战的，也是受益无穷的。</p>
+<p>评价一下我们现在的项目，还应留在第一层。为了能够达到第三层，我和同事们一起想了一些方法和步骤。</p>
+<hr>
+<h3 id="ARC">ARC</h3>
+<p>ARC全名Automatic Reference Counting，是苹果公司在WWDC2011上就推出来的一项技术，只在减少程序员的工作，不用再去手动管理内存（典型的费力不讨好），而是由编译器采用智能算法，在编译的时候自动插入内存管理代码。ARC目前已经广泛的被绝大部分开发者所接受，因为它带来了开发效率的提升。我们目前的代码还没有采用ARC，这个改一下不是什么难事，具体做法可参考<a href="https://developer.apple.com/library/mac/releasenotes/ObjectiveC/RN-TransitioningToARC/Introduction/Introduction.html" target="_blank" rel="external">官方文档</a>。<br>
+        
+          <p class="article-more-link">
+            <a href="/2014/09/24/iOS技术路线图/#more">more >></a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
   
     <article id="post-iOS架构设计与分层" class="article article-type-post" itemscope itemprop="blogPost">
   
