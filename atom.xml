@@ -4,7 +4,7 @@
   <subtitle><![CDATA[技术文档]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://linkageios.github.io/"/>
-  <updated>2014-12-31T01:13:45.994Z</updated>
+  <updated>2014-12-31T09:07:51.794Z</updated>
   <id>http://linkageios.github.io/</id>
   
   <author>
@@ -782,65 +782,6 @@ return cell
   </entry>
   
   <entry>
-    <title><![CDATA[LCBaseViewController相关]]></title>
-    <link href="http://linkageios.github.io/2014/11/07/LCBaseViewController%E7%9B%B8%E5%85%B3/"/>
-    <id>http://linkageios.github.io/2014/11/07/LCBaseViewController相关/</id>
-    <published>2014-11-07T05:38:14.000Z</published>
-    <updated>2014-11-18T09:20:25.000Z</updated>
-    <content type="html"><![CDATA[<h2 id="简介">简介</h2>
-<p>该基类参考原先项目中BaseViewController等几个类 进行修改 功能暂时满足目前项目需求 日后更新会根据项目迭代中提出的需求在进行修改</p>
-<h2 id="属性和函数说明">属性和函数说明</h2>
-<p>LCViewControllerShowType：viewController出现的方式 具体分为</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">LCViewControllerShowTypePush                （<span class="keyword">pop</span>/<span class="keyword">push</span>方式）（默认）</div><div class="line">LCViewControllerShowTypePresent             （present/dismiss方式）</div><div class="line">LCViewControllerShowTypePresentBasic        （作为没有登录的情况下，登陆界面返回按钮 跳转到首页的凭据）</div></pre></td></tr></table></figure>
-
-<a id="more"></a>
-
-<h2 id="简介-1">简介</h2>
-<p>该基类参考原先项目中BaseViewController等几个类 进行修改 功能暂时满足目前项目需求 日后更新会根据项目迭代中提出的需求在进行修改</p>
-<h2 id="属性和函数说明-1">属性和函数说明</h2>
-<p>LCViewControllerShowType：viewController出现的方式 具体分为</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">LCViewControllerShowTypePush                （<span class="keyword">pop</span>/<span class="keyword">push</span>方式）（默认）</div><div class="line">LCViewControllerShowTypePresent             （present/dismiss方式）</div><div class="line">LCViewControllerShowTypePresentBasic        （作为没有登录的情况下，登陆界面返回按钮 跳转到首页的凭据）</div></pre></td></tr></table></figure>
-
-<p>LCNavigationBarStyle： navigationBar 的样式 主要是背景色</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="title">LCNavigationBarRed</span>             navigationBar 一级,红色背景</div></pre></td></tr></table></figure>
-
-<p><img src="http://upload-images.jianshu.io/upload_images/79888-d6fa0aed379b25d2.png" alt="LCNavigationBarRed"></p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="title">LCNavigationBarWhite</span>          navigationBar 二级,白色背景（默认）</div></pre></td></tr></table></figure>
-
-<p><img src="http://upload-images.jianshu.io/upload_images/79888-6225382ae2b09d27.png" alt="LCNavigationBarWhite"></p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="title">LCNavigationBarNull</span>             navigationBar 二级,隐藏navigaitonbar</div></pre></td></tr></table></figure>
-
-<p>提供函数方法</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">//设置导航栏背景图片</div><div class="line"><span class="pp">- <span class="params">(void)</span>configNavigationBarBgImage;</span></div><div class="line">//设置左边的返回按钮</div><div class="line">- <span class="params">(void)</span>setLeftBackButton;</div><div class="line">- <span class="params">(void)</span>setLeftBackButtonAction:<span class="params">(<span class="variable">SEL</span>)</span>selector;</div><div class="line">//设置左边的返回按钮<span class="params">(图片按钮)</span></div><div class="line">- <span class="params">(void)</span>setLeftButtonWithImageName:<span class="params">(<span class="variable">NSString</span>*)</span>imageName action:<span class="params">(<span class="variable">SEL</span>)</span>selector;</div><div class="line">//设置左边的返回按钮<span class="params">(文字按钮)</span></div><div class="line">- <span class="params">(void)</span>setLeftButtonWithTitle:<span class="params">(<span class="variable">NSString</span>*)</span>title action:<span class="params">(<span class="variable">SEL</span>)</span>selector;</div><div class="line">//设置左边的返回按钮<span class="params">(通用按钮)</span></div><div class="line">- <span class="params">(void)</span>setLeftButton:<span class="params">(<span class="variable">UIButton</span>*)</span>button action:<span class="params">(<span class="variable">SEL</span>)</span>selector;</div><div class="line">//设置中间的文本标题</div><div class="line">- <span class="params">(void)</span>setTitleViewWithText:<span class="params">(<span class="variable">NSString</span>*)</span>text;</div><div class="line">//设置右边的按钮<span class="params">(文字按钮)</span></div><div class="line">- <span class="params">(void)</span>setRightButtonWithTitle:<span class="params">(<span class="variable">NSString</span>*)</span>title action:<span class="params">(<span class="variable">SEL</span>)</span>selector;</div><div class="line">//设置右边的按钮<span class="params">(图片按钮)</span></div><div class="line">- <span class="params">(void)</span>setRightButtonWithImageName:<span class="params">(<span class="variable">NSString</span>*)</span>imageName action:<span class="params">(<span class="variable">SEL</span>)</span>selector;</div><div class="line">- <span class="params">(void)</span>setRightButtonWithNormarlImageName:<span class="params">(<span class="variable">NSString</span>*)</span>normarName highlightedImageName:<span class="params">(<span class="variable">NSString</span> *)</span>highlightedName action:<span class="params">(<span class="variable">SEL</span>)</span>selector;</div><div class="line">//设置右边的按钮</div><div class="line">- <span class="params">(void)</span>setRightButton:<span class="params">(<span class="variable">UIButton</span>*)</span>button action:<span class="params">(<span class="variable">SEL</span>)</span>selector;</div><div class="line">//多个按钮 分别有文字或图片 （btnStrs 中vo 为dic 具体参考下面栗子）</div><div class="line">- <span class="params">(void)</span>setRightButtons:<span class="params">(<span class="variable">NSArray</span> *)</span>btnStrs;</div><div class="line">- <span class="params">(void)</span>setRightButtonImages:<span class="params">(<span class="variable">NSArray</span> *)</span>images;</div><div class="line">- <span class="params">(void)</span>rightButtonAction:<span class="params">(id)</span>sender;</div><div class="line">//返回按钮的响应事件</div><div class="line">- <span class="params">(void)</span>backButtonPressed:<span class="params">(id)</span>sender;</div></pre></td></tr></table></figure>
-
-<p>提供方法中</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="pp">- <span class="params">(void)</span>setRightButtons:<span class="params">(<span class="variable">NSArray</span> *)</span>btnStrs;</span></div></pre></td></tr></table></figure>
-
-<p>btnStrs为包含vo对象的一个数组</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="variable">vo =</span> {</div><div class="line">@<span class="string">" title"</span>     : @<span class="string">"返回"</span>,</div><div class="line">@<span class="string">"normalImage"</span>:@<span class="string">"fanhui.png"</span></div><div class="line">}</div></pre></td></tr></table></figure>
-
-<p>具体使用为</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">NSArray</span> *rightbarButtonVos = @[@{<span class="string">@"title"</span>:<span class="string">@"第一个"</span>,<span class="string">@"normalImage"</span>:<span class="string">@"first.png"</span>},@{<span class="string">@"title"</span>:<span class="string">@"第二个"</span>,<span class="string">@"normalImage"</span>:<span class="string">@"second.png"</span>}];</div><div class="line">[<span class="keyword">self</span> setRightButtons: rightbarButtonVos];</div></pre></td></tr></table></figure>
-
-]]></content>
-    <summary type="html">
-    <![CDATA[<h2 id="简介">简介</h2>
-<p>该基类参考原先项目中BaseViewController等几个类 进行修改 功能暂时满足目前项目需求 日后更新会根据项目迭代中提出的需求在进行修改</p>
-<h2 id="属性和函数说明">属性和函数说明</h2>
-<p>LCViewControllerShowType：viewController出现的方式 具体分为</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">LCViewControllerShowTypePush                （<span class="keyword">pop</span>/<span class="keyword">push</span>方式）（默认）</div><div class="line">LCViewControllerShowTypePresent             （present/dismiss方式）</div><div class="line">LCViewControllerShowTypePresentBasic        （作为没有登录的情况下，登陆界面返回按钮 跳转到首页的凭据）</div></pre></td></tr></table></figure>
-
-]]>
-    
-    </summary>
-    
-      <category term="LCBaseViewController" scheme="http://linkageios.github.io/tags/LCBaseViewController/"/>
-    
-      <category term="iOS" scheme="http://linkageios.github.io/categories/iOS/"/>
-    
-  </entry>
-  
-  <entry>
     <title><![CDATA[关于iConsole在项目中的应用]]></title>
     <link href="http://linkageios.github.io/2014/11/07/%E5%85%B3%E4%BA%8EiConsole%E5%9C%A8%E9%A1%B9%E7%9B%AE%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/"/>
     <id>http://linkageios.github.io/2014/11/07/关于iConsole在项目中的应用/</id>
@@ -917,189 +858,99 @@ return cell
   </entry>
   
   <entry>
-    <title><![CDATA[LCDataManager相关说明]]></title>
-    <link href="http://linkageios.github.io/2014/11/07/LCDataManager%E7%9B%B8%E5%85%B3%E8%AF%B4%E6%98%8E/"/>
-    <id>http://linkageios.github.io/2014/11/07/LCDataManager相关说明/</id>
+    <title><![CDATA[测试Json效率和XML效率]]></title>
+    <link href="http://linkageios.github.io/2014/11/07/%E6%B5%8B%E8%AF%95Json%E6%95%88%E7%8E%87%E5%92%8CXML%E6%95%88%E7%8E%87/"/>
+    <id>http://linkageios.github.io/2014/11/07/测试Json效率和XML效率/</id>
     <published>2014-11-07T05:38:14.000Z</published>
-    <updated>2014-11-18T10:35:55.000Z</updated>
-    <content type="html"><![CDATA[<h6 id="#_文章参照cucuz的数据存储Library"># 文章参照cucuz的数据存储Library</h6>
-<p><strong>类 的目的</strong></p>
-<p>方便项目当中数据的存储，提供简单的接口供使用,根据存储的位置划分可以分为缓存和本地存储，<br>其中包括</p>
-<pre><code><span class="built_in">NSArray</span>, <span class="built_in">NSDictionary</span>, NSData,<span class="built_in">NSString</span>,<span class="built_in">UIImage</span> 等常用数据类型，自定义Object(自行实现NSCoding协议)
-</code></pre><p><strong>类的函数介绍</strong></p>
-<ul>
-<li>类初始化(单例)</li>
-</ul>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">LCDataManager *dataManager </span>=<span class="string"> [LCDataManager shareManager];</span></div></pre></td></tr></table></figure>
-
-<p>首先，我们创建一个对象，下文将以它作为存储的一个依据</p>
-<h2 id="Cache_block">Cache block</h2>
-<p><a id="more"></a></p>
-<h6 id="#_文章参照cucuz的数据存储Library-1"># 文章参照cucuz的数据存储Library</h6>
-<p><strong>类 的目的</strong></p>
-<p>方便项目当中数据的存储，提供简单的接口供使用,根据存储的位置划分可以分为缓存和本地存储，<br>其中包括</p>
-<pre><code><span class="built_in">NSArray</span>, <span class="built_in">NSDictionary</span>, NSData,<span class="built_in">NSString</span>,<span class="built_in">UIImage</span> 等常用数据类型，自定义Object(自行实现NSCoding协议)
-</code></pre><p><strong>类的函数介绍</strong></p>
-<ul>
-<li>类初始化(单例)</li>
-</ul>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">LCDataManager *dataManager </span>=<span class="string"> [LCDataManager shareManager];</span></div></pre></td></tr></table></figure>
-
-<p>首先，我们创建一个对象，下文将以它作为存储的一个依据</p>
-<h2 id="Cache_block-1">Cache block</h2>
-<ul>
-<li>Cache的存储</li>
-</ul>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="pp">- <span class="params">(void)</span>putObject:<span class="params">(id)</span>object inKey:<span class="params">(<span class="variable">NSString</span> *)</span>key underType:<span class="params">(<span class="variable">LCCACHETYPE</span>)</span>type;</span></div></pre></td></tr></table></figure>
-
-<p>函数用意是 把</p>
-<figure class="highlight object```以关键字```key```存储到```type```类型下。其实，本身```dataManager"><figcaption><span>```中存在一个```MutbaleDictionary *cacheMutableDictionary``` ，它是以```LCCACHETYPE ```中的类别为关键字建立的字典，该存储函数中的```key```则是这个```cacheMutableDictionary ```中对应```type```下的关键字，简单说就是“字典中字典的关键字”。</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line"><span class="undefined">其中</span></div></pre></td></tr></table></figure>
-
-<p>LCCACHETYPE</p>
-<figure class="highlight 是提供的数据分类"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
-
-<p>typedef NS_ENUM(NSInteger, LCCACHETYPE)<br>{<br>LCCacheImage            =  0,<br>LCCacheData             =  1,<br>LCCacheFile             =  2,<br>LCCacheTmp              =  3,<br>LCCacheNeverRelease     =  4,<br>};</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="deletion">-</span></div></pre></td></tr></table></figure>
-
-<p>putObject</p>
-<figure class="highlight 用法"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
-
-<p>NSArray *CacheLists = @[@”老大”,@”老二”,@”老三”];<br>BOOL ret = [dataManager  putObject:CacheLists inKey:@”order” underType:LCCacheData];</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">其他类型以此类推</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"><span class="deletion">- Cache的获取</span></div></pre></td></tr></table></figure>
-
-<ul>
-<li>(id)getObjectForKey:(NSString *)key underType:(LCCACHETYPE)type;</li>
-</ul>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">这个就是上面存储函数对应的一个<span class="keyword">get</span>函数，他的参数和上面函数是一样的，不过多说明</div><div class="line"></div><div class="line">-</div></pre></td></tr></table></figure>
-
-<p>getObjectForKey</p>
-<figure class="highlight 用法"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line"><span class="protobuf"><span class="constant">	NSArray *fetchCacheLists</span> = [dataManager getObjectForKey:@<span class="string">"order"</span>] 	underType: LCCacheData;</span></div><div class="line"></div><div class="line">其他类型以此类推</div><div class="line"></div><div class="line">- Cache的清除</div><div class="line"></div><div class="line">这里提供了<span class="number">3</span>个清除方法，是针对需要清除的模块的范围划分的:</div></pre></td></tr></table></figure>
-
-<ul>
-<li>(void)clearObjectForKey:(NSString *)key underType:(LCCACHETYPE)type;</li>
-</ul>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">上面这个方法是最细的一个清除，他是清除到类别下面的关键字对应的数据</div></pre></td></tr></table></figure>
-
-<ul>
-<li>(void)clearObjectsUnderType:(LCCACHETYPE)type;</li>
-</ul>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">上面这个方法清除的是一个类别下所有的关键字包含的数据</div></pre></td></tr></table></figure>
-
-<ul>
-<li>(void)clearAllCache;</li>
-</ul>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">上面这个方法顾名思义就是清空Cache</div><div class="line"><span class="deletion">- 清除用法</span></div></pre></td></tr></table></figure>
-
-<p>[dataManager clearObjectForKey:@”order” underType: LCCacheData];<br>[dataManager clearObjectsUnderType: LCCacheData];<br>[dataManager clearAllCache];</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span></div></pre></td></tr></table></figure>
-
-<p>i’m 华 丽 的 分 割 线 </p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">-<span class="ruby">----------------------------------------------------------------------------</span></div><div class="line">##disk block</div><div class="line">disk上的存储</div><div class="line">它包括了</div></pre></td></tr></table></figure>
-
-<p>NSFileManager NSUserDefaults NSKeyedArchiver</p>
-<figure class="highlight 对数据"><figcaption><span>的操作，目前除了对```UIImage```的存储位置放在```tmp```中，其他数据存储位置在```Library/Caches```中</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="deletion">-</span></div></pre></td></tr></table></figure>
-
-<p>NSFileManager </p>
-<figure class="highlight 上的操作"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="deletion">-</span></div></pre></td></tr></table></figure>
-
-<p>NSFileManager </p>
-<figure class="highlight 存数据"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">```</div><div class="line"><span class="pp">- <span class="params">(<span class="variable">BOOL</span>)</span>storeImage:<span class="params">(<span class="variable">UIImage</span> *)</span>image withFileName:<span class="params">(<span class="variable">NSString</span> *)</span>fileName;</span></div><div class="line">- <span class="params">(<span class="variable">BOOL</span>)</span>storeArray:<span class="params">(<span class="variable">NSArray</span> *)</span>array withFileName:<span class="params">(<span class="variable">NSString</span> *)</span>fileName;</div><div class="line">- <span class="params">(<span class="variable">BOOL</span>)</span>storeDictionary:<span class="params">(<span class="variable">NSDictionary</span> *)</span>dictionary withFileName:<span class="params">(<span class="variable">NSString</span> *)</span>fileName;</div><div class="line">- <span class="params">(<span class="variable">BOOL</span>)</span>storeData:<span class="params">(<span class="variable">NSData</span> *)</span>data withFileName:<span class="params">(<span class="variable">NSString</span> *)</span>fileName;</div></pre></td></tr></table></figure>
-
-<p>它的用法</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="constant">NSArray *diskLists</span> = @[@<span class="string">"disk_1"</span>,@<span class="string">"disk_2"</span>,@<span class="string">"disk_3"</span>];</div><div class="line"><span class="constant">BOOL ret</span> = [dataManager storeArray:diskLists withFileName:@<span class="string">"order"</span>];</div></pre></td></tr></table></figure>
-
-<p>其他类型以此类推</p>
-<ul>
-<li><figure class="highlight NSFileManager"><figcaption><span>```取数据</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="code">```</span></div><div class="line"><span class="bullet">- </span>(UIImage <span class="emphasis">*)fetchImageNamedString:(NSString *</span>)name;</div><div class="line"><span class="bullet">- </span>(NSArray <span class="emphasis">*)fetchArrayNamedString:(NSString *</span>)name;</div><div class="line"><span class="bullet">- </span>(NSDictionary <span class="emphasis">*)fetchDictionaryNamedString:(NSString *</span>)name;</div><div class="line"><span class="bullet">- </span>(NSData <span class="emphasis">*)fetchDataNamedString:(NSString *</span>)name;</div></pre></td></tr></table></figure>
-
+    <updated>2014-12-03T02:50:04.000Z</updated>
+    <content type="html"><![CDATA[<ul>
+<li><p>tips：把项目中的解析json的sbjson ,网上提到的JsonKit和apple提供的自带json解析方法进行比较<br>所解析的json是来自项目当中服务返回的商家列表信息<br>具体如下图</p>
+<a id="more"></a>
 </li>
+<li><p>tips：把项目中的解析json的sbjson ,网上提到的JsonKit和apple提供的自带json解析方法进行比较<br>所解析的json是来自项目当中服务返回的商家列表信息<br>具体如下图<br><img src="/images/79888-1946ee461177aeca.png" alt="imag"><br>开始先去 请求 商家列表信息 ，请求成功之后 会有弹出框提示</p>
+<a id="more"></a></li>
+<li>tips：把项目中的解析json的sbjson ,网上提到的JsonKit和apple提供的自带json解析方法进行比较<br>所解析的json是来自项目当中服务返回的商家列表信息<br>具体如下图<br><img src="/images/79888-1946ee461177aeca.png" alt="imag"><br>开始先去 请求 商家列表信息 ，请求成功之后 会有弹出框提示</li>
 </ul>
-<p>它的用法</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="constant">NSArray *fetchDiskLists</span> = [dataManager fetchArrayNameString:@<span class="string">"order"</span>];</div></pre></td></tr></table></figure>
-
-<p>其他类型以此类推</p>
+<p><img src="/images/79888-bd0e36d1d14085ea.png" alt="imag"><br>之后可以依次测试三种解析，具体看demo提示<br>结果：JSONKit 效率最接近苹果原生</p>
 <ul>
-<li><figure class="highlight NSFileManager"><figcaption><span>```删数据</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">```</div><div class="line"><span class="pp">- <span class="params">(<span class="variable">BOOL</span>)</span>removeImageNamedString:<span class="params">(<span class="variable">NSString</span> *)</span>name;</span></div><div class="line">- <span class="params">(<span class="variable">BOOL</span>)</span>removeArrayNamedString:<span class="params">(<span class="variable">NSString</span> *)</span>name;</div><div class="line">- <span class="params">(<span class="variable">BOOL</span>)</span>removeDictionaryNamedString:<span class="params">(<span class="variable">NSString</span> *)</span>name;</div><div class="line">- <span class="params">(<span class="variable">BOOL</span>)</span>removeDataNamedString:<span class="params">(<span class="variable">NSString</span> *)</span>name;</div></pre></td></tr></table></figure>
-
-</li>
+<li>tips：针对项目中的车型xml文件，对比XMLDictionary和苹果自带xml解析的效率<br>解析的对象就是 项目当中的车型库文件</li>
 </ul>
-<p>它的用法</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">BOOL <span class="keyword">ret</span> = [dataManager removeArrayNameStrin<span class="variable">g:</span>@<span class="string">"order"</span>];</div></pre></td></tr></table></figure>
-
-<p>其他类型以此类推</p>
-<ul>
-<li><figure class="highlight NSFileManager"><figcaption><span>```清空</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">```</div><div class="line">-<span class="ruby"> (<span class="constant">BOOL</span>)clearDiskUnderImages;</span></div><div class="line">-<span class="ruby"> (<span class="constant">BOOL</span>)clearDiskUnderDatas;</span></div><div class="line">-<span class="ruby"> (void)clearAllDataOnDisk;</span></div></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<p>它的用法</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">BOOL ret </span>=<span class="string"> [dataManager clearDiskUnderDatas];</span></div></pre></td></tr></table></figure>
-
-<p>其中</p>
-<figure class="highlight clearDiskUnderDatas```是清除Data目录中所有数据；"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="escape">``</span><span class="escape">`c</span>learDiskUnderImages</div></pre></td></tr></table></figure>
-
-<p>是清除Image目录中所有数据</p>
-<figure class="highlight clearAllDataOnDisk```是清除Disk上所有数据"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="deletion">-</span></div></pre></td></tr></table></figure>
-
-<p>NSFileManager </p>
-<figure class="highlight 获取数据大小"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">```</div><div class="line">-<span class="ruby"> (<span class="constant">NSString</span>*)imageOndiskSize;</span></div><div class="line">-<span class="ruby"> (<span class="constant">NSString</span>*)dataOndiskSize;</span></div><div class="line">-<span class="ruby"> (<span class="constant">NSString</span>*)tmpOndiskSize;</span></div></pre></td></tr></table></figure>
-
-<ul>
-<li><figure class="highlight NSUserDefaults"><figcaption><span>```上的操作</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="deletion">-</span></div></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<p>NSUserDefaults </p>
-<figure class="highlight 存数据"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">```</div><div class="line"><span class="pp">- <span class="params">(<span class="variable">BOOL</span>)</span>storeValue:<span class="params">(id)</span>value keyValue:<span class="params">(<span class="variable">NSString</span>*)</span>key;</span></div></pre></td></tr></table></figure>
-
-<ul>
-<li><figure class="highlight NSUserDefaults"><figcaption><span>```取数据</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">```</div><div class="line"><span class="pp">- <span class="params">(id)</span>fetchValueUnderKeyValue:<span class="params">(<span class="variable">NSString</span> *)</span>key;</span></div></pre></td></tr></table></figure>
-</li>
-<li></li>
-</ul>
-<figure class="highlight NSUserDefaults"><figcaption><span>```用法</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">```</div><div class="line"><span class="constant">BOOL ret</span> = [dataManager storeValue:@<span class="string">"LinkAge"</span> keyValue:@<span class="string">"Co.,Ltd."</span>];</div><div class="line"><span class="constant">NSString *corp</span> = [dataManager fetchValueUnderKeyValue:@<span class="string">"Co.,Ltd."</span>];</div></pre></td></tr></table></figure>
-
-<ul>
-<li><figure class="highlight NSKeyedArchiver"><figcaption><span>```上的操作(对有序列化要求的数据提供存储方法)</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="deletion">-</span></div></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<p>NSKeyedArchiver </p>
-<figure class="highlight 存数据"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">```</div><div class="line"><span class="pp">- <span class="params">(<span class="variable">BOOL</span>)</span>storeObject:<span class="params">(id)</span>object withFileName:<span class="params">(<span class="variable">NSString</span> *)</span>fileName;</span></div></pre></td></tr></table></figure>
-
-<ul>
-<li><figure class="highlight NSKeyedArchiver"><figcaption><span>```取数据</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">```</div><div class="line"><span class="pp">- <span class="params">(id)</span>fetchObjectNamedString:<span class="params">(<span class="variable">NSString</span> *)</span>name;</span></div></pre></td></tr></table></figure>
-</li>
-<li></li>
-</ul>
-<figure class="highlight NSKeyedArchiver"><figcaption><span>```删数据</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">放在</div></pre></td></tr></table></figure>
-
-<p>NSFileManager </p>
-<figure class="highlight 对Data操作一致"><figcaption><span>他们的存储目录一样</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="deletion">-</span></div></pre></td></tr></table></figure>
-
-<p>NSKeyedArchiver </p>
-<figure class="highlight 用法"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">```</div><div class="line"><span class="built_in">NSDictionary</span> *dic ...{为后台返回回来的jsonDic}</div><div class="line"><span class="built_in">BOOL</span> ret = [dataManager storeObject:dic withFileName:<span class="string">@"washCarList"</span>];</div><div class="line"><span class="built_in">NSDictionary</span> *fetchDic = [dataManager fetchObjectNamedString:<span class="string">@"washCarList"</span>];</div></pre></td></tr></table></figure>
-
-<p>其余自定义类需要调用函数的 完成NSCoding协议后在调用</p>
+<p><img src="/images/79888-e567a1bfada45c8c.png" alt="imag"><br>每个解析方法 解析1000次 具体实现看demo<br>结果：XMLDictionary因为是 宽泛适应的解析 比demo中的针对特定文件写的解析是要慢些，但是今后将取消xml读取文件，这个也就没什么需要考虑的了</p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<h6 id="#_文章参照cucuz的数据存储Library"># 文章参照cucuz的数据存储Library</h6>
-<p><strong>类 的目的</strong></p>
-<p>方便项目当中数据的存储，提供简单的接口供使用,根据存储的位置划分可以分为缓存和本地存储，<br>其中包括</p>
-<pre><code><span class="built_in">NSArray</span>, <span class="built_in">NSDictionary</span>, NSData,<span class="built_in">NSString</span>,<span class="built_in">UIImage</span> 等常用数据类型，自定义Object(自行实现NSCoding协议)
-</code></pre><p><strong>类的函数介绍</strong></p>
-<ul>
-<li>类初始化(单例)</li>
-</ul>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">LCDataManager *dataManager </span>=<span class="string"> [LCDataManager shareManager];</span></div></pre></td></tr></table></figure>
-
-<p>首先，我们创建一个对象，下文将以它作为存储的一个依据</p>
-<h2 id="Cache_block">Cache block</h2>
-<p>]]>
+    <![CDATA[<ul>
+<li><p>tips：把项目中的解析json的sbjson ,网上提到的JsonKit和apple提供的自带json解析方法进行比较<br>所解析的json是来自项目当中服务返回的商家列表信息<br>具体如下图</p>
+<!--more-->
+</li>
+<li><p>tips：把项目中的解析json的sbjson ,网上提到的JsonKit和apple提供的自带json解析方法进行比较<br>所解析的json是来自项目当中服务返回的商家列表信息<br>具体如下图<br><img src="/images/79888-1946ee461177aeca.png" alt="imag"><br>开始先去 请求 商家列表信息 ，请求成功之后 会有弹出框提示</p>
+]]>
     
     </summary>
     
-      <category term="LCDataManager" scheme="http://linkageios.github.io/tags/LCDataManager/"/>
+      <category term="xml" scheme="http://linkageios.github.io/tags/xml/"/>
+    
+      <category term="json" scheme="http://linkageios.github.io/tags/json/"/>
+    
+      <category term="效率" scheme="http://linkageios.github.io/tags/%E6%95%88%E7%8E%87/"/>
+    
+      <category term="iOS" scheme="http://linkageios.github.io/categories/iOS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[LCBaseViewController相关]]></title>
+    <link href="http://linkageios.github.io/2014/11/07/LCBaseViewController%E7%9B%B8%E5%85%B3/"/>
+    <id>http://linkageios.github.io/2014/11/07/LCBaseViewController相关/</id>
+    <published>2014-11-07T05:38:14.000Z</published>
+    <updated>2014-11-18T09:20:25.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="简介">简介</h2>
+<p>该基类参考原先项目中BaseViewController等几个类 进行修改 功能暂时满足目前项目需求 日后更新会根据项目迭代中提出的需求在进行修改</p>
+<h2 id="属性和函数说明">属性和函数说明</h2>
+<p>LCViewControllerShowType：viewController出现的方式 具体分为</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">LCViewControllerShowTypePush                （<span class="keyword">pop</span>/<span class="keyword">push</span>方式）（默认）</div><div class="line">LCViewControllerShowTypePresent             （present/dismiss方式）</div><div class="line">LCViewControllerShowTypePresentBasic        （作为没有登录的情况下，登陆界面返回按钮 跳转到首页的凭据）</div></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+<h2 id="简介-1">简介</h2>
+<p>该基类参考原先项目中BaseViewController等几个类 进行修改 功能暂时满足目前项目需求 日后更新会根据项目迭代中提出的需求在进行修改</p>
+<h2 id="属性和函数说明-1">属性和函数说明</h2>
+<p>LCViewControllerShowType：viewController出现的方式 具体分为</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">LCViewControllerShowTypePush                （<span class="keyword">pop</span>/<span class="keyword">push</span>方式）（默认）</div><div class="line">LCViewControllerShowTypePresent             （present/dismiss方式）</div><div class="line">LCViewControllerShowTypePresentBasic        （作为没有登录的情况下，登陆界面返回按钮 跳转到首页的凭据）</div></pre></td></tr></table></figure>
+
+<p>LCNavigationBarStyle： navigationBar 的样式 主要是背景色</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="title">LCNavigationBarRed</span>             navigationBar 一级,红色背景</div></pre></td></tr></table></figure>
+
+<p><img src="http://upload-images.jianshu.io/upload_images/79888-d6fa0aed379b25d2.png" alt="LCNavigationBarRed"></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="title">LCNavigationBarWhite</span>          navigationBar 二级,白色背景（默认）</div></pre></td></tr></table></figure>
+
+<p><img src="http://upload-images.jianshu.io/upload_images/79888-6225382ae2b09d27.png" alt="LCNavigationBarWhite"></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="title">LCNavigationBarNull</span>             navigationBar 二级,隐藏navigaitonbar</div></pre></td></tr></table></figure>
+
+<p>提供函数方法</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">//设置导航栏背景图片</div><div class="line"><span class="pp">- <span class="params">(void)</span>configNavigationBarBgImage;</span></div><div class="line">//设置左边的返回按钮</div><div class="line">- <span class="params">(void)</span>setLeftBackButton;</div><div class="line">- <span class="params">(void)</span>setLeftBackButtonAction:<span class="params">(<span class="variable">SEL</span>)</span>selector;</div><div class="line">//设置左边的返回按钮<span class="params">(图片按钮)</span></div><div class="line">- <span class="params">(void)</span>setLeftButtonWithImageName:<span class="params">(<span class="variable">NSString</span>*)</span>imageName action:<span class="params">(<span class="variable">SEL</span>)</span>selector;</div><div class="line">//设置左边的返回按钮<span class="params">(文字按钮)</span></div><div class="line">- <span class="params">(void)</span>setLeftButtonWithTitle:<span class="params">(<span class="variable">NSString</span>*)</span>title action:<span class="params">(<span class="variable">SEL</span>)</span>selector;</div><div class="line">//设置左边的返回按钮<span class="params">(通用按钮)</span></div><div class="line">- <span class="params">(void)</span>setLeftButton:<span class="params">(<span class="variable">UIButton</span>*)</span>button action:<span class="params">(<span class="variable">SEL</span>)</span>selector;</div><div class="line">//设置中间的文本标题</div><div class="line">- <span class="params">(void)</span>setTitleViewWithText:<span class="params">(<span class="variable">NSString</span>*)</span>text;</div><div class="line">//设置右边的按钮<span class="params">(文字按钮)</span></div><div class="line">- <span class="params">(void)</span>setRightButtonWithTitle:<span class="params">(<span class="variable">NSString</span>*)</span>title action:<span class="params">(<span class="variable">SEL</span>)</span>selector;</div><div class="line">//设置右边的按钮<span class="params">(图片按钮)</span></div><div class="line">- <span class="params">(void)</span>setRightButtonWithImageName:<span class="params">(<span class="variable">NSString</span>*)</span>imageName action:<span class="params">(<span class="variable">SEL</span>)</span>selector;</div><div class="line">- <span class="params">(void)</span>setRightButtonWithNormarlImageName:<span class="params">(<span class="variable">NSString</span>*)</span>normarName highlightedImageName:<span class="params">(<span class="variable">NSString</span> *)</span>highlightedName action:<span class="params">(<span class="variable">SEL</span>)</span>selector;</div><div class="line">//设置右边的按钮</div><div class="line">- <span class="params">(void)</span>setRightButton:<span class="params">(<span class="variable">UIButton</span>*)</span>button action:<span class="params">(<span class="variable">SEL</span>)</span>selector;</div><div class="line">//多个按钮 分别有文字或图片 （btnStrs 中vo 为dic 具体参考下面栗子）</div><div class="line">- <span class="params">(void)</span>setRightButtons:<span class="params">(<span class="variable">NSArray</span> *)</span>btnStrs;</div><div class="line">- <span class="params">(void)</span>setRightButtonImages:<span class="params">(<span class="variable">NSArray</span> *)</span>images;</div><div class="line">- <span class="params">(void)</span>rightButtonAction:<span class="params">(id)</span>sender;</div><div class="line">//返回按钮的响应事件</div><div class="line">- <span class="params">(void)</span>backButtonPressed:<span class="params">(id)</span>sender;</div></pre></td></tr></table></figure>
+
+<p>提供方法中</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="pp">- <span class="params">(void)</span>setRightButtons:<span class="params">(<span class="variable">NSArray</span> *)</span>btnStrs;</span></div></pre></td></tr></table></figure>
+
+<p>btnStrs为包含vo对象的一个数组</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="variable">vo =</span> {</div><div class="line">@<span class="string">" title"</span>     : @<span class="string">"返回"</span>,</div><div class="line">@<span class="string">"normalImage"</span>:@<span class="string">"fanhui.png"</span></div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>具体使用为</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">NSArray</span> *rightbarButtonVos = @[@{<span class="string">@"title"</span>:<span class="string">@"第一个"</span>,<span class="string">@"normalImage"</span>:<span class="string">@"first.png"</span>},@{<span class="string">@"title"</span>:<span class="string">@"第二个"</span>,<span class="string">@"normalImage"</span>:<span class="string">@"second.png"</span>}];</div><div class="line">[<span class="keyword">self</span> setRightButtons: rightbarButtonVos];</div></pre></td></tr></table></figure>
+
+]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="简介">简介</h2>
+<p>该基类参考原先项目中BaseViewController等几个类 进行修改 功能暂时满足目前项目需求 日后更新会根据项目迭代中提出的需求在进行修改</p>
+<h2 id="属性和函数说明">属性和函数说明</h2>
+<p>LCViewControllerShowType：viewController出现的方式 具体分为</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">LCViewControllerShowTypePush                （<span class="keyword">pop</span>/<span class="keyword">push</span>方式）（默认）</div><div class="line">LCViewControllerShowTypePresent             （present/dismiss方式）</div><div class="line">LCViewControllerShowTypePresentBasic        （作为没有登录的情况下，登陆界面返回按钮 跳转到首页的凭据）</div></pre></td></tr></table></figure>
+
+]]>
+    
+    </summary>
+    
+      <category term="LCBaseViewController" scheme="http://linkageios.github.io/tags/LCBaseViewController/"/>
     
       <category term="iOS" scheme="http://linkageios.github.io/categories/iOS/"/>
     
@@ -1329,40 +1180,189 @@ return cell
   </entry>
   
   <entry>
-    <title><![CDATA[测试Json效率和XML效率]]></title>
-    <link href="http://linkageios.github.io/2014/11/07/%E6%B5%8B%E8%AF%95Json%E6%95%88%E7%8E%87%E5%92%8CXML%E6%95%88%E7%8E%87/"/>
-    <id>http://linkageios.github.io/2014/11/07/测试Json效率和XML效率/</id>
+    <title><![CDATA[LCDataManager相关说明]]></title>
+    <link href="http://linkageios.github.io/2014/11/07/LCDataManager%E7%9B%B8%E5%85%B3%E8%AF%B4%E6%98%8E/"/>
+    <id>http://linkageios.github.io/2014/11/07/LCDataManager相关说明/</id>
     <published>2014-11-07T05:38:14.000Z</published>
-    <updated>2014-12-03T02:50:04.000Z</updated>
-    <content type="html"><![CDATA[<ul>
-<li><p>tips：把项目中的解析json的sbjson ,网上提到的JsonKit和apple提供的自带json解析方法进行比较<br>所解析的json是来自项目当中服务返回的商家列表信息<br>具体如下图</p>
-<a id="more"></a>
-</li>
-<li><p>tips：把项目中的解析json的sbjson ,网上提到的JsonKit和apple提供的自带json解析方法进行比较<br>所解析的json是来自项目当中服务返回的商家列表信息<br>具体如下图<br><img src="/images/79888-1946ee461177aeca.png" alt="imag"><br>开始先去 请求 商家列表信息 ，请求成功之后 会有弹出框提示</p>
-<a id="more"></a></li>
-<li>tips：把项目中的解析json的sbjson ,网上提到的JsonKit和apple提供的自带json解析方法进行比较<br>所解析的json是来自项目当中服务返回的商家列表信息<br>具体如下图<br><img src="/images/79888-1946ee461177aeca.png" alt="imag"><br>开始先去 请求 商家列表信息 ，请求成功之后 会有弹出框提示</li>
-</ul>
-<p><img src="/images/79888-bd0e36d1d14085ea.png" alt="imag"><br>之后可以依次测试三种解析，具体看demo提示<br>结果：JSONKit 效率最接近苹果原生</p>
+    <updated>2014-11-18T10:35:55.000Z</updated>
+    <content type="html"><![CDATA[<h6 id="#_文章参照cucuz的数据存储Library"># 文章参照cucuz的数据存储Library</h6>
+<p><strong>类 的目的</strong></p>
+<p>方便项目当中数据的存储，提供简单的接口供使用,根据存储的位置划分可以分为缓存和本地存储，<br>其中包括</p>
+<pre><code><span class="built_in">NSArray</span>, <span class="built_in">NSDictionary</span>, NSData,<span class="built_in">NSString</span>,<span class="built_in">UIImage</span> 等常用数据类型，自定义Object(自行实现NSCoding协议)
+</code></pre><p><strong>类的函数介绍</strong></p>
 <ul>
-<li>tips：针对项目中的车型xml文件，对比XMLDictionary和苹果自带xml解析的效率<br>解析的对象就是 项目当中的车型库文件</li>
+<li>类初始化(单例)</li>
 </ul>
-<p><img src="/images/79888-e567a1bfada45c8c.png" alt="imag"><br>每个解析方法 解析1000次 具体实现看demo<br>结果：XMLDictionary因为是 宽泛适应的解析 比demo中的针对特定文件写的解析是要慢些，但是今后将取消xml读取文件，这个也就没什么需要考虑的了</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">LCDataManager *dataManager </span>=<span class="string"> [LCDataManager shareManager];</span></div></pre></td></tr></table></figure>
+
+<p>首先，我们创建一个对象，下文将以它作为存储的一个依据</p>
+<h2 id="Cache_block">Cache block</h2>
+<p><a id="more"></a></p>
+<h6 id="#_文章参照cucuz的数据存储Library-1"># 文章参照cucuz的数据存储Library</h6>
+<p><strong>类 的目的</strong></p>
+<p>方便项目当中数据的存储，提供简单的接口供使用,根据存储的位置划分可以分为缓存和本地存储，<br>其中包括</p>
+<pre><code><span class="built_in">NSArray</span>, <span class="built_in">NSDictionary</span>, NSData,<span class="built_in">NSString</span>,<span class="built_in">UIImage</span> 等常用数据类型，自定义Object(自行实现NSCoding协议)
+</code></pre><p><strong>类的函数介绍</strong></p>
+<ul>
+<li>类初始化(单例)</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">LCDataManager *dataManager </span>=<span class="string"> [LCDataManager shareManager];</span></div></pre></td></tr></table></figure>
+
+<p>首先，我们创建一个对象，下文将以它作为存储的一个依据</p>
+<h2 id="Cache_block-1">Cache block</h2>
+<ul>
+<li>Cache的存储</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="pp">- <span class="params">(void)</span>putObject:<span class="params">(id)</span>object inKey:<span class="params">(<span class="variable">NSString</span> *)</span>key underType:<span class="params">(<span class="variable">LCCACHETYPE</span>)</span>type;</span></div></pre></td></tr></table></figure>
+
+<p>函数用意是 把</p>
+<figure class="highlight object```以关键字```key```存储到```type```类型下。其实，本身```dataManager"><figcaption><span>```中存在一个```MutbaleDictionary *cacheMutableDictionary``` ，它是以```LCCACHETYPE ```中的类别为关键字建立的字典，该存储函数中的```key```则是这个```cacheMutableDictionary ```中对应```type```下的关键字，简单说就是“字典中字典的关键字”。</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line"><span class="undefined">其中</span></div></pre></td></tr></table></figure>
+
+<p>LCCACHETYPE</p>
+<figure class="highlight 是提供的数据分类"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+
+<p>typedef NS_ENUM(NSInteger, LCCACHETYPE)<br>{<br>LCCacheImage            =  0,<br>LCCacheData             =  1,<br>LCCacheFile             =  2,<br>LCCacheTmp              =  3,<br>LCCacheNeverRelease     =  4,<br>};</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="deletion">-</span></div></pre></td></tr></table></figure>
+
+<p>putObject</p>
+<figure class="highlight 用法"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+
+<p>NSArray *CacheLists = @[@”老大”,@”老二”,@”老三”];<br>BOOL ret = [dataManager  putObject:CacheLists inKey:@”order” underType:LCCacheData];</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">其他类型以此类推</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"><span class="deletion">- Cache的获取</span></div></pre></td></tr></table></figure>
+
+<ul>
+<li>(id)getObjectForKey:(NSString *)key underType:(LCCACHETYPE)type;</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">这个就是上面存储函数对应的一个<span class="keyword">get</span>函数，他的参数和上面函数是一样的，不过多说明</div><div class="line"></div><div class="line">-</div></pre></td></tr></table></figure>
+
+<p>getObjectForKey</p>
+<figure class="highlight 用法"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line"><span class="protobuf"><span class="constant">	NSArray *fetchCacheLists</span> = [dataManager getObjectForKey:@<span class="string">"order"</span>] 	underType: LCCacheData;</span></div><div class="line"></div><div class="line">其他类型以此类推</div><div class="line"></div><div class="line">- Cache的清除</div><div class="line"></div><div class="line">这里提供了<span class="number">3</span>个清除方法，是针对需要清除的模块的范围划分的:</div></pre></td></tr></table></figure>
+
+<ul>
+<li>(void)clearObjectForKey:(NSString *)key underType:(LCCACHETYPE)type;</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">上面这个方法是最细的一个清除，他是清除到类别下面的关键字对应的数据</div></pre></td></tr></table></figure>
+
+<ul>
+<li>(void)clearObjectsUnderType:(LCCACHETYPE)type;</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">上面这个方法清除的是一个类别下所有的关键字包含的数据</div></pre></td></tr></table></figure>
+
+<ul>
+<li>(void)clearAllCache;</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">上面这个方法顾名思义就是清空Cache</div><div class="line"><span class="deletion">- 清除用法</span></div></pre></td></tr></table></figure>
+
+<p>[dataManager clearObjectForKey:@”order” underType: LCCacheData];<br>[dataManager clearObjectsUnderType: LCCacheData];<br>[dataManager clearAllCache];</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span></div></pre></td></tr></table></figure>
+
+<p>i’m 华 丽 的 分 割 线 </p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">-<span class="ruby">----------------------------------------------------------------------------</span></div><div class="line">##disk block</div><div class="line">disk上的存储</div><div class="line">它包括了</div></pre></td></tr></table></figure>
+
+<p>NSFileManager NSUserDefaults NSKeyedArchiver</p>
+<figure class="highlight 对数据"><figcaption><span>的操作，目前除了对```UIImage```的存储位置放在```tmp```中，其他数据存储位置在```Library/Caches```中</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="deletion">-</span></div></pre></td></tr></table></figure>
+
+<p>NSFileManager </p>
+<figure class="highlight 上的操作"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="deletion">-</span></div></pre></td></tr></table></figure>
+
+<p>NSFileManager </p>
+<figure class="highlight 存数据"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">```</div><div class="line"><span class="pp">- <span class="params">(<span class="variable">BOOL</span>)</span>storeImage:<span class="params">(<span class="variable">UIImage</span> *)</span>image withFileName:<span class="params">(<span class="variable">NSString</span> *)</span>fileName;</span></div><div class="line">- <span class="params">(<span class="variable">BOOL</span>)</span>storeArray:<span class="params">(<span class="variable">NSArray</span> *)</span>array withFileName:<span class="params">(<span class="variable">NSString</span> *)</span>fileName;</div><div class="line">- <span class="params">(<span class="variable">BOOL</span>)</span>storeDictionary:<span class="params">(<span class="variable">NSDictionary</span> *)</span>dictionary withFileName:<span class="params">(<span class="variable">NSString</span> *)</span>fileName;</div><div class="line">- <span class="params">(<span class="variable">BOOL</span>)</span>storeData:<span class="params">(<span class="variable">NSData</span> *)</span>data withFileName:<span class="params">(<span class="variable">NSString</span> *)</span>fileName;</div></pre></td></tr></table></figure>
+
+<p>它的用法</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="constant">NSArray *diskLists</span> = @[@<span class="string">"disk_1"</span>,@<span class="string">"disk_2"</span>,@<span class="string">"disk_3"</span>];</div><div class="line"><span class="constant">BOOL ret</span> = [dataManager storeArray:diskLists withFileName:@<span class="string">"order"</span>];</div></pre></td></tr></table></figure>
+
+<p>其他类型以此类推</p>
+<ul>
+<li><figure class="highlight NSFileManager"><figcaption><span>```取数据</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="code">```</span></div><div class="line"><span class="bullet">- </span>(UIImage <span class="emphasis">*)fetchImageNamedString:(NSString *</span>)name;</div><div class="line"><span class="bullet">- </span>(NSArray <span class="emphasis">*)fetchArrayNamedString:(NSString *</span>)name;</div><div class="line"><span class="bullet">- </span>(NSDictionary <span class="emphasis">*)fetchDictionaryNamedString:(NSString *</span>)name;</div><div class="line"><span class="bullet">- </span>(NSData <span class="emphasis">*)fetchDataNamedString:(NSString *</span>)name;</div></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>它的用法</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="constant">NSArray *fetchDiskLists</span> = [dataManager fetchArrayNameString:@<span class="string">"order"</span>];</div></pre></td></tr></table></figure>
+
+<p>其他类型以此类推</p>
+<ul>
+<li><figure class="highlight NSFileManager"><figcaption><span>```删数据</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">```</div><div class="line"><span class="pp">- <span class="params">(<span class="variable">BOOL</span>)</span>removeImageNamedString:<span class="params">(<span class="variable">NSString</span> *)</span>name;</span></div><div class="line">- <span class="params">(<span class="variable">BOOL</span>)</span>removeArrayNamedString:<span class="params">(<span class="variable">NSString</span> *)</span>name;</div><div class="line">- <span class="params">(<span class="variable">BOOL</span>)</span>removeDictionaryNamedString:<span class="params">(<span class="variable">NSString</span> *)</span>name;</div><div class="line">- <span class="params">(<span class="variable">BOOL</span>)</span>removeDataNamedString:<span class="params">(<span class="variable">NSString</span> *)</span>name;</div></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>它的用法</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">BOOL <span class="keyword">ret</span> = [dataManager removeArrayNameStrin<span class="variable">g:</span>@<span class="string">"order"</span>];</div></pre></td></tr></table></figure>
+
+<p>其他类型以此类推</p>
+<ul>
+<li><figure class="highlight NSFileManager"><figcaption><span>```清空</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">```</div><div class="line">-<span class="ruby"> (<span class="constant">BOOL</span>)clearDiskUnderImages;</span></div><div class="line">-<span class="ruby"> (<span class="constant">BOOL</span>)clearDiskUnderDatas;</span></div><div class="line">-<span class="ruby"> (void)clearAllDataOnDisk;</span></div></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>它的用法</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">BOOL ret </span>=<span class="string"> [dataManager clearDiskUnderDatas];</span></div></pre></td></tr></table></figure>
+
+<p>其中</p>
+<figure class="highlight clearDiskUnderDatas```是清除Data目录中所有数据；"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="escape">``</span><span class="escape">`c</span>learDiskUnderImages</div></pre></td></tr></table></figure>
+
+<p>是清除Image目录中所有数据</p>
+<figure class="highlight clearAllDataOnDisk```是清除Disk上所有数据"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="deletion">-</span></div></pre></td></tr></table></figure>
+
+<p>NSFileManager </p>
+<figure class="highlight 获取数据大小"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">```</div><div class="line">-<span class="ruby"> (<span class="constant">NSString</span>*)imageOndiskSize;</span></div><div class="line">-<span class="ruby"> (<span class="constant">NSString</span>*)dataOndiskSize;</span></div><div class="line">-<span class="ruby"> (<span class="constant">NSString</span>*)tmpOndiskSize;</span></div></pre></td></tr></table></figure>
+
+<ul>
+<li><figure class="highlight NSUserDefaults"><figcaption><span>```上的操作</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="deletion">-</span></div></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>NSUserDefaults </p>
+<figure class="highlight 存数据"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">```</div><div class="line"><span class="pp">- <span class="params">(<span class="variable">BOOL</span>)</span>storeValue:<span class="params">(id)</span>value keyValue:<span class="params">(<span class="variable">NSString</span>*)</span>key;</span></div></pre></td></tr></table></figure>
+
+<ul>
+<li><figure class="highlight NSUserDefaults"><figcaption><span>```取数据</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">```</div><div class="line"><span class="pp">- <span class="params">(id)</span>fetchValueUnderKeyValue:<span class="params">(<span class="variable">NSString</span> *)</span>key;</span></div></pre></td></tr></table></figure>
+</li>
+<li></li>
+</ul>
+<figure class="highlight NSUserDefaults"><figcaption><span>```用法</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">```</div><div class="line"><span class="constant">BOOL ret</span> = [dataManager storeValue:@<span class="string">"LinkAge"</span> keyValue:@<span class="string">"Co.,Ltd."</span>];</div><div class="line"><span class="constant">NSString *corp</span> = [dataManager fetchValueUnderKeyValue:@<span class="string">"Co.,Ltd."</span>];</div></pre></td></tr></table></figure>
+
+<ul>
+<li><figure class="highlight NSKeyedArchiver"><figcaption><span>```上的操作(对有序列化要求的数据提供存储方法)</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="deletion">-</span></div></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>NSKeyedArchiver </p>
+<figure class="highlight 存数据"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">```</div><div class="line"><span class="pp">- <span class="params">(<span class="variable">BOOL</span>)</span>storeObject:<span class="params">(id)</span>object withFileName:<span class="params">(<span class="variable">NSString</span> *)</span>fileName;</span></div></pre></td></tr></table></figure>
+
+<ul>
+<li><figure class="highlight NSKeyedArchiver"><figcaption><span>```取数据</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">```</div><div class="line"><span class="pp">- <span class="params">(id)</span>fetchObjectNamedString:<span class="params">(<span class="variable">NSString</span> *)</span>name;</span></div></pre></td></tr></table></figure>
+</li>
+<li></li>
+</ul>
+<figure class="highlight NSKeyedArchiver"><figcaption><span>```删数据</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">放在</div></pre></td></tr></table></figure>
+
+<p>NSFileManager </p>
+<figure class="highlight 对Data操作一致"><figcaption><span>他们的存储目录一样</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="deletion">-</span></div></pre></td></tr></table></figure>
+
+<p>NSKeyedArchiver </p>
+<figure class="highlight 用法"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">```</div><div class="line"><span class="built_in">NSDictionary</span> *dic ...{为后台返回回来的jsonDic}</div><div class="line"><span class="built_in">BOOL</span> ret = [dataManager storeObject:dic withFileName:<span class="string">@"washCarList"</span>];</div><div class="line"><span class="built_in">NSDictionary</span> *fetchDic = [dataManager fetchObjectNamedString:<span class="string">@"washCarList"</span>];</div></pre></td></tr></table></figure>
+
+<p>其余自定义类需要调用函数的 完成NSCoding协议后在调用</p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<ul>
-<li><p>tips：把项目中的解析json的sbjson ,网上提到的JsonKit和apple提供的自带json解析方法进行比较<br>所解析的json是来自项目当中服务返回的商家列表信息<br>具体如下图</p>
-<!--more-->
-</li>
-<li><p>tips：把项目中的解析json的sbjson ,网上提到的JsonKit和apple提供的自带json解析方法进行比较<br>所解析的json是来自项目当中服务返回的商家列表信息<br>具体如下图<br><img src="/images/79888-1946ee461177aeca.png" alt="imag"><br>开始先去 请求 商家列表信息 ，请求成功之后 会有弹出框提示</p>
-]]>
+    <![CDATA[<h6 id="#_文章参照cucuz的数据存储Library"># 文章参照cucuz的数据存储Library</h6>
+<p><strong>类 的目的</strong></p>
+<p>方便项目当中数据的存储，提供简单的接口供使用,根据存储的位置划分可以分为缓存和本地存储，<br>其中包括</p>
+<pre><code><span class="built_in">NSArray</span>, <span class="built_in">NSDictionary</span>, NSData,<span class="built_in">NSString</span>,<span class="built_in">UIImage</span> 等常用数据类型，自定义Object(自行实现NSCoding协议)
+</code></pre><p><strong>类的函数介绍</strong></p>
+<ul>
+<li>类初始化(单例)</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">LCDataManager *dataManager </span>=<span class="string"> [LCDataManager shareManager];</span></div></pre></td></tr></table></figure>
+
+<p>首先，我们创建一个对象，下文将以它作为存储的一个依据</p>
+<h2 id="Cache_block">Cache block</h2>
+<p>]]>
     
     </summary>
     
-      <category term="xml" scheme="http://linkageios.github.io/tags/xml/"/>
-    
-      <category term="json" scheme="http://linkageios.github.io/tags/json/"/>
-    
-      <category term="效率" scheme="http://linkageios.github.io/tags/%E6%95%88%E7%8E%87/"/>
+      <category term="LCDataManager" scheme="http://linkageios.github.io/tags/LCDataManager/"/>
     
       <category term="iOS" scheme="http://linkageios.github.io/categories/iOS/"/>
     
