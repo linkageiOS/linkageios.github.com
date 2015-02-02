@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>状态栏高度变化处理 | SmartArrow</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="iOS中的状态栏的正常高度是20，但并不是固定高度的，至少在通话中和有热点连接时，它的高度就会变成40。这时APP的UI会整体下移，造成UI显示异常。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="状态栏高度变化处理">
+<meta property="og:url" content="http://linkageios.github.io/2015/01/18/状态栏高度变化处理/">
+<meta property="og:site_name" content="SmartArrow">
+<meta property="og:description" content="iOS中的状态栏的正常高度是20，但并不是固定高度的，至少在通话中和有热点连接时，它的高度就会变成40。这时APP的UI会整体下移，造成UI显示异常。">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/16632-239743d1a2852743.PNG">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/16632-5f0c47b2bf769cbf.PNG">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/16632-274441621b624829.PNG">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/16632-4649cd6e19c7ea8e.PNG">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/16632-f774f14e8e1bad90.PNG">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/16632-5d37d451b1e55a3e.PNG">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/16632-5d478844c53ee99e.PNG">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/16632-ec9ee74c4007258f.PNG">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="状态栏高度变化处理">
+<meta name="twitter:description" content="iOS中的状态栏的正常高度是20，但并不是固定高度的，至少在通话中和有热点连接时，它的高度就会变成40。这时APP的UI会整体下移，造成UI显示异常。">
+
+  
+    <link rel="alternative" href="/atom.xml" title="SmartArrow" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<div class="profilepic">
+			<img src="/images/logo.png">
+		</div>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">SmartArrow</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">技术文档</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="/#" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="/#" title="rss">rss</a>
+					        
+								<a class="facebook" target="_blank" href="/#" title="facebook">facebook</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud">
+						<a href="/tags/ARC/" style="font-size: 10.00px;">ARC</a><a href="/tags/FMDB/" style="font-size: 10.00px;">FMDB</a><a href="/tags/LCBaseViewController/" style="font-size: 10.00px;">LCBaseViewController</a><a href="/tags/LCDataManager/" style="font-size: 10.00px;">LCDataManager</a><a href="/tags/LCMenuView/" style="font-size: 10.00px;">LCMenuView</a><a href="/tags/POP/" style="font-size: 10.00px;">POP</a><a href="/tags/PhoneGap/" style="font-size: 10.00px;">PhoneGap</a><a href="/tags/SizeClass/" style="font-size: 10.00px;">SizeClass</a><a href="/tags/UICollectionView/" style="font-size: 10.00px;">UICollectionView</a><a href="/tags/iOS8/" style="font-size: 15.00px;">iOS8</a><a href="/tags/iconsole/" style="font-size: 10.00px;">iconsole</a><a href="/tags/json/" style="font-size: 10.00px;">json</a><a href="/tags/xib/" style="font-size: 10.00px;">xib</a><a href="/tags/xml/" style="font-size: 10.00px;">xml</a><a href="/tags/代码优化/" style="font-size: 10.00px;">代码优化</a><a href="/tags/代码规范/" style="font-size: 10.00px;">代码规范</a><a href="/tags/内存/" style="font-size: 10.00px;">内存</a><a href="/tags/分享/" style="font-size: 10.00px;">分享</a><a href="/tags/动画/" style="font-size: 10.00px;">动画</a><a href="/tags/图片/" style="font-size: 10.00px;">图片</a><a href="/tags/地图/" style="font-size: 10.00px;">地图</a><a href="/tags/控件/" style="font-size: 10.00px;">控件</a><a href="/tags/插件/" style="font-size: 10.00px;">插件</a><a href="/tags/支付/" style="font-size: 10.00px;">支付</a><a href="/tags/效率/" style="font-size: 15.00px;">效率</a><a href="/tags/架构/" style="font-size: 10.00px;">架构</a><a href="/tags/版本管理/" style="font-size: 10.00px;">版本管理</a><a href="/tags/状态栏/" style="font-size: 10.00px;">状态栏</a><a href="/tags/网络/" style="font-size: 20.00px;">网络</a><a href="/tags/规范/" style="font-size: 15.00px;">规范</a><a href="/tags/路线图/" style="font-size: 10.00px;">路线图</a><a href="/tags/高德/" style="font-size: 10.00px;">高德</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://blog.crysnower.cn">StephenZhu&#39;s Blog</a>
+			        
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					我是谁，我从哪里来，我到哪里去？我就是我，是颜色不一样的吃货…
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay"></div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img src="/images/logo.png">
+			</div>
+
+			<hgroup>
+			  <h1 class="header-author"><a href="/">SmartArrow</a></h1>
+			</hgroup>
+			
+			<p class="header-subtitle">技术文档</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="/#" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="/#" title="rss">rss</a>
+			        
+						<a class="facebook" target="_blank" href="/#" title="facebook">facebook</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <article id="post-状态栏高度变化处理" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/01/18/状态栏高度变化处理/" class="article-date">
+  	<time datetime="2015-01-18T02:23:14.000Z" itemprop="datePublished">1月 18 2015</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/iOS/">iOS</a>
+  </div>
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/状态栏/">状态栏</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      状态栏高度变化处理
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>iOS中的状态栏的正常高度是20，但并不是固定高度的，至少在通话中和有热点连接时，它的高度就会变成40。这时APP的UI会整体下移，造成UI显示异常。<br><a id="more"></a></p>
+<p>这是一个细节，我查看了自己手机上那些知名APP，发现还有好多没做处理。<br>处理的：</p>
+<ul>
+<li>微信<br><img src="http://upload-images.jianshu.io/upload_images/16632-239743d1a2852743.PNG" alt="Drawing" width="200px"></li>
+<li>QQ<br><img src="http://upload-images.jianshu.io/upload_images/16632-5f0c47b2bf769cbf.PNG" alt="Drawing" width="200px"></li>
+<li>淘宝<br><img src="http://upload-images.jianshu.io/upload_images/16632-274441621b624829.PNG" alt="Drawing" width="200px"></li>
+<li>支付宝<br><img src="http://upload-images.jianshu.io/upload_images/16632-4649cd6e19c7ea8e.PNG" alt="Drawing" width="200px"></li>
+</ul>
+<p>没处理的：</p>
+<ul>
+<li>网易新闻<br><img src="http://upload-images.jianshu.io/upload_images/16632-f774f14e8e1bad90.PNG" alt="Drawing" width="200px"></li>
+<li>京东<br><img src="http://upload-images.jianshu.io/upload_images/16632-5d37d451b1e55a3e.PNG" alt="Drawing" width="200px"></li>
+<li>苏宁<br><img src="http://upload-images.jianshu.io/upload_images/16632-5d478844c53ee99e.PNG" alt="Drawing" width="200px"></li>
+<li>携程<br><img src="http://upload-images.jianshu.io/upload_images/16632-ec9ee74c4007258f.PNG" alt="Drawing" width="200px"></li>
+</ul>
+<p>虽然这只是一个很不起眼的功能，但可以看出做产品的人有没有认真做，而不只是把功能做给用户看。</p>
+<p>说完了处理这个东西的重要性，那么做起来是否简单呢？</p>
+<ul>
+<li>问题1：怎么获取状态栏高度？<br>状态栏的高度并非永远都是20，当有热点连接或者通话时，它的高度就会变成40。所以取得状态栏高度的标准方法如下，可以用宏来封装。</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attr_selector">[UIApplication sharedApplication]</span><span class="class">.statusBarFrame</span><span class="class">.size</span><span class="class">.height</span></div></pre></td></tr></table></figure>
+
+<ul>
+<li>问题2：怎么知道状态栏发生了变化？<br>是通知。</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="title">UIApplicationWillChangeStatusBarFrameNotification</span></div><div class="line">UIApplicationDidChangeStatusBarFrameNotification</div></pre></td></tr></table></figure>
+
+<p>我们可以监听其中某个通知，然后相应的去改变当前视图的布局。</p>
+<ul>
+<li>问题3：是不是需要每个页面都要去注册通知？<br>这个问题应该具体问题具体分析，但如果真的需要一个一个页面去改，我觉得肯定是程序结构出了问题。就我目前的项目而言，只是在根容器类中加了通知并处理了底部的tabbar。其他页面虽然有时也有问题，但很多都是自身实现方式有问题，和状态栏变化没有直接关系。</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)statusBarFrameWillChange:(<span class="built_in">NSNotification</span>*)notification</div><div class="line">{</div><div class="line">[<span class="keyword">self</span> hideTabbar:<span class="keyword">self</span><span class="variable">.statusBarHidden</span> animated:<span class="literal">YES</span>];</div><div class="line">}</div></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/01/28/写点更简洁的代码/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">&lt;</strong>
+      <div class="article-nav-title">
+        
+          写点更简洁的代码
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2014/12/30/xib简介/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">xib使用</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="状态栏高度变化处理" data-title="状态栏高度变化处理" data-url="http://linkageios.github.io/2015/01/18/状态栏高度变化处理/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2015 SmartArrow
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+  <script src="/js/main.js" type="text/javascript"></script>
+
+
+  </div>
+</body>
+</html>

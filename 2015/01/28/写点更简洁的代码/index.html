@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>写点更简洁的代码 | SmartArrow</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="最近在review整个项目的代码，因为代码量很大，参与开发的人很多，所以代码很多地方写得不够简洁。这里总结出一些代码片段，用来简化代码。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="写点更简洁的代码">
+<meta property="og:url" content="http://linkageios.github.io/2015/01/28/写点更简洁的代码/">
+<meta property="og:site_name" content="SmartArrow">
+<meta property="og:description" content="最近在review整个项目的代码，因为代码量很大，参与开发的人很多，所以代码很多地方写得不够简洁。这里总结出一些代码片段，用来简化代码。">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="写点更简洁的代码">
+<meta name="twitter:description" content="最近在review整个项目的代码，因为代码量很大，参与开发的人很多，所以代码很多地方写得不够简洁。这里总结出一些代码片段，用来简化代码。">
+
+  
+    <link rel="alternative" href="/atom.xml" title="SmartArrow" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<div class="profilepic">
+			<img src="/images/logo.png">
+		</div>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">SmartArrow</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">技术文档</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="/#" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="/#" title="rss">rss</a>
+					        
+								<a class="facebook" target="_blank" href="/#" title="facebook">facebook</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud">
+						<a href="/tags/ARC/" style="font-size: 10.00px;">ARC</a><a href="/tags/FMDB/" style="font-size: 10.00px;">FMDB</a><a href="/tags/LCBaseViewController/" style="font-size: 10.00px;">LCBaseViewController</a><a href="/tags/LCDataManager/" style="font-size: 10.00px;">LCDataManager</a><a href="/tags/LCMenuView/" style="font-size: 10.00px;">LCMenuView</a><a href="/tags/POP/" style="font-size: 10.00px;">POP</a><a href="/tags/PhoneGap/" style="font-size: 10.00px;">PhoneGap</a><a href="/tags/SizeClass/" style="font-size: 10.00px;">SizeClass</a><a href="/tags/UICollectionView/" style="font-size: 10.00px;">UICollectionView</a><a href="/tags/iOS8/" style="font-size: 15.00px;">iOS8</a><a href="/tags/iconsole/" style="font-size: 10.00px;">iconsole</a><a href="/tags/json/" style="font-size: 10.00px;">json</a><a href="/tags/xib/" style="font-size: 10.00px;">xib</a><a href="/tags/xml/" style="font-size: 10.00px;">xml</a><a href="/tags/代码优化/" style="font-size: 10.00px;">代码优化</a><a href="/tags/代码规范/" style="font-size: 10.00px;">代码规范</a><a href="/tags/内存/" style="font-size: 10.00px;">内存</a><a href="/tags/分享/" style="font-size: 10.00px;">分享</a><a href="/tags/动画/" style="font-size: 10.00px;">动画</a><a href="/tags/图片/" style="font-size: 10.00px;">图片</a><a href="/tags/地图/" style="font-size: 10.00px;">地图</a><a href="/tags/控件/" style="font-size: 10.00px;">控件</a><a href="/tags/插件/" style="font-size: 10.00px;">插件</a><a href="/tags/支付/" style="font-size: 10.00px;">支付</a><a href="/tags/效率/" style="font-size: 15.00px;">效率</a><a href="/tags/架构/" style="font-size: 10.00px;">架构</a><a href="/tags/版本管理/" style="font-size: 10.00px;">版本管理</a><a href="/tags/状态栏/" style="font-size: 10.00px;">状态栏</a><a href="/tags/网络/" style="font-size: 20.00px;">网络</a><a href="/tags/规范/" style="font-size: 15.00px;">规范</a><a href="/tags/路线图/" style="font-size: 10.00px;">路线图</a><a href="/tags/高德/" style="font-size: 10.00px;">高德</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://blog.crysnower.cn">StephenZhu&#39;s Blog</a>
+			        
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					我是谁，我从哪里来，我到哪里去？我就是我，是颜色不一样的吃货…
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay"></div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img src="/images/logo.png">
+			</div>
+
+			<hgroup>
+			  <h1 class="header-author"><a href="/">SmartArrow</a></h1>
+			</hgroup>
+			
+			<p class="header-subtitle">技术文档</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="/#" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="/#" title="rss">rss</a>
+			        
+						<a class="facebook" target="_blank" href="/#" title="facebook">facebook</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <article id="post-写点更简洁的代码" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/01/28/写点更简洁的代码/" class="article-date">
+  	<time datetime="2015-01-28T09:23:14.000Z" itemprop="datePublished">1月 28 2015</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/iOS/">iOS</a>
+  </div>
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/代码规范/">代码规范</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      写点更简洁的代码
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近在review整个项目的代码，因为代码量很大，参与开发的人很多，所以代码很多地方写得不够简洁。这里总结出一些代码片段，用来简化代码。<br><a id="more"></a></p>
+<p>最近在review整个项目的代码，因为代码量很大，参与开发的人很多，所以代码很多地方写得不够简洁。这里总结出一些代码片段，用来简化代码。</p>
+<p>1、让TableView多余的Cell不可见。<br>原来的实现：<br>给TableView增加一个空的FooterView。但是当很多地方都需有这个需求时，类似的代码就重复出现。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">UIView *<span class="keyword">view</span> = [UIView <span class="keyword">new</span>];</div><div class="line"><span class="keyword">view</span>.backgroundColor = [UIColor clearColor];</div><div class="line">[tableView setTableFooterVie<span class="variable">w:view</span>];</div></pre></td></tr></table></figure>
+
+<p>改进的实现：<br>增加一个UITableView的category，这样在调用的地方只需一行就够了。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">UITableView</span>(<span class="title">Addtions</span>)</span></div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)hideEmptyCells</div><div class="line">{</div><div class="line"><span class="built_in">UIView</span> *view = [<span class="built_in">UIView</span> new];</div><div class="line">view<span class="variable">.backgroundColor</span> = [<span class="built_in">UIColor</span> clearColor];</div><div class="line">[<span class="keyword">self</span> setTableFooterView:view];</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>使用</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="title">[self.tableView hideEmptyCells]</span><span class="comment">;</span></div></pre></td></tr></table></figure>
+
+<p>2、让TableView Cell之间的分隔线左间距为0<br>这个问题是iOS7之后才出现的，iOS7的解决方法到了iOS8又出问题，所以每次用到TableView, 都要给TableView设置一便，又要给TableViewCell设置一遍，代码很多很散。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//设置tableView</span></div><div class="line"><span class="keyword">if</span> ([<span class="keyword">self</span><span class="variable">.tableView</span> respondsToSelector:<span class="keyword">@selector</span>(setSeparatorInset:)]) {</div><div class="line">[<span class="keyword">self</span><span class="variable">.tableView</span> setSeparatorInset:UIEdgeInsetsZero];</div><div class="line">}</div><div class="line"><span class="keyword">if</span> ([<span class="keyword">self</span><span class="variable">.tableView</span> respondsToSelector:<span class="keyword">@selector</span>(setLayoutMargins:)]) {</div><div class="line">[<span class="keyword">self</span><span class="variable">.tableView</span> setLayoutMargins:UIEdgeInsetsZero];</div><div class="line">}</div><div class="line"></div><div class="line"><span class="comment">//设置tableviewcell</span></div><div class="line"><span class="keyword">if</span> ([cell respondsToSelector:<span class="keyword">@selector</span>(setSeparatorInset:)]) {</div><div class="line">[cell setSeparatorInset:UIEdgeInsetsZero];</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">if</span> ([cell respondsToSelector:<span class="keyword">@selector</span>(setLayoutMargins:)]) {</div><div class="line">[cell setLayoutMargins:UIEdgeInsetsZero];</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>改进的实现：<br>给UITableView和UITableViewCell各增加一个Category方法：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//UITableView</span></div><div class="line">- (<span class="keyword">void</span>)hideSeparatorLeftInset</div><div class="line">{</div><div class="line"><span class="keyword">if</span> ([<span class="keyword">self</span> respondsToSelector:<span class="keyword">@selector</span>(setSeparatorInset:)])</div><div class="line">{</div><div class="line">[<span class="keyword">self</span> setSeparatorInset:UIEdgeInsetsZero];</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">if</span> ([<span class="keyword">self</span> respondsToSelector:<span class="keyword">@selector</span>(setLayoutMargins:)])</div><div class="line">{</div><div class="line">[<span class="keyword">self</span> setLayoutMargins:UIEdgeInsetsZero];</div><div class="line">}</div><div class="line">}</div><div class="line"><span class="comment">//UITableViewCell</span></div><div class="line">- (<span class="keyword">void</span>)hideSeparatorLeftInset</div><div class="line">{</div><div class="line"><span class="keyword">if</span> ([<span class="keyword">self</span> respondsToSelector:<span class="keyword">@selector</span>(setLayoutMargins:)]) {</div><div class="line">[<span class="keyword">self</span> setLayoutMargins:UIEdgeInsetsZero];</div><div class="line">}</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>然后在创建UITableView和UITableViewCell的地方分别调用就好了。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//创建Table</span></div><div class="line">_newsTable = [[<span class="built_in">UITableView</span> alloc] initWithFrame:CGRectMake(<span class="number">0</span>, <span class="number">0</span>, SCREEN_WIDTH, SCREEN_HEIGHT - <span class="number">64</span> -<span class="number">49</span>) style:UITableViewStylePlain];</div><div class="line">_newsTable<span class="variable">.delegate</span> = <span class="keyword">self</span>;</div><div class="line">_newsTable<span class="variable">.dataSource</span> = <span class="keyword">self</span>;</div><div class="line">[_newsTable hideSeparatorLeftInset];</div><div class="line"></div><div class="line"><span class="comment">//创建Cell</span></div><div class="line"><span class="keyword">if</span> (cell == <span class="literal">nil</span>) {</div><div class="line">cell = [[FindBigImageTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleCell];</div><div class="line">[cell setSelectionStyle:UITableViewCellSelectionStyleNone];</div><div class="line">[cell hideSeparatorLeftInset];</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>这样做的好处：</p>
+<ul>
+<li>代码简洁，只要一行。因为在很多类似的页面都会出现重复的代码，所以不同的人写往往会不一致，造成bug。</li>
+<li>以后api升级，只要改一处地方即可，不用满世界的找代码然后修改。</li>
+</ul>
+<p>总结：当你写代码的时候需要复制粘贴的时候，肯定是没有封装。想想能不能用Util方法和Category进行抽象，把不变的剥离出来，组成新的方法，这比复制粘贴好太多。</p>
+<p>3、网络请求的封装<br>目前代码中的网络请求，是基于Http的，主要分成如下几个过程：<br>1、设置请求参数<br>2、调用封装好的http方法发出请求<br>3、对清求结果进行处理<br>典型用法如下：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line">MBProgressHUD<span class="keyword">*</span> hudProgress;</div><div class="line">__block int result;</div><div class="line">hudProgress = [[MBProgressHUD alloc] initWithWindow:[UIApplication sharedApplication].keyWindow];</div><div class="line"></div><div class="line">hudProgress.labelText = <span class="comment">@"XXX";</span></div><div class="line"></div><div class="line">APIPackageLoginGoHeader <span class="keyword">*</span>goHead = [[APIPackageLoginGoHeader alloc]init];</div><div class="line">APIPackageLoginBackHeader <span class="keyword">*</span>backHead = [[APIPackageLoginBackHeader alloc]init];</div><div class="line">goHead.loame = <span class="comment">@"XXXX";</span></div><div class="line">goHead.paord = <span class="comment">@"XXXX";</span></div><div class="line">goHead.surce = <span class="comment">@"XXXX</span></div><div class="line">goHead.sin = <span class="comment">@"XXXX";</span></div><div class="line">goHead.versNo = <span class="comment">@"XXXX";</span></div><div class="line">[goHead makeDictionary];</div><div class="line">NSMutableDictionary <span class="keyword">*</span>dicBack = [[NSMutableDictionary alloc]init];[hudProgress showAnimated:NO whileExecutingBlock:^{</div><div class="line">result = [GMPostServer GetServerBack:SERVER_LOGIN path_Param:nil query_Param:goHead.dicGo body_Param:nil method:GM_NETWORK_METHOD_POST returnValue:dicBack];</div><div class="line">[backHead getBodyDataItems:dicBack];     </div><div class="line">}completionBlock:^{</div><div class="line">if (result == GM_POSTBACK_SUCCESS)</div><div class="line">{</div><div class="line">[UserInfoEntity shareEntity].pne = backHead.ph;</div><div class="line">[UserInfoEntity shareEntity].niame = backHead.name;</div><div class="line">[UserInfoEntity shareEntity].hasLogin = YES;</div><div class="line">[UserInfoEntity shareEntity].userId = [NSString stringWithFormat:<span class="comment">@"%@",backHead.userId];</span></div><div class="line">[UserInfoEntity shareEntity].state = backHead.state;</div><div class="line"></div><div class="line">if ([launchOptions objectForKey:<span class="comment">@"UIApplicationLaunchOptionsRemoteNotificationKey"] != nil) {</span></div><div class="line">self.pushInfo = [launchOptions objectForKey:<span class="comment">@"UIApplicationLaunchOptionsRemoteNotificationKey"];</span></div><div class="line">BasicHomeViewController <span class="keyword">*</span>basicVc = (BasicHomeViewController<span class="keyword">*</span>)self.window.rootViewController;</div><div class="line">UINavigationController <span class="keyword">*</span>viewController = (UINavigationController <span class="keyword">*</span>)[[basicVc.tabbar.buttonData objectAtIndex:basicVc.tabbar.selectIndex] viewController];</div><div class="line">[viewController dismissViewControllerAnimated:NO completion:nil];</div><div class="line">[[PushEventManager sharedInstance] pushEvent:self.pushInfo target:viewController];</div><div class="line"></div><div class="line">[APService setBadge:0];</div><div class="line">[UIApplication sharedApplication].applicationIconBadgeNumber = 0;   </div><div class="line">}</div><div class="line">[self requestUserInfo];</div><div class="line">}</div><div class="line">else</div><div class="line">{</div><div class="line">showErroMsg(backHead.errorMsg);</div><div class="line">}</div><div class="line">}];</div></pre></td></tr></table></figure>
+
+<p>上述代码是用户登录，在ViewController里面的，有一个很大的特点：长。而且集合了参数准备，发请求，请求结果处理，还和UI相互耦合。<br>试想一下，用户登录不会只在一个界面里有，如果多个地方存在登录的情况，这一块代码就会多次出现，而且大致结构都差不多吧？只有参数的取值和成功失败的处理逻辑不太一样，那么就把剩下的固定的逻辑：参数复制，hud，请求放到一个方法里面：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div></pre></td><td class="code"><pre><div class="line">+ (<span class="type">void</span>)userLoginWithUserName:(<span class="type">NSString</span>*)userName</div><div class="line">password:(<span class="type">NSString</span>*)password</div><div class="line">success:(<span class="type">void</span>(^)(<span class="type">APIPackageLoginBackHeader</span>*))sucBlock</div><div class="line">failure:(<span class="type">void</span>(^)(<span class="type">APIPackageLoginBackHeader</span>*))failBlock</div><div class="line">animated:(<span class="type">BOOL</span>)animated</div><div class="line">loadingText:(<span class="type">NSString</span>*)loadingText</div><div class="line">inView:(<span class="type">UIView</span>*)containerView;</div><div class="line">{</div><div class="line"><span class="type">MBProgressHUD</span>* hudProgress;</div><div class="line">__block <span class="type">NSInteger</span> <span class="literal">result</span>;</div><div class="line">hudProgress = [[<span class="type">MBProgressHUD</span> alloc] initWithWindow:[<span class="type">UIApplication</span> sharedApplication].keyWindow];</div><div class="line"></div><div class="line"><span class="keyword">if</span> (animated) {</div><div class="line">[containerView addSubview:hudProgress];</div><div class="line">[containerView bringSubviewToFront:hudProgress];</div><div class="line">hudProgress.labelText = loadingText;</div><div class="line">}</div><div class="line"></div><div class="line"><span class="type">APIPackageLoginGoHeader</span> *goHead = [[<span class="type">APIPackageLoginGoHeader</span> alloc]init];</div><div class="line"><span class="type">APIPackageLoginBackHeader</span> *backHead = [[<span class="type">APIPackageLoginBackHeader</span> alloc]init];</div><div class="line">goHead.logame = userName;</div><div class="line">goHead.pard = password;</div><div class="line">goHead.sodde = @<span class="string">"iphone"</span>;</div><div class="line">goHead.swn = @<span class="string">"ios"</span>;</div><div class="line">goHead.versdddo = [<span class="type">LCSystemUtil</span> appVersion];</div><div class="line">[goHead makeDictionary];</div><div class="line"></div><div class="line"><span class="type">NSMutableDictionary</span> *dicBack = [[<span class="type">NSMutableDictionary</span> alloc]init];</div><div class="line">[hudProgress showAnimated:animated whileExecutingBlock:^{</div><div class="line"></div><div class="line"><span class="literal">result</span> = [<span class="type">GMPostServer</span> <span class="type">GetServerBack</span>:<span class="type">SERVER_LOGIN</span> path_Param:<span class="keyword">nil</span> query_Param:goHead.dicGo body_Param:<span class="keyword">nil</span> <span class="keyword">method</span>:<span class="type">GM_NETWORK_METHOD_POST</span> returnValue:dicBack];</div><div class="line">[backHead getBodyDataItems:dicBack];</div><div class="line"></div><div class="line"></div><div class="line">}completionBlock:^{</div><div class="line"></div><div class="line"><span class="keyword">if</span> (<span class="literal">result</span> == <span class="type">GM_POSTBACK_SUCCESS</span>)</div><div class="line">{</div><div class="line">[<span class="type">UserInfoEntity</span> shareEntity].phone = backHead.pe;</div><div class="line">[<span class="type">UserInfoEntity</span> shareEntity].nikename = backHead.niccdame;</div><div class="line">[<span class="type">UserInfoEntity</span> shareEntity].hasLogin = <span class="type">YES</span>;</div><div class="line">[<span class="type">UserInfoEntity</span> shareEntity].userId = [<span class="type">NSString</span> stringWithFormat:@<span class="string">"%@"</span>,backHead.uddrId];</div><div class="line">[<span class="type">UserInfoEntity</span> shareEntity].state = backHead.stcde;</div><div class="line"></div><div class="line"><span class="keyword">if</span>(sucBlock){</div><div class="line">sucBlock(backHead);</div><div class="line">}</div><div class="line"></div><div class="line">}</div><div class="line"><span class="keyword">else</span></div><div class="line">{</div><div class="line"><span class="keyword">if</span> (failBlock) {</div><div class="line">failBlock(backHead);</div><div class="line">}</div><div class="line">}</div><div class="line">}];</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>外部调用，只要一行代码：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">[HJUserProvider userLoginWithUserName:userName</div><div class="line">password:password</div><div class="line">success:^(APIPackageLoginBackHeader *backHeader) {</div><div class="line">[<span class="keyword">self</span> backButtonPressed:<span class="literal">nil</span>];</div><div class="line">[HJUserProvider requestUserInfoWithSuccess:<span class="literal">nil</span> failure:<span class="literal">nil</span>];</div><div class="line">}</div><div class="line">failure:^(APIPackageLoginBackHeader *backHeader) {</div><div class="line">[HJUIUtil showFailedMsg:backHeader<span class="variable">.errorMsg</span>];</div><div class="line">}</div><div class="line">animated:<span class="literal">YES</span></div><div class="line">loadingText:NSLocalizedString(<span class="string">@"Logging now..."</span>, <span class="literal">nil</span>)</div><div class="line">inView:<span class="keyword">self</span><span class="variable">.view</span>];</div></pre></td></tr></table></figure>
+
+<p>这样的做法就把网络请求从ViewController分离开了，而且没有任何的耦合。同一个接口的请求逻辑只需写一遍（之前是copy、paste，因为代码不是唯一的，所以不同的人，不同的时间改了了其中一处，就会造成差异，引起未知的bug）。另外一个好处就是把各种请求逻辑都集中在了一处，便于阅读和修改。</p>
+<p>4、数据归数据，UI归UI<br>从本质上说，程序就分成两部分：数据和UI。从ViewController的角度来说，就是State和View。View随着State的改变而改变，所以两者应该分开使ViewController结构更加清晰。<br>举个例子：viewDidLoad方法，这个方法里应该写些什么？</p>
+<blockquote>
+<p>This method is called after the view controller has loaded its view hierarchy into memory. This method is called regardless of whether the view hierarchy was loaded from a nib file or created programmatically in the loadView method. You usually override this method to perform additional initialization on views that were loaded from nib files.</p>
+</blockquote>
+<p>官方的建议是写视图上的额外的初始化工作，而和视图不相关的初始化工作就不该在这里写（题外话，iOS6之前，遇到内存警告，viewDidLoad是会调多次的，所以把对象的初始化写在这里是有问题的，iOS6之后反正没发现过viewDidLoad调用多次的情况），那么对象的初始化（状态变量的复制）应该写在哪里呢？——初始化方法！不要因为基类提供了默认的初始化方法而偷懒不写，任何一个类，除非简单的不能再简单，都要有一个初始化方法，哪怕里面什么都没写。下面这段代码的问题就是上班部分代码应该出现在初始化方法中。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)viewDidLoad {</div><div class="line">[<span class="keyword">super</span> viewDidLoad];</div><div class="line">_newsDataAry = [[<span class="built_in">NSMutableArray</span> alloc] init];</div><div class="line">_currentPage = <span class="number">0</span>;</div><div class="line"></div><div class="line"><span class="comment">//获取缓存文章</span></div><div class="line"><span class="built_in">NSArray</span> *arr = [[ArticleSqliteData shareManager] dataGetHeadArticle];</div><div class="line">[_newsDataAry addObject:arr];</div><div class="line"></div><div class="line"><span class="built_in">NSArray</span> *arrNewsInfo = [[ArticleSqliteData shareManager] dataHomeViewIsFirstGet:<span class="literal">YES</span>];</div><div class="line">[_newsDataAry addObjectsFromArray:arrNewsInfo];</div><div class="line"></div><div class="line"><span class="keyword">if</span> ([arrNewsInfo count] != <span class="number">0</span>) {</div><div class="line">ArticleModel *model = [arrNewsInfo lastObject];</div><div class="line">_isExpire = [<span class="keyword">self</span> calculationTime:model<span class="variable">.updateTime</span>];</div><div class="line">}</div><div class="line"><span class="keyword">else</span>{</div><div class="line">_isExpire = <span class="literal">YES</span>;</div><div class="line">}</div><div class="line"></div><div class="line"><span class="comment">//上面的代码和对象的状态相关，不该出现在这里</span></div><div class="line">[<span class="keyword">self</span> addTableView];</div><div class="line"></div><div class="line">[<span class="keyword">self</span> setTitleViewWithText:<span class="string">@"发现"</span>];</div><div class="line">[<span class="keyword">self</span> setLeftButtonWithTitle:<span class="string">@"秘籍"</span> action:<span class="keyword">@selector</span>(showCheats)];</div><div class="line">[<span class="keyword">self</span> setRightButtonWithImageName:<span class="string">@"find_xiala.png"</span> action:<span class="keyword">@selector</span>(showCatagory)];</div><div class="line"><span class="keyword">self</span><span class="variable">.showCategory</span> = <span class="literal">NO</span>;<span class="comment">//这一行也是状态</span></div><div class="line"><span class="comment">// Do any additional setup after loading the view from its nib.</span></div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line">*  初始化分类页面</div><div class="line">*/</div><div class="line"><span class="keyword">self</span><span class="variable">.categoryView</span>  = [[HJFindCategoryView alloc] initWithFrame:CGRectMake(<span class="number">0</span>, <span class="number">64</span>, SCREEN_WIDTH, SCREEN_HEIGHT)];</div><div class="line">[<span class="keyword">self</span><span class="variable">.categoryView</span> addBorderTopLine];</div><div class="line"><span class="keyword">self</span><span class="variable">.categoryView</span><span class="variable">.hjFindCategoryViewDelegate</span> = <span class="keyword">self</span>;</div><div class="line"><span class="keyword">self</span><span class="variable">.categoryView</span><span class="variable">.hidden</span> = <span class="literal">YES</span>;<span class="comment">//UI应该依赖状态，而不是写死</span></div><div class="line">[[AppDelegate appDelegate]<span class="variable">.window</span> addSubview:<span class="keyword">self</span><span class="variable">.categoryView</span>];</div><div class="line">[<span class="keyword">self</span> getBannerNewsTitle];</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>5、成员方法与Util方法<br>一个类代码比较多的一个原因，就是加入了不该加入的成员方法所致。一个方法，之所以称为成员方法，是因为它操作了对象的状态，如果它没有操作对象的状态，拿它就跟该对象没有紧密的关系，就不能放在类里面实现。举个例子：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">-(<span class="built_in">BOOL</span>)calculationTime:(<span class="built_in">NSDate</span> *)date</div><div class="line">{</div><div class="line">NSDateFormatter *dateFormatter=[[NSDateFormatter alloc] init];</div><div class="line">[dateFormatter setDateFormat:<span class="string">@"yyyy-MM-dd HH:mm:ss"</span>];</div><div class="line"><span class="built_in">NSDate</span> *  senddate=[<span class="built_in">NSDate</span> date];</div><div class="line"><span class="comment">//结束时间</span></div><div class="line"><span class="built_in">NSDate</span> *endDate = date;</div><div class="line"><span class="comment">//当前时间</span></div><div class="line"><span class="built_in">NSDate</span> *senderDate = [dateFormatter dateFromString:[dateFormatter stringFromDate:senddate]];</div><div class="line"><span class="comment">//得到相差秒数</span></div><div class="line"><span class="built_in">NSTimeInterval</span> time=[senderDate timeIntervalSinceDate:endDate];</div><div class="line"></div><div class="line"><span class="keyword">int</span> days = ((<span class="keyword">int</span>)time)/(<span class="number">3600</span>*<span class="number">24</span>);</div><div class="line"><span class="keyword">if</span> (days &lt; <span class="number">0</span>) {</div><div class="line"><span class="keyword">return</span> <span class="literal">YES</span>;</div><div class="line">}</div><div class="line"><span class="keyword">else</span>{</div><div class="line"><span class="keyword">return</span> <span class="literal">NO</span>;</div><div class="line">}</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>上面这个方法和对象没什么关系，更应该抽象成为一个Util方法，可以在这个类里面调用，更可以再其他更多的地方调用。</p>
+<p>6、功能点单一入口<br>在代码中，有些功能逻辑是相对固定的，但是在很多地方会反复出现。<br>比如登录功能，除了用户主动登录，还有在未登录状态下使用某些需要登录的功能，都会去调用登录页面。我看了一下现在的代码，一共出现了14次调用登录页面。代码重复是一个方面，还有就是定位bug麻烦。比如进入首页的时候莫名其妙弹出个登录页面，因为首页逻辑复杂，我得打很多断点才能定位到产生问题的代码。<br>还有对tabbar的操作，也是出现在了多出地方。其实只要搞清楚tabbar是哪个类管理的，然后让这个类封装出一个public的方法，控制tabbar的隐藏与否即可。</p>
+<p>所以一个功能点我们只保留一个出口，其他地方只要调用方法即可。把相同的地方写在方法内部，不同的地方作为参数对外开放。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2015/01/18/状态栏高度变化处理/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">状态栏高度变化处理</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="写点更简洁的代码" data-title="写点更简洁的代码" data-url="http://linkageios.github.io/2015/01/28/写点更简洁的代码/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2015 SmartArrow
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+  <script src="/js/main.js" type="text/javascript"></script>
+
+
+  </div>
+</body>
+</html>

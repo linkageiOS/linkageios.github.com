@@ -4,7 +4,7 @@
   <subtitle><![CDATA[技术文档]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://linkageios.github.io/"/>
-  <updated>2014-12-31T09:07:51.794Z</updated>
+  <updated>2015-02-02T09:19:41.958Z</updated>
   <id>http://linkageios.github.io/</id>
   
   <author>
@@ -13,6 +13,124 @@
   </author>
   
   <generator uri="http://zespia.tw/hexo/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[写点更简洁的代码]]></title>
+    <link href="http://linkageios.github.io/2015/01/28/%E5%86%99%E7%82%B9%E6%9B%B4%E7%AE%80%E6%B4%81%E7%9A%84%E4%BB%A3%E7%A0%81/"/>
+    <id>http://linkageios.github.io/2015/01/28/写点更简洁的代码/</id>
+    <published>2015-01-28T09:23:14.000Z</published>
+    <updated>2015-02-02T09:12:31.000Z</updated>
+    <content type="html"><![CDATA[<p>最近在review整个项目的代码，因为代码量很大，参与开发的人很多，所以代码很多地方写得不够简洁。这里总结出一些代码片段，用来简化代码。<br><a id="more"></a></p>
+<p>最近在review整个项目的代码，因为代码量很大，参与开发的人很多，所以代码很多地方写得不够简洁。这里总结出一些代码片段，用来简化代码。</p>
+<p>1、让TableView多余的Cell不可见。<br>原来的实现：<br>给TableView增加一个空的FooterView。但是当很多地方都需有这个需求时，类似的代码就重复出现。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">UIView *<span class="keyword">view</span> = [UIView <span class="keyword">new</span>];</div><div class="line"><span class="keyword">view</span>.backgroundColor = [UIColor clearColor];</div><div class="line">[tableView setTableFooterVie<span class="variable">w:view</span>];</div></pre></td></tr></table></figure>
+
+<p>改进的实现：<br>增加一个UITableView的category，这样在调用的地方只需一行就够了。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">UITableView</span>(<span class="title">Addtions</span>)</span></div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)hideEmptyCells</div><div class="line">{</div><div class="line"><span class="built_in">UIView</span> *view = [<span class="built_in">UIView</span> new];</div><div class="line">view<span class="variable">.backgroundColor</span> = [<span class="built_in">UIColor</span> clearColor];</div><div class="line">[<span class="keyword">self</span> setTableFooterView:view];</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>使用</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="title">[self.tableView hideEmptyCells]</span><span class="comment">;</span></div></pre></td></tr></table></figure>
+
+<p>2、让TableView Cell之间的分隔线左间距为0<br>这个问题是iOS7之后才出现的，iOS7的解决方法到了iOS8又出问题，所以每次用到TableView, 都要给TableView设置一便，又要给TableViewCell设置一遍，代码很多很散。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//设置tableView</span></div><div class="line"><span class="keyword">if</span> ([<span class="keyword">self</span><span class="variable">.tableView</span> respondsToSelector:<span class="keyword">@selector</span>(setSeparatorInset:)]) {</div><div class="line">[<span class="keyword">self</span><span class="variable">.tableView</span> setSeparatorInset:UIEdgeInsetsZero];</div><div class="line">}</div><div class="line"><span class="keyword">if</span> ([<span class="keyword">self</span><span class="variable">.tableView</span> respondsToSelector:<span class="keyword">@selector</span>(setLayoutMargins:)]) {</div><div class="line">[<span class="keyword">self</span><span class="variable">.tableView</span> setLayoutMargins:UIEdgeInsetsZero];</div><div class="line">}</div><div class="line"></div><div class="line"><span class="comment">//设置tableviewcell</span></div><div class="line"><span class="keyword">if</span> ([cell respondsToSelector:<span class="keyword">@selector</span>(setSeparatorInset:)]) {</div><div class="line">[cell setSeparatorInset:UIEdgeInsetsZero];</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">if</span> ([cell respondsToSelector:<span class="keyword">@selector</span>(setLayoutMargins:)]) {</div><div class="line">[cell setLayoutMargins:UIEdgeInsetsZero];</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>改进的实现：<br>给UITableView和UITableViewCell各增加一个Category方法：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//UITableView</span></div><div class="line">- (<span class="keyword">void</span>)hideSeparatorLeftInset</div><div class="line">{</div><div class="line"><span class="keyword">if</span> ([<span class="keyword">self</span> respondsToSelector:<span class="keyword">@selector</span>(setSeparatorInset:)])</div><div class="line">{</div><div class="line">[<span class="keyword">self</span> setSeparatorInset:UIEdgeInsetsZero];</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">if</span> ([<span class="keyword">self</span> respondsToSelector:<span class="keyword">@selector</span>(setLayoutMargins:)])</div><div class="line">{</div><div class="line">[<span class="keyword">self</span> setLayoutMargins:UIEdgeInsetsZero];</div><div class="line">}</div><div class="line">}</div><div class="line"><span class="comment">//UITableViewCell</span></div><div class="line">- (<span class="keyword">void</span>)hideSeparatorLeftInset</div><div class="line">{</div><div class="line"><span class="keyword">if</span> ([<span class="keyword">self</span> respondsToSelector:<span class="keyword">@selector</span>(setLayoutMargins:)]) {</div><div class="line">[<span class="keyword">self</span> setLayoutMargins:UIEdgeInsetsZero];</div><div class="line">}</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>然后在创建UITableView和UITableViewCell的地方分别调用就好了。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//创建Table</span></div><div class="line">_newsTable = [[<span class="built_in">UITableView</span> alloc] initWithFrame:CGRectMake(<span class="number">0</span>, <span class="number">0</span>, SCREEN_WIDTH, SCREEN_HEIGHT - <span class="number">64</span> -<span class="number">49</span>) style:UITableViewStylePlain];</div><div class="line">_newsTable<span class="variable">.delegate</span> = <span class="keyword">self</span>;</div><div class="line">_newsTable<span class="variable">.dataSource</span> = <span class="keyword">self</span>;</div><div class="line">[_newsTable hideSeparatorLeftInset];</div><div class="line"></div><div class="line"><span class="comment">//创建Cell</span></div><div class="line"><span class="keyword">if</span> (cell == <span class="literal">nil</span>) {</div><div class="line">cell = [[FindBigImageTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleCell];</div><div class="line">[cell setSelectionStyle:UITableViewCellSelectionStyleNone];</div><div class="line">[cell hideSeparatorLeftInset];</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>这样做的好处：</p>
+<ul>
+<li>代码简洁，只要一行。因为在很多类似的页面都会出现重复的代码，所以不同的人写往往会不一致，造成bug。</li>
+<li>以后api升级，只要改一处地方即可，不用满世界的找代码然后修改。</li>
+</ul>
+<p>总结：当你写代码的时候需要复制粘贴的时候，肯定是没有封装。想想能不能用Util方法和Category进行抽象，把不变的剥离出来，组成新的方法，这比复制粘贴好太多。</p>
+<p>3、网络请求的封装<br>目前代码中的网络请求，是基于Http的，主要分成如下几个过程：<br>1、设置请求参数<br>2、调用封装好的http方法发出请求<br>3、对清求结果进行处理<br>典型用法如下：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line">MBProgressHUD<span class="keyword">*</span> hudProgress;</div><div class="line">__block int result;</div><div class="line">hudProgress = [[MBProgressHUD alloc] initWithWindow:[UIApplication sharedApplication].keyWindow];</div><div class="line"></div><div class="line">hudProgress.labelText = <span class="comment">@"XXX";</span></div><div class="line"></div><div class="line">APIPackageLoginGoHeader <span class="keyword">*</span>goHead = [[APIPackageLoginGoHeader alloc]init];</div><div class="line">APIPackageLoginBackHeader <span class="keyword">*</span>backHead = [[APIPackageLoginBackHeader alloc]init];</div><div class="line">goHead.loame = <span class="comment">@"XXXX";</span></div><div class="line">goHead.paord = <span class="comment">@"XXXX";</span></div><div class="line">goHead.surce = <span class="comment">@"XXXX</span></div><div class="line">goHead.sin = <span class="comment">@"XXXX";</span></div><div class="line">goHead.versNo = <span class="comment">@"XXXX";</span></div><div class="line">[goHead makeDictionary];</div><div class="line">NSMutableDictionary <span class="keyword">*</span>dicBack = [[NSMutableDictionary alloc]init];[hudProgress showAnimated:NO whileExecutingBlock:^{</div><div class="line">result = [GMPostServer GetServerBack:SERVER_LOGIN path_Param:nil query_Param:goHead.dicGo body_Param:nil method:GM_NETWORK_METHOD_POST returnValue:dicBack];</div><div class="line">[backHead getBodyDataItems:dicBack];     </div><div class="line">}completionBlock:^{</div><div class="line">if (result == GM_POSTBACK_SUCCESS)</div><div class="line">{</div><div class="line">[UserInfoEntity shareEntity].pne = backHead.ph;</div><div class="line">[UserInfoEntity shareEntity].niame = backHead.name;</div><div class="line">[UserInfoEntity shareEntity].hasLogin = YES;</div><div class="line">[UserInfoEntity shareEntity].userId = [NSString stringWithFormat:<span class="comment">@"%@",backHead.userId];</span></div><div class="line">[UserInfoEntity shareEntity].state = backHead.state;</div><div class="line"></div><div class="line">if ([launchOptions objectForKey:<span class="comment">@"UIApplicationLaunchOptionsRemoteNotificationKey"] != nil) {</span></div><div class="line">self.pushInfo = [launchOptions objectForKey:<span class="comment">@"UIApplicationLaunchOptionsRemoteNotificationKey"];</span></div><div class="line">BasicHomeViewController <span class="keyword">*</span>basicVc = (BasicHomeViewController<span class="keyword">*</span>)self.window.rootViewController;</div><div class="line">UINavigationController <span class="keyword">*</span>viewController = (UINavigationController <span class="keyword">*</span>)[[basicVc.tabbar.buttonData objectAtIndex:basicVc.tabbar.selectIndex] viewController];</div><div class="line">[viewController dismissViewControllerAnimated:NO completion:nil];</div><div class="line">[[PushEventManager sharedInstance] pushEvent:self.pushInfo target:viewController];</div><div class="line"></div><div class="line">[APService setBadge:0];</div><div class="line">[UIApplication sharedApplication].applicationIconBadgeNumber = 0;   </div><div class="line">}</div><div class="line">[self requestUserInfo];</div><div class="line">}</div><div class="line">else</div><div class="line">{</div><div class="line">showErroMsg(backHead.errorMsg);</div><div class="line">}</div><div class="line">}];</div></pre></td></tr></table></figure>
+
+<p>上述代码是用户登录，在ViewController里面的，有一个很大的特点：长。而且集合了参数准备，发请求，请求结果处理，还和UI相互耦合。<br>试想一下，用户登录不会只在一个界面里有，如果多个地方存在登录的情况，这一块代码就会多次出现，而且大致结构都差不多吧？只有参数的取值和成功失败的处理逻辑不太一样，那么就把剩下的固定的逻辑：参数复制，hud，请求放到一个方法里面：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div></pre></td><td class="code"><pre><div class="line">+ (<span class="type">void</span>)userLoginWithUserName:(<span class="type">NSString</span>*)userName</div><div class="line">password:(<span class="type">NSString</span>*)password</div><div class="line">success:(<span class="type">void</span>(^)(<span class="type">APIPackageLoginBackHeader</span>*))sucBlock</div><div class="line">failure:(<span class="type">void</span>(^)(<span class="type">APIPackageLoginBackHeader</span>*))failBlock</div><div class="line">animated:(<span class="type">BOOL</span>)animated</div><div class="line">loadingText:(<span class="type">NSString</span>*)loadingText</div><div class="line">inView:(<span class="type">UIView</span>*)containerView;</div><div class="line">{</div><div class="line"><span class="type">MBProgressHUD</span>* hudProgress;</div><div class="line">__block <span class="type">NSInteger</span> <span class="literal">result</span>;</div><div class="line">hudProgress = [[<span class="type">MBProgressHUD</span> alloc] initWithWindow:[<span class="type">UIApplication</span> sharedApplication].keyWindow];</div><div class="line"></div><div class="line"><span class="keyword">if</span> (animated) {</div><div class="line">[containerView addSubview:hudProgress];</div><div class="line">[containerView bringSubviewToFront:hudProgress];</div><div class="line">hudProgress.labelText = loadingText;</div><div class="line">}</div><div class="line"></div><div class="line"><span class="type">APIPackageLoginGoHeader</span> *goHead = [[<span class="type">APIPackageLoginGoHeader</span> alloc]init];</div><div class="line"><span class="type">APIPackageLoginBackHeader</span> *backHead = [[<span class="type">APIPackageLoginBackHeader</span> alloc]init];</div><div class="line">goHead.logame = userName;</div><div class="line">goHead.pard = password;</div><div class="line">goHead.sodde = @<span class="string">"iphone"</span>;</div><div class="line">goHead.swn = @<span class="string">"ios"</span>;</div><div class="line">goHead.versdddo = [<span class="type">LCSystemUtil</span> appVersion];</div><div class="line">[goHead makeDictionary];</div><div class="line"></div><div class="line"><span class="type">NSMutableDictionary</span> *dicBack = [[<span class="type">NSMutableDictionary</span> alloc]init];</div><div class="line">[hudProgress showAnimated:animated whileExecutingBlock:^{</div><div class="line"></div><div class="line"><span class="literal">result</span> = [<span class="type">GMPostServer</span> <span class="type">GetServerBack</span>:<span class="type">SERVER_LOGIN</span> path_Param:<span class="keyword">nil</span> query_Param:goHead.dicGo body_Param:<span class="keyword">nil</span> <span class="keyword">method</span>:<span class="type">GM_NETWORK_METHOD_POST</span> returnValue:dicBack];</div><div class="line">[backHead getBodyDataItems:dicBack];</div><div class="line"></div><div class="line"></div><div class="line">}completionBlock:^{</div><div class="line"></div><div class="line"><span class="keyword">if</span> (<span class="literal">result</span> == <span class="type">GM_POSTBACK_SUCCESS</span>)</div><div class="line">{</div><div class="line">[<span class="type">UserInfoEntity</span> shareEntity].phone = backHead.pe;</div><div class="line">[<span class="type">UserInfoEntity</span> shareEntity].nikename = backHead.niccdame;</div><div class="line">[<span class="type">UserInfoEntity</span> shareEntity].hasLogin = <span class="type">YES</span>;</div><div class="line">[<span class="type">UserInfoEntity</span> shareEntity].userId = [<span class="type">NSString</span> stringWithFormat:@<span class="string">"%@"</span>,backHead.uddrId];</div><div class="line">[<span class="type">UserInfoEntity</span> shareEntity].state = backHead.stcde;</div><div class="line"></div><div class="line"><span class="keyword">if</span>(sucBlock){</div><div class="line">sucBlock(backHead);</div><div class="line">}</div><div class="line"></div><div class="line">}</div><div class="line"><span class="keyword">else</span></div><div class="line">{</div><div class="line"><span class="keyword">if</span> (failBlock) {</div><div class="line">failBlock(backHead);</div><div class="line">}</div><div class="line">}</div><div class="line">}];</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>外部调用，只要一行代码：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">[HJUserProvider userLoginWithUserName:userName</div><div class="line">password:password</div><div class="line">success:^(APIPackageLoginBackHeader *backHeader) {</div><div class="line">[<span class="keyword">self</span> backButtonPressed:<span class="literal">nil</span>];</div><div class="line">[HJUserProvider requestUserInfoWithSuccess:<span class="literal">nil</span> failure:<span class="literal">nil</span>];</div><div class="line">}</div><div class="line">failure:^(APIPackageLoginBackHeader *backHeader) {</div><div class="line">[HJUIUtil showFailedMsg:backHeader<span class="variable">.errorMsg</span>];</div><div class="line">}</div><div class="line">animated:<span class="literal">YES</span></div><div class="line">loadingText:NSLocalizedString(<span class="string">@"Logging now..."</span>, <span class="literal">nil</span>)</div><div class="line">inView:<span class="keyword">self</span><span class="variable">.view</span>];</div></pre></td></tr></table></figure>
+
+<p>这样的做法就把网络请求从ViewController分离开了，而且没有任何的耦合。同一个接口的请求逻辑只需写一遍（之前是copy、paste，因为代码不是唯一的，所以不同的人，不同的时间改了了其中一处，就会造成差异，引起未知的bug）。另外一个好处就是把各种请求逻辑都集中在了一处，便于阅读和修改。</p>
+<p>4、数据归数据，UI归UI<br>从本质上说，程序就分成两部分：数据和UI。从ViewController的角度来说，就是State和View。View随着State的改变而改变，所以两者应该分开使ViewController结构更加清晰。<br>举个例子：viewDidLoad方法，这个方法里应该写些什么？</p>
+<blockquote>
+<p>This method is called after the view controller has loaded its view hierarchy into memory. This method is called regardless of whether the view hierarchy was loaded from a nib file or created programmatically in the loadView method. You usually override this method to perform additional initialization on views that were loaded from nib files.</p>
+</blockquote>
+<p>官方的建议是写视图上的额外的初始化工作，而和视图不相关的初始化工作就不该在这里写（题外话，iOS6之前，遇到内存警告，viewDidLoad是会调多次的，所以把对象的初始化写在这里是有问题的，iOS6之后反正没发现过viewDidLoad调用多次的情况），那么对象的初始化（状态变量的复制）应该写在哪里呢？——初始化方法！不要因为基类提供了默认的初始化方法而偷懒不写，任何一个类，除非简单的不能再简单，都要有一个初始化方法，哪怕里面什么都没写。下面这段代码的问题就是上班部分代码应该出现在初始化方法中。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)viewDidLoad {</div><div class="line">[<span class="keyword">super</span> viewDidLoad];</div><div class="line">_newsDataAry = [[<span class="built_in">NSMutableArray</span> alloc] init];</div><div class="line">_currentPage = <span class="number">0</span>;</div><div class="line"></div><div class="line"><span class="comment">//获取缓存文章</span></div><div class="line"><span class="built_in">NSArray</span> *arr = [[ArticleSqliteData shareManager] dataGetHeadArticle];</div><div class="line">[_newsDataAry addObject:arr];</div><div class="line"></div><div class="line"><span class="built_in">NSArray</span> *arrNewsInfo = [[ArticleSqliteData shareManager] dataHomeViewIsFirstGet:<span class="literal">YES</span>];</div><div class="line">[_newsDataAry addObjectsFromArray:arrNewsInfo];</div><div class="line"></div><div class="line"><span class="keyword">if</span> ([arrNewsInfo count] != <span class="number">0</span>) {</div><div class="line">ArticleModel *model = [arrNewsInfo lastObject];</div><div class="line">_isExpire = [<span class="keyword">self</span> calculationTime:model<span class="variable">.updateTime</span>];</div><div class="line">}</div><div class="line"><span class="keyword">else</span>{</div><div class="line">_isExpire = <span class="literal">YES</span>;</div><div class="line">}</div><div class="line"></div><div class="line"><span class="comment">//上面的代码和对象的状态相关，不该出现在这里</span></div><div class="line">[<span class="keyword">self</span> addTableView];</div><div class="line"></div><div class="line">[<span class="keyword">self</span> setTitleViewWithText:<span class="string">@"发现"</span>];</div><div class="line">[<span class="keyword">self</span> setLeftButtonWithTitle:<span class="string">@"秘籍"</span> action:<span class="keyword">@selector</span>(showCheats)];</div><div class="line">[<span class="keyword">self</span> setRightButtonWithImageName:<span class="string">@"find_xiala.png"</span> action:<span class="keyword">@selector</span>(showCatagory)];</div><div class="line"><span class="keyword">self</span><span class="variable">.showCategory</span> = <span class="literal">NO</span>;<span class="comment">//这一行也是状态</span></div><div class="line"><span class="comment">// Do any additional setup after loading the view from its nib.</span></div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line">*  初始化分类页面</div><div class="line">*/</div><div class="line"><span class="keyword">self</span><span class="variable">.categoryView</span>  = [[HJFindCategoryView alloc] initWithFrame:CGRectMake(<span class="number">0</span>, <span class="number">64</span>, SCREEN_WIDTH, SCREEN_HEIGHT)];</div><div class="line">[<span class="keyword">self</span><span class="variable">.categoryView</span> addBorderTopLine];</div><div class="line"><span class="keyword">self</span><span class="variable">.categoryView</span><span class="variable">.hjFindCategoryViewDelegate</span> = <span class="keyword">self</span>;</div><div class="line"><span class="keyword">self</span><span class="variable">.categoryView</span><span class="variable">.hidden</span> = <span class="literal">YES</span>;<span class="comment">//UI应该依赖状态，而不是写死</span></div><div class="line">[[AppDelegate appDelegate]<span class="variable">.window</span> addSubview:<span class="keyword">self</span><span class="variable">.categoryView</span>];</div><div class="line">[<span class="keyword">self</span> getBannerNewsTitle];</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>5、成员方法与Util方法<br>一个类代码比较多的一个原因，就是加入了不该加入的成员方法所致。一个方法，之所以称为成员方法，是因为它操作了对象的状态，如果它没有操作对象的状态，拿它就跟该对象没有紧密的关系，就不能放在类里面实现。举个例子：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">-(<span class="built_in">BOOL</span>)calculationTime:(<span class="built_in">NSDate</span> *)date</div><div class="line">{</div><div class="line">NSDateFormatter *dateFormatter=[[NSDateFormatter alloc] init];</div><div class="line">[dateFormatter setDateFormat:<span class="string">@"yyyy-MM-dd HH:mm:ss"</span>];</div><div class="line"><span class="built_in">NSDate</span> *  senddate=[<span class="built_in">NSDate</span> date];</div><div class="line"><span class="comment">//结束时间</span></div><div class="line"><span class="built_in">NSDate</span> *endDate = date;</div><div class="line"><span class="comment">//当前时间</span></div><div class="line"><span class="built_in">NSDate</span> *senderDate = [dateFormatter dateFromString:[dateFormatter stringFromDate:senddate]];</div><div class="line"><span class="comment">//得到相差秒数</span></div><div class="line"><span class="built_in">NSTimeInterval</span> time=[senderDate timeIntervalSinceDate:endDate];</div><div class="line"></div><div class="line"><span class="keyword">int</span> days = ((<span class="keyword">int</span>)time)/(<span class="number">3600</span>*<span class="number">24</span>);</div><div class="line"><span class="keyword">if</span> (days &lt; <span class="number">0</span>) {</div><div class="line"><span class="keyword">return</span> <span class="literal">YES</span>;</div><div class="line">}</div><div class="line"><span class="keyword">else</span>{</div><div class="line"><span class="keyword">return</span> <span class="literal">NO</span>;</div><div class="line">}</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>上面这个方法和对象没什么关系，更应该抽象成为一个Util方法，可以在这个类里面调用，更可以再其他更多的地方调用。</p>
+<p>6、功能点单一入口<br>在代码中，有些功能逻辑是相对固定的，但是在很多地方会反复出现。<br>比如登录功能，除了用户主动登录，还有在未登录状态下使用某些需要登录的功能，都会去调用登录页面。我看了一下现在的代码，一共出现了14次调用登录页面。代码重复是一个方面，还有就是定位bug麻烦。比如进入首页的时候莫名其妙弹出个登录页面，因为首页逻辑复杂，我得打很多断点才能定位到产生问题的代码。<br>还有对tabbar的操作，也是出现在了多出地方。其实只要搞清楚tabbar是哪个类管理的，然后让这个类封装出一个public的方法，控制tabbar的隐藏与否即可。</p>
+<p>所以一个功能点我们只保留一个出口，其他地方只要调用方法即可。把相同的地方写在方法内部，不同的地方作为参数对外开放。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>最近在review整个项目的代码，因为代码量很大，参与开发的人很多，所以代码很多地方写得不够简洁。这里总结出一些代码片段，用来简化代码。<br>]]>
+    
+    </summary>
+    
+      <category term="代码规范" scheme="http://linkageios.github.io/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/"/>
+    
+      <category term="iOS" scheme="http://linkageios.github.io/categories/iOS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[状态栏高度变化处理]]></title>
+    <link href="http://linkageios.github.io/2015/01/18/%E7%8A%B6%E6%80%81%E6%A0%8F%E9%AB%98%E5%BA%A6%E5%8F%98%E5%8C%96%E5%A4%84%E7%90%86/"/>
+    <id>http://linkageios.github.io/2015/01/18/状态栏高度变化处理/</id>
+    <published>2015-01-18T02:23:14.000Z</published>
+    <updated>2015-02-02T09:12:31.000Z</updated>
+    <content type="html"><![CDATA[<p>iOS中的状态栏的正常高度是20，但并不是固定高度的，至少在通话中和有热点连接时，它的高度就会变成40。这时APP的UI会整体下移，造成UI显示异常。<br><a id="more"></a></p>
+<p>这是一个细节，我查看了自己手机上那些知名APP，发现还有好多没做处理。<br>处理的：</p>
+<ul>
+<li>微信<br><img src="http://upload-images.jianshu.io/upload_images/16632-239743d1a2852743.PNG" alt="Drawing" width="200px"></li>
+<li>QQ<br><img src="http://upload-images.jianshu.io/upload_images/16632-5f0c47b2bf769cbf.PNG" alt="Drawing" width="200px"></li>
+<li>淘宝<br><img src="http://upload-images.jianshu.io/upload_images/16632-274441621b624829.PNG" alt="Drawing" width="200px"></li>
+<li>支付宝<br><img src="http://upload-images.jianshu.io/upload_images/16632-4649cd6e19c7ea8e.PNG" alt="Drawing" width="200px"></li>
+</ul>
+<p>没处理的：</p>
+<ul>
+<li>网易新闻<br><img src="http://upload-images.jianshu.io/upload_images/16632-f774f14e8e1bad90.PNG" alt="Drawing" width="200px"></li>
+<li>京东<br><img src="http://upload-images.jianshu.io/upload_images/16632-5d37d451b1e55a3e.PNG" alt="Drawing" width="200px"></li>
+<li>苏宁<br><img src="http://upload-images.jianshu.io/upload_images/16632-5d478844c53ee99e.PNG" alt="Drawing" width="200px"></li>
+<li>携程<br><img src="http://upload-images.jianshu.io/upload_images/16632-ec9ee74c4007258f.PNG" alt="Drawing" width="200px"></li>
+</ul>
+<p>虽然这只是一个很不起眼的功能，但可以看出做产品的人有没有认真做，而不只是把功能做给用户看。</p>
+<p>说完了处理这个东西的重要性，那么做起来是否简单呢？</p>
+<ul>
+<li>问题1：怎么获取状态栏高度？<br>状态栏的高度并非永远都是20，当有热点连接或者通话时，它的高度就会变成40。所以取得状态栏高度的标准方法如下，可以用宏来封装。</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attr_selector">[UIApplication sharedApplication]</span><span class="class">.statusBarFrame</span><span class="class">.size</span><span class="class">.height</span></div></pre></td></tr></table></figure>
+
+<ul>
+<li>问题2：怎么知道状态栏发生了变化？<br>是通知。</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="title">UIApplicationWillChangeStatusBarFrameNotification</span></div><div class="line">UIApplicationDidChangeStatusBarFrameNotification</div></pre></td></tr></table></figure>
+
+<p>我们可以监听其中某个通知，然后相应的去改变当前视图的布局。</p>
+<ul>
+<li>问题3：是不是需要每个页面都要去注册通知？<br>这个问题应该具体问题具体分析，但如果真的需要一个一个页面去改，我觉得肯定是程序结构出了问题。就我目前的项目而言，只是在根容器类中加了通知并处理了底部的tabbar。其他页面虽然有时也有问题，但很多都是自身实现方式有问题，和状态栏变化没有直接关系。</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)statusBarFrameWillChange:(<span class="built_in">NSNotification</span>*)notification</div><div class="line">{</div><div class="line">[<span class="keyword">self</span> hideTabbar:<span class="keyword">self</span><span class="variable">.statusBarHidden</span> animated:<span class="literal">YES</span>];</div><div class="line">}</div></pre></td></tr></table></figure>
+
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>iOS中的状态栏的正常高度是20，但并不是固定高度的，至少在通话中和有热点连接时，它的高度就会变成40。这时APP的UI会整体下移，造成UI显示异常。<br>]]>
+    
+    </summary>
+    
+      <category term="状态栏" scheme="http://linkageios.github.io/tags/%E7%8A%B6%E6%80%81%E6%A0%8F/"/>
+    
+      <category term="iOS" scheme="http://linkageios.github.io/categories/iOS/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[xib使用]]></title>
@@ -782,181 +900,6 @@ return cell
   </entry>
   
   <entry>
-    <title><![CDATA[关于iConsole在项目中的应用]]></title>
-    <link href="http://linkageios.github.io/2014/11/07/%E5%85%B3%E4%BA%8EiConsole%E5%9C%A8%E9%A1%B9%E7%9B%AE%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/"/>
-    <id>http://linkageios.github.io/2014/11/07/关于iConsole在项目中的应用/</id>
-    <published>2014-11-07T05:38:14.000Z</published>
-    <updated>2014-12-03T02:51:18.000Z</updated>
-    <content type="html"><![CDATA[<p>tips：方便程序没有连着Xcode跑时定位bug(目前觉得没什么好写的就是)</p>
-<ul>
-<li>安装</li>
-</ul>
-<p><img src="/images/79888-d9f0841d3cfac40e.png" alt="imag"></p>
-<p>下载iconsole代码，将其中这两个文件拖入现有代码中</p>
-<ul>
-<li>配置<br>添加头文件</li>
-</ul>
-<figure class="highlight #import"><figcaption><span>"iConsole.h"```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">在使用其功能之前有一点要注意,需要将AppDelegate里初始的<span class="built_in">UIWindow</span>需要以iConsoleWindow来初始化,并添加</div></pre></td></tr></table></figure>
-
-<p>iConsoleDelegate</p>
-<figure class="highlight 协议"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">在</div></pre></td></tr></table></figure>
-
-<p>AppDelegate.h</p>
-<figure class="highlight 中"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="xml"><span class="comment">&lt;!--more--&gt;</span></span></div><div class="line">tips：方便程序没有连着Xcode跑时定位bug(目前觉得没什么好写的就是)</div><div class="line"><span class="bullet">- </span>安装</div><div class="line"></div><div class="line">![<span class="link_label">imag</span>](<span class="link_url">/images/79888-d9f0841d3cfac40e.png</span>)</div><div class="line"></div><div class="line">下载iconsole代码，将其中这两个文件拖入现有代码中</div><div class="line"><span class="bullet">- </span>配置</div><div class="line">添加头文件</div></pre></td></tr></table></figure>
-
-<h1 id="import_“iConsole-h”">import “iConsole.h”</h1>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">在使用其功能之前有一点要注意,需要将AppDelegate里初始的<span class="built_in">UIWindow</span>需要以iConsoleWindow来初始化,并添加</div></pre></td></tr></table></figure>
-
-<p>iConsoleDelegate</p>
-<figure class="highlight 协议"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">在</div></pre></td></tr></table></figure>
-
-<p>AppDelegate.h</p>
-<figure class="highlight 中"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">```</div><div class="line"><span class="keyword">@property</span> (<span class="keyword">strong</span>, <span class="keyword">nonatomic</span>) iConsoleWindow *window;</div></pre></td></tr></table></figure>
-
-<p>在</p>
-<figure class="highlight AppDelegate.m```的```didFinishLaunchingWithOptions"><figcaption><span>```方法中添加</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">```</div><div class="line"><span class="variable">_window =</span> [[iConsoleWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];</div><div class="line"><span class="comment">/*</span></div><div class="line">*  iconsole</div><div class="line">*/</div><div class="line">[iConsole sharedConsole].<span class="variable">delegate =</span> self;</div><div class="line">[iConsole sharedConsole].<span class="variable">logSubmissionEmail =</span> @<span class="string">"xxx@126.com"</span>;</div></pre></td></tr></table></figure>
-
-<p>添加协议方法</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*</span></div><div class="line">*iconsole</div><div class="line">*@param command</div><div class="line">*/</div><div class="line">- (<span class="keyword">void</span>)handleConsoleCommand:(<span class="built_in">NSString</span> *)command</div><div class="line">{</div><div class="line"><span class="keyword">if</span> ([command isEqualToString:<span class="string">@"version"</span>])</div><div class="line">{</div><div class="line">[iConsole info:<span class="string">@"%@ version %@"</span>,</div><div class="line">[[<span class="built_in">NSBundle</span> mainBundle] objectForInfoDictionaryKey:<span class="string">@"CFBundleName"</span>],</div><div class="line">[[<span class="built_in">NSBundle</span> mainBundle] objectForInfoDictionaryKey:<span class="string">@"CFBundleVersion"</span>]];</div><div class="line">}</div><div class="line"><span class="keyword">else</span></div><div class="line">{</div><div class="line">[iConsole error:<span class="string">@"unrecognised command, try 'version' instead"</span>];</div><div class="line">}</div><div class="line">}</div></pre></td></tr></table></figure>
-
-<p>iConsole提供了4种记录日程的方式,分别是:<br>1:信息         </p>
-<figure class="highlight [iConsole"><figcaption><span>info:@"记录一条普通级"];```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">2:警告</div></pre></td></tr></table></figure>
-
-<p>[iConsole warn:@”记录一条警告级”];</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">3:错误</div></pre></td></tr></table></figure>
-
-<p>[iConsole error:@”记录一条错误级”];</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">4:崩溃</div></pre></td></tr></table></figure>
-
-<p>[iConsole crash:@”记录一条崩溃级”];</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="title">iConsole</span> 默认记录的日志条数是<span class="number">1000</span>条. 如果日志记录到上限时,会删除最早的一条,如此循环,可通过如下属性设置上下限:</div></pre></td></tr></table></figure>
-
-<p>[[iConsole sharedConsole] setMaxLogItems:2000];  </p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">当我们需要查看iConsole的控制台时,可以通过三种方式来启动控制台:</div><div class="line">1:主动调用</div></pre></td></tr></table></figure>
-
-<p>[iConsole show];  </p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">2:三跟手指由下往上滑动. 模拟器两根手指,  默认启动</div></pre></td></tr></table></figure>
-
-<p>[iConsole sharedConsole].simulatorTouchesToShow = YES;<br>[iConsole sharedConsole].deviceTouchesToShow = YES;  </p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">3:摇动手机启动  默认禁用</div></pre></td></tr></table></figure>
-
-<p>[iConsole sharedConsole].deviceShakeToShow = YES; ``` </p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>tips：方便程序没有连着Xcode跑时定位bug(目前觉得没什么好写的就是)</p>
-<ul>
-<li>安装</li>
-</ul>
-<p><img src="/images/79888-d9f0841d3cfac40e.png" alt="imag"></p>
-<p>下载]]>
-    </summary>
-    
-      <category term="iconsole" scheme="http://linkageios.github.io/tags/iconsole/"/>
-    
-      <category term="iOS" scheme="http://linkageios.github.io/categories/iOS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[测试Json效率和XML效率]]></title>
-    <link href="http://linkageios.github.io/2014/11/07/%E6%B5%8B%E8%AF%95Json%E6%95%88%E7%8E%87%E5%92%8CXML%E6%95%88%E7%8E%87/"/>
-    <id>http://linkageios.github.io/2014/11/07/测试Json效率和XML效率/</id>
-    <published>2014-11-07T05:38:14.000Z</published>
-    <updated>2014-12-03T02:50:04.000Z</updated>
-    <content type="html"><![CDATA[<ul>
-<li><p>tips：把项目中的解析json的sbjson ,网上提到的JsonKit和apple提供的自带json解析方法进行比较<br>所解析的json是来自项目当中服务返回的商家列表信息<br>具体如下图</p>
-<a id="more"></a>
-</li>
-<li><p>tips：把项目中的解析json的sbjson ,网上提到的JsonKit和apple提供的自带json解析方法进行比较<br>所解析的json是来自项目当中服务返回的商家列表信息<br>具体如下图<br><img src="/images/79888-1946ee461177aeca.png" alt="imag"><br>开始先去 请求 商家列表信息 ，请求成功之后 会有弹出框提示</p>
-<a id="more"></a></li>
-<li>tips：把项目中的解析json的sbjson ,网上提到的JsonKit和apple提供的自带json解析方法进行比较<br>所解析的json是来自项目当中服务返回的商家列表信息<br>具体如下图<br><img src="/images/79888-1946ee461177aeca.png" alt="imag"><br>开始先去 请求 商家列表信息 ，请求成功之后 会有弹出框提示</li>
-</ul>
-<p><img src="/images/79888-bd0e36d1d14085ea.png" alt="imag"><br>之后可以依次测试三种解析，具体看demo提示<br>结果：JSONKit 效率最接近苹果原生</p>
-<ul>
-<li>tips：针对项目中的车型xml文件，对比XMLDictionary和苹果自带xml解析的效率<br>解析的对象就是 项目当中的车型库文件</li>
-</ul>
-<p><img src="/images/79888-e567a1bfada45c8c.png" alt="imag"><br>每个解析方法 解析1000次 具体实现看demo<br>结果：XMLDictionary因为是 宽泛适应的解析 比demo中的针对特定文件写的解析是要慢些，但是今后将取消xml读取文件，这个也就没什么需要考虑的了</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<ul>
-<li><p>tips：把项目中的解析json的sbjson ,网上提到的JsonKit和apple提供的自带json解析方法进行比较<br>所解析的json是来自项目当中服务返回的商家列表信息<br>具体如下图</p>
-<!--more-->
-</li>
-<li><p>tips：把项目中的解析json的sbjson ,网上提到的JsonKit和apple提供的自带json解析方法进行比较<br>所解析的json是来自项目当中服务返回的商家列表信息<br>具体如下图<br><img src="/images/79888-1946ee461177aeca.png" alt="imag"><br>开始先去 请求 商家列表信息 ，请求成功之后 会有弹出框提示</p>
-]]>
-    
-    </summary>
-    
-      <category term="xml" scheme="http://linkageios.github.io/tags/xml/"/>
-    
-      <category term="json" scheme="http://linkageios.github.io/tags/json/"/>
-    
-      <category term="效率" scheme="http://linkageios.github.io/tags/%E6%95%88%E7%8E%87/"/>
-    
-      <category term="iOS" scheme="http://linkageios.github.io/categories/iOS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[LCBaseViewController相关]]></title>
-    <link href="http://linkageios.github.io/2014/11/07/LCBaseViewController%E7%9B%B8%E5%85%B3/"/>
-    <id>http://linkageios.github.io/2014/11/07/LCBaseViewController相关/</id>
-    <published>2014-11-07T05:38:14.000Z</published>
-    <updated>2014-11-18T09:20:25.000Z</updated>
-    <content type="html"><![CDATA[<h2 id="简介">简介</h2>
-<p>该基类参考原先项目中BaseViewController等几个类 进行修改 功能暂时满足目前项目需求 日后更新会根据项目迭代中提出的需求在进行修改</p>
-<h2 id="属性和函数说明">属性和函数说明</h2>
-<p>LCViewControllerShowType：viewController出现的方式 具体分为</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">LCViewControllerShowTypePush                （<span class="keyword">pop</span>/<span class="keyword">push</span>方式）（默认）</div><div class="line">LCViewControllerShowTypePresent             （present/dismiss方式）</div><div class="line">LCViewControllerShowTypePresentBasic        （作为没有登录的情况下，登陆界面返回按钮 跳转到首页的凭据）</div></pre></td></tr></table></figure>
-
-<a id="more"></a>
-
-<h2 id="简介-1">简介</h2>
-<p>该基类参考原先项目中BaseViewController等几个类 进行修改 功能暂时满足目前项目需求 日后更新会根据项目迭代中提出的需求在进行修改</p>
-<h2 id="属性和函数说明-1">属性和函数说明</h2>
-<p>LCViewControllerShowType：viewController出现的方式 具体分为</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">LCViewControllerShowTypePush                （<span class="keyword">pop</span>/<span class="keyword">push</span>方式）（默认）</div><div class="line">LCViewControllerShowTypePresent             （present/dismiss方式）</div><div class="line">LCViewControllerShowTypePresentBasic        （作为没有登录的情况下，登陆界面返回按钮 跳转到首页的凭据）</div></pre></td></tr></table></figure>
-
-<p>LCNavigationBarStyle： navigationBar 的样式 主要是背景色</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="title">LCNavigationBarRed</span>             navigationBar 一级,红色背景</div></pre></td></tr></table></figure>
-
-<p><img src="http://upload-images.jianshu.io/upload_images/79888-d6fa0aed379b25d2.png" alt="LCNavigationBarRed"></p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="title">LCNavigationBarWhite</span>          navigationBar 二级,白色背景（默认）</div></pre></td></tr></table></figure>
-
-<p><img src="http://upload-images.jianshu.io/upload_images/79888-6225382ae2b09d27.png" alt="LCNavigationBarWhite"></p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="title">LCNavigationBarNull</span>             navigationBar 二级,隐藏navigaitonbar</div></pre></td></tr></table></figure>
-
-<p>提供函数方法</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">//设置导航栏背景图片</div><div class="line"><span class="pp">- <span class="params">(void)</span>configNavigationBarBgImage;</span></div><div class="line">//设置左边的返回按钮</div><div class="line">- <span class="params">(void)</span>setLeftBackButton;</div><div class="line">- <span class="params">(void)</span>setLeftBackButtonAction:<span class="params">(<span class="variable">SEL</span>)</span>selector;</div><div class="line">//设置左边的返回按钮<span class="params">(图片按钮)</span></div><div class="line">- <span class="params">(void)</span>setLeftButtonWithImageName:<span class="params">(<span class="variable">NSString</span>*)</span>imageName action:<span class="params">(<span class="variable">SEL</span>)</span>selector;</div><div class="line">//设置左边的返回按钮<span class="params">(文字按钮)</span></div><div class="line">- <span class="params">(void)</span>setLeftButtonWithTitle:<span class="params">(<span class="variable">NSString</span>*)</span>title action:<span class="params">(<span class="variable">SEL</span>)</span>selector;</div><div class="line">//设置左边的返回按钮<span class="params">(通用按钮)</span></div><div class="line">- <span class="params">(void)</span>setLeftButton:<span class="params">(<span class="variable">UIButton</span>*)</span>button action:<span class="params">(<span class="variable">SEL</span>)</span>selector;</div><div class="line">//设置中间的文本标题</div><div class="line">- <span class="params">(void)</span>setTitleViewWithText:<span class="params">(<span class="variable">NSString</span>*)</span>text;</div><div class="line">//设置右边的按钮<span class="params">(文字按钮)</span></div><div class="line">- <span class="params">(void)</span>setRightButtonWithTitle:<span class="params">(<span class="variable">NSString</span>*)</span>title action:<span class="params">(<span class="variable">SEL</span>)</span>selector;</div><div class="line">//设置右边的按钮<span class="params">(图片按钮)</span></div><div class="line">- <span class="params">(void)</span>setRightButtonWithImageName:<span class="params">(<span class="variable">NSString</span>*)</span>imageName action:<span class="params">(<span class="variable">SEL</span>)</span>selector;</div><div class="line">- <span class="params">(void)</span>setRightButtonWithNormarlImageName:<span class="params">(<span class="variable">NSString</span>*)</span>normarName highlightedImageName:<span class="params">(<span class="variable">NSString</span> *)</span>highlightedName action:<span class="params">(<span class="variable">SEL</span>)</span>selector;</div><div class="line">//设置右边的按钮</div><div class="line">- <span class="params">(void)</span>setRightButton:<span class="params">(<span class="variable">UIButton</span>*)</span>button action:<span class="params">(<span class="variable">SEL</span>)</span>selector;</div><div class="line">//多个按钮 分别有文字或图片 （btnStrs 中vo 为dic 具体参考下面栗子）</div><div class="line">- <span class="params">(void)</span>setRightButtons:<span class="params">(<span class="variable">NSArray</span> *)</span>btnStrs;</div><div class="line">- <span class="params">(void)</span>setRightButtonImages:<span class="params">(<span class="variable">NSArray</span> *)</span>images;</div><div class="line">- <span class="params">(void)</span>rightButtonAction:<span class="params">(id)</span>sender;</div><div class="line">//返回按钮的响应事件</div><div class="line">- <span class="params">(void)</span>backButtonPressed:<span class="params">(id)</span>sender;</div></pre></td></tr></table></figure>
-
-<p>提供方法中</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="pp">- <span class="params">(void)</span>setRightButtons:<span class="params">(<span class="variable">NSArray</span> *)</span>btnStrs;</span></div></pre></td></tr></table></figure>
-
-<p>btnStrs为包含vo对象的一个数组</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="variable">vo =</span> {</div><div class="line">@<span class="string">" title"</span>     : @<span class="string">"返回"</span>,</div><div class="line">@<span class="string">"normalImage"</span>:@<span class="string">"fanhui.png"</span></div><div class="line">}</div></pre></td></tr></table></figure>
-
-<p>具体使用为</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">NSArray</span> *rightbarButtonVos = @[@{<span class="string">@"title"</span>:<span class="string">@"第一个"</span>,<span class="string">@"normalImage"</span>:<span class="string">@"first.png"</span>},@{<span class="string">@"title"</span>:<span class="string">@"第二个"</span>,<span class="string">@"normalImage"</span>:<span class="string">@"second.png"</span>}];</div><div class="line">[<span class="keyword">self</span> setRightButtons: rightbarButtonVos];</div></pre></td></tr></table></figure>
-
-]]></content>
-    <summary type="html">
-    <![CDATA[<h2 id="简介">简介</h2>
-<p>该基类参考原先项目中BaseViewController等几个类 进行修改 功能暂时满足目前项目需求 日后更新会根据项目迭代中提出的需求在进行修改</p>
-<h2 id="属性和函数说明">属性和函数说明</h2>
-<p>LCViewControllerShowType：viewController出现的方式 具体分为</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">LCViewControllerShowTypePush                （<span class="keyword">pop</span>/<span class="keyword">push</span>方式）（默认）</div><div class="line">LCViewControllerShowTypePresent             （present/dismiss方式）</div><div class="line">LCViewControllerShowTypePresentBasic        （作为没有登录的情况下，登陆界面返回按钮 跳转到首页的凭据）</div></pre></td></tr></table></figure>
-
-]]>
-    
-    </summary>
-    
-      <category term="LCBaseViewController" scheme="http://linkageios.github.io/tags/LCBaseViewController/"/>
-    
-      <category term="iOS" scheme="http://linkageios.github.io/categories/iOS/"/>
-    
-  </entry>
-  
-  <entry>
     <title><![CDATA[iOS代码规范]]></title>
     <link href="http://linkageios.github.io/2014/11/07/iOS%E7%BC%96%E7%A0%81%E8%A7%84%E8%8C%83/"/>
     <id>http://linkageios.github.io/2014/11/07/iOS编码规范/</id>
@@ -1180,6 +1123,141 @@ return cell
   </entry>
   
   <entry>
+    <title><![CDATA[LCBaseViewController相关]]></title>
+    <link href="http://linkageios.github.io/2014/11/07/LCBaseViewController%E7%9B%B8%E5%85%B3/"/>
+    <id>http://linkageios.github.io/2014/11/07/LCBaseViewController相关/</id>
+    <published>2014-11-07T05:38:14.000Z</published>
+    <updated>2014-11-18T09:20:25.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="简介">简介</h2>
+<p>该基类参考原先项目中BaseViewController等几个类 进行修改 功能暂时满足目前项目需求 日后更新会根据项目迭代中提出的需求在进行修改</p>
+<h2 id="属性和函数说明">属性和函数说明</h2>
+<p>LCViewControllerShowType：viewController出现的方式 具体分为</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">LCViewControllerShowTypePush                （<span class="keyword">pop</span>/<span class="keyword">push</span>方式）（默认）</div><div class="line">LCViewControllerShowTypePresent             （present/dismiss方式）</div><div class="line">LCViewControllerShowTypePresentBasic        （作为没有登录的情况下，登陆界面返回按钮 跳转到首页的凭据）</div></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+<h2 id="简介-1">简介</h2>
+<p>该基类参考原先项目中BaseViewController等几个类 进行修改 功能暂时满足目前项目需求 日后更新会根据项目迭代中提出的需求在进行修改</p>
+<h2 id="属性和函数说明-1">属性和函数说明</h2>
+<p>LCViewControllerShowType：viewController出现的方式 具体分为</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">LCViewControllerShowTypePush                （<span class="keyword">pop</span>/<span class="keyword">push</span>方式）（默认）</div><div class="line">LCViewControllerShowTypePresent             （present/dismiss方式）</div><div class="line">LCViewControllerShowTypePresentBasic        （作为没有登录的情况下，登陆界面返回按钮 跳转到首页的凭据）</div></pre></td></tr></table></figure>
+
+<p>LCNavigationBarStyle： navigationBar 的样式 主要是背景色</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="title">LCNavigationBarRed</span>             navigationBar 一级,红色背景</div></pre></td></tr></table></figure>
+
+<p><img src="http://upload-images.jianshu.io/upload_images/79888-d6fa0aed379b25d2.png" alt="LCNavigationBarRed"></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="title">LCNavigationBarWhite</span>          navigationBar 二级,白色背景（默认）</div></pre></td></tr></table></figure>
+
+<p><img src="http://upload-images.jianshu.io/upload_images/79888-6225382ae2b09d27.png" alt="LCNavigationBarWhite"></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="title">LCNavigationBarNull</span>             navigationBar 二级,隐藏navigaitonbar</div></pre></td></tr></table></figure>
+
+<p>提供函数方法</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">//设置导航栏背景图片</div><div class="line"><span class="pp">- <span class="params">(void)</span>configNavigationBarBgImage;</span></div><div class="line">//设置左边的返回按钮</div><div class="line">- <span class="params">(void)</span>setLeftBackButton;</div><div class="line">- <span class="params">(void)</span>setLeftBackButtonAction:<span class="params">(<span class="variable">SEL</span>)</span>selector;</div><div class="line">//设置左边的返回按钮<span class="params">(图片按钮)</span></div><div class="line">- <span class="params">(void)</span>setLeftButtonWithImageName:<span class="params">(<span class="variable">NSString</span>*)</span>imageName action:<span class="params">(<span class="variable">SEL</span>)</span>selector;</div><div class="line">//设置左边的返回按钮<span class="params">(文字按钮)</span></div><div class="line">- <span class="params">(void)</span>setLeftButtonWithTitle:<span class="params">(<span class="variable">NSString</span>*)</span>title action:<span class="params">(<span class="variable">SEL</span>)</span>selector;</div><div class="line">//设置左边的返回按钮<span class="params">(通用按钮)</span></div><div class="line">- <span class="params">(void)</span>setLeftButton:<span class="params">(<span class="variable">UIButton</span>*)</span>button action:<span class="params">(<span class="variable">SEL</span>)</span>selector;</div><div class="line">//设置中间的文本标题</div><div class="line">- <span class="params">(void)</span>setTitleViewWithText:<span class="params">(<span class="variable">NSString</span>*)</span>text;</div><div class="line">//设置右边的按钮<span class="params">(文字按钮)</span></div><div class="line">- <span class="params">(void)</span>setRightButtonWithTitle:<span class="params">(<span class="variable">NSString</span>*)</span>title action:<span class="params">(<span class="variable">SEL</span>)</span>selector;</div><div class="line">//设置右边的按钮<span class="params">(图片按钮)</span></div><div class="line">- <span class="params">(void)</span>setRightButtonWithImageName:<span class="params">(<span class="variable">NSString</span>*)</span>imageName action:<span class="params">(<span class="variable">SEL</span>)</span>selector;</div><div class="line">- <span class="params">(void)</span>setRightButtonWithNormarlImageName:<span class="params">(<span class="variable">NSString</span>*)</span>normarName highlightedImageName:<span class="params">(<span class="variable">NSString</span> *)</span>highlightedName action:<span class="params">(<span class="variable">SEL</span>)</span>selector;</div><div class="line">//设置右边的按钮</div><div class="line">- <span class="params">(void)</span>setRightButton:<span class="params">(<span class="variable">UIButton</span>*)</span>button action:<span class="params">(<span class="variable">SEL</span>)</span>selector;</div><div class="line">//多个按钮 分别有文字或图片 （btnStrs 中vo 为dic 具体参考下面栗子）</div><div class="line">- <span class="params">(void)</span>setRightButtons:<span class="params">(<span class="variable">NSArray</span> *)</span>btnStrs;</div><div class="line">- <span class="params">(void)</span>setRightButtonImages:<span class="params">(<span class="variable">NSArray</span> *)</span>images;</div><div class="line">- <span class="params">(void)</span>rightButtonAction:<span class="params">(id)</span>sender;</div><div class="line">//返回按钮的响应事件</div><div class="line">- <span class="params">(void)</span>backButtonPressed:<span class="params">(id)</span>sender;</div></pre></td></tr></table></figure>
+
+<p>提供方法中</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="pp">- <span class="params">(void)</span>setRightButtons:<span class="params">(<span class="variable">NSArray</span> *)</span>btnStrs;</span></div></pre></td></tr></table></figure>
+
+<p>btnStrs为包含vo对象的一个数组</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="variable">vo =</span> {</div><div class="line">@<span class="string">" title"</span>     : @<span class="string">"返回"</span>,</div><div class="line">@<span class="string">"normalImage"</span>:@<span class="string">"fanhui.png"</span></div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>具体使用为</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">NSArray</span> *rightbarButtonVos = @[@{<span class="string">@"title"</span>:<span class="string">@"第一个"</span>,<span class="string">@"normalImage"</span>:<span class="string">@"first.png"</span>},@{<span class="string">@"title"</span>:<span class="string">@"第二个"</span>,<span class="string">@"normalImage"</span>:<span class="string">@"second.png"</span>}];</div><div class="line">[<span class="keyword">self</span> setRightButtons: rightbarButtonVos];</div></pre></td></tr></table></figure>
+
+]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="简介">简介</h2>
+<p>该基类参考原先项目中BaseViewController等几个类 进行修改 功能暂时满足目前项目需求 日后更新会根据项目迭代中提出的需求在进行修改</p>
+<h2 id="属性和函数说明">属性和函数说明</h2>
+<p>LCViewControllerShowType：viewController出现的方式 具体分为</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">LCViewControllerShowTypePush                （<span class="keyword">pop</span>/<span class="keyword">push</span>方式）（默认）</div><div class="line">LCViewControllerShowTypePresent             （present/dismiss方式）</div><div class="line">LCViewControllerShowTypePresentBasic        （作为没有登录的情况下，登陆界面返回按钮 跳转到首页的凭据）</div></pre></td></tr></table></figure>
+
+]]>
+    
+    </summary>
+    
+      <category term="LCBaseViewController" scheme="http://linkageios.github.io/tags/LCBaseViewController/"/>
+    
+      <category term="iOS" scheme="http://linkageios.github.io/categories/iOS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[关于iConsole在项目中的应用]]></title>
+    <link href="http://linkageios.github.io/2014/11/07/%E5%85%B3%E4%BA%8EiConsole%E5%9C%A8%E9%A1%B9%E7%9B%AE%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/"/>
+    <id>http://linkageios.github.io/2014/11/07/关于iConsole在项目中的应用/</id>
+    <published>2014-11-07T05:38:14.000Z</published>
+    <updated>2014-12-03T02:51:18.000Z</updated>
+    <content type="html"><![CDATA[<p>tips：方便程序没有连着Xcode跑时定位bug(目前觉得没什么好写的就是)</p>
+<ul>
+<li>安装</li>
+</ul>
+<p><img src="/images/79888-d9f0841d3cfac40e.png" alt="imag"></p>
+<p>下载iconsole代码，将其中这两个文件拖入现有代码中</p>
+<ul>
+<li>配置<br>添加头文件</li>
+</ul>
+<figure class="highlight #import"><figcaption><span>"iConsole.h"```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">在使用其功能之前有一点要注意,需要将AppDelegate里初始的<span class="built_in">UIWindow</span>需要以iConsoleWindow来初始化,并添加</div></pre></td></tr></table></figure>
+
+<p>iConsoleDelegate</p>
+<figure class="highlight 协议"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">在</div></pre></td></tr></table></figure>
+
+<p>AppDelegate.h</p>
+<figure class="highlight 中"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="xml"><span class="comment">&lt;!--more--&gt;</span></span></div><div class="line">tips：方便程序没有连着Xcode跑时定位bug(目前觉得没什么好写的就是)</div><div class="line"><span class="bullet">- </span>安装</div><div class="line"></div><div class="line">![<span class="link_label">imag</span>](<span class="link_url">/images/79888-d9f0841d3cfac40e.png</span>)</div><div class="line"></div><div class="line">下载iconsole代码，将其中这两个文件拖入现有代码中</div><div class="line"><span class="bullet">- </span>配置</div><div class="line">添加头文件</div></pre></td></tr></table></figure>
+
+<h1 id="import_“iConsole-h”">import “iConsole.h”</h1>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">在使用其功能之前有一点要注意,需要将AppDelegate里初始的<span class="built_in">UIWindow</span>需要以iConsoleWindow来初始化,并添加</div></pre></td></tr></table></figure>
+
+<p>iConsoleDelegate</p>
+<figure class="highlight 协议"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">在</div></pre></td></tr></table></figure>
+
+<p>AppDelegate.h</p>
+<figure class="highlight 中"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">```</div><div class="line"><span class="keyword">@property</span> (<span class="keyword">strong</span>, <span class="keyword">nonatomic</span>) iConsoleWindow *window;</div></pre></td></tr></table></figure>
+
+<p>在</p>
+<figure class="highlight AppDelegate.m```的```didFinishLaunchingWithOptions"><figcaption><span>```方法中添加</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">```</div><div class="line"><span class="variable">_window =</span> [[iConsoleWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];</div><div class="line"><span class="comment">/*</span></div><div class="line">*  iconsole</div><div class="line">*/</div><div class="line">[iConsole sharedConsole].<span class="variable">delegate =</span> self;</div><div class="line">[iConsole sharedConsole].<span class="variable">logSubmissionEmail =</span> @<span class="string">"xxx@126.com"</span>;</div></pre></td></tr></table></figure>
+
+<p>添加协议方法</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*</span></div><div class="line">*iconsole</div><div class="line">*@param command</div><div class="line">*/</div><div class="line">- (<span class="keyword">void</span>)handleConsoleCommand:(<span class="built_in">NSString</span> *)command</div><div class="line">{</div><div class="line"><span class="keyword">if</span> ([command isEqualToString:<span class="string">@"version"</span>])</div><div class="line">{</div><div class="line">[iConsole info:<span class="string">@"%@ version %@"</span>,</div><div class="line">[[<span class="built_in">NSBundle</span> mainBundle] objectForInfoDictionaryKey:<span class="string">@"CFBundleName"</span>],</div><div class="line">[[<span class="built_in">NSBundle</span> mainBundle] objectForInfoDictionaryKey:<span class="string">@"CFBundleVersion"</span>]];</div><div class="line">}</div><div class="line"><span class="keyword">else</span></div><div class="line">{</div><div class="line">[iConsole error:<span class="string">@"unrecognised command, try 'version' instead"</span>];</div><div class="line">}</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>iConsole提供了4种记录日程的方式,分别是:<br>1:信息         </p>
+<figure class="highlight [iConsole"><figcaption><span>info:@"记录一条普通级"];```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">2:警告</div></pre></td></tr></table></figure>
+
+<p>[iConsole warn:@”记录一条警告级”];</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">3:错误</div></pre></td></tr></table></figure>
+
+<p>[iConsole error:@”记录一条错误级”];</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">4:崩溃</div></pre></td></tr></table></figure>
+
+<p>[iConsole crash:@”记录一条崩溃级”];</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="title">iConsole</span> 默认记录的日志条数是<span class="number">1000</span>条. 如果日志记录到上限时,会删除最早的一条,如此循环,可通过如下属性设置上下限:</div></pre></td></tr></table></figure>
+
+<p>[[iConsole sharedConsole] setMaxLogItems:2000];  </p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">当我们需要查看iConsole的控制台时,可以通过三种方式来启动控制台:</div><div class="line">1:主动调用</div></pre></td></tr></table></figure>
+
+<p>[iConsole show];  </p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">2:三跟手指由下往上滑动. 模拟器两根手指,  默认启动</div></pre></td></tr></table></figure>
+
+<p>[iConsole sharedConsole].simulatorTouchesToShow = YES;<br>[iConsole sharedConsole].deviceTouchesToShow = YES;  </p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">3:摇动手机启动  默认禁用</div></pre></td></tr></table></figure>
+
+<p>[iConsole sharedConsole].deviceShakeToShow = YES; ``` </p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>tips：方便程序没有连着Xcode跑时定位bug(目前觉得没什么好写的就是)</p>
+<ul>
+<li>安装</li>
+</ul>
+<p><img src="/images/79888-d9f0841d3cfac40e.png" alt="imag"></p>
+<p>下载]]>
+    </summary>
+    
+      <category term="iconsole" scheme="http://linkageios.github.io/tags/iconsole/"/>
+    
+      <category term="iOS" scheme="http://linkageios.github.io/categories/iOS/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[LCDataManager相关说明]]></title>
     <link href="http://linkageios.github.io/2014/11/07/LCDataManager%E7%9B%B8%E5%85%B3%E8%AF%B4%E6%98%8E/"/>
     <id>http://linkageios.github.io/2014/11/07/LCDataManager相关说明/</id>
@@ -1363,86 +1441,6 @@ return cell
     </summary>
     
       <category term="LCDataManager" scheme="http://linkageios.github.io/tags/LCDataManager/"/>
-    
-      <category term="iOS" scheme="http://linkageios.github.io/categories/iOS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[地图开发总结]]></title>
-    <link href="http://linkageios.github.io/2014/11/07/%E5%9C%B0%E5%9B%BE%E5%BC%80%E5%8F%91%E6%80%BB%E7%BB%93/"/>
-    <id>http://linkageios.github.io/2014/11/07/地图开发总结/</id>
-    <published>2014-11-07T04:18:00.000Z</published>
-    <updated>2014-11-18T10:27:25.000Z</updated>
-    <content type="html"><![CDATA[<h3 id="坑爹的高德">坑爹的高德</h3>
-<p>项目中地图原来用的高德sdk，其实我不知道当时为什么就用了高德，但既然用了，那么就在此基础上开发吧。可是写着写着，问题就来了： <a href="http://bbs.amap.com/thread-42153-1-1.html" target="_blank" rel="external">问题链接</a>。虽然这个问题不是什么太大的问题，但保不准以后还会遇到什么别的坑，而且以高德的效率，短期内肯定不会解决的。<br>那为什么还要用那个sdk呢？好像我们用到的功能苹果自带的MapKit都能实现啊，而且高德官网上的合作伙伴（携程、美团）也是用的原生的MapKit（从地图默认加载背景就可以看出来）。后来只花了一点点时间就切换到苹果的MapKit（API是一样的），目前还没发现什么bug。</p>
-<h3 id="坐标转换之中国特色">坐标转换之中国特色</h3>
-<p>因为不用高德了，所以当前位置经纬度就用CoreLocation来获取。可是当你把获取的经纬度放到MKMapView中显示，位置竟然有偏移，而且还不小。</p>
-<p>这是苹果的bug吗？不是，是有关部门的功劳。我们只有一个地球，所以地球上每个点的经纬度是固定的，国际上有个通用标准，简称国际标准。CoreLocation取到的经纬度符合国际标准。</p>
-<p>可是在国内，由于国家安全，有关部门制定了一套新的标准，简称国家标准。只要是在国内发行的地图（包括电子地图），都要按国家标准来，不然就是非法的。所以苹果手机中的国内地图肯定也是改良过的。</p>
-<p>我拿着国际标准的经纬度放到改良过的符合国家标准的地图中，显然会发生偏移。</p>
-<p>解决办法就是将国际标准的经纬度转换成国家标准的经纬度。<a href="https://gist.github.com/mithvv/5476132" target="_blank" rel="external">算法是现成的</a>（以前用高德sdk获取当前位置的经纬度本来就是国家标准的，所以没事。）<br><a id="more"></a></p>
-<h3 id="坑爹的高德-1">坑爹的高德</h3>
-<p>项目中地图原来用的高德sdk，其实我不知道当时为什么就用了高德，但既然用了，那么就在此基础上开发吧。可是写着写着，问题就来了： <a href="http://bbs.amap.com/thread-42153-1-1.html" target="_blank" rel="external">问题链接</a>。虽然这个问题不是什么太大的问题，但保不准以后还会遇到什么别的坑，而且以高德的效率，短期内肯定不会解决的。<br>那为什么还要用那个sdk呢？好像我们用到的功能苹果自带的MapKit都能实现啊，而且高德官网上的合作伙伴（携程、美团）也是用的原生的MapKit（从地图默认加载背景就可以看出来）。后来只花了一点点时间就切换到苹果的MapKit（API是一样的），目前还没发现什么bug。</p>
-<h3 id="坐标转换之中国特色-1">坐标转换之中国特色</h3>
-<p>因为不用高德了，所以当前位置经纬度就用CoreLocation来获取。可是当你把获取的经纬度放到MKMapView中显示，位置竟然有偏移，而且还不小。</p>
-<p>这是苹果的bug吗？不是，是有关部门的功劳。我们只有一个地球，所以地球上每个点的经纬度是固定的，国际上有个通用标准，简称国际标准。CoreLocation取到的经纬度符合国际标准。</p>
-<p>可是在国内，由于国家安全，有关部门制定了一套新的标准，简称国家标准。只要是在国内发行的地图（包括电子地图），都要按国家标准来，不然就是非法的。所以苹果手机中的国内地图肯定也是改良过的。</p>
-<p>我拿着国际标准的经纬度放到改良过的符合国家标准的地图中，显然会发生偏移。</p>
-<p>解决办法就是将国际标准的经纬度转换成国家标准的经纬度。<a href="https://gist.github.com/mithvv/5476132" target="_blank" rel="external">算法是现成的</a>（以前用高德sdk获取当前位置的经纬度本来就是国家标准的，所以没事。）</p>
-<h3 id="怎么使用MapKit">怎么使用MapKit</h3>
-<p>用苹果官方的framework最幸福了，因为有标准的文档可查，只要看就是了。目前我们对地图的使用非常简单，就是在地图上加地理位置标注，所以我要看的只有其中<a href="https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/LocationAwarenessPG/AnnotatingMaps/AnnotatingMaps.html#//apple_ref/doc/uid/TP40009497-CH6-SW1" target="_blank" rel="external">一小段</a>。</p>
-<p>要实现标注，必须要有以下3个对象：</p>
-<ul>
-<li>AnnotationObject(标注对象)</li>
-<li>AnnotationView(标注视图)</li>
-<li>AnnotationCalloutView(标注弹出视图，可看做是标注视图的一部分)</li>
-</ul>
-<p><img src="http://upload-images.jianshu.io/upload_images/16632-ebb438364bb22eb8.png" alt="annotation.png" width="200px"></p>
-<p>结合上面的图，AnnotationObject是标注的模型对象，AnnotationView就是大头针，AnnotationCallView就是弹出来的浮层。</p>
-<h6 id="AnnotationObject">AnnotationObject</h6>
-<p>AnnotationObject必须实现MKAnnotation协议：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">@protocol</span> <span class="title">MKAnnotation</span> &lt;<span class="title">NSObject</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">// Center latitude and longitude of the annotation view.</span></div><div class="line"><span class="comment">// The implementation of this property must be KVO compliant.</span></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">readonly</span>) CLLocationCoordinate2D coordinate;</div><div class="line"></div><div class="line"><span class="keyword">@optional</span></div><div class="line"></div><div class="line"><span class="comment">// Title and subtitle for use by selection UI.</span></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">readonly</span>, <span class="keyword">copy</span>) <span class="built_in">NSString</span> *title;</div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">readonly</span>, <span class="keyword">copy</span>) <span class="built_in">NSString</span> *subtitle;</div><div class="line"></div><div class="line"><span class="comment">// Called as a result of dragging an annotation view.</span></div><div class="line">- (<span class="keyword">void</span>)setCoordinate:(CLLocationCoordinate2D)newCoordinate NS_AVAILABLE(<span class="number">10</span>_9, <span class="number">4</span>_0);</div><div class="line"></div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure>
-
-<p>框架默认提供了一个MKPointAnnotation，只有coordinate、title、subtitle，如果要求不高，这个类也够用了。但更多的情况就需要我们自定义MKAnnotation。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">HJGasStationAnnotation</span> : <span class="title">NSObject</span>&lt;<span class="title">MKAnnotation</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">//经纬度</span></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">assign</span>) CLLocationCoordinate2D coordinate;</div><div class="line"><span class="comment">//标题</span></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">copy</span>) <span class="built_in">NSString</span>* title;</div><div class="line"><span class="comment">//地址</span></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">copy</span>) <span class="built_in">NSString</span>* address;</div><div class="line"><span class="comment">//电话</span></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">copy</span>) <span class="built_in">NSString</span>* tel;</div><div class="line"></div><div class="line">- (instancetype)initWithLocation:(CLLocationCoordinate2D)coordinate;</div><div class="line"></div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure>
-
-<p>里面的title、address、tel都是我随便加的，只要有需求，加任何东西都可以，但官方文档中也说了，AnnotationObject不能太大，不然地图上标注一多，效率会有问题。</p>
-<p>想一下，为什么要有AnnotationObject这个对象？我看到之前的代码没么有自定义什么AnnotationObject，所有的标注都用MKPointAnnotation，然后所有其他的属性都封装成另外一个对象（ObjectB，这个ObjectB也是从项目的其他地方拿来的）都放到AnnotationView去。</p>
-<p>这样造成的后果就是AnnotationView中既有AnnotationObject，又有ObjectB（而且ObjectB不够纯粹，有很多冗余的属性），导致AnnotationView代码耦合性较大。而子类话AnnotationObject，就能消除这种耦合，把ObjectB中有用的属性封装到SubAnnotationObject中即可，这样对于AnnotationView而言，只需要知道AnnotationObject，管它什么ObjectB呢！</p>
-<h6 id="AnnotationView">AnnotationView</h6>
-<p>框架提供了默认的MKPinAnnotationView，就是一个大头针。因为不够美观，我们可能要换成其它图片或者自定义视图。</p>
-<p>怎么自定义呢？只要继承一下</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">HJGasStationAnnotationView</span> : <span class="title">MKAnnotationView</span></span></div><div class="line"></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">strong</span>) HJGasStationCalloutView *calloutView;</div><div class="line"></div><div class="line"><span class="keyword">@end</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">HJGasStationAnnotationView</span></span></div><div class="line"></div><div class="line">- (<span class="keyword">id</span>)initWithAnnotation:(<span class="keyword">id</span>&lt;MKAnnotation&gt;)annotation reuseIdentifier:(<span class="built_in">NSString</span> *)reuseIdentifier</div><div class="line">{</div><div class="line">    <span class="keyword">self</span> = [<span class="keyword">super</span> initWithAnnotation:annotation reuseIdentifier:reuseIdentifier];</div><div class="line">    </div><div class="line">    <span class="keyword">if</span> (<span class="keyword">self</span>)</div><div class="line">    {</div><div class="line">        <span class="keyword">self</span><span class="variable">.bounds</span> = CGRectMake(<span class="number">0</span>, <span class="number">0</span>, <span class="number">23</span>, <span class="number">35</span>);</div><div class="line">        <span class="keyword">self</span><span class="variable">.backgroundColor</span> = [<span class="built_in">UIColor</span> clearColor];</div><div class="line">        <span class="keyword">self</span><span class="variable">.image</span> = [<span class="built_in">UIImage</span> imageNamed:<span class="string">@"map_location.png"</span>];</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> <span class="keyword">self</span>;</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure>
-
-<p>上面的自定义非常简单，只是换了张图片，如果有更复杂的需求，直接在里面加子控件或者重写drewRect都可。</p>
-<h6 id="AnnotationCalloutView">AnnotationCalloutView</h6>
-<p>框架里有标准的AnnotationCalloutView，只需要设置AnnotationView的属性canShowCallout为YES，就能展示默认的CalloutView；如果需要自定义CalloutView的话就必须将canShowCallout设为NO，这样就不会弹出默认的CalloutView。</p>
-<p>自定义的CalloutView就是一个普通的View，爱怎么写就怎么写。它展示和消失的逻辑是由AnnotationView来控制的，所以说CalloutView其实是AnnotationView的一部分。</p>
-<p>交互的逻辑就是重写两个方法，而且必须要重写，变量名根据实际情况会变，但方法逻辑结构就不需要动。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">- (<span class="built_in">BOOL</span>)pointInside:(<span class="built_in">CGPoint</span>)point withEvent:(UIEvent *)event</div><div class="line">{</div><div class="line">    <span class="built_in">BOOL</span> inside = [<span class="keyword">super</span> pointInside:point withEvent:event];</div><div class="line">    </div><div class="line">    <span class="keyword">if</span> (!inside && <span class="keyword">self</span><span class="variable">.selected</span>)</div><div class="line">    {</div><div class="line">        inside = [<span class="keyword">self</span><span class="variable">.calloutView</span> pointInside:[<span class="keyword">self</span> convertPoint:point toView:<span class="keyword">self</span><span class="variable">.calloutView</span>] withEvent:event];</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> inside;</div><div class="line">}</div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)setSelected:(<span class="built_in">BOOL</span>)selected</div><div class="line">{</div><div class="line">    [<span class="keyword">super</span> setSelected:selected];</div><div class="line">    </div><div class="line">    <span class="keyword">if</span>(selected)</div><div class="line">    {</div><div class="line">        <span class="keyword">if</span> (<span class="keyword">self</span><span class="variable">.calloutView</span> == <span class="literal">nil</span>) {</div><div class="line">            <span class="keyword">self</span><span class="variable">.calloutView</span> = [[HJGasStationCalloutView alloc] initWithFrame:CGRectMake(<span class="number">0</span>, <span class="number">0</span>, kCalloutWidth, kCalloutHeight)];</div><div class="line">            [<span class="keyword">self</span><span class="variable">.calloutView</span><span class="variable">.telButton</span> addTarget:<span class="keyword">self</span> action:<span class="keyword">@selector</span>(telButtonPressed:) forControlEvents:UIControlEventTouchUpInside];</div><div class="line">            [<span class="keyword">self</span><span class="variable">.calloutView</span><span class="variable">.navButton</span> addTarget:<span class="keyword">self</span> action:<span class="keyword">@selector</span>(navButtonPressed:) forControlEvents:UIControlEventTouchUpInside];</div><div class="line">            <span class="keyword">self</span><span class="variable">.calloutView</span><span class="variable">.center</span> = CGPointMake(CGRectGetWidth(<span class="keyword">self</span><span class="variable">.bounds</span>) / <span class="number">2.</span>f + <span class="keyword">self</span><span class="variable">.calloutOffset</span><span class="variable">.x</span>,(-CGRectGetHeight(<span class="keyword">self</span><span class="variable">.calloutView</span><span class="variable">.bounds</span>) / <span class="number">2.</span>f + <span class="keyword">self</span><span class="variable">.calloutOffset</span><span class="variable">.y</span>));</div><div class="line">        }</div><div class="line">        [<span class="keyword">self</span> bindDataToUI];</div><div class="line">        [<span class="keyword">self</span> addSubview:<span class="keyword">self</span><span class="variable">.calloutView</span>];</div><div class="line">    }</div><div class="line">    <span class="keyword">else</span></div><div class="line">    {</div><div class="line">        [<span class="keyword">self</span><span class="variable">.calloutView</span> removeFromSuperview];</div><div class="line">    }</div><div class="line"></div><div class="line">}</div></pre></td></tr></table></figure>
-
-<h3 id="展现逻辑">展现逻辑</h3>
-<p>像MapView添加标注</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[<span class="keyword">self</span>.mapView <span class="symbol">addAnnotation:</span><span class="keyword">self</span>.annotation];</div></pre></td></tr></table></figure>
-
-<p> 在MapView的代理方法中生成AnnotationView</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">- (MKAnnotationView *)mapView:(<span class="built_in">MKMapView</span> *)mapView viewForAnnotation:(<span class="keyword">id</span>&lt;MKAnnotation&gt;)annotation</div><div class="line">{</div><div class="line">    <span class="keyword">if</span> ([annotation isKindOfClass:[HJGasStationAnnotation class]]) {</div><div class="line">        </div><div class="line">        <span class="keyword">static</span> <span class="built_in">NSString</span> *customReuseIndetifier = <span class="string">@"HJGasStationAnnotation"</span>;</div><div class="line">        HJGasStationAnnotationView *annotationView = (HJGasStationAnnotationView*)[mapView dequeueReusableAnnotationViewWithIdentifier:customReuseIndetifier];</div><div class="line">        </div><div class="line">        <span class="keyword">if</span> (annotationView == <span class="literal">nil</span>)</div><div class="line">        {</div><div class="line">            annotationView = [[HJGasStationAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:customReuseIndetifier];</div><div class="line">            annotationView<span class="variable">.canShowCallout</span> = <span class="literal">NO</span>;</div><div class="line">            annotationView<span class="variable">.draggable</span> = <span class="literal">NO</span>;</div><div class="line">            annotationView<span class="variable">.calloutOffset</span> = CGPointMake(<span class="number">0</span>, -<span class="number">5</span>);</div><div class="line">            annotationView<span class="variable">.selected</span> = <span class="literal">YES</span>;</div><div class="line">        }</div><div class="line">        <span class="keyword">else</span> {</div><div class="line">            annotationView<span class="variable">.annotation</span> = annotation;</div><div class="line">        }</div><div class="line">        </div><div class="line">        [annotationView bindDataToUI];</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> annotationView;</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> <span class="literal">nil</span>;</div><div class="line">}</div></pre></td></tr></table></figure>
-
-]]></content>
-    <summary type="html">
-    <![CDATA[<h3 id="坑爹的高德">坑爹的高德</h3>
-<p>项目中地图原来用的高德sdk，其实我不知道当时为什么就用了高德，但既然用了，那么就在此基础上开发吧。可是写着写着，问题就来了： <a href="http://bbs.amap.com/thread-42153-1-1.html" target="_blank" rel="external">问题链接</a>。虽然这个问题不是什么太大的问题，但保不准以后还会遇到什么别的坑，而且以高德的效率，短期内肯定不会解决的。<br>那为什么还要用那个sdk呢？好像我们用到的功能苹果自带的MapKit都能实现啊，而且高德官网上的合作伙伴（携程、美团）也是用的原生的MapKit（从地图默认加载背景就可以看出来）。后来只花了一点点时间就切换到苹果的MapKit（API是一样的），目前还没发现什么bug。</p>
-<h3 id="坐标转换之中国特色">坐标转换之中国特色</h3>
-<p>因为不用高德了，所以当前位置经纬度就用CoreLocation来获取。可是当你把获取的经纬度放到MKMapView中显示，位置竟然有偏移，而且还不小。</p>
-<p>这是苹果的bug吗？不是，是有关部门的功劳。我们只有一个地球，所以地球上每个点的经纬度是固定的，国际上有个通用标准，简称国际标准。CoreLocation取到的经纬度符合国际标准。</p>
-<p>可是在国内，由于国家安全，有关部门制定了一套新的标准，简称国家标准。只要是在国内发行的地图（包括电子地图），都要按国家标准来，不然就是非法的。所以苹果手机中的国内地图肯定也是改良过的。</p>
-<p>我拿着国际标准的经纬度放到改良过的符合国家标准的地图中，显然会发生偏移。</p>
-<p>解决办法就是将国际标准的经纬度转换成国家标准的经纬度。<a href="https://gist.github.com/mithvv/5476132" target="_blank" rel="external">算法是现成的</a>（以前用高德sdk获取当前位置的经纬度本来就是国家标准的，所以没事。）<br>]]>
-    
-    </summary>
-    
-      <category term="地图" scheme="http://linkageios.github.io/tags/%E5%9C%B0%E5%9B%BE/"/>
     
       <category term="iOS" scheme="http://linkageios.github.io/categories/iOS/"/>
     
